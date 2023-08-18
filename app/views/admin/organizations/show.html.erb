@@ -1,0 +1,11 @@
+<h1> <%= @organization.name&.capitalize %> Departments </h1>
+
+<div class="container-grid">
+  <%= render @departments %>
+
+</div>
+
+<%= link_to "Back", admin_organizations_path %>
+
+
+

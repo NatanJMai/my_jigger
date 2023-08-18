@@ -1,0 +1,11 @@
+<div id="<%= dom_id organization %>">
+  Name: <%= organization.name %> <br>
+  Add: <%= organization.address %> <br>
+  Site: <%= organization.site %> <br>
+  Manager: <%= organization.manager.email %>
+
+  <hr>
+  <%= link_to "Show", admin_organization_path(organization) %>
+</div>
+
+

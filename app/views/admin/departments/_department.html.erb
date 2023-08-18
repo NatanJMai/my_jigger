@@ -1,0 +1,13 @@
+<div class="item btn btn-outline-dark">
+  <div id="<%= dom_id department %>">
+    Name: <%= department.name %> <br>
+    Desc: <%= department.description %> <br>
+    Status: <%= department.status %> <br>
+  </div>
+
+  <%= link_to "Edit", edit_admin_department_path(department) %>
+
+  <%= link_to "Destroy", admin_department_path(department), method: :delete %>
+
+</div>
+

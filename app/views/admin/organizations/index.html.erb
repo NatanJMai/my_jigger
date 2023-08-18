@@ -1,0 +1,9 @@
+<div class="container-grid">
+  <% @organizations.each do |organization| %>
+    <div class="item btn btn-outline-dark">
+      <%= render organization %>
+    </div>
+  <% end %>
+
+  <%= link_to "New organization", new_admin_organization_path %>
+</div>
