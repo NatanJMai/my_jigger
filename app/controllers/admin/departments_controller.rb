@@ -1,19 +1,24 @@
 class Admin::DepartmentsController < AdminController
   before_action :set_department,   only: [:show, :edit, :update, :destroy ]
-  before_action :set_organization, only: [:index, :create, :new ]
+  before_action :set_organization, only: [:index, :create, :new, :new_release ]
 
   # GET /admin/departments#index
   def index
     @departments = @organization.departments
   end
 
-  # GET /admin//departments/1
+  # GET /admin/org/departments/1
   def show
   end
 
   # GET /admin/departments#new
   def new
+    # debugger
     @department = @organization.departments.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /admin//departments/1/edit
@@ -60,6 +65,7 @@ class Admin::DepartmentsController < AdminController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
       @organization = Organization.find(params[:organization_id])

@@ -1,0 +1,49 @@
+<!-- Vertical navbar -->menu
+<div class="vertical-nav bg-white" id="sidebar">
+  <div class="py-4 px-3 mb-4 bg-light">
+    <%= render 'layouts/menu/user_info' %>
+  </div>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item">
+      <%= link_to "Home", admin_dashboard_url, class: "nav-link text-dark font-italic bg-light" %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to "Organizations", admin_organizations_path, class: "nav-link text-dark font-italic" %>
+    </li>
+  </ul>
+
+  <% if @department %>
+    <%= render partial: 'layouts/menu/department_info' %>
+  <% elsif @organization %>
+    <%= render partial: 'layouts/menu/organization_info' %>
+  <% else %>
+    <%= render partial: 'layouts/menu/general_info' %>
+  <% end %>
+
+
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">About me</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <% if current_user %>
+      <li class="nav-item">
+        <%= link_to "Edit Profile", edit_user_registration_path(current_user),
+                    class: "nav-link text-dark font-italic" %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to "Sign Out", sign_out_path,
+                    class: "nav-link text-dark font-italic" %>
+      </li>
+    <% else %>
+      <li class="nav-item">
+        <%= link_to "Sign In", sign_in_path,
+                    class: "nav-link text-dark font-italic" %>
+      </li>
+    <% end %>
+  </ul>
+</div>

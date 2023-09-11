@@ -34,3 +34,8 @@
 !/app/assets/builds/.keep
 
 /node_modules
+*.yml
+log/.keep
+*.xml
+*.xml
+.idea/workspace.xml

@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :organizations, shallow: true do
-      resources :departments, shallow: true
+      resources :departments, shallow: true do
+        resources :roles, shallow: true
+      end
     end
   end
 

@@ -1,14 +1,40 @@
-<p style="color: green"><%= notice %></p>
+<h2 class="display-4 text-white">
+  <%= @organization.name %> Departments
+</h2>
 
-<h1>Departments</h1>
+<div class="form-action">
+  <div class="grid-item">
+    <%= button_to 'NEW', new_admin_organization_department_path(@organization),
+                  class: "btn btn-success shadow-sm px-4 mb-2",
+                  :method => :get %>
 
-<div id="departments">
-  <% @departments.each do |department| %>
-    <%= render department %>
-    <p>
-      <%= link_to "Show this department", admin_department_path(department) %>
-    </p>
-  <% end %>
+  </div>
+
+  <div class="grid-item">
+    <%#= button_to 'EDIT', edit_admin_department_path(@department.id),
+                  class: "btn btn-info shadow-sm px-4 mb-2",
+                  :method => :get %>
+  </div>
+
+  <div class="grid-item">
+    <%#= button_to 'REMOVE', admin_department_path(@department),
+                  class: "btn btn-warning shadow-sm px-4 mb-2",
+                  :method => :delete %>
+  </div>
 </div>
 
-<%= link_to "New department", new_admin_organization_department_path(@organization) %>
+<p class="lead text-white mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
+<p class="lead text-white">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
+  <u>asdf</u></a>
+</p>
+
+<div class="separator"></div>
+
+<div class="container-fluid p-0">
+  <div class="row">
+    <% @departments.each do |department| %>
+      <%= render 'admin/departments/card', department: department %>
+    <% end %>
+  </div>
+</div>
+

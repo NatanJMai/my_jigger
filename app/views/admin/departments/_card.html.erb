@@ -1,0 +1,22 @@
+<div class="col-12 col-md-6 col-lg-3">
+  <div class="card">
+    <%= link_to admin_department_path(department) do %>
+      <%= image_tag 'https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp',
+                    class: "card-img-top" %>
+    <% end %>
+
+    <div class="card-body">
+      <div id="<%= dom_id department %>">
+        <h5 class="card-title"><%= department.name %></h5>
+        <p class="card-text">
+          Name: <%= department.name %>
+          <br>
+        </p>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <small class="text-muted">Last update: <%= department.updated_at %></small>
+    </div>
+  </div>
+</div>

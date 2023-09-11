@@ -1,0 +1,10 @@
+<p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0"><%= @department.name %></p>
+<ul class="nav flex-column bg-white mb-0">
+  <li class="nav-item">
+    <%= link_to "Overview", admin_department_path(@department), class: "nav-link text-dark font-italic" %>
+  </li>
+
+  <li class="nav-item">
+    <%= link_to "Roles", admin_department_roles_path(@department), class: "nav-link text-dark font-italic" %>
+  </li>
+</ul>

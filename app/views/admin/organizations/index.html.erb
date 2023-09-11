@@ -1,9 +1,42 @@
-<div class="container-grid">
-  <% @organizations.each do |organization| %>
-    <div class="item btn btn-outline-dark">
-      <%= render organization %>
-    </div>
-  <% end %>
+<h2 class="display-4 text-white">My Organizations</h2>
+<div class="form-action">
+  <div class="grid-item">
+    <%= button_to 'NEW', new_admin_organization_path,
+                  class: "btn btn-success shadow-sm px-4 mb-2",
+                  :method => :get %>
 
-  <%= link_to "New organization", new_admin_organization_path %>
+  </div>
+
+  <div class="grid-item">
+    <%= button_to 'EDIT', new_admin_organization_path,
+                  class: "btn btn-info shadow-sm px-4 mb-2",
+                  :method => :get %>
+  </div>
+
+  <div class="grid-item">
+    <%= button_to 'REMOVE', new_admin_organization_path,
+                  class: "btn btn-warning shadow-sm px-4 mb-2",
+                  :method => :get %>
+  </div>
 </div>
+
+<p class="lead text-white mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
+<p class="lead text-white">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
+  <u>asdf</u></a>
+</p>
+
+<div class="separator"></div>
+
+<div class="container-fluid p-0">
+  <div class="row">
+    <% @organizations.each do |organization| %>
+      <%= render 'admin/organizations/card', organization: organization %>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+

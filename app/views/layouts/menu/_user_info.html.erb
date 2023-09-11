@@ -1,0 +1,16 @@
+<div class="media d-flex align-items-center">
+  <% if current_user %>
+    <img src="https://bootstrapious.com/i/snippets/sn-v-nav/avatar.png"
+         alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+
+    <div class="media-body">
+      <h4 class="m-0">Natan J. Mai</h4>
+      <p class="font-weight-light text-muted mb-0"><%= current_user.email %></p>
+    </div>
+  <% else %>
+    <div class="media-body">
+      <h4 class="m-0">Welcome.</h4>
+      <p class="font-weight-light text-muted mb-0">Please sign in to get access.</p>
+    </div>
+  <% end %>
+</div>

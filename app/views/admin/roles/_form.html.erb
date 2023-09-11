@@ -1,0 +1,7 @@
+
+<%= simple_form_for([:admin, @department, @role]) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :status %>
+  <%= f.button :submit %>
+<% end %>

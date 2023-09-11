@@ -1,10 +1,57 @@
-<%= simple_form_for [:admin, @organization] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :email %>
-  <%= f.input :address %>
-  <%= f.input :site %>
-  <%= f.button :submit %>
-<% end %>
+<h2 class="display-4 text-white">My Organizations</h2>
+<p class="lead text-white mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
+<p class="lead text-white">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
+  <u>asdf</u></a>
+</p>
 
+<div class="separator"></div>
 
+<div class="container">
+  <%= simple_form_for([:admin, @organization],
+                      html: { class: 'jform row row-cols align-items-center' }) do |f| %>
+
+    <div class="card-header">
+      <h5 class="card-title text-center">New Organization</h5>
+    </div>
+
+    <legend><span class="number">1</span> Detail</legend>
+
+    <div class="row">
+      <div class="col-6">
+        <%= f.input :name %>
+      </div>
+
+      <div class="col-6">
+        <%= f.input :email %>
+      </div>
+    </div>
+
+    <legend><span class="number">2</span> Contact</legend>
+    <div class="row">
+      <div class="col-4">
+        <%= f.input :address %>
+      </div>
+
+      <div class="col-4">
+        <%= f.input :site %>
+      </div>
+
+      <div class="col-4">
+        <%= f.input :site %>
+      </div>
+    </div>
+
+    <legend><span class="number">3</span> Status</legend>
+
+    <div class="row">
+      <div class="col-4">
+        <%= f.input :status %>
+      </div>
+    </div>
+
+    <div class="row">
+          <%= f.button :submit, "Create", class: "form-btn"  %>
+    </div>
+  <% end %>
+</div>
 

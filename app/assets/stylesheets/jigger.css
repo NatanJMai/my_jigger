@@ -1,75 +1,167 @@
-/* Body, header and footer */
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+  /*background: -webkit-linear-gradient(to right, #222e3c, #1f2227);*/
+  /*background: linear-gradient(to right, #1f2227, #222e3c);*/
+  background: linear-gradient(to right, #1f2227, #1f2227);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-header, footer {
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
+.separator {
+  margin: 3rem 0;
+  border-bottom: 1px dashed #fff;
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+.text-uppercase {
+  letter-spacing: 0.1em;
 }
 
-/* Container and Item */
-
-.container-grid {
-  display: grid;
-  grid-template-columns: auto auto;
-  align-content: flex-start;
-  gap: 20px;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+.text-gray {
+  color: #aaa;
 }
 
-.item {
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
+:root {
+  --cardWidth: 240px;
+  --cardHeight: 280px;
+  --cardMargin: 5px;
 }
 
-@media (min-width: 600px) {
-  .container {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.page-content {
+  width: calc(100% - 17rem);
+  margin-left: 17rem;
+  transition: all 0.4s;
+  margin-top: -5%;
+  /*position: fixed;*/
 }
 
-@media (min-width: 900px) {
-  .container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Vertical Menu */
-
-.vertical-menu {
-  width: 250px;
-  background-color: #f2f2f2;
-  height: 100%;
+/* vertical menu */
+.vertical-nav {
+  min-width: 17rem;
+  width: 17rem;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  overflow-x: hidden;
-  padding-top: 20px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s;
 }
 
-.vertical-menu a {
-  padding: 15px 20px;
+.media-body {
+  margin-left: 5px;
+}
+
+/* for toggle behavior */
+
+#sidebar.active {
+  margin-left: -17rem;
+}
+
+#content.active {
+  width: 100%;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -17rem;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #content {
+    width: 100%;
+    margin: 0;
+  }
+  #content.active {
+    margin-left: 17rem;
+    width: calc(100% - 17rem);
+  }
+}
+
+/* cards display */
+.card {
+  margin: var(--cardMargin);
+  box-shadow: 0px 5px 10px 0px rgba(0,0,0,3);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  transition: all linear 200ms;
+  z-index: 1;
+  box-shadow: 0px 10px 20px 2px white;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  padding: 2em;
+
+  /* Centering */
+  left: 50%;
+  top: 50%;
+  transform: translate(-0%, -50%);
+
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  /* Add the drop shadow */
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2), 0 5px 10px 0 rgba(0,0,0,0.19);
+}
+
+.cancel-button {
+  background-color: #1530ff;
+  font-size: 12px;
+  color: white;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
   text-decoration: none;
-  color: #333;
-  display: block;
-  transition: background-color 0.3s;
+}
+.cancel-button:hover {
+  background-color: #2640fe;
 }
 
-.vertical-menu a:hover {
-  background-color: #ddd;
+.btn_new {
+  height: 80px;
+  width: 80px;
+  font-size: 2em;
+  border-radius: 50%;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  border: none;
 }
+
+.btn_new:hover {
+  box-shadow: 0 0 15px 0 rgba(0,0,0,1), 0 5px 15px 0 rgba(0,0,0,1);
+  transform: scale(1.05);
+  transition: all linear 50ms;
+}
+
+
+.form-action{
+  display: flex;
+  column-gap: 5px;
+}
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSE
+* ==========================================
+*
+*/
+
+

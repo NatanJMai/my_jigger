@@ -1,0 +1,25 @@
+<div class="col-12 col-md-6 col-lg-3">
+  <div class="card">
+    <%= link_to admin_organization_departments_path(organization) do %>
+      <%= image_tag 'https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp',
+                    class: "card-img-top" %>
+    <% end %>
+
+    <div class="card-body">
+      <div id="<%= dom_id organization %>">
+        <h5 class="card-title"><%= organization.name %></h5>
+        <p class="card-text">
+          Add: <%= organization.address %>
+          <br>
+          Site: <%= organization.site %>
+          <br>
+          Manager: <%= organization.manager.email %>
+        </p>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <small class="text-muted">Last update: <%= organization.updated_at %></small>
+    </div>
+  </div>
+</div>

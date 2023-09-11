@@ -1,0 +1,82 @@
+.jform {
+    max-width: 80%;
+    padding: 30px 20px;
+    //background: #f4f7f8;
+    border-color: white;
+    border-style: inset;
+    color: #d3d5d8;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, .4);
+
+    h1 {
+        margin: 0 0 30px 0;
+        text-align: center;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        appearance: none;
+        background-clip: padding-box;
+        background: #1f2227;
+        border: 1px solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius);
+        color: #bdc0c5;
+        display: block;
+        font-size: .875rem;
+        font-weight: 400;
+        line-height: 1.5;
+        padding: 0.3rem 0.85rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+        margin: 0 4px 8px 0;
+    }
+
+    select {
+        padding: 6px;
+        height: 32px;
+        border-radius: 2px;
+    }
+
+    fieldset {
+        margin-bottom: 30px;
+        border: none;
+    }
+
+    legend {
+        font-size: 1.4em;
+        margin-top: 20px;
+    }
+
+    .form-btn{
+        padding: 10px 30px 10px 30px;
+        color: #FFF;
+        background-color: #4bc970;
+        font-size: 18px;
+        text-align: center;
+        font-style: normal;
+        border-radius: 5px;
+        width: 100%;
+        border: 1px solid #3ac162;
+        border-width: 1px 1px 3px;
+        box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+        margin-bottom: 10px;
+    }
+
+    .number {
+        background-color: #86b7fe;
+        color: #fff;
+        height: 30px;
+        width: 30px;
+        display: inline-block;
+        font-size: 0.8em;
+        margin-right: 4px;
+        line-height: 30px;
+        text-align: center;
+        text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+        border-radius: 100%;
+    }
+}
