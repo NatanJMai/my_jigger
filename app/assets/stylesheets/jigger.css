@@ -7,8 +7,6 @@
 */
 
 body {
-  /*background: -webkit-linear-gradient(to right, #222e3c, #1f2227);*/
-  /*background: linear-gradient(to right, #1f2227, #222e3c);*/
   background: linear-gradient(to right, #1f2227, #1f2227);
   min-height: 100vh;
   overflow-x: hidden;
@@ -31,14 +29,14 @@ body {
   --cardWidth: 240px;
   --cardHeight: 280px;
   --cardMargin: 5px;
+  --bs-secondary-bg: white;
 }
 
 .page-content {
   width: calc(100% - 17rem);
   margin-left: 17rem;
   transition: all 0.4s;
-  margin-top: -5%;
-  /*position: fixed;*/
+  margin-top: -2%;
 }
 
 /* vertical menu */
@@ -65,7 +63,7 @@ body {
 
 #content.active {
   width: 100%;
-  margin: 0;
+  margin: -2% 0 0;
 }
 
 @media (max-width: 768px) {
@@ -82,7 +80,47 @@ body {
   #content.active {
     margin-left: 17rem;
     width: calc(100% - 17rem);
+    margin-top: -2%;
   }
+
+  #alert-div.active {
+    margin-left: 17rem;
+    width: calc(100% - 17rem);
+  }
+
+  #alert-msg.active {
+    margin-left: -17rem !important;
+    width: calc(100% - 17rem);
+  }
+}
+
+#alert-msg {
+  margin-left: 17rem;
+  transition: all 0.4s;
+}
+
+#alert-msg.active {
+  margin-left: 0 !important;
+  transition: all 0.4s;
+}
+
+.alert-div{
+  --bs-alert-bg: transparent;
+  --bs-alert-padding-x: 1rem;
+  --bs-alert-padding-y: 1rem;
+  --bs-alert-margin-bottom: 1rem;
+  --bs-alert-color: inherit;
+  --bs-alert-border-color: transparent;
+  --bs-alert-border: var(--bs-border-width) solid var(--bs-alert-border-color);
+  --bs-alert-border-radius: var(--bs-border-radius);
+  --bs-alert-link-color: inherit;
+  position: relative;
+  padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
+  margin-bottom: var(--bs-alert-margin-bottom);
+  color: var(--bs-alert-color);
+  background-color: var(--bs-alert-bg);
+  border: var(--bs-alert-border);
+  border-radius: var(--bs-alert-border-radius);
 }
 
 /* cards display */
@@ -132,6 +170,7 @@ body {
   background-color: #2640fe;
 }
 
+/* form display */
 .btn_new {
   height: 80px;
   width: 80px;
@@ -150,18 +189,21 @@ body {
   transition: all linear 50ms;
 }
 
+/* table minimal btn */
+.minimal .btn {
+  --bs-btn-padding-y: .24rem;
+  --bs-btn-padding-x: .8rem;
+  --bs-btn-font-size: .75rem;
+}
 
+.minimal form {
+  display: inline;
+}
+
+/* new, edit and remove form */
 .form-action{
   display: flex;
   column-gap: 5px;
 }
-
-/*
-*
-* ==========================================
-* FOR DEMO PURPOSE
-* ==========================================
-*
-*/
 
 

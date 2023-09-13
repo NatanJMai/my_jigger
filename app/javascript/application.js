@@ -1,11 +1,3 @@
-// Entry point for the build script in your package.json
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
-
-//= require jquery
-//= require popper
-//= require turbolinks
-//= require bootstrap
-//= require_tree.
-
-
-
+import "controllers"

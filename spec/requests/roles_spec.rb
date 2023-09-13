@@ -95,7 +95,7 @@ RSpec.describe "/roles", type: :request do
 
     describe "POST /create" do
       context "with valid parameters" do
-        it "creates and redirect to the new Role" do
+        it "creates and redirect to the Index (Roles)" do
           expect {
             post admin_department_roles_path(@department1.id), params: {
               role: {
@@ -108,7 +108,7 @@ RSpec.describe "/roles", type: :request do
             }
           }.to change(Role, :count).by(1)
 
-          expect(response).to redirect_to(admin_role_path(Role.last))
+          expect(response).to redirect_to(admin_department_roles_path(@department1))
         end
       end
 

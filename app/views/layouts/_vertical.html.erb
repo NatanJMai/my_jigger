@@ -1,4 +1,4 @@
-<!-- Vertical navbar -->menu
+<!-- Vertical navbar -->
 <div class="vertical-nav bg-white" id="sidebar">
   <div class="py-4 px-3 mb-4 bg-light">
     <%= render 'layouts/menu/user_info' %>
@@ -16,15 +16,13 @@
     </li>
   </ul>
 
-  <% if @department %>
+  <% if @department&.persisted? %>
     <%= render partial: 'layouts/menu/department_info' %>
-  <% elsif @organization %>
+  <% elsif @organization&.persisted? %>
     <%= render partial: 'layouts/menu/organization_info' %>
   <% else %>
     <%= render partial: 'layouts/menu/general_info' %>
   <% end %>
-
-
 
   <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">About me</p>
 

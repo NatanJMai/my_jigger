@@ -1,10 +1,2 @@
 <h1>Editing department</h1>
-
-<%= render "form", department: @department %>
-
-<br>
-
-<div>
-  <%= link_to "Show this department", admin_department_path(@department) %> |
-  <%= link_to "Back to departments", admin_organization_departments_path(@department.organization) %>
-</div>
+<%= render partial: 'form', locals: { model: [:admin, @department] } %>

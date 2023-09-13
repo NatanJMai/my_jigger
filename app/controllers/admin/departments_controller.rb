@@ -1,6 +1,6 @@
 class Admin::DepartmentsController < AdminController
   before_action :set_department,   only: [:show, :edit, :update, :destroy ]
-  before_action :set_organization, only: [:index, :create, :new, :new_release ]
+  before_action :set_organization, only: [:index, :create, :new, :edit, :update]
 
   # GET /admin/departments#index
   def index
@@ -9,11 +9,11 @@ class Admin::DepartmentsController < AdminController
 
   # GET /admin/org/departments/1
   def show
+    @roles = @department.roles
   end
 
   # GET /admin/departments#new
   def new
-    # debugger
     @department = @organization.departments.new
     respond_to do |format|
       format.html
@@ -68,11 +68,15 @@ class Admin::DepartmentsController < AdminController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
-      @organization = Organization.find(params[:organization_id])
+      if @department.present?
+        @organization = @department.organization
+      else
+        @organization = Organization.find_by(id: params[:organization_id])
+      end
     end
 
     def set_department
-      @department   = Department.find(params[:id])
+      @department = Department.find_by(id: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

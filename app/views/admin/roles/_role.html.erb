@@ -1,2 +1,18 @@
-<div id="<%= dom_id role %>">
-</div>
+<tr>
+  <th scope="row"><%= role.id %></th>
+  <td><%= role.name %></td>
+  <td><%= role.description %></td>
+  <td><%= role.permission %></td>
+  <td><%= role.status %></td>
+  <td class="minimal">
+    <%= button_to admin_role_path(role), class: "btn btn-danger",
+                  method: :delete, form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
+
+      <i class="bi bi-trash"></i>
+    <% end %>
+
+    <%= link_to edit_admin_role_path(role), class: 'btn btn-info'  do %>
+      <i class="bi bi-pencil-square"></i>
+    <% end %>
+  </td>
+</tr>

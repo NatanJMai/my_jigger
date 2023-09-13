@@ -1,2 +1,1 @@
-<%= render "form", :locals => { organization: @organization,
-                                  department: @department } %>
+<%= render partial: 'form', locals: { model: [:admin, @organization, @department] } %>

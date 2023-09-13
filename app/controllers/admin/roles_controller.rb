@@ -1,6 +1,6 @@
 class Admin::RolesController < AdminController
   before_action :set_role,       only: [:show, :edit, :update, :destroy ]
-  before_action :set_department, only: [:index, :create, :new ]
+  before_action :set_department, only: [:index, :create, :new, :edit, :update]
 
   # GET /roles or /roles.json
   def index
@@ -26,7 +26,7 @@ class Admin::RolesController < AdminController
 
     respond_to do |format|
       if @role.save
-        format.html { redirect_to admin_role_url(@role), notice: "Role was successfully created." }
+        format.html { redirect_to admin_department_roles_url(@department), notice: "Role was successfully created." }
         format.json { render :show, status: :created, location: @role }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -62,18 +62,21 @@ class Admin::RolesController < AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_role
-      @role = Role.find(params[:id])
+      @role = Role.find_by(id: params[:id])
     end
 
     def set_department
-      @department = Department.find(params[:department_id])
+      if @role.present?
+        @department = @role.department
+      else
+        @department = Department.find_by(id: params[:department_id])
+      end
     end
 
     # Only allow a list of trusted parameters through.
     def role_params
       params.require(:role).permit(
         :name, :description, :status,
-        :department_id, :permission,
-      )
+        :department_id, :permission)
     end
 end

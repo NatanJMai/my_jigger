@@ -10,8 +10,8 @@
 <div class="separator"></div>
 
 <div class="container">
-  <%= simple_form_for([:admin, @organization, @department],
-                    html: { class: 'jform row row-cols align-items-center' } ) do |f| %>
+  <%= simple_form_for(model,
+                      html: { class: 'jform row row-cols align-items-center' } ) do |f| %>
 
     <div class="card-header">
       <h5 class="card-title text-center">New Department</h5>
@@ -37,9 +37,8 @@
     </div>
 
     <div class="row">
-      <%= f.button :submit, "Create", class: "form-btn"  %>
+      <%= f.button :submit, "Save", class: "form-btn"  %>
     </div>
-
   <% end %>
 </div>
 

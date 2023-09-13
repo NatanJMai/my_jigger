@@ -5,3 +5,6 @@
 //= link jigger.js
 //= require_tree .
 
+//= link controllers/index.js
+//= link controllers/application.js
+//= link_tree ../../../vendor/javascript .js
