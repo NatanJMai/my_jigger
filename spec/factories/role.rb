@@ -3,7 +3,7 @@ FactoryBot.define do
     name { Faker::Company.name }
     description { Faker::ChuckNorris.fact }
     department { association :department }
-    permission { 0 }
+    permission { :Read }
     status { true }
   end
 end

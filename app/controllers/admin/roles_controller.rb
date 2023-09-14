@@ -39,7 +39,10 @@ class Admin::RolesController < AdminController
   def update
     respond_to do |format|
       if @role.update(role_params)
-        format.html { redirect_to admin_role_url(@role), notice: "Role was successfully updated." }
+        format.html {
+          redirect_to admin_department_roles_path(@department), notice: "Role was successfully updated."
+        }
+
         format.json { render :show, status: :ok, location: @role }
       else
         format.html { render :edit, status: :unprocessable_entity }

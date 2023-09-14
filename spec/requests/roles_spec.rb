@@ -19,19 +19,19 @@ RSpec.describe "/roles", type: :request do
   # Role. As you add validations to Role, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    name {"Name"}
-    description {"Desc"}
-    status {true}
-    department_id {0}
-    permission {0}
+    name { "Name" }
+    description { "Desc" }
+    status { true }
+    department_id { 0 }
+    permission { :Read }
   }
 
   let(:invalid_attributes) {
-    name {""}
-    description {""}
-    status {}
-    department_id {nil}
-    permission {}
+    name { "" }
+    description { "" }
+    status { }
+    department_id { nil }
+    permission { }
   }
 
   describe "(Not logged in Admin) Should be redirect to sign_path" do
@@ -102,7 +102,7 @@ RSpec.describe "/roles", type: :request do
                 name: "Name",
                 description: "Description",
                 department_id: @department1.id,
-                permission: 0,
+                permission: :Read,
                 status: true
               }
             }
@@ -120,7 +120,7 @@ RSpec.describe "/roles", type: :request do
                 name: "",
                 description: "",
                 department_id: nil,
-                permission: 0,
+                permission: :Read,
                 status: true
               }
             }
@@ -133,7 +133,7 @@ RSpec.describe "/roles", type: :request do
               name: "",
               description: "",
               department_id: nil,
-              permission: 0,
+              permission: :Read,
               status: true
             }
           }
@@ -155,19 +155,18 @@ RSpec.describe "/roles", type: :request do
     context "with valid parameters" do
       it "updates the requested role" do
 
-        # debugger
         patch admin_role_path(@role1.id), params: {
           role: {
             name: "New Name",
             description: "New Description",
             department_id: @department1.id,
-            permission: 0,
+            permission: :Read,
             status: true
           }
         }
 
         @role1.reload
-        expect(response).to redirect_to(admin_role_path(@role1.id))
+        expect(response).to redirect_to(admin_department_roles_path(@department1.id))
       end
     end
 
@@ -178,7 +177,7 @@ RSpec.describe "/roles", type: :request do
             name: "",
             description: "",
             department_id: @department1.id,
-            permission: 0,
+            permission: :Read,
             status: true
           }
         }

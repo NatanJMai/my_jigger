@@ -1,7 +1,6 @@
 .jform {
     max-width: 80%;
     padding: 30px 20px;
-    //background: #f4f7f8;
     border-color: white;
     border-style: inset;
     color: #d3d5d8;
@@ -13,6 +12,7 @@
         text-align: center;
     }
 
+    input[type="text"],
     input[type="text"],
     input[type="email"],
     textarea {
@@ -28,6 +28,13 @@
         line-height: 1.5;
         padding: 0.3rem 0.85rem;
         transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    input[type="text"],
+    input[type="text"],
+    input[type="email"],
+    textarea:focus {
+        color: #bdc0c5;
     }
 
     input[type="radio"],

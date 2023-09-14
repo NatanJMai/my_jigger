@@ -29,15 +29,19 @@
       </div>
     </div>
 
-    <legend><span class="number">2</span> Status</legend>
+    <legend><span class="number">2</span> Status & Permissions</legend>
     <div class="row">
+      <div class="col-4">
+        <%= f.input :permission, as: :select, collection: permissions_options, label: 'test'%>
+      </div>
+
       <div class="col-4">
         <%= f.input :status %>
       </div>
     </div>
 
     <div class="row">
-      <%= f.button :submit, "Create", class: "form-btn"  %>
+      <%= f.button :submit, "Save", class: "form-btn"  %>
     </div>
 
   <% end %>
