@@ -1,0 +1,40 @@
+<h2 class="display-4 text-white">
+  Staff (<%= @organization.name %>)
+</h2>
+
+<div class="form-action">
+  <div class="grid-item">
+    <%= button_to 'NEW', new_admin_organization_user_organization_path(@organization.id),
+                  class: "btn btn-success shadow-sm px-4 mb-2",
+                  :method => :get %>
+  </div>
+</div>
+
+<p class="lead text-white mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
+<p class="lead text-white">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
+  <u>asdf</u></a>
+</p>
+
+<div class="separator"></div>
+
+<div class="container-fluid p-0">
+  <div class="row">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @user_organizations.each do |user_organization| %>
+        <%= render partial: 'user_organization', locals: { user_organization: user_organization } %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       resources :departments, shallow: true do
         resources :roles, shallow: true
       end
+
+      resources :user_organizations, shallow: true
     end
   end
 

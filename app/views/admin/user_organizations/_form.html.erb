@@ -1,0 +1,49 @@
+<h2 class="display-4 text-white">
+  Staff (<%= @organization.name %>)
+</h2>
+
+<p class="lead text-white mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
+<p class="lead text-white">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
+  <u>asdf</u></a>
+</p>
+
+<div class="separator"></div>
+
+<div class="container">
+  <%= simple_form_for(model,
+                      html: { class: 'jform row row-cols align-items-center' } ) do |f| %>
+
+    <div class="card-header">
+      <h5 class="card-title text-center">New Staff</h5>
+    </div>
+
+    <legend><span class="number">1</span> Detail</legend>
+
+    <div class="row">
+      <div class="col-6">
+        <%= f.input :user_id, as: :select, collection: User.all, label: 'User'%>
+      </div>
+
+      <div class="col-6">
+        <%#= f.input :description %>
+      </div>
+    </div>
+
+    <legend><span class="number">2</span> Status & Permissions</legend>
+    <div class="row">
+      <div class="col-4">
+        <%#= f.input :permission, as: :select, collection: permissions_options, label: 'test'%>
+      </div>
+
+      <div class="col-4">
+        <%#= f.input :status %>
+      </div>
+    </div>
+
+    <div class="row">
+      <%= f.button :submit, "Save", class: "form-btn"  %>
+    </div>
+  <% end %>
+</div>
+
+

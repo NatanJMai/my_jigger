@@ -1,6 +1,8 @@
 class Organization < ApplicationRecord
-  belongs_to :manager,    class_name: "User"
-  has_many :departments,  class_name: "Department", dependent: :destroy
+  belongs_to :manager, class_name: "User"
+  has_many :departments, class_name: "Department", dependent: :destroy
+  has_many :user_organizations, class_name: 'UserOrganization', dependent: :destroy
+  has_many :employees, through: :user_organizations, source: :user
 
   before_save { email.downcase! }
 

@@ -1,0 +1,14 @@
+<tr>
+  <th scope="row"><%= user_organization.id %></th>
+  <td><%= user_organization.user.email %></td>
+  <td><%= user_organization.user.email %></td>
+  <td><%= user_organization.user.roles %></td>
+
+  <td class="minimal">
+    <%= button_to admin_user_organization_path(user_organization), class: "btn btn-danger",
+                  method: :delete, form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
+
+      <i class="bi bi-trash"></i> DELETE
+    <% end %>
+  </td>
+</tr>

@@ -86,3 +86,4 @@ gem 'simple_form'
 gem 'bootstrap'
 gem 'popper_js', '~> 2.11.8'
 gem "importmap-rails", "~> 1.2"
+gem 'draper'
