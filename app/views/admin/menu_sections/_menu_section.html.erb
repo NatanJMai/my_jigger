@@ -1,0 +1,20 @@
+<tr>
+  <th scope="row"><%= menu_section.id %></th>
+  <td><%= menu_section.name %></td>
+  <td><%= menu_section.status %></td>
+  <td class="minimal">
+    <%= link_to admin_menu_section_path(menu_section), class: 'btn btn-success' do %>
+      <i class="bi bi-pencil-square"></i> VIEW
+    <% end %>
+
+    <%= link_to edit_admin_menu_section_path(menu_section), class: 'btn btn-info'  do %>
+      <i class="bi bi-pencil-square"></i> EDIT
+    <% end %>
+
+    <%= button_to admin_menu_section_path(menu_section), class: "btn btn-danger",
+                  method: :delete, form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
+
+      <i class="bi bi-trash"></i> DELETE
+    <% end %>
+  </td>
+</tr>

@@ -1,0 +1,21 @@
+<tr>
+  <th scope="row"><%= menu.id %></th>
+  <td><%= menu.name %></td>
+  <td><%= menu.description %></td>
+  <td><%= menu.status %></td>
+  <td class="minimal">
+    <%= link_to admin_menu_path(menu), class: 'btn btn-success' do %>
+      <i class="bi bi-pencil-square"></i> VIEW
+    <% end %>
+
+    <%= link_to edit_admin_menu_path(menu), class: 'btn btn-info' do %>
+      <i class="bi bi-pencil-square"></i> EDIT
+    <% end %>
+
+    <%= button_to admin_menu_path(menu), class: "btn btn-danger",
+                  method: :delete, form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
+
+      <i class="bi bi-trash"></i> DELETE
+    <% end %>
+  </td>
+</tr>

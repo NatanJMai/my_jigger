@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :menu_sections
+  resources :menus
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -14,6 +16,10 @@ Rails.application.routes.draw do
     resources :organizations, shallow: true do
       resources :departments, shallow: true do
         resources :roles, shallow: true
+      end
+
+      resources :menus, shallow: true do
+        resources :menu_sections, shallow: true
       end
 
       resources :user_organizations, shallow: true
