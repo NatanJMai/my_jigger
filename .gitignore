@@ -39,3 +39,5 @@ log/.keep
 *.xml
 *.xml
 .idea/workspace.xml
+.idea/my_jigger.iml
+.idea/workspace.xml

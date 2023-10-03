@@ -9,6 +9,8 @@ class Admin::MenuSectionsController < AdminController
 
   # GET /menu_sections/1 or /menu_sections/1.json
   def show
+    @items = @menu_section.items
+    @organization = @menu_section.menu.organization
   end
 
   # GET /menu_sections/new
@@ -70,14 +72,14 @@ class Admin::MenuSectionsController < AdminController
       @menu_section = MenuSection.find(params[:id])
     end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_menu
-    if @menu_section.present?
-      @menu = @menu_section.menu
-    else
-      @menu = Menu.find_by(id: params[:menu_id])
+    # Use callbacks to share common setup or constraints between actions.
+    def set_menu
+      if @menu_section.present?
+        @menu = @menu_section.menu
+      else
+        @menu = Menu.find_by(id: params[:menu_id])
+      end
     end
-  end
 
     # Only allow a list of trusted parameters through.
     def menu_section_params

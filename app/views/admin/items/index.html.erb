@@ -8,6 +8,18 @@
                   class: "btn btn-success shadow-sm px-4 mb-2",
                   :method => :get %>
   </div>
+
+  <div class="grid-item">
+    <%#= button_to 'EDIT', edit_admin_department_path(@department.id),
+                  class: "btn btn-info shadow-sm px-4 mb-2",
+                  :method => :get %>
+  </div>
+
+  <div class="grid-item">
+    <%#= button_to 'REMOVE', admin_department_path(@department),
+                  class: "btn btn-warning shadow-sm px-4 mb-2",
+                  :method => :delete %>
+  </div>
 </div>
 
 <p class="lead text-white mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
@@ -31,7 +43,7 @@
       </thead>
       <tbody>
       <% @items.each do |item| %>
-        <%= render partial: 'admin/items/item', locals: { item: item } %>
+        <%= render partial: 'item', locals: { item: item } %>
       <% end %>
       </tbody>
     </table>

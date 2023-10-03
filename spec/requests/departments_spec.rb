@@ -27,7 +27,6 @@ RSpec.describe "/departments", type: :request do
     end
   end
 
-
   describe "(Logged Admin) GET Routes " do
     before do
       @admin_user_1  = create(:admin_user)
@@ -159,7 +158,6 @@ RSpec.describe "/departments", type: :request do
       end
     end
   end
-
 
   describe "DELETE /destroy" do
     before do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_28_120339) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_03_114536) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_120339) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_departments_on_organization_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "organization_id"
+    t.bigint "menu_section_id"
+    t.index ["menu_section_id"], name: "index_items_on_menu_section_id"
+    t.index ["organization_id", "name"], name: "index_items_on_organization_id_and_name", unique: true
+    t.index ["organization_id"], name: "index_items_on_organization_id"
   end
 
   create_table "menu_sections", force: :cascade do |t|
@@ -106,6 +118,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_120339) do
   end
 
   add_foreign_key "departments", "organizations"
+  add_foreign_key "items", "organizations"
   add_foreign_key "organizations", "users", column: "manager_id"
   add_foreign_key "roles", "departments"
   add_foreign_key "user_organizations", "organizations"
