@@ -1,6 +1,7 @@
 class Organization < ApplicationRecord
   belongs_to :manager, class_name: "User"
   has_many :departments, class_name: "Department", dependent: :destroy
+  has_many :products, class_name: "Product", dependent: :destroy
   has_many :menus, class_name: "Menu", dependent: :destroy
   has_many :items, class_name: "Item", dependent: :destroy
   has_many :user_organizations, class_name: 'UserOrganization', dependent: :destroy

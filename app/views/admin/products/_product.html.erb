@@ -1,0 +1,21 @@
+<tr>
+  <th scope="row"><%= product.id %></th>
+  <td><%= product.name %></td>
+  <td><%= product.prep_method %></td>
+  <td><%= product.status %></td>
+  <td class="minimal">
+    <%= link_to admin_product_path(product), class: 'btn btn-success' do %>
+      <i class="bi bi-pencil-square"></i> VIEW
+    <% end %>
+
+    <%= link_to edit_admin_product_path(product), class: 'btn btn-info' do %>
+      <i class="bi bi-pencil-square"></i> EDIT
+    <% end %>
+
+    <%= button_to admin_product_path(product), class: "btn btn-danger",
+                  method: :delete, form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
+
+      <i class="bi bi-trash"></i> DELETE
+    <% end %>
+  </td>
+</tr>

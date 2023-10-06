@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_03_114536) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_06_110003) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_114536) do
     t.index ["manager_id"], name: "index_organizations_on_manager_id"
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.bigint "organization_id"
+    t.integer "unit"
+    t.float "volume"
+    t.text "prep_method"
+    t.date "best_before"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id", "name"], name: "index_products_on_organization_id_and_name", unique: true
+    t.index ["organization_id"], name: "index_products_on_organization_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.bigint "department_id"
     t.string "name"
@@ -120,6 +134,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_114536) do
   add_foreign_key "departments", "organizations"
   add_foreign_key "items", "organizations"
   add_foreign_key "organizations", "users", column: "manager_id"
+  add_foreign_key "products", "organizations"
   add_foreign_key "roles", "departments"
   add_foreign_key "user_organizations", "organizations"
   add_foreign_key "user_organizations", "users"
