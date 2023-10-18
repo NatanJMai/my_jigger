@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_06_110003) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_18_113656) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "datasheet_lines", force: :cascade do |t|
+    t.bigint "datasheet_id"
+    t.bigint "product_id"
+    t.float "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["datasheet_id"], name: "index_datasheet_lines_on_datasheet_id"
+    t.index ["product_id"], name: "index_datasheet_lines_on_product_id"
+  end
+
+  create_table "datasheets", force: :cascade do |t|
+    t.string "name"
+    t.bigint "item_id"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_datasheets_on_item_id"
+    t.index ["name", "item_id"], name: "index_datasheets_on_name_and_item_id", unique: true
+    t.index ["name"], name: "index_datasheets_on_name"
+  end
 
   create_table "departments", force: :cascade do |t|
     t.string "name"
@@ -131,6 +152,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_110003) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "datasheet_lines", "datasheets"
+  add_foreign_key "datasheet_lines", "products"
+  add_foreign_key "datasheets", "items"
   add_foreign_key "departments", "organizations"
   add_foreign_key "items", "organizations"
   add_foreign_key "organizations", "users", column: "manager_id"
