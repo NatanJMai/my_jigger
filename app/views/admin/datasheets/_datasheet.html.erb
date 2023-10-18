@@ -1,0 +1,17 @@
+<tr>
+  <th scope="row"><%= datasheet.id %></th>
+  <td><%= datasheet.name %></td>
+  <td><%= datasheet.item&.name %></td>
+  <td><%= datasheet.status %></td>
+  <td class="minimal">
+    <%= link_to admin_datasheet_path(datasheet), class: 'btn btn-success' do %>
+      <i class="bi bi-pencil-square"></i>
+    <% end %>
+
+    <%= button_to admin_datasheet_path(datasheet), class: "btn btn-danger",
+                  method: :delete, form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
+
+      <i class="bi bi-trash"></i>
+    <% end %>
+  </td>
+</tr>

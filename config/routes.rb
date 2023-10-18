@@ -20,7 +20,10 @@ Rails.application.routes.draw do
         resources :menu_sections, shallow: true
       end
 
-      resources :items
+      resources :items do
+        resources :datasheets, shallow: true
+      end
+
       resources :user_organizations, shallow: true
       resources :products, shallow: true
     end
