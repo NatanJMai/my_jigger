@@ -21,7 +21,9 @@ Rails.application.routes.draw do
       end
 
       resources :items do
-        resources :datasheets, shallow: true
+        resources :datasheets, shallow: true do
+          resources :datasheet_lines, shallow: true
+        end
       end
 
       resources :user_organizations, shallow: true
