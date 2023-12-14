@@ -1,4 +1,4 @@
-//= link_tree ../images
+// link_tree ../images
 //= link_tree ../builds
 //= link jigger.css
 //= link form.css
@@ -7,4 +7,6 @@
 
 //= link controllers/index.js
 //= link controllers/application.js
+//= link application.js
+
 //= link_tree ../../../vendor/javascript .js

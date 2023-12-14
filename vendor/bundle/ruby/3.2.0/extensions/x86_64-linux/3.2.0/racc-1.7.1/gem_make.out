@@ -1,0 +1,20 @@
+current directory: /home/natanjmai/Documents/_projects/my_jigger/my_jigger/vendor/bundle/ruby/3.2.0/gems/racc-1.7.1/ext/racc/cparse
+/home/natanjmai/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+checking for rb_block_call()... yes
+checking for rb_ary_subseq()... yes
+creating Makefile
+
+current directory: /home/natanjmai/Documents/_projects/my_jigger/my_jigger/vendor/bundle/ruby/3.2.0/gems/racc-1.7.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20231212-18634-2lyv8 sitelibdir\=./.gem.20231212-18634-2lyv8 clean
+
+current directory: /home/natanjmai/Documents/_projects/my_jigger/my_jigger/vendor/bundle/ruby/3.2.0/gems/racc-1.7.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20231212-18634-2lyv8 sitelibdir\=./.gem.20231212-18634-2lyv8
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /home/natanjmai/Documents/_projects/my_jigger/my_jigger/vendor/bundle/ruby/3.2.0/gems/racc-1.7.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20231212-18634-2lyv8 sitelibdir\=./.gem.20231212-18634-2lyv8 install
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20231212-18634-2lyv8/racc
+
+current directory: /home/natanjmai/Documents/_projects/my_jigger/my_jigger/vendor/bundle/ruby/3.2.0/gems/racc-1.7.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20231212-18634-2lyv8 sitelibdir\=./.gem.20231212-18634-2lyv8 clean

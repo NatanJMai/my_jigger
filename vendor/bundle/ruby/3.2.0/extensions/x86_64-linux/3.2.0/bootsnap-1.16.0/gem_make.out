@@ -1,0 +1,18 @@
+current directory: /home/natanjmai/Documents/_projects/my_jigger/my_jigger/vendor/bundle/ruby/3.2.0/gems/bootsnap-1.16.0/ext/bootsnap
+/home/natanjmai/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/natanjmai/Documents/_projects/my_jigger/my_jigger/vendor/bundle/ruby/3.2.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20231212-18634-nsrejn sitelibdir\=./.gem.20231212-18634-nsrejn clean
+
+current directory: /home/natanjmai/Documents/_projects/my_jigger/my_jigger/vendor/bundle/ruby/3.2.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20231212-18634-nsrejn sitelibdir\=./.gem.20231212-18634-nsrejn
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.so
+
+current directory: /home/natanjmai/Documents/_projects/my_jigger/my_jigger/vendor/bundle/ruby/3.2.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20231212-18634-nsrejn sitelibdir\=./.gem.20231212-18634-nsrejn install
+/usr/bin/install -c -m 0755 bootsnap.so ./.gem.20231212-18634-nsrejn/bootsnap
+
+current directory: /home/natanjmai/Documents/_projects/my_jigger/my_jigger/vendor/bundle/ruby/3.2.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20231212-18634-nsrejn sitelibdir\=./.gem.20231212-18634-nsrejn clean
