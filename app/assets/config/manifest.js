@@ -8,5 +8,3 @@
 //= link controllers/index.js
 //= link controllers/application.js
 //= link application.js
-
-//= link_tree ../../../vendor/javascript .js
