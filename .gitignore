@@ -64,3 +64,4 @@ log/.keep
 *.xml
 tmp/
 config/storage.yml
+*.meta
