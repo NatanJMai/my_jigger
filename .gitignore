@@ -37,12 +37,9 @@
 *.yml
 log/.keep
 *.xml
-*.xml
 .idea/workspace.xml
 .idea/my_jigger.iml
-.idea/workspace.xml
 *.meta
-*.xml
 *.txt
 *.iml
 .idea/
@@ -55,13 +52,9 @@ log/.keep
 .idea/dataSources/4731d31a-5b11-4a7e-9683-a1ebb7754cdb/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta
 .idea/jsLibraryMappings.xml
 .idea/misc.xml
-.idea/my_jigger.iml
 .idea/sqldialects.xml
 .idea/vcs.xml
-.idea/workspace.xml
 .rspec
 .ruby-version
-*.xml
-tmp/
 config/storage.yml
-*.meta
+config/cable.yml
