@@ -1,2 +1,47 @@
-<h1>Editing Datasheet</h1>
-<%= render partial: 'form', locals: { model: [:admin, @datasheet] } %>
+<h2 class="display-4 text-white">
+  Datasheet Lines
+</h2>
+
+<div class="form-action">
+  <div class="grid-item">
+
+  </div>
+</div>
+
+
+<div class="separator"></div>
+
+<div class="container-fluid p-0">
+  <div class="row">
+
+    <%= link_to 'Button/Link', new_admin_datasheet_datasheet_line_path(@datasheet),
+                input_html: {class: "btn btn-success shadow-sm px-4 mb-2"},
+                remote: true %>
+
+
+    <% @datasheet.datasheet_lines.each do |line| %>
+      <tr>
+        <th scope="row"><%= line.id %></th>
+        <td><%= line.product.name %></td>
+        <td><%= line.product.volume %></td>
+        <td><%= line.quantity %></td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td class="minimal">
+          <%= link_to edit_admin_datasheet_line_path(line), class: 'btn btn-info' do %>
+            <i class="bi bi-pencil-square"></i> EDIT
+          <% end %>
+
+          <%= button_to admin_datasheet_line_path(line), class: "btn btn-danger",
+                        method: :delete, form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
+
+            <i class="bi bi-trash"></i> DELETE
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </div>
+</div>
+
+

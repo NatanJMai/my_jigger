@@ -4,9 +4,14 @@
 
 <div class="form-action">
   <div class="grid-item">
-    <%= button_to 'NEW', new_admin_datasheet_datasheet_line_path(@datasheet),
-                  class: "btn btn-info shadow-sm px-4 mb-2",
-                  :method => :get %>
+
+    <%= form_with scope: :any, url: new_line_admin_datasheet_datasheet_lines_path(@datasheet) do |form| %>
+      <%= button_to 'NEW', new_line_admin_datasheet_datasheet_lines_path(@datasheet),
+                    class: "btn btn-info shadow-sm px-4 mb-2",
+                    :method => :get %>
+    <% end %>
+
+
   </div>
 </div>
 
@@ -19,7 +24,7 @@
 
 <div class="container-fluid p-0">
   <div class="row">
-    <table class="table table-hover">
+    <table class="table table-hover" id="messages">
       <thead>
       <tr>
         <th scope="col">#</th>
@@ -33,11 +38,13 @@
         <th scope="col"></th>
       </tr>
       </thead>
-      <tbody>
+
+        <tbody>
         <% @datasheet.datasheet_lines.each do |line| %>
           <%= render partial: 'admin/datasheet_lines/line', locals: { line: line } %>
         <% end %>
-      </tbody>
+        </tbody>
+
     </table>
   </div>
 </div>

@@ -22,7 +22,12 @@ Rails.application.routes.draw do
 
       resources :items do
         resources :datasheets, shallow: true do
-          resources :datasheet_lines, shallow: true
+          resources :datasheet_lines, shallow: true do
+            collection do
+              post :new_line
+            end
+          end
+
         end
       end
 

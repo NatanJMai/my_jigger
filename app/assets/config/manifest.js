@@ -1,10 +1,7 @@
-// link_tree ../images
-//= link_tree ../builds
-//= link jigger.css
-//= link form.css
-//= link jigger.js
-//= require_tree .
+//= link_tree ../images
+//= link_directory ../stylesheets .css
+//= link_tree ../../javascript .js
+//= link_tree ../../../vendor/javascript .js
+//= link jquery.js
 
-//= link controllers/index.js
-//= link controllers/application.js
-//= link application.js
+

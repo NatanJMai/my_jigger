@@ -10,13 +10,18 @@ class Admin::DatasheetLinesController < AdminController
   def show
   end
 
-  # GET /items/new
-  def new
+  def new_line
     @datasheet_line = @datasheet.datasheet_lines.new
     respond_to do |format|
-      format.html
-      format.js
+      format.turbo_stream {}
     end
+  end
+
+  # GET /items/new
+  def post_something
+    @datasheet_line = @datasheet.datasheet_lines.new
+
+
   end
 
   # GET /items/1/edit
@@ -30,6 +35,7 @@ class Admin::DatasheetLinesController < AdminController
 
     respond_to do |format|
       if @datasheet_line.save!
+        format.turbo_stream
         format.html { redirect_to admin_datasheet_path(@datasheet),
                                   notice: "Datasheet was successfully created." }
         format.json { render :show, status: :created, location: @datasheet }

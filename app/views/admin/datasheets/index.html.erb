@@ -29,9 +29,9 @@
       </tr>
       </thead>
       <tbody>
-      <% @datasheets.each do |datasheet| %>
-        <%= render partial: 'datasheet', locals: { datasheet: datasheet } %>
-      <% end %>
+        <% @datasheets.each do |datasheet| %>
+          <%= render partial: 'datasheet', locals: { datasheet: datasheet } %>
+        <% end %>
       </tbody>
     </table>
   </div>
