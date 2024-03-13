@@ -1,15 +1,20 @@
-<tr>
-  <th scope="row"><%= new_line&.id %></th>
-  <td><%= new_line&.product&.name %></td>
-  <td><%= new_line&.product&.volume %></td>
-  <td><%= new_line&.quantity %></td>
-  <td>1</td>
-  <td>1</td>
-  <td>1</td>
-  <td class="minimal">
-    <%= link_to admin_datasheet_datasheet_lines_path(new_line.datasheet), class: 'btn btn-info', method: :post do %>
-      <i class="bi bi-pencil-square"></i> SAVE
-    <% end %>
+<%= simple_form_for([:admin, @datasheet, new_line] ) do |f| %>
+  <tr>
+    <td>
+      <%= f.input :product_id, as: :select, collection: Product.all %>
+    </td>
+    <td>
+      <%= new_line&.product&.volume %>
+    </td>
+    <td>
+      <%= f.input :quantity %>
+    </td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+    <td class="minimal">
+      <%= f.button :submit, "Save", class: "form-btn"  %>
+    </td>
+  </tr>
+<% end %>
 
-  </td>
-</tr>

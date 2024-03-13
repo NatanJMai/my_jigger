@@ -34,8 +34,7 @@ class Admin::DatasheetLinesController < AdminController
     @datasheet_line = @datasheet.datasheet_lines.new(datasheet_line_params)
 
     respond_to do |format|
-      if @datasheet_line.save!
-        format.turbo_stream
+      if @datasheet_line.save
         format.html { redirect_to admin_datasheet_path(@datasheet),
                                   notice: "Datasheet was successfully created." }
         format.json { render :show, status: :created, location: @datasheet }
