@@ -1,0 +1,26 @@
+.datasheet_line_table {
+  max-width: 80%;
+  padding: 30px 20px;
+  border-color: white;
+  border-style: inset;
+  color: #d3d5d8;
+  border-radius: 8px;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, .4);
+
+  input, select {
+    height: 25px;
+  }
+
+  .datasheet_line_row {
+    margin-top: 10px;
+  }
+
+  .datasheet_line_header, .datasheet_line_footer {
+    font-weight: bold;
+    font-size: large;
+  }
+
+  .new_datasheet_line {
+    font-weight: bold;
+  }
+}

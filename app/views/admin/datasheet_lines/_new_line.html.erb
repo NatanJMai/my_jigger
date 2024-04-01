@@ -1,0 +1,27 @@
+<%= turbo_frame_tag "new_form" do %>
+  <%= simple_form_for(model) do |f| %>
+
+    <div class="row datasheet_line_row">
+      <div class="col-1">
+        ID
+      </div>
+
+      <div class="col-2">
+        <%= f.input :product_id, as: :select, collection: Product.all, label: false %>
+      </div>
+
+      <div class="col-2">
+        <%#= datasheet_line.product&.volume %>
+      </div>
+
+      <div class="col-2">
+        <%= f.input :quantity, label: false, input_html: { class: 'col-1' } %>
+      </div>
+
+      <div class="col-2 minimal">
+        <%= f.button :submit, "SAVE", class: "btn btn-success"  %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+

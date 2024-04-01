@@ -1,10 +1,1 @@
-
-<turbo-stream action="after" target="messages">
-
-  <template>
-    <div style="color: white;">
-      <%= render partial: 'admin/datasheet_lines/new_line',
-                 locals: { new_line: @datasheet_line } %>
-    </div>
-  </template>
-</turbo-stream>
+<%= turbo_stream.append(:list, partial: "admin/datasheet_lines/new_line", locals: { new_line: @datasheet_line, model: [:admin, @datasheet, @datasheet_line] }) %>

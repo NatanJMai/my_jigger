@@ -36,9 +36,9 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/index' => "public#index"
+  get '/index' => 'public#index'
   get '/admin' => 'admin/organizations#index'
   get '/admin/dashboard' => 'admin#dashboard'
 
-  root to: "public#index"
+  root to: 'public#index'
 end

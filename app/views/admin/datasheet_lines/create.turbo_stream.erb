@@ -1,0 +1,2 @@
+<%= turbo_stream.replace(:new_form, partial: "admin/datasheet_lines/line", locals: { datasheet_line: @datasheet_line }) %>
+<%= turbo_stream.replace(:totals, partial: "admin/datasheet_lines/totals", locals: { total_qtd: @datasheet.get_total_qtd('quantity') }) %>

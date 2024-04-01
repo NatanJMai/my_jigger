@@ -58,3 +58,5 @@ log/.keep
 .ruby-version
 config/storage.yml
 config/cable.yml
+*.xml
+vendor/bundle/ruby/3.2.0/bundler/gems/faker-56a96cc3d54b/
