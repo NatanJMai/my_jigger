@@ -17,12 +17,14 @@
     </div>
 
     <div class="col-2 minimal">
-      <%= link_to edit_admin_datasheet_line_path(datasheet_line), data: { turbo: true }, class: 'btn btn-info' do %>
+      <%= link_to edit_admin_datasheet_line_path(datasheet_line), class: "btn btn-info",
+                    data: { turbo_stream: true } do %>
+
         <i class="bi bi-pencil-square"></i> EDIT
       <% end %>
 
       <%= button_to admin_datasheet_line_path(datasheet_line), class: "btn btn-danger",
-                    method: :delete, form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
+                    method: :delete, form: { data: { turbo_stream: true, method: :delete } } do %>
 
         <i class="bi bi-trash"></i> DELETE
       <% end %>

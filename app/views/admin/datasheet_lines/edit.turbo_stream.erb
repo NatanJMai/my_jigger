@@ -1,0 +1,2 @@
+<%= turbo_stream.replace(@datasheet_line,  partial: "admin/datasheet_lines/edit_line",
+                         locals: { datasheet_line: @datasheet_line, model: [:admin, @datasheet_line] }) %>

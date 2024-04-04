@@ -10,16 +10,15 @@ class Admin::DatasheetLinesController < AdminController
   def show
   end
 
-  def new_line
-    @datasheet_line = @datasheet.datasheet_lines.build
-
+  def edit
     respond_to do |format|
       format.turbo_stream {}
     end
   end
 
-  # GET /items/1/edit
-  def edit
+  def new_line
+    @datasheet_line = @datasheet.datasheet_lines.build
+
     respond_to do |format|
       format.turbo_stream {}
     end
@@ -31,7 +30,6 @@ class Admin::DatasheetLinesController < AdminController
     
     respond_to do |format|
       if @datasheet_line.save
-        @datasheet = @datasheet.reload
         format.turbo_stream {}
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -44,10 +42,7 @@ class Admin::DatasheetLinesController < AdminController
   def update
     respond_to do |format|
       if @datasheet_line.update(datasheet_line_params)
-        format.html { 
-          redirect_to admin_datasheet_path(@datasheet),
-                                  notice: "Datasheet was successfully updated." }
-
+        format.turbo_stream {}
         format.json { render :show, status: :ok, location: @datasheet_line }
       else
         format.html { render :edit, status: :unprocessable_entity }

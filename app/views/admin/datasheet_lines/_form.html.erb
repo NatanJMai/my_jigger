@@ -1,34 +1,23 @@
-<h2 class="display-4 text-white">
-  <%= @datasheet.name %> Datasheet
-</h2>
-
-<div class="container">
-  <%= simple_form_for(model,
-                      html: { class: 'jform row row-cols align-items-center' } ) do |f| %>
-
-    <div class="card-header">
-      <h5 class="card-title text-center">New Datasheet</h5>
+<%= simple_form_for(model) do |f| %>
+  <div class="row datasheet_line_row">
+    <div class="col-1">
+      <%= datasheet_line&.id.presence || "ID" %>
     </div>
 
-    <legend><span class="number">1</span> Detail</legend>
-
-    <div class="row">
-      <div class="col-6">
-        <%= f.input :quantity %>
-      </div>
+    <div class="col-2">
+      <%= f.input :product_id, as: :select, collection: Product.all, label: false %>
     </div>
 
-    <legend><span class="number">2</span> Status</legend>
-    <div class="row">
-      <div class="col-4">
-        <%= f.input :product_id, as: :select, collection: Product.all, label: 'product' %>
-      </div>
+    <div class="col-2">
+      <%#= datasheet_line.product&.volume %>
     </div>
 
-    <div class="row">
-      <%= f.button :submit, "Save", class: "form-btn"  %>
+    <div class="col-2">
+      <%= f.input :quantity, label: false, input_html: { class: 'col-1' } %>
     </div>
-  <% end %>
-</div>
 
-
+    <div class="col-2 minimal">
+      <%= f.button :submit, "SAVE", class: "btn btn-success"  %>
+    </div>
+  </div>
+<% end %>
