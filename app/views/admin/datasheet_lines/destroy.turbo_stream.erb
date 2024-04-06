@@ -1,6 +1,5 @@
 <%= turbo_stream.remove @datasheet_line %>
 
 <%= turbo_stream.replace 'totals' do %>
-  <%= render partial: 'admin/datasheet_lines/totals',
-             locals: { total_qtd: @datasheet.get_total_qtd('quantity') } %>
+  <%= render partial: 'admin/datasheet_lines/totals', locals: { datasheet: @datasheet } %>
 <% end %>

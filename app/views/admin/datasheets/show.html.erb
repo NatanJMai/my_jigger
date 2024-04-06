@@ -26,7 +26,7 @@
       <% end %>
     <% end %>
 
-    <%= render partial: 'admin/datasheet_lines/totals', locals: { total_qtd: @datasheet.get_total_qtd('quantity') } %>
+    <%= render partial: 'admin/datasheet_lines/totals', locals: { datasheet: @datasheet } %>
   </div>
 </div>
 

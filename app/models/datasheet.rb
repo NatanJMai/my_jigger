@@ -16,4 +16,8 @@ class Datasheet < ApplicationRecord
       0.0
     end
   end
+
+  def get_total_price
+    datasheet_lines.map(&:calculated_price).sum
+  end
 end

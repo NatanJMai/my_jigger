@@ -4,19 +4,32 @@
       <%= datasheet_line.id %>
     </div>
 
-    <div class="col-2">
+    <div class="col">
       <%= datasheet_line.product&.name %>
     </div>
 
-    <div class="col-2">
+    <div class="col-1">
       <%= datasheet_line.product&.volume %>
     </div>
 
-    <div class="col-2">
+    <div class="col-1">
+      <%= datasheet_line.product&.unit %>
+    </div>
+
+    <div class="col-1">
+      <%= humanized_money_with_symbol datasheet_line.product&.price %>
+    </div>
+
+    <div class="col-1">
       <%= datasheet_line.quantity %>
     </div>
 
-    <div class="col-2 minimal">
+    <div class="col-1">
+      <%= humanized_money_with_symbol Money.new(datasheet_line.calculated_price) %>
+    </div>
+
+
+    <div class="col minimal">
       <%= link_to edit_admin_datasheet_line_path(datasheet_line), class: "btn btn-info",
                     data: { turbo_stream: true } do %>
 

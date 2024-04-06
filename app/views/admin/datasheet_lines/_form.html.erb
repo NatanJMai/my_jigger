@@ -4,19 +4,31 @@
       <%= datasheet_line&.id.presence || "ID" %>
     </div>
 
-    <div class="col-2">
+    <div class="col">
       <%= f.input :product_id, as: :select, collection: Product.all, label: false %>
     </div>
 
-    <div class="col-2">
-      <%#= datasheet_line.product&.volume %>
+    <div class="col-1">
+      <%= datasheet_line.product&.volume %>
     </div>
 
-    <div class="col-2">
-      <%= f.input :quantity, label: false, input_html: { class: 'col-1' } %>
+    <div class="col-1">
+      <%= datasheet_line.product&.unit %>
     </div>
 
-    <div class="col-2 minimal">
+    <div class="col-1">
+      <%= humanized_money_with_symbol datasheet_line.product&.price %>
+    </div>
+
+    <div class="col-1">
+      <%= f.input :quantity, label: false %>
+    </div>
+
+    <div class="col-1">
+      <%= humanized_money_with_symbol Money.new(datasheet_line.calculated_price) %>
+    </div>
+
+    <div class="col minimal">
       <%= f.button :submit, "SAVE", class: "btn btn-success"  %>
     </div>
   </div>
