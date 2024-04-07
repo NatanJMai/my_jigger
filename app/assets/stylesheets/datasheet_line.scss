@@ -9,10 +9,20 @@
 
   input, select {
     height: 25px;
+    min-width: 130px;
+    padding: 0 10px;
+    font-size: 10pt;
   }
 
   .datasheet_line_row {
     margin-top: 10px;
+
+    :hover {
+      transform: scale(1.02);
+      transition: all linear 200ms;
+      z-index: 1;
+      cursor: pointer;
+    }
   }
 
   .datasheet_line_header, .datasheet_line_footer {

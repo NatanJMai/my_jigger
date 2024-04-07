@@ -42,7 +42,7 @@
       </tr>
       </thead>
       <tbody>
-      <% @items.each do |item| %>
+      <% @items.order(:name).each do |item| %>
         <%= render partial: 'item', locals: { item: item } %>
       <% end %>
       </tbody>

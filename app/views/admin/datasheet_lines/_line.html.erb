@@ -1,4 +1,5 @@
 <%= turbo_frame_tag datasheet_line do %>
+
   <div class="row datasheet_line_row">
     <div class="col-1">
       <%= datasheet_line.id %>
@@ -20,7 +21,7 @@
       <%= humanized_money_with_symbol datasheet_line.product&.price %>
     </div>
 
-    <div class="col-1">
+    <div class="col-2">
       <%= datasheet_line.quantity %>
     </div>
 

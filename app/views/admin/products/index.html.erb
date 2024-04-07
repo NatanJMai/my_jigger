@@ -24,13 +24,13 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
-        <th scope="col">Prep Method</th>
+        <th scope="col">Price</th>
         <th scope="col">Status</th>
         <th scope="col">Actions</th>
       </tr>
       </thead>
       <tbody>
-      <% @products.each do |product| %>
+      <% @products.order(:name).each do |product| %>
         <%= render partial: 'product', locals: { product: product } %>
       <% end %>
       </tbody>

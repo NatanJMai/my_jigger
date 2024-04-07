@@ -1,7 +1,7 @@
 <tr>
   <th scope="row"><%= product.id %></th>
   <td><%= product.name %></td>
-  <td><%= product.prep_method %></td>
+  <td><%= humanized_money_with_symbol product.price %></td>
   <td><%= product.status %></td>
   <td class="minimal">
     <%= link_to admin_product_path(product), class: 'btn btn-success' do %>
