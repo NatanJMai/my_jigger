@@ -1,21 +1,30 @@
 <%= turbo_frame_tag 'totals' do %>
   <hr>
   <div class="row datasheet_line_footer">
-
+    <div class="col-1"></div>
+    <div class="col">CUSTOMER PRICE</div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-2">TOTAL</div>
     <div class="col-1">
-      TOTAL
+      <%= humanized_money_with_symbol Money.new(datasheet.get_total_price) %>
     </div>
 
     <div class="col"></div>
-    <div class="col-1"></div>
-    <div class="col-1"></div>
-    <div class="col-1"></div>
+  </div>
 
-    <div class="col-2">
-      <%= datasheet.get_total_qtd('quantity').round(2) %>
+  <div class="row datasheet_line_footer">
+    <div class="col-1"></div>
+    <div class="col">
+      <%= text_field_tag "datasheet-price", nil, class: 'inline-datasheet-price',
+                         data: { url: calculate_cmv_admin_datasheet_path(@datasheet) } %>
     </div>
-
-    <div class="col-1">
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-1"></div>
+    <div class="col-2">CMV</div>
+    <div class="col-1 datasheet-cmv">
       <%= humanized_money_with_symbol Money.new(datasheet.get_total_price) %>
     </div>
 

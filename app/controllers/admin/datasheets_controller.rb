@@ -1,5 +1,5 @@
 class Admin::DatasheetsController < AdminController
-  before_action :set_datasheet, only: [:show, :edit, :update, :destroy]
+  before_action :set_datasheet, only: [:show, :edit, :update, :destroy, :calculate_cmv]
   before_action :set_item
 
   def index
@@ -51,6 +51,19 @@ class Admin::DatasheetsController < AdminController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @datasheet.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def calculate_cmv
+    return 0 unless params[:customer_price].present?
+
+    value = params[:customer_price].to_f
+    return 0 unless value.positive?
+
+    @cmv = @datasheet.get_total_price / value
+
+    respond_to do |format|
+      format.js # This will look for a JavaScript view file named calculate_cmv.js.erb
     end
   end
 

@@ -28,6 +28,9 @@ Rails.application.routes.draw do
             end
           end
 
+          member do
+            get :calculate_cmv
+          end
         end
       end
 
