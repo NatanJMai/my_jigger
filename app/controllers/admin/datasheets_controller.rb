@@ -60,11 +60,10 @@ class Admin::DatasheetsController < AdminController
     value = params[:customer_price].to_f
     return 0 unless value.positive?
 
-    @cmv = @datasheet.get_total_price / value
+    @cmv = @datasheet.calculate_cmv(value)
 
-    respond_to do |format|
-      format.js # This will look for a JavaScript view file named calculate_cmv.js.erb
-    end
+    # This will look for a JavaScript view file named calculate_cmv.js.erb
+    respond_to(&:js)
   end
 
   # DELETE /items/1 or /items/1.json

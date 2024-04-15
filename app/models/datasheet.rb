@@ -17,6 +17,12 @@ class Datasheet < ApplicationRecord
     end
   end
 
+  def calculate_cmv(value = 0.0)
+    return 0.0 unless value.positive?
+
+    get_total_price / value
+  end
+
   def get_total_price
     datasheet_lines.map(&:calculated_price).sum
   end
