@@ -62,8 +62,9 @@ class Admin::DatasheetsController < AdminController
 
     @cmv = @datasheet.calculate_cmv(value)
 
-    # This will look for a JavaScript view file named calculate_cmv.js.erb
-    respond_to(&:js)
+    respond_to do |format|
+      format.json { render json: { cmv: @cmv.round(2) } }
+    end
   end
 
   # DELETE /items/1 or /items/1.json

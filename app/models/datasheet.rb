@@ -17,12 +17,20 @@ class Datasheet < ApplicationRecord
     end
   end
 
+  ##
+  # Returns CMV of Datasheet from given value (Customer Price)
+  # @param value (Decimal)
+  # @return Decimal
   def calculate_cmv(value = 0.0)
     return 0.0 unless value.positive?
 
     get_total_price / value
   end
 
+  ##
+  # Returns Total Price of Datasheet
+  # Sum of all Datasheet Lines
+  # @return Decimal
   def get_total_price
     datasheet_lines.map(&:calculated_price).sum
   end

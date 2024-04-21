@@ -19,13 +19,15 @@
     <div class="col">
       <%= text_field_tag "datasheet-price", nil, class: 'inline-datasheet-price',
                          data: { url: calculate_cmv_admin_datasheet_path(@datasheet) } %>
+
     </div>
-    <div class="col-1"></div>
+    <div class="col-1">
+      <i class="fas fa-sync datasheet-price-refresh"></i>
+    </div>
     <div class="col-1"></div>
     <div class="col-1"></div>
     <div class="col-2">CMV</div>
     <div class="col-1 datasheet-cmv"></div>
-
     <div class="col"></div>
   </div>
 <% end %>

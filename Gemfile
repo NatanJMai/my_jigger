@@ -78,6 +78,7 @@ gem "sassc-rails"
 gem 'jquery-rails'
 gem 'classy_enum', '~> 4.0'
 gem 'money-rails', '~> 1.12'
+gem "font-awesome-sass"
 
 gem 'devise', '~> 4.9'
 gem 'simple_form'
