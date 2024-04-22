@@ -33,7 +33,13 @@
 
 <div class="container-fluid p-0">
   <div class="row">
+    <% @datasheets.each do |datasheet| %>
+      <%= render 'admin/datasheets/card', datasheet: datasheet %>
+    <% end %>
 
+    <div class="col-1">
+      <%= render partial: 'layouts/new_button', locals: { url: new_admin_item_datasheet_path(@item) } %>
+    </div>
   </div>
 </div>
 

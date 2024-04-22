@@ -131,6 +131,11 @@ body {
 .card {
   margin: var(--cardMargin);
   box-shadow: 0px 5px 10px 0px rgba(0,0,0,3);
+
+  a {
+    text-decoration: none;
+    color: var(--bs-gray-900);
+  }
 }
 
 .card:hover {
@@ -156,6 +161,24 @@ body {
   border-radius: 5px;
   /* Add the drop shadow */
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2), 0 5px 10px 0 rgba(0,0,0,0.19);
+}
+
+.circle-link {
+  margin-top: 50%;
+  display: inline-block;
+  width: 40px; /* Adjust as needed */
+  height: 40px; /* Adjust as needed */
+  line-height: 40px; /* Vertically center the text */
+  text-align: center; /* Horizontally center the text */
+  border-radius: 50%; /* Makes the link circular */
+  background-color: #007bff; /* Link background color */
+  color: white; /* Link text color */
+  font-size: 24px; /* Adjust as needed */
+  text-decoration: none; /* Remove underline */
+}
+
+.circle-link:hover {
+  background-color: #0056b3; /* Change background color on hover */
 }
 
 .cancel-button {

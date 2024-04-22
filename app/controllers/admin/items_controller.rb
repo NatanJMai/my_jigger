@@ -9,7 +9,7 @@ class Admin::ItemsController < AdminController
 
   # GET /items/1 or /items/1.json
   def show
-    @datasheet = @item.datasheets.last
+    @datasheets = @item.datasheets
   end
 
   # GET /items/new

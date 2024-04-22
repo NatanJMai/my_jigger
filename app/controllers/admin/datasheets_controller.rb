@@ -29,7 +29,7 @@ class Admin::DatasheetsController < AdminController
 
     respond_to do |format|
       if @datasheet.save
-        format.html { redirect_to admin_item_datasheets_path(@item),
+        format.html { redirect_to admin_item_path(@item),
                                   notice: "Datasheet was successfully created." }
         format.json { render :show, status: :created, location: @datasheet }
       else
@@ -72,9 +72,7 @@ class Admin::DatasheetsController < AdminController
     @datasheet.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_item_datasheets_path(@item),
-                                notice: "Item was successfully destroyed." }
-
+      format.html { redirect_to admin_item_path(@item), notice: "Item was successfully destroyed." }
       format.json { head :no_content }
     end
   end

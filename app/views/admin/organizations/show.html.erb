@@ -1,10 +1,59 @@
-<h1> <%= @organization.name&.capitalize %> Departments </h1>
+<h2 class="display-4 text-white">
+  <%= @organization.name %> (Organization)
+</h2>
 
-<div class="container-grid">
-  <%= render @departments %>
+<div class="form-action">
+    <div class="grid-item">
+    <%= button_to 'EDIT', edit_admin_organization_path(@organization),
+                  class: "btn btn-info shadow-sm px-4 mb-2",
+                  :method => :get %>
+  </div>
+
+  <div class="grid-item">
+    <%= button_to 'REMOVE', admin_organization_path(@organization),
+                  class: "btn btn-warning shadow-sm px-4 mb-2",
+                  :method => :delete %>
+  </div>
 </div>
 
-<%= link_to "Back", admin_organizations_path %>
+<p class="lead text-white mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
+<p class="lead text-white">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
+  <u>asdf</u></a>
+</p>
 
+<div class="separator"></div>
 
+<div class="container-fluid p-0">
+  <div class="row">
+    <%= render partial: 'layouts/cards/menu_card',
+               locals: { url: admin_organization_departments_path(@organization),
+                         title: 'Departments',
+                         text: "#{@organization.name} Departments" } %>
+
+    <%= render partial: 'layouts/cards/menu_card',
+               locals: { url: admin_organization_user_organizations_path(@organization),
+                         title: 'Staff',
+                         class: '',
+                         text: "#{@organization.name} Staff" } %>
+
+    <%= render partial: 'layouts/cards/menu_card',
+               locals: { url: admin_organization_products_path(@organization),
+                         title: 'Products',
+                         class: '',
+                         text: "#{@organization.name} Products" } %>
+
+    <%= render partial: 'layouts/cards/menu_card',
+               locals: { url: admin_organization_items_path(@organization),
+                         title: 'Items',
+                         class: '',
+                         text: "#{@organization.name} Items" } %>
+
+    <%= render partial: 'layouts/cards/menu_card',
+               locals: { url: admin_organization_menus_path(@organization),
+                         title: 'Menus',
+                         class: '',
+                         text: "#{@organization.name} Menus" } %>
+
+  </div>
+</div>
 

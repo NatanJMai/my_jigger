@@ -1,0 +1,23 @@
+<div class="col-12 col-md-6 col-lg-3">
+  <div class="card">
+    <%= link_to url do %>
+      <div class="card-body">
+        <div>
+          <h5 class="card-title"><%= title if defined?(title) %></h5>
+          <p class="card-text">
+            <%= text if defined?(text) %>
+            <br>
+          </p>
+        </div>
+      </div>
+
+      <% if defined?(footer) %>
+        <div class="card-footer">
+          <small class="text-muted">
+            <%= footer %>
+          </small>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
