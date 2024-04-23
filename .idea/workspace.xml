@@ -5,11 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/my_jigger.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/my_jigger.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/datasheet_lines_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/datasheet_lines_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_new_line.turbo_stream.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_new_line.turbo_stream.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/new.js.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/datasheet_line.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/datasheet_line.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/datasheets_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/datasheets_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/items_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/items_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/jigger.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/jigger.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/datasheet.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/datasheet.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/item.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_totals.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_totals.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/_item.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/_item.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,11 +85,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/admin/datasheets" />
       <recent name="$PROJECT_DIR$/app/javascript" />
       <recent name="$PROJECT_DIR$/app/javascript/controllers" />
       <recent name="$PROJECT_DIR$/app/assets/config" />
       <recent name="$PROJECT_DIR$/app/javascript/jigger" />
-      <recent name="$PROJECT_DIR$/app/views/admin" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -342,12 +351,46 @@
       <workItem from="1702812854478" duration="9000" />
       <workItem from="1705399921058" duration="2634000" />
       <workItem from="1710128525708" duration="567000" />
-      <workItem from="1710326861578" duration="1589000" />
+      <workItem from="1710326861578" duration="2319000" />
+      <workItem from="1710507149569" duration="4880000" />
+      <workItem from="1711176541819" duration="8092000" />
+      <workItem from="1711943919726" duration="11124000" />
+      <workItem from="1712229151146" duration="3099000" />
+      <workItem from="1712353542941" duration="8933000" />
+      <workItem from="1712485970767" duration="4012000" />
+      <workItem from="1712490188886" duration="142000" />
+      <workItem from="1712574417029" duration="3709000" />
+      <workItem from="1713181140023" duration="1815000" />
+      <workItem from="1713681544218" duration="11160000" />
+      <workItem from="1713789685510" duration="599000" />
+      <workItem from="1713872402882" duration="5499000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/my_jigger@roles_spec.rcov" NAME="roles_spec Coverage Results" MODIFIED="1694702000813" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />

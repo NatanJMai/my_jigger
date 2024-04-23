@@ -28,9 +28,41 @@
   .datasheet_line_header, .datasheet_line_footer {
     font-weight: bold;
     font-size: large;
+
+    input {
+      min-width: 100px;
+    }
+
+    .new {
+      color: #4CAF50;
+      margin-left: 5px;
+    }
+
+    .now {
+      color: #86b7fe;
+      margin-left: 5px;
+    }
+
+    .cmv-green {
+      color: #4CAF50;
+    }
+
+    .cmv-yellow {
+      color: yellow;
+    }
+
+    .cmv-red {
+      color: #ba1420;
+    }
+
+    small {
+      font-size: x-small;
+      font-style: italic;
+    }
   }
 
   .datasheet-price-refresh {
+    margin-left: 20px;
     cursor: pointer;
     opacity: 25%;
   }

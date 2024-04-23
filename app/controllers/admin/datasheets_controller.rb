@@ -63,7 +63,7 @@ class Admin::DatasheetsController < AdminController
     @cmv = @datasheet.calculate_cmv(value)
 
     respond_to do |format|
-      format.json { render json: { cmv: @cmv.round(2) } }
+      format.json { render json: { cmv: @cmv.round(2), cmv_class: @datasheet.cmv_class_color(@cmv) } }
     end
   end
 

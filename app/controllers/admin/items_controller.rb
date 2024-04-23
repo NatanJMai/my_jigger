@@ -1,5 +1,5 @@
 class Admin::ItemsController < AdminController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: %i[show edit update destroy]
   before_action :set_organization
 
   # GET /items or /items.json
@@ -31,8 +31,10 @@ class Admin::ItemsController < AdminController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to admin_organization_items_path(@organization),
-                                  notice: "Item was successfully created." }
+        format.html do
+          redirect_to admin_organization_items_path(@organization),
+                      notice: 'Item was successfully created.'
+        end
 
         format.json { render :show, status: :created, location: @item }
       else
@@ -46,8 +48,9 @@ class Admin::ItemsController < AdminController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to admin_organization_items_path(@organization),
-                                  notice: "Item was successfully updated." }
+        format.html do
+          redirect_to admin_organization_items_path(@organization),
+                      notice: 'Item was successfully updated.' end
 
         format.json { render :show, status: :ok, location: @item }
       else
@@ -62,8 +65,10 @@ class Admin::ItemsController < AdminController
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_organization_items_path(@organization),
-                                notice: "Item was successfully destroyed." }
+      format.html do
+        redirect_to admin_organization_items_path(@organization),
+                    notice: 'Item was successfully destroyed.'
+      end
 
       format.json { head :no_content }
     end
@@ -71,21 +76,22 @@ class Admin::ItemsController < AdminController
 
   private
 
-    def set_organization
-      if @item.present?
-        @organization = @item.organization
-      else
-        @organization = Organization.find_by(id: params[:organization_id])
-      end
-    end
+  def set_organization
+    @organization = if @item.present?
+                      @item.organization
+                    else
+                      Organization.find_by(id: params[:organization_id])
+                    end
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find_by(id: params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_item
+    @item = Item.find_by(id: params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def item_params
-      params.require(:item).permit(:name, :menu_section_id, :organization_id, :status)
-    end
+  # Only allow a list of trusted parameters through.
+  def item_params
+    full_attributes = %i(name menu_section_id organization_id status customer_price customer_price_cents)
+    params.require(:item).permit(full_attributes)
+  end
 end

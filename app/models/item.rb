@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  monetize :customer_price_cents, allow_nil: true
+
   belongs_to :menu_section, class_name: "MenuSection", optional: true
   belongs_to :organization, class_name: "Organization"
 

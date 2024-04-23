@@ -28,6 +28,23 @@ class Datasheet < ApplicationRecord
   end
 
   ##
+  # Returns CMV Class of a value.
+  # If value <= 30 then Green,
+  # if value between 30 and 35 Yellow,
+  # Otherwise Red.
+  # @param value (Decimal)
+  # @return String
+  def cmv_class_color(value = 0.0)
+    if value <= 30.0
+      'cmv-green'
+    elsif value > 30.0 && value <= 35
+      'cmv-yellow'
+    else
+      'cmv-red'
+    end
+  end
+
+  ##
   # Returns Total Price of Datasheet
   # Sum of all Datasheet Lines
   # @return Decimal

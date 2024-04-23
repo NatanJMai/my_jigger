@@ -3,6 +3,8 @@
   <td><%= item.name %></td>
   <td><%= item.menu_section&.menu&.name %></td>
   <td><%= item.menu_section&.name %></td>
+  <td><%= humanized_money_with_symbol Money.new(item.customer_price) %></td>
+  <td><%= item.status %></td>
   <td><%= item.status %></td>
   <td class="minimal">
     <%= link_to admin_item_path(item), class: 'btn btn-success' do %>

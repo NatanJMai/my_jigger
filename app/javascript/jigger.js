@@ -10,6 +10,7 @@ function setupEventListeners() {
                 // Get the value of the input element
                 let value = inputElement.value;
                 let url = inputElement.getAttribute('data-url');
+                let element = $('.datasheet-cmv');
 
                 if (value) {
                     icon.addClass('fa-spin');
@@ -23,7 +24,13 @@ function setupEventListeners() {
                                 customer_price: value
                             },
                             success: function(response) {
-                                $('.datasheet-cmv').text(response['cmv'] + '%');
+                                // Remove others cmv classes
+                                element.removeClass (function (index, className) {
+                                    return (className.match(/(^|\s)cmv-\S+/g) || []).join(' ');
+                                });
+
+                                element.addClass(response['cmv_class']);
+                                element.text(response['cmv'] + '%');
                             },
                             error: function(xhr, status, error) {
                             }
@@ -36,7 +43,7 @@ function setupEventListeners() {
         }
     });
 
-    // Vertical menu toggl
+    // Vertical menu toggle
     document.addEventListener('turbo:load', () => {
         $('#sidebarCollapse').on('click', function() {
             $('#sidebar, #content, #alert-div, #alert-msg').toggleClass('active');
