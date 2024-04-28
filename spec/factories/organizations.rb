@@ -5,7 +5,7 @@ FactoryBot.define do
     site { Faker::Internet.url }
     phone { Faker::Company.australian_business_number }
     email { Faker::Internet.email }
-    manager { association :user }
+    manager { association :admin_user }
     status { true }
   end
 end

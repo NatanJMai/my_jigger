@@ -5,20 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/my_jigger.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/my_jigger.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/datasheet_line.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/datasheet_line.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/admin/datasheets_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/datasheets_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/items_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/items_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/jigger.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/jigger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/datasheet.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/datasheet.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/item.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_totals.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_totals.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/items/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/items/_item.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/_item.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/items/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/departments/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/departments/show.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/factories/organizations.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/factories/organizations.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/requests/departments_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/departments_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/requests/items_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/items_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/requests/menu_sections_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/menu_sections_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/requests/menus_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/menus_spec.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,30 +55,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Rails.my_jigger.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/natanjmai/Documents/_projects/my_jigger/new/my_jigger&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
-    &quot;ruby.structure.view.model.defaults.configured&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RSpec.datasheets_spec.executor": "Run",
+    "RSpec.items_spec.executor": "Run",
+    "Rails.my_jigger.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/natanjmai/Documents/_projects/my_jigger/new/my_jigger",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ruby.rails.projectView.checked": "true",
+    "ruby.structure.view.model.defaults.configured": "true",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/views/admin/datasheets" />
@@ -97,7 +95,7 @@
       <command value="rake bundle install" />
     </option>
   </component>
-  <component name="RunManager" selected="Rails.my_jigger">
+  <component name="RunManager">
     <configuration default="true" type="CucumberRunConfigurationType" factoryName="Cucumber">
       <predefined_log_file enabled="true" id="RUBY_CUCUMBER" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
@@ -363,7 +361,8 @@
       <workItem from="1713181140023" duration="1815000" />
       <workItem from="1713681544218" duration="11160000" />
       <workItem from="1713789685510" duration="599000" />
-      <workItem from="1713872402882" duration="5499000" />
+      <workItem from="1713872402882" duration="5803000" />
+      <workItem from="1714295062856" duration="3928000" />
     </task>
     <servers />
   </component>
@@ -394,15 +393,16 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/my_jigger@roles_spec.rcov" NAME="roles_spec Coverage Results" MODIFIED="1694702000813" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
-    <SUITE FILE_PATH="coverage/my_jigger@organizations_routing_spec.rcov" NAME="organizations_routing_spec Coverage Results" MODIFIED="1692880334925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
     <SUITE FILE_PATH="coverage/my_jigger@user_organizations_spec.rcov" NAME="user_organizations_spec Coverage Results" MODIFIED="1695726711119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
-    <SUITE FILE_PATH="coverage/my_jigger@spec__my_jigger.rcov" NAME="spec: my_jigger Coverage Results" MODIFIED="1702561701395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
+    <SUITE FILE_PATH="coverage/my_jigger@datasheets_spec.rcov" NAME="datasheets_spec Coverage Results" MODIFIED="1714298966840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
     <SUITE FILE_PATH="coverage/my_jigger@departments_spec.rcov" NAME="departments_spec Coverage Results" MODIFIED="1694613632158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
-    <SUITE FILE_PATH="coverage/my_jigger@menus_spec.rcov" NAME="menus_spec Coverage Results" MODIFIED="1695997610479" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
     <SUITE FILE_PATH="coverage/my_jigger@organizations_spec.rcov" NAME="organizations_spec Coverage Results" MODIFIED="1694613793611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
     <SUITE FILE_PATH="coverage/my_jigger@menu_sections_spec.rcov" NAME="menu_sections_spec Coverage Results" MODIFIED="1696328493448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
-    <SUITE FILE_PATH="coverage/my_jigger@items_spec.rcov" NAME="items_spec Coverage Results" MODIFIED="1696592428694" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
     <SUITE FILE_PATH="coverage/my_jigger@my_jigger.rcov" NAME="my_jigger Coverage Results" MODIFIED="1710326898014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
+    <SUITE FILE_PATH="coverage/my_jigger@organizations_routing_spec.rcov" NAME="organizations_routing_spec Coverage Results" MODIFIED="1692880334925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
+    <SUITE FILE_PATH="coverage/my_jigger@spec__my_jigger.rcov" NAME="spec: my_jigger Coverage Results" MODIFIED="1702561701395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
+    <SUITE FILE_PATH="coverage/my_jigger@menus_spec.rcov" NAME="menus_spec Coverage Results" MODIFIED="1695997610479" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
+    <SUITE FILE_PATH="coverage/my_jigger@items_spec.rcov" NAME="items_spec Coverage Results" MODIFIED="1714298983666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
     <SUITE FILE_PATH="coverage/my_jigger@products_spec.rcov" NAME="products_spec Coverage Results" MODIFIED="1696592564522" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="my_jigger" />
   </component>
 </project>

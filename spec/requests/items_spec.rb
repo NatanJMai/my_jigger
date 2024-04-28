@@ -13,24 +13,24 @@ require 'devise'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/items", type: :request do
+RSpec.describe '/items', type: :request do
 
   # This should return the minimal set of attributes required to create a valid
   # Item. As you add validations to Item, be sure to
   # adjust the attributes here as well.
-  describe "(Not logged in Admin) Should be redirect to sign_path" do
+  describe '(Not logged in Admin) Should be redirect to sign_path' do
     before do
       @admin_user = create(:admin_user)
       @organization = create(:organization, manager: @admin_user)
     end
 
-    it "Redirect to Login URL" do
+    it 'Redirect to Login URL' do
       get new_admin_organization_item_path(@organization)
       assert_redirected_to new_user_session_url
     end
   end
 
-  describe "(Logged Admin) GET Routes " do
+  describe '(Logged Admin) GET Routes ' do
     before do
       @admin_user = create(:admin_user)
       @organization = create(:organization, manager: @admin_user)
@@ -40,35 +40,35 @@ RSpec.describe "/items", type: :request do
     end
 
     describe 'GET /new' do
-      it "renders a successful response" do
+      it 'renders a successful response' do
         get new_admin_organization_item_path(@organization)
         expect(response).to be_successful
       end
     end
 
-    describe "GET /show" do
-      it "renders a successful response" do
+    describe 'GET /show' do
+      it 'renders a successful response' do
         get admin_item_path(@item)
         expect(response).to be_successful
       end
     end
 
-    describe "GET /index" do
-      it "renders a successful response" do
+    describe 'GET /index' do
+      it 'renders a successful response' do
         get admin_organization_items_path(@organization)
         expect(response).to be_successful
       end
     end
 
-    describe "GET /edit" do
-      it "renders a successful response" do
+    describe 'GET /edit' do
+      it 'renders a successful response' do
         get edit_admin_item_path(@item)
         expect(response).to be_successful
       end
     end
   end
 
-  describe "(Logged Admin) POST Routes" do
+  describe '(Logged Admin) POST Routes' do
     before do
       @admin_user = create(:admin_user)
       @organization = create(:organization, manager: @admin_user)
@@ -77,9 +77,9 @@ RSpec.describe "/items", type: :request do
       sign_in @admin_user
     end
 
-    describe "POST /create" do
-      context "with valid parameters" do
-        it "creates and redirect to the new Item" do
+    describe 'POST /create' do
+      context 'with valid parameters' do
+        it 'creates and redirect to the new Item' do
           expect {
             post admin_organization_items_path(@organization.id), params: {
               item: {
@@ -94,8 +94,8 @@ RSpec.describe "/items", type: :request do
         end
       end
 
-      context "with invalid parameters" do
-        it "does not create a new Item" do
+      context 'with invalid parameters' do
+        it 'does not create a new Item' do
           expect {
             post admin_organization_items_path(@organization.id), params: {
               item: {
@@ -121,7 +121,7 @@ RSpec.describe "/items", type: :request do
     end
   end
 
-  describe "PATCH /update" do
+  describe 'PATCH /update' do
     before do
       @admin_user = create(:admin_user)
       @organization = create(:organization, manager: @admin_user)
@@ -130,8 +130,8 @@ RSpec.describe "/items", type: :request do
       sign_in @admin_user
     end
 
-    context "with valid parameters" do
-      it "updates the requested item" do
+    context 'with valid parameters' do
+      it 'updates the requested item' do
         patch admin_item_path(@item.id), params: {
           item: {
             name: 'New Name',
@@ -145,7 +145,7 @@ RSpec.describe "/items", type: :request do
       end
     end
 
-    context "with invalid parameters" do
+    context 'with invalid parameters' do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         patch admin_item_path(@item.id), params: {
           item: {
@@ -160,7 +160,7 @@ RSpec.describe "/items", type: :request do
     end
   end
 
-  describe "DELETE /destroy" do
+  describe 'DELETE /destroy' do
     before do
       @admin_user = create(:admin_user)
       @organization = create(:organization, manager: @admin_user)
@@ -169,13 +169,13 @@ RSpec.describe "/items", type: :request do
       sign_in @admin_user
     end
 
-    it "destroys the requested item" do
+    it 'destroys the requested item' do
       assert_difference 'Item.count', -1 do
         delete admin_item_path(@item)
       end
     end
 
-    it "redirects to the items list" do
+    it 'redirects to the items list' do
       assert_difference 'Item.count', -1 do
         delete admin_item_path(@item)
       end

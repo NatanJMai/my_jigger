@@ -13,21 +13,21 @@ require 'devise'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/departments", type: :request do
+RSpec.describe '/departments', type: :request do
 
-  describe "(Not logged in Admin) Should be redirect to sign_path" do
+  describe '(Not logged in Admin) Should be redirect to sign_path' do
     before do
       @admin_user_1  = create(:admin_user)
       @organization1 = create(:organization, manager: @admin_user_1)
     end
 
-    it "Redirect to Login URL" do
+    it 'Redirect to Login URL' do
       get new_admin_organization_department_path(@organization1)
       assert_redirected_to new_user_session_url
     end
   end
 
-  describe "(Logged Admin) GET Routes " do
+  describe '(Logged Admin) GET Routes ' do
     before do
       @admin_user_1  = create(:admin_user)
       @organization1 = create(:organization, manager: @admin_user_1)
@@ -37,35 +37,35 @@ RSpec.describe "/departments", type: :request do
     end
 
     describe 'GET /new' do
-      it "renders a successful response" do
+      it 'renders a successful response' do
         get new_admin_organization_department_path(@organization1)
         expect(response).to be_successful
       end
     end
 
-    describe "GET /show" do
-      it "renders a successful response" do
+    describe 'GET /show' do
+      it 'renders a successful response' do
         get admin_department_path(@department1)
         expect(response).to be_successful
       end
     end
 
-    describe "GET /index" do
-      it "renders a successful response" do
+    describe 'GET /index' do
+      it 'renders a successful response' do
         get admin_organization_departments_path(@organization1)
         expect(response).to be_successful
       end
     end
 
-    describe "GET /edit" do
-      it "renders a successful response" do
+    describe 'GET /edit' do
+      it 'renders a successful response' do
         get edit_admin_department_path(@department1)
         expect(response).to be_successful
       end
     end
   end
 
-  describe "(Logged Admin) POST Routes" do
+  describe '(Logged Admin) POST Routes' do
     before do
       @admin_user_1  = create(:admin_user)
       @organization1 = create(:organization, manager: @admin_user_1)
@@ -74,14 +74,14 @@ RSpec.describe "/departments", type: :request do
       sign_in @admin_user_1
     end
 
-    describe "POST /create" do
-      context "with valid parameters" do
-        it "creates and redirect to the new Department" do
+    describe 'POST /create' do
+      context 'with valid parameters' do
+        it 'creates and redirect to the new Department' do
           expect {
             post admin_organization_departments_path(@organization1.id), params: {
               department: {
-                name: "Name",
-                description: "Description",
+                name: 'Name',
+                description: 'Description',
                 organization_id: @organization1.id,
                 status: true
               }
@@ -92,13 +92,13 @@ RSpec.describe "/departments", type: :request do
         end
       end
 
-      context "with invalid parameters" do
-        it "does not create a new Department" do
+      context 'with invalid parameters' do
+        it 'does not create a new Department' do
           expect {
             post admin_organization_departments_path(@organization1), params: {
               department: {
-                name: "",
-                description: "",
+                name: '',
+                description: '',
                 status: true
               }
             }
@@ -108,8 +108,8 @@ RSpec.describe "/departments", type: :request do
         it "renders a response with 422 status (i.e. to display the 'new' template)" do
           post admin_organization_departments_path(@organization1), params: {
             department: {
-              name: "",
-              description: "",
+              name: '',
+              description: '',
               status: true
             }
           }
@@ -119,7 +119,7 @@ RSpec.describe "/departments", type: :request do
     end
   end
 
-  describe "PATCH /update" do
+  describe 'PATCH /update' do
     before do
       @admin_user_1  = create(:admin_user)
       @organization1 = create(:organization, manager: @admin_user_1)
@@ -128,12 +128,12 @@ RSpec.describe "/departments", type: :request do
       sign_in @admin_user_1
     end
 
-    context "with valid parameters" do
-      it "updates the requested department" do
+    context 'with valid parameters' do
+      it 'updates the requested department' do
         patch admin_department_path(@department1.id), params: {
           department: {
-            name: "New Name",
-            description: "New Description",
+            name: 'New Name',
+            description: 'New Description',
             organization_id: @organization1.id,
             status: true
           }
@@ -144,12 +144,12 @@ RSpec.describe "/departments", type: :request do
       end
     end
 
-    context "with invalid parameters" do
+    context 'with invalid parameters' do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         patch admin_department_path(@department1.id), params: {
           department: {
-            name: "",
-            description: "",
+            name: '',
+            description: '',
             status: true
           }
         }
@@ -159,7 +159,7 @@ RSpec.describe "/departments", type: :request do
     end
   end
 
-  describe "DELETE /destroy" do
+  describe 'DELETE /destroy' do
     before do
       @admin_user_1  = create(:admin_user)
       @organization1 = create(:organization, manager: @admin_user_1)
@@ -168,13 +168,13 @@ RSpec.describe "/departments", type: :request do
       sign_in @admin_user_1
     end
 
-    it "destroys the requested department" do
+    it 'destroys the requested department' do
       assert_difference 'Department.count', -1 do
         delete admin_department_url(@department1)
       end
     end
 
-    it "redirects to the departments list" do
+    it 'redirects to the departments list' do
       assert_difference 'Department.count', -1 do
         delete admin_department_url(@department1)
       end

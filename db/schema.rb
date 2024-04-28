@@ -102,7 +102,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_120449) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "price_cents", default: 0, null: false
-    t.string "price_currency", default: "USD", null: false
+    t.string "price_currency", default: "BRL", null: false
     t.string "unit"
     t.index ["organization_id", "name"], name: "index_products_on_organization_id_and_name", unique: true
     t.index ["organization_id"], name: "index_products_on_organization_id"

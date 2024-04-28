@@ -13,24 +13,24 @@ require 'devise'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/menu_sections", type: :request do
+RSpec.describe '/menu_sections', type: :request do
 
   # This should return the minimal set of attributes required to create a valid
   # MenuSection. As you add validations to MenuSection, be sure to
   # adjust the attributes here as well.
-  describe "(Not logged in Admin) Should be redirect to sign_path" do
+  describe '(Not logged in Admin) Should be redirect to sign_path' do
     before do
       @admin_user = create(:admin_user)
       @menu = create(:menu, organization: create(:organization, manager: @admin_user))
     end
 
-    it "Redirect to Login URL" do
+    it 'Redirect to Login URL' do
       get new_admin_menu_menu_section_path(@menu)
       assert_redirected_to new_user_session_url
     end
   end
 
-  describe "(Logged Admin) GET Routes " do
+  describe '(Logged Admin) GET Routes ' do
     before do
       @admin_user = create(:admin_user)
       @menu = create(:menu, organization: create(:organization, manager: @admin_user))
@@ -40,28 +40,28 @@ RSpec.describe "/menu_sections", type: :request do
     end
 
     describe 'GET /new' do
-      it "renders a successful response" do
+      it 'renders a successful response' do
         get new_admin_menu_menu_section_path(@menu)
         expect(response).to be_successful
       end
     end
 
-    describe "GET /show" do
-      it "renders a successful response" do
+    describe 'GET /show' do
+      it 'renders a successful response' do
         get admin_menu_section_path(@menu_section)
         # expect(response).to be_successful
       end
     end
 
-    describe "GET /index" do
-      it "renders a successful response" do
+    describe 'GET /index' do
+      it 'renders a successful response' do
         get admin_menu_menu_sections_path(@menu)
         expect(response).to be_successful
       end
     end
 
-    describe "GET /edit" do
-      it "renders a successful response" do
+    describe 'GET /edit' do
+      it 'renders a successful response' do
         get edit_admin_menu_section_path(@menu_section)
         expect(response).to be_successful
       end
