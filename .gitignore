@@ -64,3 +64,13 @@ vendor/bundle/ruby/3.2.0/bundler/gems/faker-56a96cc3d54b/
 .idea/my_jigger.iml
 .idea/dataSources.local.xml
 *.meta
+.idea/dataSources.local.xml
+.idea/dataSources.xml
+.idea/dataSources/4731d31a-5b11-4a7e-9683-a1ebb7754cdb/storage_v2/_src_/database/postgres.edMnLQ.meta
+.idea/dataSources/4731d31a-5b11-4a7e-9683-a1ebb7754cdb/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta
+.idea/dataSources/4731d31a-5b11-4a7e-9683-a1ebb7754cdb/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta
+.idea/dataSources/4731d31a-5b11-4a7e-9683-a1ebb7754cdb/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta
+.idea/jsLibraryMappings.xml
+.idea/my_jigger.iml
+.idea/sqldialects.xml
+.idea/workspace.xml
