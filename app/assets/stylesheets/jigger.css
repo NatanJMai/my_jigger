@@ -6,6 +6,16 @@
 *
 */
 
+:root {
+  --cardWidth: 240px;
+  --cardHeight: 280px;
+  --cardMargin: 5px;
+  --bs-secondary-bg: white;
+  --jigger-background: white;
+  --jigger-black: #444444;
+  --jigger-light-blue: #D4E3FC;
+}
+
 body {
   background: linear-gradient(to right, #1f2227, #1f2227);
   min-height: 100vh;
@@ -25,13 +35,6 @@ body {
   color: #aaa;
 }
 
-:root {
-  --cardWidth: 240px;
-  --cardHeight: 280px;
-  --cardMargin: 5px;
-  --bs-secondary-bg: white;
-}
-
 .page-content {
   width: calc(100% - 17rem);
   margin-left: 17rem;
@@ -41,14 +44,29 @@ body {
 
 /* vertical menu */
 .vertical-nav {
-  min-width: 17rem;
-  width: 17rem;
+  /*min-width: 17rem;*/
+  /*width: 17rem;*/
   height: 100vh;
   position: fixed;
+  background-color: var(--jigger-background);
+  color: var(--jigger-black);
   top: 0;
   left: 0;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.4s;
+
+  .fa {
+    font-size: xx-large;
+    color: var(--jigger-black);
+  }
+
+  .btn:hover {
+    background-color: var(--jigger-light-blue);;
+  }
+
+  .btn {
+    border: none;
+  }
 }
 
 .media-body {

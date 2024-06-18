@@ -5,6 +5,7 @@ class CreateTableMenu < ActiveRecord::Migration[7.0]
       t.references :organization, index: true
       t.date :release_date
       t.text :description
+      t.boolean :data_imported
       t.boolean :status
       t.timestamps
     end

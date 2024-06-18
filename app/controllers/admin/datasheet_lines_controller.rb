@@ -82,6 +82,6 @@ class Admin::DatasheetLinesController < AdminController
 
   # Only allow a list of trusted parameters through.
   def datasheet_line_params
-    params.require(:datasheet_line).permit(:datasheet_id, :product_id, :unit, :quantity)
+    params.require(:datasheet_line).permit(:datasheet_id, :item_id, :unit, :quantity)
   end
 end

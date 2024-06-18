@@ -10,61 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_06_120640) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_12_130149) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "checklist_items", force: :cascade do |t|
-    t.string "name"
-    t.bigint "checklist_id"
-    t.string "priority"
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["checklist_id"], name: "index_checklist_items_on_checklist_id"
-    t.index ["name"], name: "index_checklist_items_on_name"
-  end
-
-  create_table "checklists", force: :cascade do |t|
-    t.string "name"
-    t.bigint "department_id"
-    t.date "date"
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "organization_id"
     t.text "description"
+    t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["department_id"], name: "index_checklists_on_department_id"
-    t.index ["name"], name: "index_checklists_on_name"
+    t.index ["organization_id"], name: "index_categories_on_organization_id"
   end
 
   create_table "datasheet_lines", force: :cascade do |t|
-    t.bigint "datasheet_id"
-    t.bigint "product_id"
+    t.bigint "datasheet_id", null: false
+    t.bigint "item_id"
     t.float "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["datasheet_id"], name: "index_datasheet_lines_on_datasheet_id"
-    t.index ["product_id"], name: "index_datasheet_lines_on_product_id"
+    t.index ["item_id"], name: "index_datasheet_lines_on_item_id"
   end
 
   create_table "datasheets", force: :cascade do |t|
-    t.string "name"
-    t.bigint "item_id"
+    t.bigint "item_id", null: false
+    t.string "name", null: false
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_datasheets_on_item_id"
-    t.index ["name", "item_id"], name: "index_datasheets_on_name_and_item_id", unique: true
-    t.index ["name"], name: "index_datasheets_on_name"
-  end
-
-  create_table "departments", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.boolean "status"
-    t.bigint "organization_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["organization_id"], name: "index_departments_on_organization_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -72,22 +48,30 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_120640) do
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "organization_id"
-    t.bigint "menu_section_id"
+    t.bigint "category_id", null: false
+    t.string "unit"
+    t.float "volume"
+    t.text "prep_method"
+    t.date "best_before"
+    t.string "image"
+    t.boolean "data_imported"
+    t.integer "purchase_price_cents", default: 0, null: false
+    t.string "purchase_price_currency", default: "BRL", null: false
     t.integer "customer_price_cents", default: 0, null: false
     t.string "customer_price_currency", default: "BRL", null: false
-    t.index ["menu_section_id"], name: "index_items_on_menu_section_id"
-    t.index ["organization_id", "name"], name: "index_items_on_organization_id_and_name", unique: true
-    t.index ["organization_id"], name: "index_items_on_organization_id"
+    t.index ["category_id", "name"], name: "index_items_on_category_id_and_name", unique: true
+    t.index ["category_id"], name: "index_items_on_category_id"
   end
 
-  create_table "menu_sections", force: :cascade do |t|
-    t.string "name"
+  create_table "menu_items", force: :cascade do |t|
     t.bigint "menu_id"
+    t.bigint "item_id"
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["menu_id"], name: "index_menu_sections_on_menu_id"
+    t.index ["item_id"], name: "index_menu_items_on_item_id"
+    t.index ["menu_id", "item_id"], name: "index_menu_items_on_menu_id_and_item_id", unique: true
+    t.index ["menu_id"], name: "index_menu_items_on_menu_id"
   end
 
   create_table "menus", force: :cascade do |t|
@@ -95,6 +79,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_120640) do
     t.bigint "organization_id"
     t.date "release_date"
     t.text "description"
+    t.boolean "data_imported"
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -114,33 +99,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_120640) do
     t.index ["manager_id"], name: "index_organizations_on_manager_id"
   end
 
-  create_table "products", force: :cascade do |t|
-    t.string "name"
-    t.bigint "organization_id"
-    t.float "volume"
-    t.text "prep_method"
-    t.date "best_before"
-    t.boolean "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "price_cents", default: 0, null: false
-    t.string "price_currency", default: "USD", null: false
-    t.string "unit"
-    t.index ["organization_id", "name"], name: "index_products_on_organization_id_and_name", unique: true
-    t.index ["organization_id"], name: "index_products_on_organization_id"
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.bigint "department_id"
-    t.string "name"
-    t.text "description"
-    t.integer "permission"
-    t.boolean "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["department_id"], name: "index_roles_on_department_id"
-  end
-
   create_table "user_organizations", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "organization_id"
@@ -148,16 +106,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_120640) do
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_user_organizations_on_organization_id"
     t.index ["user_id"], name: "index_user_organizations_on_user_id"
-  end
-
-  create_table "user_roles", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "role_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["role_id"], name: "index_user_roles_on_role_id"
-    t.index ["user_id", "role_id"], name: "index_user_roles_on_user_id_and_role_id", unique: true
-    t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -178,16 +126,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_120640) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "datasheet_lines", "datasheets"
-  add_foreign_key "datasheet_lines", "products"
+  add_foreign_key "categories", "organizations"
   add_foreign_key "datasheets", "items"
-  add_foreign_key "departments", "organizations"
-  add_foreign_key "items", "organizations"
+  add_foreign_key "items", "categories"
+  add_foreign_key "menu_items", "items"
+  add_foreign_key "menu_items", "menus"
   add_foreign_key "organizations", "users", column: "manager_id"
-  add_foreign_key "products", "organizations"
-  add_foreign_key "roles", "departments"
   add_foreign_key "user_organizations", "organizations"
   add_foreign_key "user_organizations", "users"
-  add_foreign_key "user_roles", "roles"
-  add_foreign_key "user_roles", "users"
 end

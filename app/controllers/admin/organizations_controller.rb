@@ -1,5 +1,5 @@
 class Admin::OrganizationsController < AdminController
-  before_action :set_organization, only: %i[ show edit update destroy ]
+  before_action :set_organization, only: %i[show edit update destroy]
 
   # GET /organizations or /organizations.json
   def index
@@ -61,7 +61,6 @@ class Admin::OrganizationsController < AdminController
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
       @organization = Organization.find(params[:id])
-      @departments  = @organization.departments
     end
 
     # Only allow a list of trusted parameters through.

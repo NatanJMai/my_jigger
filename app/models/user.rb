@@ -6,11 +6,8 @@ class User < ApplicationRecord
 
   before_save { email.downcase! }
 
-  validates :email, presence: true, length: {maximum: 255}
+  validates :email, presence: true, length: { maximum: 255 }
   validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
-
-  has_many :user_roles, class_name: "UserRole"
-  has_many :roles, through: :user_roles
 
   has_many :organizations, foreign_key: 'manager_id', class_name: 'Organization', dependent: :destroy
 

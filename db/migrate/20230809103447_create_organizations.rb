@@ -6,7 +6,7 @@ class CreateOrganizations < ActiveRecord::Migration[7.0]
       t.string :site
       t.string :phone
       t.string :email
-      t.references :manager, index: true, foreign_key: {to_table: :users}
+      t.references :manager, index: true, foreign_key: { to_table: :users }
       t.boolean :status
 
       t.timestamps

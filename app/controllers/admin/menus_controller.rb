@@ -9,7 +9,6 @@ class Admin::MenusController < AdminController
 
   # GET /menus/1 or /menus/1.json
   def show
-    redirect_to admin_menu_menu_sections_url(@menu)
   end
 
   # GET /menus/new
@@ -66,9 +65,9 @@ class Admin::MenusController < AdminController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_menu
-      @menu = Menu.find_by(id: params[:id])
-    end
+  def set_menu
+    @menu = Menu.find_by(id: params[:id])
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_organization
@@ -80,8 +79,8 @@ class Admin::MenusController < AdminController
   end
 
     # Only allow a list of trusted parameters through.
-    def menu_params
-      params.require(:menu).permit(:name, :description, :release_date,
-                                   :status, :organization_id)
-    end
+  def menu_params
+    params.require(:menu).permit(:name, :description, :release_on,
+                                 :status, :organization_id)
+  end
 end

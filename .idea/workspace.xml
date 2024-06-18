@@ -5,16 +5,56 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/datasheets_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/datasheets_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_totals.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_totals.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/departments/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/departments/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/jigger.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/jigger.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/datasheet_lines_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/datasheet_lines_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/departments_controller.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/items_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/items_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/menu_sections_controller.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/organizations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/organizations_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/roles_controller.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/checklist.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/checklist_item.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/datasheet_line.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/datasheet_line.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/department.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/item.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/menu.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/menu.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/menu_section.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/organization.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/organization.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/product.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/role.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user_role.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/_vertical.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_vertical.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/menu/_department_info.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/menu/_department_info.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/menu/_general_info.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/menu/_general_info.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/menu/_organization_info.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/menu/_organization_info.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/menu/_user_info.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/menu/_user_info.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20230809103447_create_organizations.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20230809103447_create_organizations.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20230814112600_create_departments.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20230819034726_create_roles.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20230819041855_remove_organization_from_roles.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20230824124101_create_user_role_table.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20230928111159_create_table_menu.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20230928111159_create_table_menu.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20230928120339_create_table_section.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20231003104100_create_table_item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20231003104100_create_table_item.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20231003111420_add_organization_to_item.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20231003114536_remove_index_from_items.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20231006110003_create_product.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20231018112258_create_datasheet_table.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20231018113656_create_datasheet_line.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20240405223821_add_price_to_product.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20240405230100_change_unit_product.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20240423120449_add_customer_price_to_item.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20240506120345_add_checklist_table.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20240506120640_add_checklist_item_table.rb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/factories/organizations.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/factories/organizations.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/requests/departments_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/departments_spec.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/requests/items_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/items_spec.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/requests/menu_sections_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/menu_sections_spec.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/requests/menus_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/menus_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/requests/departments_spec.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/requests/menu_sections_spec.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/requests/roles_spec.rb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,32 +95,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RSpec.datasheets_spec.executor": "Run",
-    "RSpec.items_spec.executor": "Run",
-    "Rails.my_jigger.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/natanjmai/Documents/_projects/my_jigger/new/my_jigger",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ruby.rails.projectView.checked": "true",
-    "ruby.structure.view.model.defaults.configured": "true",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RSpec.datasheets_spec.executor&quot;: &quot;Run&quot;,
+    &quot;RSpec.items_spec.executor&quot;: &quot;Run&quot;,
+    &quot;Rails.my_jigger.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/natanjmai/Documents/_projects/my_jigger/new/my_jigger&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
+    &quot;ruby.structure.view.model.defaults.configured&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/views/admin/datasheets" />
@@ -95,7 +135,7 @@
       <command value="rake bundle install" />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Rails.my_jigger">
     <configuration default="true" type="CucumberRunConfigurationType" factoryName="Cucumber">
       <predefined_log_file enabled="true" id="RUBY_CUCUMBER" />
       <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
@@ -328,6 +368,13 @@
       <item itemvalue="Rake.test: my_jigger" />
     </list>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-RM-241.17890.15" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SpringUtil" SPRING_PRE_LOADER_OPTION="true" RAKE_SPRING_PRE_LOADER_OPTION="true" RAILS_SPRING_PRE_LOADER_OPTION="true" />
   <component name="TaskManager">
@@ -363,6 +410,7 @@
       <workItem from="1713789685510" duration="599000" />
       <workItem from="1713872402882" duration="5803000" />
       <workItem from="1714295062856" duration="3928000" />
+      <workItem from="1718710815237" duration="3057000" />
     </task>
     <servers />
   </component>

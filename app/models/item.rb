@@ -1,9 +1,12 @@
 class Item < ApplicationRecord
+  include ClassyEnum::ActiveRecord
   monetize :customer_price_cents, allow_nil: true
+  monetize :purchase_price_cents, allow_nil: true
 
-  belongs_to :menu_section, class_name: "MenuSection", optional: true
-  belongs_to :organization, class_name: "Organization"
+  classy_enum_attr :unit
 
-  has_many :datasheets, class_name: "Datasheet", dependent: :destroy
-  validates :name, :organization_id, presence: true
+  belongs_to :category, class_name: 'Category'
+
+  has_many :datasheets, class_name: 'Datasheet', dependent: :destroy
+  validates :name, :category_id, presence: true
 end

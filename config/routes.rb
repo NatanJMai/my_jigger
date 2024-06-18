@@ -12,13 +12,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :organizations, shallow: true do
-      resources :departments, shallow: true do
-        resources :roles, shallow: true
-      end
-
-      resources :menus, shallow: true do
-        resources :menu_sections, shallow: true
-      end
+      resources :menus, shallow: true
 
       resources :items do
         resources :datasheets, shallow: true do
@@ -35,7 +29,7 @@ Rails.application.routes.draw do
       end
 
       resources :user_organizations, shallow: true
-      resources :products, shallow: true
+      resources :items, shallow: true
     end
   end
 
