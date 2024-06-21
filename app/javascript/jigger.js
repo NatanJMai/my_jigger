@@ -45,8 +45,8 @@ function setupEventListeners() {
 
   // Vertical menu toggle
   document.addEventListener('turbo:load', () => {
-    $('#sidebarCollapse').on('click', function() {
-      $('#sidebar, #content, #alert-div, #alert-msg').toggleClass('active');
+    $('.sidebarCollapse').on('click', function() {
+      $('#sidebar, #content, #alert-div, #alert-msg, .top-bar').toggleClass('active');
     });
 
   });
