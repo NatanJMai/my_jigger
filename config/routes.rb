@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     resources :organizations, shallow: true do
       resources :menus, shallow: true
 
+      resources :categories, shallow: true do
+        resources :items, shallow: true
+      end
+
       resources :items do
         resources :datasheets, shallow: true do
           resources :datasheet_lines, shallow: true do
@@ -29,7 +33,6 @@ Rails.application.routes.draw do
       end
 
       resources :user_organizations, shallow: true
-      resources :items, shallow: true
     end
   end
 

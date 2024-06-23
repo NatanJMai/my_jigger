@@ -15,17 +15,18 @@
   --jigger-black: #444444;
   --jigger-grey: #EBEBEB;
   --jigger-light-blue: #D4E3FC;
+  --jigger-body-background: #F7F6F6;
 }
 
 body {
-  background: linear-gradient(to right, #1f2227, #1f2227);
+  background: var(--jigger-body-background);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
 .separator {
   margin: 3rem 0;
-  border-bottom: 1px dashed #fff;
+  border-bottom: 1px solid var(--jigger-light-blue);
 }
 
 .text-uppercase {
@@ -69,7 +70,7 @@ body {
 
   .nav-rectangle {
     width: 100%;
-    height: 100px;
+    height: 80px;
     padding: 8px 8px 8px 8px;
     background: #444444;
     margin-bottom: 20px;
@@ -99,12 +100,12 @@ body {
 
 /* Top bar */
 .top-bar {
-  height: 100px;
+  height: 80px;
   margin-left: 5.05%;
   border: var(--jigger-grey) 1px solid;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.7s;
-  padding: 50px;
+  padding-left: 50px;
   background-color: var(--jigger-background);
   color: var(--jigger-black);
 

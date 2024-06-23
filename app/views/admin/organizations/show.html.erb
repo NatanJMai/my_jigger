@@ -1,4 +1,4 @@
-<h2 class="display-4 text-white">
+<h2 class="display-4">
   <%= @organization.name %> (Organization)
 </h2>
 
@@ -16,8 +16,8 @@
   </div>
 </div>
 
-<p class="lead text-white mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
-<p class="lead text-white">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
+<p class="lead mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
+<p class="lead">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
   <u>asdf</u></a>
 </p>
 
@@ -26,7 +26,7 @@
 <div class="container-fluid p-0">
   <div class="row">
     <%= render partial: 'layouts/cards/menu_card',
-               locals: { url: admin_organization_departments_path(@organization),
+               locals: { url: admin_organization_path(@organization),
                          title: 'Departments',
                          text: "#{@organization.name} Departments" } %>
 
@@ -37,7 +37,7 @@
                          text: "#{@organization.name} Staff" } %>
 
     <%= render partial: 'layouts/cards/menu_card',
-               locals: { url: admin_organization_products_path(@organization),
+               locals: { url: admin_organization_items_path(@organization),
                          title: 'Products',
                          class: '',
                          text: "#{@organization.name} Products" } %>

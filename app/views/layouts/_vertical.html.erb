@@ -32,15 +32,6 @@
     </li>
   </ul>
 
-
-  <% if @department&.persisted? %>
-    <%= render partial: 'layouts/menu/department_info' %>
-  <% elsif @organization&.persisted? %>
-    <%= render partial: 'layouts/menu/organization_info' %>
-  <% else %>
-    <%#= render partial: 'layouts/menu/general_info' %>
-  <% end %>
-
   <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">About me</p>
 
   <ul class="nav flex-column mb-0">

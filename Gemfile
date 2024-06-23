@@ -82,3 +82,5 @@ gem 'font-awesome-sass'
 
 gem 'devise', '~> 4.9'
 gem 'simple_form'
+gem 'cancancan'
+

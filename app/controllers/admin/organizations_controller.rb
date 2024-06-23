@@ -1,5 +1,6 @@
 class Admin::OrganizationsController < AdminController
-  before_action :set_organization, only: %i[show edit update destroy]
+  load_and_authorize_resource
+
 
   # GET /organizations or /organizations.json
   def index
@@ -21,7 +22,7 @@ class Admin::OrganizationsController < AdminController
 
   # POST /organizations or /organizations.json
   def create
-    @organization = current_user.organizations.new()
+    @organization = current_user.organizations.new(organization_params)
 
     respond_to do |format|
       if @organization.update(organization_params)
@@ -58,11 +59,6 @@ class Admin::OrganizationsController < AdminController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_organization
-      @organization = Organization.find(params[:id])
-    end
-
     # Only allow a list of trusted parameters through.
     def organization_params
       params.require(:organization).permit(:name, :email, :address, :site)
