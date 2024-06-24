@@ -1,38 +1,40 @@
-<h2 class="display-4 text-white">
-  Menus (<%= @organization.name %>)
-</h2>
-
-<p class="lead text-white mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
-<p class="lead text-white">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
-  <u>asdf</u></a>
-</p>
-
-<div class="separator"></div>
-
 <div class="container">
   <%= simple_form_for(model,
-                      html: { class: 'jform row row-cols align-items-center' } ) do |f| %>
+                      html: { class: 'jigger-form row row-cols' } ) do |f| %>
 
     <div class="card-header">
-      <h5 class="card-title text-center">New Menu</h5>
+      <h4 class="card-title text-left">Add/Save Menu</h4>
     </div>
 
-    <legend><span class="number">1</span> Detail</legend>
+    <legend>Menu details</legend>
 
     <div class="row">
-      <div class="col-6">
-        <%= f.input :name %>
+      <div class="col-8">
+        <%= f.input :name, hint: 'Menu name', wrapper_html: { class: 'jigger-label' } %>
       </div>
 
-      <div class="col-6">
-        <%= f.input :description %>
-      </div>
-    </div>
-
-    <legend><span class="number">2</span> Status & Permissions</legend>
-    <div class="row">
       <div class="col-4">
-        <%= f.input :status %>
+        <%= f.input :release_date, as: :date, hint: 'Menu released at',
+                    wrapper_html: { class: 'jigger-label' } %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <%= f.input :status, label: 'Status (Active)', hint: 'Is this menu active?',
+                    wrapper_html: { class: 'jigger-label' } %>
+      </div>
+
+      <div class="col-3">
+        <%= f.input :data_imported, label: 'Data Imported?', hint: 'Is this menu data imported?',
+                    wrapper_html: { class: 'jigger-label' } %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <%= f.input :description, hint: 'Menu description (e.g where it is from)',
+                    wrapper_html: { class: 'jigger-label' } %>
       </div>
     </div>
 

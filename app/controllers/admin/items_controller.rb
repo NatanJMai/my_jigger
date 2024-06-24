@@ -1,6 +1,9 @@
 class Admin::ItemsController < AdminController
-  before_action :set_item, only: %i[show edit update destroy]
-  before_action :set_category
+  load_and_authorize_resource
+  load_and_authorize_resource :category
+
+  # before_action :set_item, only: %i[show edit update destroy]
+  # before_action :set_category
 
   # GET /items or /items.json
   def index

@@ -14,6 +14,8 @@
   --jigger-background: white;
   --jigger-black: #444444;
   --jigger-grey: #EBEBEB;
+  --jigger-border: #D8D9DB;
+  --jigger-blue: #1464F6;
   --jigger-light-blue: #D4E3FC;
   --jigger-body-background: #F7F6F6;
 }
@@ -42,6 +44,10 @@ body {
   margin-left: 10rem;
   transition: all 0.4s;
   margin-top: -2%;
+
+  .container {
+    margin-left: 0;
+  }
 }
 
 /* vertical menu */
