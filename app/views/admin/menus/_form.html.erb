@@ -1,48 +1,81 @@
-<div class="container">
+<div class="container jigger-form">
   <%= simple_form_for(model,
-                      html: { class: 'jigger-form row row-cols' } ) do |f| %>
+                      html: { class: 'row row-cols' } ) do |f| %>
 
-    <div class="card-header">
-      <h4 class="card-title text-left">Add/Save Menu</h4>
-    </div>
-
-    <legend>Menu details</legend>
+    <%= render partial: 'layouts/shared/form/header',
+               locals: { title: 'Add/Save Menu',
+                         subtitle: 'Menu details' } %>
 
     <div class="row">
       <div class="col-8">
-        <%= f.input :name, hint: 'Menu name', wrapper_html: { class: 'jigger-label' } %>
-      </div>
+        <div class="row">
+          <div class="col-8">
+            <%= f.input :name, hint: 'Menu name', wrapper_html: { class: 'jigger-label' } %>
+          </div>
 
-      <div class="col-4">
-        <%= f.input :release_date, as: :date, hint: 'Menu released at',
-                    wrapper_html: { class: 'jigger-label' } %>
-      </div>
+          <div class="col-4">
+            <%= f.input :release_date, as: :date, hint: 'Menu released at',
+                        wrapper_html: { class: 'jigger-label' } %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <%= f.input :status, label: 'Status (Active)', hint: 'Is this menu active?',
+                        wrapper_html: { class: 'jigger-label' } %>
+          </div>
+
+          <div class="col-3">
+            <%= f.input :data_imported, label: 'Data Imported?', hint: 'Is this menu data imported?',
+                        wrapper_html: { class: 'jigger-label' } %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <%= f.input :description, hint: 'Menu description (e.g where it is from)',
+                        wrapper_html: { class: 'jigger-label' } %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <%= f.button :submit, "Add/Save Menu", class: "form-btn"  %>
+          </div>
+        </div>
+      <% end %>
     </div>
 
+    <div class="col-4">
+      <div class="vertical-line">
+        <%= render partial: 'admin/menus/organization_info', locals: { organization: @organization } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container jigger-form child-list">
+  <div class="container-fluid p-0">
     <div class="row">
-      <div class="col-3">
-        <%= f.input :status, label: 'Status (Active)', hint: 'Is this menu active?',
-                    wrapper_html: { class: 'jigger-label' } %>
-      </div>
-
-      <div class="col-3">
-        <%= f.input :data_imported, label: 'Data Imported?', hint: 'Is this menu data imported?',
-                    wrapper_html: { class: 'jigger-label' } %>
-      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Customer Price</th>
+            <th scope="col">Cost Price</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @menu.items.order(:name).each do |item| %>
+            <%= render partial: 'admin/items/item', locals: { item: item } %>
+          <% end %>
+        </tbody>
+      </table>
     </div>
-
-    <div class="row">
-      <div class="col-12">
-        <%= f.input :description, hint: 'Menu description (e.g where it is from)',
-                    wrapper_html: { class: 'jigger-label' } %>
-      </div>
-    </div>
-
-    <div class="row">
-      <%= f.button :submit, "Save", class: "form-btn"  %>
-    </div>
-
-  <% end %>
+  </div>
 </div>
 
 

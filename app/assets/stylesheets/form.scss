@@ -1,5 +1,5 @@
 .jigger-form {
-  max-width: 80%;
+  //max-width: 80%;
   padding: 30px 60px;
   border: 0.1px solid var(--jigger-border);
   background-color: white;
@@ -77,17 +77,20 @@
     }
   }
 
+  .form-photo {
+    width: 250px;
+    height: 250px;
+  }
+
   .form-btn{
-    padding: 10px 30px 10px 30px;
+    //padding: 10px 30px 10px 30px;
     color: #FFF;
-    background-color: #4bc970;
+    background-color: var(--jigger-blue);
     font-size: 18px;
     text-align: center;
     font-style: normal;
     border-radius: 5px;
     width: 100%;
-    border: 1px solid #3ac162;
-    border-width: 1px 1px 3px;
     box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
     margin-bottom: 10px;
   }
@@ -105,4 +108,8 @@
     text-shadow: 0 1px 0 rgba(255,255,255,0.2);
     border-radius: 100%;
   }
+}
+
+.jigger-form.child-list {
+  margin-top: 20px;
 }
