@@ -54,26 +54,47 @@
   </div>
 </div>
 
-<div class="container jigger-form child-list">
-  <div class="container-fluid p-0">
-    <div class="row">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Category</th>
-            <th scope="col">Customer Price</th>
-            <th scope="col">Cost Price</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @menu.items.order(:name).each do |item| %>
-            <%= render partial: 'admin/items/item', locals: { item: item } %>
-          <% end %>
-        </tbody>
-      </table>
+<div class="row">
+  <div class="col-7">
+    <div class="container jigger-form child-list">
+      <div class="container-fluid p-0">
+        <div class="row">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Customer Price</th>
+              <th scope="col">Cost Price</th>
+              <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+              <% @menu.items.order(:name).each do |item| %>
+                <%= render partial: 'admin/items/item', locals: { item: item } %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3">
+    <div class="container jigger-form child-list">
+      <div class="container-fluid p-0">
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="item-information">
+              <%= render partial: 'admin/items/item_information', locals: { item: Item.first } %>
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

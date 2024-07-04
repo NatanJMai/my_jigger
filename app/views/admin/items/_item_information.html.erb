@@ -1,0 +1,29 @@
+<!-- Item Information from Menu -->
+<span><b><%= item&.name %></b></span>
+<div class="row jigger-label">
+  <div class="col-6 align-left info-description"><%= item&.customer_price_cents %></div>
+  <div class="col-6 align-right info-label">Price ($)</div>
+</div>
+
+<div class="row jigger-label">
+  <div class="col-6 align-left info-description"><%= item&.category&.name %></div>
+  <div class="col-6 align-right info-label">Category</div>
+</div>
+
+<div class="row jigger-label">
+  <div class="col-6 align-left info-description"><%= item&.volume %></div>
+  <div class="col-6 align-right info-label">Volume</div>
+</div>
+
+<div class="row jigger-label">
+  <div class="col-6 align-left info-description"><%= item&.best_before %></div>
+  <div class="col-6 align-right info-label">Best Before</div>
+</div>
+
+<div class="row jigger-label">
+  <div class="col-6 align-left info-description"><%= item&.status %></div>
+  <div class="col-6 align-right info-label">Status</div>
+</div>
+
+<hr>
+<div class="row jigger-label"><div class="align-center info-label">Prep Method</div></div>

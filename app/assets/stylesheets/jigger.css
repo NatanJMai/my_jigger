@@ -14,6 +14,7 @@
   --jigger-background: white;
   --jigger-black: #444444;
   --jigger-grey: #EBEBEB;
+  --jigger-dark-grey: #8E8E93;
   --jigger-border: #D8D9DB;
   --jigger-blue: #1464F6;
   --jigger-light-blue: #D4E3FC;
@@ -47,6 +48,7 @@ body {
 
   .container {
     margin-left: 0;
+    max-width: 1370px;
 
     .vertical-line {
       border-left: 0.1px solid var(--jigger-border);
@@ -58,6 +60,18 @@ body {
       margin-left: 60px;
     }
   }
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
 }
 
 /* vertical menu */
