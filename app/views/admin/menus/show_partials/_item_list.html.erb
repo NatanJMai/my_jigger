@@ -1,0 +1,23 @@
+<div class="container-fluid p-0">
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Customer Price</th>
+      <th scope="col">Status</th>
+      <th scope="col">Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% items.order(:name).each do |item| %>
+        <%= render partial: 'admin/menus/show_partials/item', locals: { item: item } %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= button_to 'View All', nil,
+                class: "btn btn-light shadow-sm px-4 mb-2",
+                :method => :get %>
+</div>

@@ -59,6 +59,10 @@ body {
       padding-top: 30px;
       margin-left: 60px;
     }
+
+    .left-line {
+      border-left: 0.1px solid var(--jigger-border);
+    }
   }
 }
 
@@ -299,23 +303,16 @@ body {
   background-color: #2640fe;
 }
 
-/* form display */
-.btn_new {
-  height: 80px;
-  width: 80px;
-  font-size: 2em;
-  border-radius: 50%;
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  cursor: pointer;
-  border: none;
+.btn-light {
+  font-size: smaller;
+  height: 30px;
+  background-color: white;
+  border: 1px solid var(--jigger-blue);
 }
 
-.btn_new:hover {
-  box-shadow: 0 0 15px 0 rgba(0,0,0,1), 0 5px 15px 0 rgba(0,0,0,1);
-  transform: scale(1.05);
-  transition: all linear 50ms;
+.btn-light:hover {
+  background-color: var(--jigger-blue);
+  color: white;
 }
 
 /* table minimal btn */

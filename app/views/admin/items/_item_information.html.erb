@@ -1,7 +1,9 @@
 <!-- Item Information from Menu -->
 <span><b><%= item&.name %></b></span>
 <div class="row jigger-label">
-  <div class="col-6 align-left info-description"><%= item&.customer_price_cents %></div>
+  <div class="col-6 align-left info-description">
+    <%= humanized_money_with_symbol Money.new(item.customer_price) %>
+  </div>
   <div class="col-6 align-right info-label">Price ($)</div>
 </div>
 
@@ -25,5 +27,4 @@
   <div class="col-6 align-right info-label">Status</div>
 </div>
 
-<hr>
-<div class="row jigger-label"><div class="align-center info-label">Prep Method</div></div>
+<hr><div class="row jigger-label"><div class="align-center info-label">Prep Method</div></div>

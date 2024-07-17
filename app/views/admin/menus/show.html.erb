@@ -1,31 +1,66 @@
-<h2 class="display-4 text-white">
-  <%= @menu.name %> (Menu)
-</h2>
 
-<div class="form-action">
-  <div class="grid-item">
-    <%= button_to 'EDIT', edit_admin_menu_path(@menu.id),
-                  class: "btn btn-info shadow-sm px-4 mb-2",
-                  :method => :get %>
+<div class="row">
+  <div class="col-8">
+    <div class="container jigger-form">
+      <div class="row">
+        <div class="col-6">
+          <%= render partial: 'admin/menus/show_partials/menu_info',
+                     locals: { menu: @menu } %>
+        </div>
+
+        <div class="col-6 left-line">
+          <%= render partial: 'admin/menus/show_partials/item_list',
+                     locals: { items: @menu.items } %>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="grid-item">
-    <%= button_to 'REMOVE', admin_menu_path(@menu),
-                  class: "btn btn-warning shadow-sm px-4 mb-2",
-                  :method => :delete %>
-  </div>
-</div>
-
-<p class="lead text-white mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
-<p class="lead text-white">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
-  <u>asdf</u></a>
-</p>
-
-<div class="separator"></div>
-
-<div class="container-fluid p-0">
-  <div class="row">
-
+  <div class="col-3">
+    <div class="container jigger-form">
+      <%= render partial: 'admin/menus/show_partials/category_performance' %>
+    </div>
   </div>
 </div>
 
+<div class="row">
+  <div class="col-8">
+    <div class="container jigger-form child-list">
+      <div class="row">
+        <div class="col-6">
+          <%= render partial: 'admin/menus/show_partials/sales_performance' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3">
+    <div class="container jigger-form child-list sale-item blue">
+      <%= render partial: 'layouts/shared/sale_items/sale_item' %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-8"></div>
+
+  <div class="col-3">
+    <div class="container jigger-form child-list sale-item">
+      <%= render partial: 'layouts/shared/sale_items/sale_item' %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-8">
+    <div class="container jigger-form child-list">
+      <%= render partial: 'admin/menus/show_partials/cost_analysis' %>
+    </div>
+  </div>
+
+  <div class="col-3">
+    <div class="container jigger-form">
+      <%= render partial: 'admin/menus/show_partials/matrix_popularity' %>
+    </div>
+  </div>
+</div>

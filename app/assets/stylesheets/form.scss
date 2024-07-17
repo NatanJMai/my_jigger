@@ -20,11 +20,11 @@
     .info-description {
       font-weight: bold;
     }
+  }
 
-    .info-label {
-      font-size: small;
-      color: var(--jigger-dark-grey);
-    }
+  .info-label {
+    font-size: small;
+    color: var(--jigger-dark-grey);
   }
 
   input[type="text"],
@@ -81,7 +81,7 @@
     color: var(--jigger-black);
     margin-bottom: 25px;
 
-    h4 {
+    h4, h5 {
       font-weight: bold;
     }
   }
@@ -121,4 +121,24 @@
 
 .jigger-form.child-list {
   margin-top: 20px;
+}
+
+.sale-item {
+  height: 130px;
+  background: var(--jigger-background);
+  //margin-bottom: -15px;
+
+  .fa {
+    font-size: xx-large;
+  }
+
+  &.blue {
+    background: var(--jigger-blue);
+    color: var(--jigger-background);
+  }
+
+  &.white {
+    background: var(--jigger-background);
+    color: var(--jigger-black);
+  }
 }

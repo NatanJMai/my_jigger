@@ -1,0 +1,35 @@
+<div class="card-header">
+  <div class="row">
+    <div class="col-4">
+      <h4 class="card-title text-left"><%= menu.name %></h4>
+    </div>
+    <div class="col-2">
+      <h6 class="info-label text-left"><%= menu.status %></h6>
+    </div>
+
+    <div class="col-4">
+      <h6 class="info-label text-left">Data Imported</h6>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h7 class="card-title text-left"><%= menu.organization.name %></h7>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h7 class="card-title text-left"><%= menu.release_date %></h7>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 info-label">
+      <br>
+      <div><b>Description</b></div>
+
+      <div class="text-left"><%= menu.description %></div>
+    </div>
+  </div>
+</div>
