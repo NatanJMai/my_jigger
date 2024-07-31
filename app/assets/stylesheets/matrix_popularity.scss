@@ -1,0 +1,111 @@
+.matrix-popularity {
+  //background: gray;
+  height: 100%;
+
+  .line-with-arrow {
+    position: relative;
+    margin: 10px;
+  }
+
+  .right {
+    width: 750px;
+    height: 1px;
+    background-color: var(--jigger-border);
+  }
+
+  .right::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: -4px;
+    border-width: 5px 0 5px 10px;
+    border-style: solid;
+    border-color: transparent transparent transparent black;
+  }
+
+  .right .label {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 100px;
+    transform: translateX(-75%);
+    background-color: #f0f0f0;
+    padding: 2px 5px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .top {
+    width: 1px;
+    height: 450px;
+    background-color: var(--jigger-border);
+  }
+
+  .top::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -4px;
+    transform: rotate(180deg);
+
+    border-width: 10px 5px 0 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+  }
+
+  .top .label {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 100px;
+    transform: translateX(-75%) rotate(270deg);
+    background-color: #f0f0f0;
+    padding: 2px 5px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .row-left-square {
+    margin-bottom: -20px;
+  }
+
+  .row-square {
+    border-radius: var(--bs-border-radius);
+    margin-top: 15px;
+    width: 300px;
+    height: 200px;
+    color: white;
+
+    &.red {
+      border: 1px solid var(--jigger-square-red);;
+      background-color: var(--jigger-square-red);;
+    }
+
+    &.purple {
+      border: 1px solid var(--jigger-square-purple);;
+      background-color: var(--jigger-square-purple);;
+    }
+
+    &.blue {
+      border: 1px solid var(--jigger-square-blue);;
+      background-color: var(--jigger-square-blue);;
+    }
+
+    &.orange {
+      border: 1px solid var(--jigger-square-orange);;
+      background-color: var(--jigger-square-orange);;
+    }
+
+    .square-container {
+      text-align: center;
+      margin-top: 5%;
+    }
+  }
+
+  .row-square:hover {
+    transform: scale(1.02);
+    transition: all linear 200ms;
+    z-index: 1;
+    cursor: pointer;
+  }
+}

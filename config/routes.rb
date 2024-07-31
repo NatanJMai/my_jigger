@@ -12,7 +12,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :organizations, shallow: true do
-      resources :menus, shallow: true
+      resources :menus, shallow: true do
+        member do
+          get :cost_analysis
+          get :best_items
+          get :matrix_popularity
+          get :sales_performance
+        end
+      end
+
       resources :categories, shallow: true
 
       resources :items do

@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-8">
+    <div class="container jigger-form">
+      <div class="row">
+        <div class="col-6">
+          <div class="card-header">
+            <h4 class="card-title text-left">Popularity Performance </h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <%= render partial: 'admin/menus/show_partials/matrix/matrix_popularity' %>
+      </div>
+
+      <%= link_to 'View All', matrix_popularity_admin_menu_path(@menu),
+                  class: "btn btn-light shadow-sm px-4 mb-2" %>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="container jigger-form">
+      <div class="card-header">
+        <h4 class="card-title text-left">Popularity Details </h4>
+      </div>
+    </div>
+  </div>
+</div>

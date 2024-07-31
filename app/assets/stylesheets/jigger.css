@@ -19,6 +19,10 @@
   --jigger-blue: #1464F6;
   --jigger-light-blue: #D4E3FC;
   --jigger-body-background: #F7F6F6;
+  --jigger-square-red: #FF5D55;
+  --jigger-square-blue: #3D8AF7;
+  --jigger-square-purple: #B38DF7;
+  --jigger-square-orange: #FFB253;
 }
 
 body {

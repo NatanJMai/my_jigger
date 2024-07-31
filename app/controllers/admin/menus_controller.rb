@@ -1,5 +1,5 @@
 class Admin::MenusController < AdminController
-  before_action :set_menu, only: [:show, :edit, :update, :destroy]
+  before_action :set_menu
   before_action :set_organization
 
   # GET /menus or /menus.json
@@ -8,8 +8,14 @@ class Admin::MenusController < AdminController
   end
 
   # GET /menus/1 or /menus/1.json
-  def show
-  end
+  def show; end
+
+  def cost_analysis; end
+  
+  def best_items; end
+  
+  def matrix_popularity; end
+  def sales_performance; end
 
   # GET /menus/new
   def new
@@ -21,8 +27,7 @@ class Admin::MenusController < AdminController
   end
 
   # GET /menus/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /menus or /menus.json
   def create

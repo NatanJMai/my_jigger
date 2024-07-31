@@ -6,6 +6,5 @@
   </div>
 </div>
 
-<%= button_to 'View All', nil,
-              class: "btn btn-light shadow-sm px-4 mb-2",
-              :method => :get %>
+<%= link_to 'View All', cost_analysis_admin_menu_path(@menu),
+              class: "btn btn-light shadow-sm px-4 mb-2" %>
