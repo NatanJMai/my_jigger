@@ -72,6 +72,8 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'draper'
+
 # Custom GEM
 gem 'bootstrap'
 gem 'sassc-rails'

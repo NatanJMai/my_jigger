@@ -3,12 +3,12 @@
     <div class="container jigger-form">
       <div class="row">
         <div class="col-6">
-          <%= render partial: 'admin/menus/show_partials/menu_info',
+          <%= render partial: 'admin/menus/partials/menu_info',
                      locals: { menu: @menu } %>
         </div>
 
         <div class="col-6 left-line">
-          <%= render partial: 'admin/menus/show_partials/item_list',
+          <%= render partial: 'admin/menus/partials/item_list',
                      locals: { items: @menu.items } %>
         </div>
       </div>
@@ -17,7 +17,7 @@
 
   <div class="col-3">
     <div class="container jigger-form">
-      <%= render partial: 'admin/menus/show_partials/category_performance' %>
+      <%= render partial: 'admin/menus/partials/category_performance' %>
     </div>
   </div>
 </div>
@@ -27,7 +27,7 @@
     <div class="container jigger-form child-list">
       <div class="row">
         <div class="col-6">
-          <%= render partial: 'admin/menus/show_partials/sales_performance' %>
+          <%= render partial: 'admin/menus/partials/sales_performance' %>
         </div>
       </div>
     </div>
@@ -42,10 +42,9 @@
 
 <div class="row">
   <div class="col-8"></div>
-
   <div class="col-3">
     <div class="container jigger-form child-list sale-item">
-      <%= render partial: 'layouts/shared/sale_items/sale_item' %>
+      <%= render partial: 'layouts/shared/sale_items/total_income' %>
     </div>
   </div>
 </div>
@@ -53,13 +52,13 @@
 <div class="row">
   <div class="col-8">
     <div class="container jigger-form child-list">
-      <%= render partial: 'admin/menus/show_partials/cost_analysis' %>
+      <%= render partial: 'admin/menus/partials/cost_analysis' %>
     </div>
   </div>
 
   <div class="col-3">
-    <div class="container jigger-form">
-      <%= render partial: 'admin/menus/show_partials/matrix_popularity' %>
+    <div class="container jigger-form child-list matrix-popularity ">
+      <%= render partial: 'admin/menus/partials/matrix/menu_matrix' %>
     </div>
   </div>
 </div>

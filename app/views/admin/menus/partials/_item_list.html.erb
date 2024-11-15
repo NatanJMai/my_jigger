@@ -12,7 +12,7 @@
     </thead>
     <tbody>
       <% items.order(:name).each do |item| %>
-        <%= render partial: 'admin/menus/show_partials/item', locals: { item: item } %>
+        <%= render partial: 'admin/menus/partials/item', locals: { item: item } %>
       <% end %>
     </tbody>
   </table>

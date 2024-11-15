@@ -2,9 +2,11 @@ class Admin::MenusController < AdminController
   before_action :set_menu
   before_action :set_organization
 
+  decorates_assigned :menus, :menu
+
   # GET /menus or /menus.json
   def index
-    @menus = @organization.menus
+    @menus = @organization.menus.includes(:items)
   end
 
   # GET /menus/1 or /menus/1.json
@@ -69,7 +71,7 @@ class Admin::MenusController < AdminController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  # Use callbacks to share common setup or constraints between actions.
   def set_menu
     @menu = Menu.find_by(id: params[:id])
   end
@@ -83,9 +85,9 @@ class Admin::MenusController < AdminController
     end
   end
 
-    # Only allow a list of trusted parameters through.
+  # Only allow a list of trusted parameters through.
   def menu_params
-    params.require(:menu).permit(:name, :description, :release_on,
+    params.require(:menu).permit(:name, :description, :release_date,
                                  :status, :organization_id)
   end
 end

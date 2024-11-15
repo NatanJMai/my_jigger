@@ -1,0 +1,21 @@
+<div class="card-header">
+  <div class="row">
+    <div class="col-12">
+      <h5 class="card-title text-left">Matrix Popularity</h5>
+    </div>
+  </div>
+</div>
+
+
+<div class="matrix-popularity">
+  <%= render partial: 'admin/menus/partials/matrix/squares',
+             locals: { menu_screen: true } %>
+
+  <div>
+    <%= link_to 'View All', matrix_popularity_admin_menu_path(@menu),
+              class: "btn btn-light shadow-sm px-4 mb-2" %>
+  </div>
+</div>
+
+
+

@@ -1,5 +1,4 @@
 .matrix-popularity {
-  //background: gray;
   height: 100%;
 
   .line-with-arrow {
@@ -8,9 +7,10 @@
   }
 
   .right {
-    width: 750px;
+    max-width: 750px;
     height: 1px;
     background-color: var(--jigger-border);
+    margin-bottom: 50px;
   }
 
   .right::after {
@@ -72,7 +72,7 @@
   .row-square {
     border-radius: var(--bs-border-radius);
     margin-top: 15px;
-    width: 300px;
+    max-width: 300px;
     height: 200px;
     color: white;
 

@@ -92,7 +92,6 @@
   }
 
   .form-btn{
-    //padding: 10px 30px 10px 30px;
     color: #FFF;
     background-color: var(--jigger-blue);
     font-size: 18px;
@@ -121,12 +120,24 @@
 
 .jigger-form.child-list {
   margin-top: 20px;
+
+  &.matrix-popularity {
+    padding: 40px;
+
+    .custom-col {
+      min-width: 150px;
+      scale: 0.95;
+
+      h4 {
+        font-size: 14pt;
+      }
+    }
+  }
 }
 
 .sale-item {
   height: 130px;
   background: var(--jigger-background);
-  //margin-bottom: -15px;
 
   .fa {
     font-size: xx-large;

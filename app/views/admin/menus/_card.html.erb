@@ -1,0 +1,35 @@
+<div class="col-12 col-md-6 col-lg-3">
+  <div class="card">
+    <div class="card-body">
+      <%= link_to admin_menu_path(menu) do %>
+        <div id="<%= dom_id menu %>">
+          <div class="row card-title">
+            <div class="col-6">
+              <h5><%= menu.name %></h5>
+            </div>
+
+            <div class="col-3 align-center status <%= menu.status_css_label %>">
+              <p><%= menu.status %></p>
+            </div>
+          </div>
+
+          <div class="card-description">
+            <%= menu.description %>
+          </div>
+
+          <div class="row menu-items">
+            <% items.each do |item| %>
+              <div class="item col-2">
+                <%= item.name %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="card-footer">
+      <small class="text-muted"><%= menu.released_at %></small>
+    </div>
+  </div>
+</div>

@@ -9,4 +9,11 @@ class Item < ApplicationRecord
 
   has_many :datasheets, class_name: 'Datasheet', dependent: :destroy
   validates :name, :category_id, presence: true
+
+  ##
+  # Return best five items
+  # @return Scope
+  scope :best_five, lambda {
+    where(status: true).limit(5)
+  }
 end

@@ -19,6 +19,8 @@
   --jigger-blue: #1464F6;
   --jigger-light-blue: #D4E3FC;
   --jigger-body-background: #F7F6F6;
+  --jigger-active-status: #6BD35E;
+  --jigger-inactive-status: #D6D6D6;
   --jigger-square-red: #FF5D55;
   --jigger-square-blue: #3D8AF7;
   --jigger-square-purple: #B38DF7;
@@ -241,16 +243,52 @@ body {
 
 .card {
   margin: var(--cardMargin);
-  box-shadow: 0px 5px 10px 0px rgba(0,0,0,3);
 
   a {
     text-decoration: none;
     color: var(--bs-gray-900);
   }
+
+  .card-body {
+    .card-title {
+      .status {
+        height: 20px;
+        border-radius: 50px;
+
+        p {
+          font-size: small;
+          color: white;
+        }
+
+        &.active-status {
+          background-color: var(--jigger-active-status);
+        }
+        &.inactive-status {
+          background-color: var(--jigger-inactive-status);
+        }
+      }
+    }
+
+    .menu-items {
+      margin-left: 0;
+      margin-top: 15px;
+
+      .item {
+        margin-right: 2px;
+        background-color: gray;
+      }
+    }
+
+    .card-description {
+      font-size: small;
+      color: var(--jigger-dark-grey);
+    }
+  }
+
 }
 
 .card:hover {
-  transform: scale(1.02);
+  transform: scale(1.01);
   transition: all linear 200ms;
   z-index: 1;
   cursor: pointer;

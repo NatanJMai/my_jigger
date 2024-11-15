@@ -6,7 +6,7 @@
       </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-4 <%= 'custom-col' if menu_screen %>">
       <div class="row row-square red">
         <div class="col-12">
           <div class="square-container">
@@ -16,7 +16,7 @@
       </div>
 
       <div class="row row-square blue">
-        <div class="col-12">
+        <div class="col-12 <%= 'custom-col' if menu_screen %>">
           <div class="square-container">
             <h4>Stars</h4>
           </div>
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-4 <%= 'custom-col' if menu_screen %>">
       <div class="row row-square purple">
         <div class="col-12">
           <div class="square-container">
@@ -34,13 +34,16 @@
       </div>
 
       <div class="row row-square orange">
-        <div class="col-12">
+        <div class="col-12 <%= 'custom-col' if menu_screen %>">
           <div class="square-container">
             <h4>Puzzles</h4>
           </div>
         </div>
       </div>
     </div>
-
   </div>
+</div>
+
+<div class="line-with-arrow right">
+  <span class="label">Right Arrow</span>
 </div>

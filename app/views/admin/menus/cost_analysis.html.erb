@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-12">
+    <div class="container jigger-form">
+      <div class="row">
+        <div class="col-6">
+          <%= render partial: 'admin/menus/partials/menu_info',
+                     locals: { menu: @menu } %>
+        </div>
+
+        <div class="col-6 left-line">
+          <%= render partial: 'admin/menus/partials/item_list',
+                     locals: { items: @menu.items } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="container jigger-form child-list">
+      <%= render partial: 'admin/menus/partials/cost_analysis' %>
+    </div>
+  </div>
+</div>

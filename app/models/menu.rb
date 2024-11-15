@@ -4,4 +4,5 @@ class Menu < ApplicationRecord
   has_many :items, through: :menu_items
 
   validates :name, :organization_id, presence: true
+
 end

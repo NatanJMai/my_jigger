@@ -5,56 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/form.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/form.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/jigger.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/jigger.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/datasheet_lines_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/datasheet_lines_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/departments_controller.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/items_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/items_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/menu_sections_controller.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/matrix_popularity.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/matrix_popularity.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/organizations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/organizations_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/roles_controller.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/checklist.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/checklist_item.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/datasheet_line.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/datasheet_line.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/department.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/decorators/menu_decorator.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/decorators/menu_decorator.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/item.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/menu.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/menu.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/menu_section.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/organization.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/organization.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/product.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/role.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user_role.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/_vertical.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_vertical.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/menu/_department_info.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/menu/_department_info.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/menu/_general_info.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/menu/_general_info.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/menu/_organization_info.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/menu/_organization_info.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/menu/_user_info.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/menu/_user_info.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20230809103447_create_organizations.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20230809103447_create_organizations.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20230814112600_create_departments.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20230819034726_create_roles.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20230819041855_remove_organization_from_roles.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20230824124101_create_user_role_table.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20230928111159_create_table_menu.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20230928111159_create_table_menu.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20230928120339_create_table_section.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20231003104100_create_table_item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20231003104100_create_table_item.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20231003111420_add_organization_to_item.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20231003114536_remove_index_from_items.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20231006110003_create_product.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20231018112258_create_datasheet_table.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20231018113656_create_datasheet_line.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20240405223821_add_price_to_product.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20240405230100_change_unit_product.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20240423120449_add_customer_price_to_item.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20240506120345_add_checklist_table.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20240506120640_add_checklist_item_table.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/best_items.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/best_items.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/cost_analysis.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/cost_analysis.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/matrix_popularity.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/matrix_popularity.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/sales_performance.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/sales_performance.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/show_partials/_category_performance.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_category_performance.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/show_partials/_cost_analysis.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_cost_analysis.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/show_partials/_item.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_item.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/show_partials/_item_list.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_item_list.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/show_partials/_menu_info.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_menu_info.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/show_partials/_sales_performance.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_sales_performance.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/show_partials/matrix/_arrow_bottom.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/show_partials/matrix/_arrow_top.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/show_partials/matrix/_matrix_popularity.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_matrix_popularity.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/requests/departments_spec.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/requests/menu_sections_spec.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/requests/roles_spec.rb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,11 +101,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/admin/menus/partials/matrix" />
+      <recent name="$PROJECT_DIR$/app/views/admin/menus/show_partials/matrix" />
+      <recent name="$PROJECT_DIR$/app/views/layouts/shared/" />
       <recent name="$PROJECT_DIR$/app/views/admin/datasheets" />
       <recent name="$PROJECT_DIR$/app/javascript" />
-      <recent name="$PROJECT_DIR$/app/javascript/controllers" />
-      <recent name="$PROJECT_DIR$/app/assets/config" />
-      <recent name="$PROJECT_DIR$/app/javascript/jigger" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -411,6 +389,17 @@
       <workItem from="1713872402882" duration="5803000" />
       <workItem from="1714295062856" duration="3928000" />
       <workItem from="1718710815237" duration="3057000" />
+      <workItem from="1718979246602" duration="32368000" />
+      <workItem from="1720526658863" duration="1858000" />
+      <workItem from="1720942862201" duration="5092000" />
+      <workItem from="1721218158581" duration="2377000" />
+      <workItem from="1721738961279" duration="2689000" />
+      <workItem from="1722143264350" duration="2923000" />
+      <workItem from="1722425204695" duration="3079000" />
+      <workItem from="1730980018118" duration="917000" />
+      <workItem from="1731324063535" duration="2242000" />
+      <workItem from="1731415308490" duration="2772000" />
+      <workItem from="1731667261733" duration="6144000" />
     </task>
     <servers />
   </component>
@@ -424,7 +413,7 @@
         <option value="Default.Author" />
         <option value="Default.Date" />
         <option value="Default.Subject" />
-        <option value="Space.CommitStatus" />
+        <option value="GitHub.CommitStatus" />
       </list>
     </option>
   </component>
