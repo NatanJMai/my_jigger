@@ -84,6 +84,16 @@
     h4, h5 {
       font-weight: bold;
     }
+
+    .item-image {
+      background-color: grey;
+      margin-top: 20px;
+    }
+
+    .item-description {
+      margin-top: 20px;
+
+    }
   }
 
   .form-photo {
@@ -118,8 +128,18 @@
   }
 }
 
+.jigger-form {
+  &.category-performance {
+    min-height: 320px;
+  }
+
+  &.weekly-sales {
+    min-height: 320px;
+  }
+}
+
 .jigger-form.child-list {
-  margin-top: 20px;
+  margin-top: 10px;
 
   &.matrix-popularity {
     padding: 40px;
@@ -153,3 +173,4 @@
     color: var(--jigger-black);
   }
 }
+

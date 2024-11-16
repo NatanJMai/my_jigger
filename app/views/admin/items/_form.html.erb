@@ -1,52 +1,96 @@
-<h2 class="display-4 text-white">
-  <%= @organization.name %> Items
-</h2>
+<div class="container jigger-form">
+  <%= simple_form_for(model, html: { class: 'row row-cols' } ) do |f| %>
 
-<p class="lead text-white mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
-<p class="lead text-white">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
-  <u>asdf</u></a>
-</p>
-
-<div class="separator"></div>
-
-<div class="container">
-  <%= simple_form_for(model,
-                      html: { class: 'jform row row-cols align-items-center' } ) do |f| %>
-
-    <div class="card-header">
-      <h5 class="card-title text-center">New Item</h5>
-    </div>
-
-    <legend><span class="number">1</span> Detail</legend>
+    <%= render partial: 'layouts/shared/form/header',
+               locals: { title: 'Add/Save Item',
+                         subtitle: 'Item details' } %>
 
     <div class="row">
-      <div class="col-6">
-        <%= f.input :name %>
-      </div>
+      <div class="col-8">
+        <div class="row">
+          <div class="col-8">
+            <%= f.input :name, hint: 'Menu name', wrapper_html: { class: 'jigger-label' } %>
+          </div>
 
-      <div class="col-4">
-        <%= f.input :menu_section_id, as: :select, collection: MenuSection.all, label: 'Menu Section'%>
-      </div>
-    </div>
+          <div class="col-4">
+            <%= f.association :category, as: :select,
+                              collection: Category.active.order(:name),
+                              prompt: 'Select a category',
+                              hint: 'Menu released at',
+                              wrapper_html: { class: 'jigger-label' } %>
+          </div>
+        </div>
 
-    <legend><span class="number">2</span> Price</legend>
-    <div class="row">
-      <div class="col-4">
-        <%= f.input :customer_price %>
-      </div>
-    </div>
+        <div class="row">
+          <div class="col-3">
+            <%= f.input :unit, as: :select, collection: Unit.all,
+                        prompt: 'Select unit type',
+                        wrapper_html: { class: 'jigger-label' } %>
 
-    <legend><span class="number">3</span> Status</legend>
-    <div class="row">
-      <div class="col-4">
-        <%= f.input :status %>
-      </div>
-    </div>
+          </div>
 
-    <div class="row">
-      <%= f.button :submit, "Save", class: "form-btn"  %>
-    </div>
+          <div class="col-3">
+            <%= f.input :volume, label: 'Volume', hint: 'Enter Item volume',
+                        wrapper_html: { class: 'jigger-label' } %>
+          </div>
+
+          <div class="col-6">
+            <%= f.input :best_before,
+                        as: :date,
+                        hint: 'Item best before date',
+                        wrapper_html: { class: 'jigger-label' } %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <%= f.input :purchase_price_cents,
+                        label: 'Purchase Price',
+                        hint: 'Enter Purchase Price',
+                        wrapper_html: { class: 'jigger-label' } %>
+
+          </div>
+
+          <div class="col-3">
+            <%= f.input :customer_price_cents,
+                        label: 'Customer Price',
+                        hint: 'Enter Customer Price',
+                        wrapper_html: { class: 'jigger-label' } %>
+          </div>
+
+          <div class="col-6">
+            <%= f.input :prep_method,
+                        as: :text,
+                        hint: 'Item prepare method of this item',
+                        wrapper_html: { class: 'jigger-label' } %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <%= f.input :status, label: 'Status (Active)', hint: 'Is this item active?',
+                        wrapper_html: { class: 'jigger-label' } %>
+          </div>
+
+          <div class="col-3">
+            <%= f.input :data_imported, label: 'Data Imported?', hint: 'Is this item data imported?',
+                        wrapper_html: { class: 'jigger-label' } %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <%= f.button :submit, "Add/Save Item", class: "form-btn"  %>
+          </div>
+        </div>
   <% end %>
-</div>
+  </div>
 
+  <div class="col-4">
+    <div class="vertical-line">
+      <%= render partial: 'admin/menus/organization_info', locals: { organization: @item.menu.organization } %>
+    </div>
+  </div>
+  </div>
+</div>
 

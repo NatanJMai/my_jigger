@@ -2,31 +2,6 @@
   <%= @organization.name %> Items
 </h2>
 
-<div class="form-action">
-  <div class="grid-item">
-    <%= button_to 'NEW', new_admin_organization_item_path(@organization),
-                  class: "btn btn-success shadow-sm px-4 mb-2",
-                  :method => :get %>
-  </div>
-
-  <div class="grid-item">
-    <%#= button_to 'EDIT', edit_admin_department_path(@department.id),
-                  class: "btn btn-info shadow-sm px-4 mb-2",
-                  :method => :get %>
-  </div>
-
-  <div class="grid-item">
-    <%#= button_to 'REMOVE', admin_department_path(@department),
-                  class: "btn btn-warning shadow-sm px-4 mb-2",
-                  :method => :delete %>
-  </div>
-</div>
-
-<p class="lead text-white mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
-<p class="lead text-white">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
-  <u>asdf</u></a>
-</p>
-
 <div class="separator"></div>
 <div class="container-fluid p-0">
   <div class="row">
@@ -44,7 +19,7 @@
       </tr>
       </thead>
       <tbody>
-      <% @items.order(:name).each do |item| %>
+      <% items.order(:name).each do |item| %>
         <%= render partial: 'item', locals: { item: item } %>
       <% end %>
       </tbody>

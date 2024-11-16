@@ -1,8 +1,14 @@
 class Admin::MenusController < AdminController
-  before_action :set_menu
-  before_action :set_organization
+  # before_action :set_menu
+  # before_action :set_organization
+
+  load_and_authorize_resource
+  load_and_authorize_resource :item
+  load_and_authorize_resource :organization
+  load_and_authorize_resource :menu, through: :organization  # Load the menu for the given organization
 
   decorates_assigned :menus, :menu
+  decorates_assigned :items
 
   # GET /menus or /menus.json
   def index
@@ -10,7 +16,9 @@ class Admin::MenusController < AdminController
   end
 
   # GET /menus/1 or /menus/1.json
-  def show; end
+  def show
+
+  end
 
   def cost_analysis; end
   
@@ -71,19 +79,6 @@ class Admin::MenusController < AdminController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_menu
-    @menu = Menu.find_by(id: params[:id])
-  end
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_organization
-    if @menu.present?
-      @organization = @menu.organization
-    else
-      @organization = Organization.find_by(id: params[:organization_id])
-    end
-  end
 
   # Only allow a list of trusted parameters through.
   def menu_params

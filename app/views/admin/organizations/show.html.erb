@@ -36,17 +36,6 @@
                          class: '',
                          text: "#{@organization.name} Staff" } %>
 
-    <%= render partial: 'layouts/cards/menu_card',
-               locals: { url: admin_organization_items_path(@organization),
-                         title: 'Products',
-                         class: '',
-                         text: "#{@organization.name} Products" } %>
-
-    <%= render partial: 'layouts/cards/menu_card',
-               locals: { url: admin_organization_items_path(@organization),
-                         title: 'Items',
-                         class: '',
-                         text: "#{@organization.name} Items" } %>
 
     <%= render partial: 'layouts/cards/menu_card',
                locals: { url: admin_organization_menus_path(@organization),

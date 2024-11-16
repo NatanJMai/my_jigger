@@ -3,12 +3,14 @@
     <div class="col-4">
       <h4 class="card-title text-left"><%= menu.name %></h4>
     </div>
-    <div class="col-2">
-      <h6 class="info-label text-left"><%= menu.status %></h6>
+    <div class="col-3">
+        <%= menu.boolean_label(menu.status) %>
     </div>
 
-    <div class="col-4">
-      <h6 class="info-label text-left">Data Imported</h6>
+    <div class="col-3">
+      <%= menu.boolean_label(menu.data_imported,
+                             label = { true => 'Data Imported',
+                                       false => 'Not Imported' }) %>
     </div>
   </div>
 

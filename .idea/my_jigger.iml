@@ -298,6 +298,9 @@
     <entry key="app/controllers">
       <value>file://$MODULE_DIR$/app/controllers</value>
     </entry>
+    <entry key="app/decorators">
+      <value>file://$MODULE_DIR$/app/decorators</value>
+    </entry>
     <entry key="app/helpers">
       <value>file://$MODULE_DIR$/app/helpers</value>
     </entry>

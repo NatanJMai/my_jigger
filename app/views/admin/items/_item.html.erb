@@ -13,10 +13,10 @@
       <i class="bi bi-pencil-square"></i> EDIT
     <% end %>
 
-    <%= button_to admin_item_path(item), class: "btn btn-danger",
+    <%#= button_to admin_item_path(item), class: "btn btn-danger",
                   method: :delete, form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
 
       <i class="bi bi-trash"></i> DELETE
-    <% end %>
+    <%# end %>
   </td>
 </tr>

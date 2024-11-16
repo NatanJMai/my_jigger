@@ -7,10 +7,7 @@
             <div class="col-6">
               <h5><%= menu.name %></h5>
             </div>
-
-            <div class="col-3 align-center status <%= menu.status_css_label %>">
-              <p><%= menu.status %></p>
-            </div>
+            <%= menu.boolean_label(menu.status) %>
           </div>
 
           <div class="card-description">

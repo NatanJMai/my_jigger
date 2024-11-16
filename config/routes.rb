@@ -12,30 +12,32 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :organizations, shallow: true do
-      resources :menus, shallow: true do
+      resources :menus do
         member do
           get :cost_analysis
           get :best_items
           get :matrix_popularity
           get :sales_performance
         end
+
+        resources :items
       end
+
+      # resources :items, shallow: true do
+      #   resources :datasheets, shallow: true do
+      #     resources :datasheet_lines, shallow: true do
+      #       collection do
+      #         post :new_line
+      #       end
+      #     end
+      #
+      #     member do
+      #       get :calculate_cmv
+      #     end
+      #   end
+      # end
 
       resources :categories, shallow: true
-
-      resources :items do
-        resources :datasheets, shallow: true do
-          resources :datasheet_lines, shallow: true do
-            collection do
-              post :new_line
-            end
-          end
-
-          member do
-            get :calculate_cmv
-          end
-        end
-      end
 
       resources :user_organizations, shallow: true
     end

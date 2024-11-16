@@ -242,6 +242,7 @@ body {
 }
 
 .card {
+  min-height: 200px;
   margin: var(--cardMargin);
 
   a {
@@ -250,25 +251,6 @@ body {
   }
 
   .card-body {
-    .card-title {
-      .status {
-        height: 20px;
-        border-radius: 50px;
-
-        p {
-          font-size: small;
-          color: white;
-        }
-
-        &.active-status {
-          background-color: var(--jigger-active-status);
-        }
-        &.inactive-status {
-          background-color: var(--jigger-inactive-status);
-        }
-      }
-    }
-
     .menu-items {
       margin-left: 0;
       margin-top: 15px;
@@ -374,4 +356,18 @@ body {
   column-gap: 5px;
 }
 
+/* Boolean labels */
+.boolean-label {
+  height: 20px;
+  width: 100px;
+  border-radius: 50px;
+  font-size: small;
+  color: white;
 
+  &.active {
+    background-color: var(--jigger-active-status);
+  }
+  &.inactive {
+    background-color: var(--jigger-inactive-status);
+  }
+}

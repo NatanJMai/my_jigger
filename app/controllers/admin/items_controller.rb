@@ -1,23 +1,26 @@
 class Admin::ItemsController < AdminController
   load_and_authorize_resource
-  load_and_authorize_resource :category
+  load_and_authorize_resource :menu
+  load_and_authorize_resource :item, through: :menu
+  load_and_authorize_resource :organization, through: :menu
 
-  # before_action :set_item, only: %i[show edit update destroy]
-  # before_action :set_category
+  decorates_assigned :items, :item
+  decorates_assigned :menu
 
   # GET /items or /items.json
   def index
-    @items = @category.items
+    # @items = @category.items
+    @organization = @menu.organization
   end
 
   # GET /items/1 or /items/1.json
   def show
-    @datasheets = @item.datasheets
+    @menu = @item.menu
   end
 
   # GET /items/new
   def new
-    @item = @category.items.new
+    @item = @menu.items.new
     respond_to do |format|
       format.html
       format.js
@@ -26,6 +29,7 @@ class Admin::ItemsController < AdminController
 
   # GET /items/1/edit
   def edit
+
   end
 
   # POST /items or /items.json
@@ -78,19 +82,6 @@ class Admin::ItemsController < AdminController
   end
 
   private
-
-  def set_category
-    @category = if @item.present?
-                  @item.category
-                else
-                  Category.find_by(id: params[:category_id])
-                end
-  end
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_item
-    @item = Item.find_by(id: params[:id])
-  end
 
   # Only allow a list of trusted parameters through.
   def item_params

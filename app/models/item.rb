@@ -5,10 +5,11 @@ class Item < ApplicationRecord
 
   classy_enum_attr :unit
 
-  belongs_to :category, class_name: 'Category'
+  belongs_to :menu, class_name: 'Menu'
+  belongs_to :category, class_name: 'Category', optional: true
 
   has_many :datasheets, class_name: 'Datasheet', dependent: :destroy
-  validates :name, :category_id, presence: true
+  validates :name, :menu, presence: true
 
   ##
   # Return best five items
