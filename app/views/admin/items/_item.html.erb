@@ -1,10 +1,16 @@
 <tr>
   <th scope="row"><%= item.id %></th>
   <td><%= item.name %></td>
-  <td><%= item.category&.name %></td>
-  <td><%= humanized_money_with_symbol Money.new(item.customer_price) %></td>
-  <td><%= item.status %></td>
+  <td><%= item.volume %></td>
+  <td><%= item.unit&.text %></td>
+  <td><%= humanized_money_with_symbol Money.new(item.purchase_price_cents) %></td>
+  <td><%= humanized_money_with_symbol Money.new(item.customer_price_cents) %></td>
+  <td class="minimal"><%= item.boolean_label(item.status) %></td>
   <td class="minimal">
+    <%= link_to admin_datasheet_path(item.datasheet), class: 'btn btn-success' do %>
+      <i class="bi bi-pencil-square"></i> CMV
+    <% end %>
+
     <%= link_to admin_item_path(item), class: 'btn btn-success' do %>
       <i class="bi bi-pencil-square"></i> VIEW
     <% end %>
@@ -13,10 +19,10 @@
       <i class="bi bi-pencil-square"></i> EDIT
     <% end %>
 
-    <%#= button_to admin_item_path(item), class: "btn btn-danger",
+    <%= button_to admin_item_path(item), class: "btn btn-danger",
                   method: :delete, form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
 
       <i class="bi bi-trash"></i> DELETE
-    <%# end %>
+    <% end %>
   </td>
 </tr>

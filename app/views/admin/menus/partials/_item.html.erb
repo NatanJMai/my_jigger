@@ -3,6 +3,6 @@
   <td><%= item.name %></td>
   <td><%= item.category&.name %></td>
   <td><%= humanized_money_with_symbol Money.new(item.customer_price) %></td>
-  <td><%= item.status %></td>
+  <td><%= item.boolean_label(item.status) %></td>
   <td>R$2500</td>
 </tr>

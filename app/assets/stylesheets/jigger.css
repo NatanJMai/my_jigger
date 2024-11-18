@@ -346,6 +346,10 @@ body {
   --bs-btn-font-size: .75rem;
 }
 
+.minimal {
+  width: 300px;
+}
+
 .minimal form {
   display: inline;
 }

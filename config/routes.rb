@@ -23,19 +23,19 @@ Rails.application.routes.draw do
         resources :items
       end
 
-      # resources :items, shallow: true do
-      #   resources :datasheets, shallow: true do
-      #     resources :datasheet_lines, shallow: true do
-      #       collection do
-      #         post :new_line
-      #       end
-      #     end
-      #
-      #     member do
-      #       get :calculate_cmv
-      #     end
-      #   end
-      # end
+      resources :items, shallow: true do
+        resources :datasheets, shallow: true do
+          resources :datasheet_lines, shallow: true do
+            collection do
+              post :new_line
+            end
+          end
+
+          member do
+            get :calculate_cmv
+          end
+        end
+      end
 
       resources :categories, shallow: true
 

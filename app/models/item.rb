@@ -3,12 +3,12 @@ class Item < ApplicationRecord
   monetize :customer_price_cents, allow_nil: true
   monetize :purchase_price_cents, allow_nil: true
 
-  classy_enum_attr :unit
+  classy_enum_attr :unit, class_name: 'Unit'
 
   belongs_to :menu, class_name: 'Menu'
   belongs_to :category, class_name: 'Category', optional: true
 
-  has_many :datasheets, class_name: 'Datasheet', dependent: :destroy
+  has_one :datasheet, class_name: 'Datasheet', dependent: :destroy
   validates :name, :menu, presence: true
 
   ##

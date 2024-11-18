@@ -29,17 +29,18 @@ class Admin::ItemsController < AdminController
 
   # GET /items/1/edit
   def edit
-
   end
 
   # POST /items or /items.json
   def create
-    @item = @category.items.new(item_params)
+    @item = @menu.items.new(item_params)
+
+    @item.datasheet.create(name: 'Datasheet 1')
 
     respond_to do |format|
       if @item.save
         format.html do
-          redirect_to admin_category_items_path(@category),
+          redirect_to admin_menu_items_path(@menu),
                       notice: 'Item was successfully created.'
         end
 
@@ -56,7 +57,7 @@ class Admin::ItemsController < AdminController
     respond_to do |format|
       if @item.update(item_params)
         format.html do
-          redirect_to admin_category_items_path(@category),
+          redirect_to admin_menu_items_path(@menu),
                       notice: 'Item was successfully updated.' end
 
         format.json { render :show, status: :ok, location: @item }

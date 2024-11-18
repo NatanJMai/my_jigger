@@ -1,28 +1,35 @@
-<h2 class="display-4 text-white">
-  <%= @organization.name %> Items
-</h2>
+<div class="row">
+  <div class="col-12">
+    <div class="container jigger-form">
+      <div class="container-fluid p-0">
+        <h5>Items List</h5>
 
-<div class="separator"></div>
-<div class="container-fluid p-0">
-  <div class="row">
-    <table class="table table-hover">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Menu</th>
-        <th scope="col">Menu Section</th>
-        <th scope="col">Customer Price</th>
-        <th scope="col">Cost Price</th>
-        <th scope="col">Status</th>
-        <th scope="col">Actions</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% items.order(:name).each do |item| %>
-        <%= render partial: 'item', locals: { item: item } %>
-      <% end %>
-      </tbody>
-    </table>
+        <div class="row">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Vol</th>
+              <th scope="col">Unit</th>
+              <th scope="col">Item Price</th>
+              <th scope="col">Customer Price</th>
+              <th class="minimal" scope="col"></th>
+              <th class="minimal"></th>
+            </tr>
+            </thead>
+            <tbody>
+              <% items.order(:name).each do |item| %>
+                <%= render partial: 'item', locals: { item: item } %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+        <%= button_to 'Add Item', new_admin_menu_item_path(@menu),
+                      class: "btn btn-light shadow-sm px-4 mb-2",
+                      :method => :get %>
+      </div>
+    </div>
   </div>
 </div>

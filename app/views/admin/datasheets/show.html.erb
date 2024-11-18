@@ -1,38 +1,31 @@
-<h2 class="display-4 text-white">
-  <%= @datasheet.name %> (Datasheet)
-</h2>
+<div class="container jigger-form">
+  <h5><%= @datasheet.name %> (Datasheet)</h5>
 
-<div class="form-action">
-  <div class="grid-item">
-    <%= form_with scope: :any, url: new_line_admin_datasheet_datasheet_lines_path(@datasheet) do %>
-      <%= button_to 'NEW', new_line_admin_datasheet_datasheet_lines_path(@datasheet),
-                    class: "btn btn-info shadow-sm px-4 mb-2",
-                    :method => :get %>
-    <% end %>
-  </div>
-
-  <div class="grid-item">
-    <%= button_to 'REMOVE', admin_datasheet_path(@datasheet),
-                  class: "btn btn-warning shadow-sm px-4 mb-2",
-                  :method => :delete %>
-  </div>
-</div>
-
-<p class="lead text-white mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.</p>
-
-<div class="separator"></div>
-
-<div class="container-fluid p-0">
-  <div class="datasheet_line_table">
-    <%= turbo_frame_tag "list" do %>
-      <%= render partial: 'admin/datasheet_lines/header' %>
-
-      <% @datasheet.datasheet_lines.each do |line| %>
-        <%= render partial: 'admin/datasheet_lines/line', locals: { datasheet_line: line } %>
+  <div class="form-action">
+    <div class="grid-item">
+      <%= form_with scope: :any, url: new_line_admin_datasheet_datasheet_lines_path(@datasheet) do %>
+        <%= button_to 'NEW', new_line_admin_datasheet_datasheet_lines_path(@datasheet),
+                      class: "btn btn-info shadow-sm px-4 mb-2",
+                      :method => :get %>
       <% end %>
-    <% end %>
+    </div>
 
-    <%= render partial: 'admin/datasheet_lines/totals', locals: { datasheet: @datasheet } %>
+    <div class="grid-item">
+      <%= button_to 'REMOVE', admin_datasheet_path(@datasheet),
+                    class: "btn btn-warning shadow-sm px-4 mb-2",
+                    :method => :delete %>
+    </div>
   </div>
+
+  <%= turbo_frame_tag "list" do %>
+    <%= render partial: 'admin/datasheet_lines/header' %>
+
+    <% @datasheet.datasheet_lines.each do |line| %>
+      <%= render partial: 'admin/datasheet_lines/line', locals: { datasheet_line: line } %>
+    <% end %>
+  <% end %>
+
+  <%= render partial: 'admin/datasheet_lines/totals', locals: { datasheet: @datasheet } %>
 </div>
+
 
