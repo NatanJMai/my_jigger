@@ -7,7 +7,7 @@
   <td><%= humanized_money_with_symbol Money.new(item.customer_price_cents) %></td>
   <td class="minimal"><%= item.boolean_label(item.status) %></td>
   <td class="minimal">
-    <%= link_to admin_datasheet_path(item.datasheet), class: 'btn btn-success' do %>
+    <%= link_to admin_item_datasheet_path(item), class: 'btn btn-success' do %>
       <i class="bi bi-pencil-square"></i> CMV
     <% end %>
 

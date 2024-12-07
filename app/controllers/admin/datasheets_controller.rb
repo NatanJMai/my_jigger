@@ -1,10 +1,10 @@
 class Admin::DatasheetsController < AdminController
-  before_action :set_datasheet, only: %i[show destroy calculate_cmv]
-  before_action :set_item
+  load_and_authorize_resource :item
+  before_action :set_datasheet
 
-  def index
-    @datasheets = @item.datasheets
-  end
+  decorates_assigned :item
+  decorates_assigned :datasheet
+  decorates_assigned :datasheet_lines
 
   # GET /items/1 or /items/1.json
   def show
@@ -12,7 +12,7 @@ class Admin::DatasheetsController < AdminController
 
   # GET /items/new
   def new
-    @datasheet = @item.datasheets.new
+    @datasheet = @item.datasheet.new
     respond_to do |format|
       format.html
       format.js
@@ -21,7 +21,7 @@ class Admin::DatasheetsController < AdminController
 
   # POST /items or /items.json
   def create
-    @datasheet = @item.datasheets.new(datasheet_params)
+    @datasheet = @item.datasheet.new(datasheet_params)
 
     respond_to do |format|
       if @datasheet.save
@@ -71,7 +71,8 @@ class Admin::DatasheetsController < AdminController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_datasheet
-    @datasheet = Datasheet.find_by(id: params[:id])
+    @datasheet = @item.datasheet
+    @datasheet_lines = @datasheet.datasheet_lines
   end
 
   # Only allow a list of trusted parameters through.

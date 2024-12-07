@@ -1,11 +1,4 @@
-.datasheet_line_table {
-  max-width: 80%;
-  padding: 30px 20px;
-  border-color: white;
-  border-style: inset;
-  color: #d3d5d8;
-  border-radius: 8px;
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, .4);
+.datasheet-table {
 
   input, select {
     height: 25px;
@@ -14,9 +7,7 @@
     font-size: 10pt;
   }
 
-  .datasheet_line_row {
-    margin-top: 10px;
-
+  .datasheet-row {
     :hover {
       transform: scale(1.02);
       transition: all linear 200ms;
@@ -25,9 +16,8 @@
     }
   }
 
-  .datasheet_line_header, .datasheet_line_footer {
+  .datasheet-header, .datasheet-footer {
     font-weight: bold;
-    font-size: large;
 
     input {
       min-width: 100px;
@@ -69,5 +59,66 @@
 
   .new_datasheet_line {
     font-weight: bold;
+  }
+}
+
+.grid-item {
+  margin-top: 20px;
+}
+.datasheet-info {
+  margin-right: 20px;
+
+  .datasheet-cmv-tip {
+    background-color: #D4E3FC;
+    font-size: x-small;
+    border-radius: 5px;
+    margin-right: 10px;
+    height: 80px;
+    max-width: 145px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .datasheet-cmv-info {
+    border: 1px solid var(--jigger-border);
+    border-radius: 16px;
+
+    .label {
+      font-size: small;
+      font-weight: bold;
+      place-items: center;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .values {
+      place-items: baseline;
+      text-align: center;
+      padding-left: 15px;
+
+      .cmv {
+        background-color: #F9EE97;
+        margin-left: 15px;
+        margin-bottom: 15px;
+      }
+
+      .cmv-text {
+        font-size: xx-small;
+        font-style: italic;
+      }
+
+      .selling {
+        font-size: xx-large;
+        font-weight: bold;
+      }
+
+      .costs {
+        font-size: xx-large;
+        font-weight: bold;
+        color: var(--jigger-light-grey);
+      }
+    }
   }
 }

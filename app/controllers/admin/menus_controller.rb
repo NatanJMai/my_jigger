@@ -17,7 +17,7 @@ class Admin::MenusController < AdminController
 
   # GET /menus/1 or /menus/1.json
   def show
-
+    @items = @menu.items
   end
 
   def cost_analysis; end

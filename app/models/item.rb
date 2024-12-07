@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   belongs_to :category, class_name: 'Category', optional: true
 
   has_one :datasheet, class_name: 'Datasheet', dependent: :destroy
+  has_many :ingredients, class_name: 'Ingredient', dependent: :destroy
   validates :name, :menu, presence: true
 
   ##

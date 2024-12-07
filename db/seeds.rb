@@ -284,3 +284,7 @@ Product.create_or_find_by(name: 'Vermute Rosso',
                           status: true,
                           price_cents: 3300,
                           unit: 'liter')
+
+Category.with(active: true).create_or_find_by(name: 'Food', organization_id: 1)
+Category.create_or_find_by(name: 'Street Food', organization_id: 1)
+Category.create_or_find_by(name: 'Classic Cocktails', organization_id: 1)

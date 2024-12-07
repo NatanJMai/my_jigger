@@ -1,0 +1,13 @@
+<div class="container jigger-form">
+  <div class="row">
+    <div class="col-4">
+      <%= simple_form_for [:admin, @organization, @import_job], html: { multipart: true } do |f| %>
+        <%= f.input :file, as: :file, label: "Upload File" %>
+        <%= f.button :submit, "Upload Document", data: { turbo: false } %>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

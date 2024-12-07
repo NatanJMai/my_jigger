@@ -1,31 +1,78 @@
-<div class="container jigger-form">
-  <h5><%= @datasheet.name %> (Datasheet)</h5>
+<div class="row">
+  <div class="col-10">
+    <div class="container jigger-form">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="card-title"><%= item.name %> (Datasheet)</h5>
+          </div>
+        </div>
+      </div>
 
-  <div class="form-action">
-    <div class="grid-item">
-      <%= form_with scope: :any, url: new_line_admin_datasheet_datasheet_lines_path(@datasheet) do %>
-        <%= button_to 'NEW', new_line_admin_datasheet_datasheet_lines_path(@datasheet),
-                      class: "btn btn-info shadow-sm px-4 mb-2",
-                      :method => :get %>
-      <% end %>
-    </div>
+      <div class="datasheet-table">
+        <%= turbo_frame_tag "list" do %>
+          <%= render partial: 'admin/datasheet_lines/header' %>
 
-    <div class="grid-item">
-      <%= button_to 'REMOVE', admin_datasheet_path(@datasheet),
-                    class: "btn btn-warning shadow-sm px-4 mb-2",
-                    :method => :delete %>
+          <% datasheet_lines.each do |line| %>
+            <%= render partial: 'admin/datasheet_lines/line', locals: { datasheet_line: line,
+                                                                        item: line.item } %>
+          <% end %>
+        <% end %>
+
+        <%#= render partial: 'admin/datasheet_lines/totals', locals: { datasheet: @datasheet } %>
+      </div>
+
+
+      <div class="form-action">
+        <div class="grid-item col-6">
+          <%= form_with scope: :any, url: new_line_admin_item_datasheet_datasheet_lines_path(@item) do %>
+
+            <%= button_to 'Add Item', nil,
+                          class: "btn btn-light shadow-sm px-4 mb-2",
+                          :method => :get %>
+
+            <%#= button_to 'NEW', new_line_admin_item_datasheet_datasheet_lines_path(@item),
+                          class: "btn btn-info shadow-sm px-4 mb-2",
+                          :method => :get %>
+          <% end %>
+        </div>
+
+        <div class="grid-item col-6">
+          <div class="row datasheet-info">
+            <div class="datasheet-cmv-tip col-4">
+              You can edit the selling price to calculate new CMV percentage.
+            </div>
+
+            <div class="datasheet-cmv-info col-7">
+              <div class="row label">
+                <div class="col-8">
+                  Selling Price  / Costs
+                </div>
+                <div class="col-2">
+                  <i class="fa-solid fa-sack-dollar orange"></i>
+                </div>
+              </div>
+
+              <div class="row values">
+                <div class="col-4 selling">30$</div>
+                <div class="col-3 costs">15$</div>
+              </div>
+
+              <div class="row values">
+                <div class="col-3 cmv">30%</div>
+                <div class="col-8 cmv-text">Acceptable between 25 and 33%</div>
+              </div>
+            </div>
+
+          </div>
+          <%#= button_to 'REMOVE', admin_item_datasheet_path(@item),
+                        class: "btn btn-warning shadow-sm px-4 mb-2",
+                        :method => :delete %>
+        </div>
+      </div>
     </div>
   </div>
 
-  <%= turbo_frame_tag "list" do %>
-    <%= render partial: 'admin/datasheet_lines/header' %>
-
-    <% @datasheet.datasheet_lines.each do |line| %>
-      <%= render partial: 'admin/datasheet_lines/line', locals: { datasheet_line: line } %>
-    <% end %>
-  <% end %>
-
-  <%= render partial: 'admin/datasheet_lines/totals', locals: { datasheet: @datasheet } %>
 </div>
 
 

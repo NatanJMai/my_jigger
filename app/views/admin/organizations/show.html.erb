@@ -38,10 +38,22 @@
 
 
     <%= render partial: 'layouts/cards/menu_card',
+               locals: { url: admin_organization_categories_path(@organization),
+                         title: 'Categories',
+                         class: '',
+                         text: "#{@organization.name} Categories" } %>
+
+    <%= render partial: 'layouts/cards/menu_card',
                locals: { url: admin_organization_menus_path(@organization),
                          title: 'Menus',
                          class: '',
                          text: "#{@organization.name} Menus" } %>
+
+    <%= render partial: 'layouts/cards/menu_card',
+               locals: { url: new_admin_organization_import_job_path(@organization),
+                         title: 'Jobs',
+                         class: '',
+                         text: "#{@organization.name} Jobs" } %>
 
   </div>
 </div>

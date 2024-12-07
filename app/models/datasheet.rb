@@ -49,6 +49,7 @@ class Datasheet < ApplicationRecord
   # Sum of all Datasheet Lines
   # @return Decimal
   def get_total_price
-    datasheet_lines.map(&:calculated_price).sum
+    #datasheet_lines.map(&:calculated_price).sum
+    0
   end
 end

@@ -10,7 +10,7 @@ class Admin::ItemsController < AdminController
   # GET /items or /items.json
   def index
     # @items = @category.items
-    @organization = @menu.organization
+    @organization = current_organization
   end
 
   # GET /items/1 or /items/1.json

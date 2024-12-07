@@ -6,6 +6,7 @@
     "@hotwired/turbo": "^7.3.0",
     "@hotwired/turbo-rails": "^7.3.0",
     "@popperjs/core": "^2.11.8",
+    "actioncable": "^5.2.8-1",
     "autoprefixer": "^10.4.14",
     "bootstrap": "^5.3.1",
     "bootstrap-icons": "^1.10.5",

@@ -1,4 +1,9 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  # Sidekiq web UI route, add authentication if needed
+  mount Sidekiq::Web => '/sidekiq'
+
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -11,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :organizations, shallow: true do
+    resources :organizations, param: :id do
       resources :menus do
         member do
           get :cost_analysis
@@ -23,9 +28,12 @@ Rails.application.routes.draw do
         resources :items
       end
 
-      resources :items, shallow: true do
-        resources :datasheets, shallow: true do
-          resources :datasheet_lines, shallow: true do
+      resources :categories, only: %i[index show]
+      resources :import_jobs, except: %i[edit delete]
+
+      resources :items do
+        resource :datasheet, shallow: false, except: :index do
+          resources :datasheet_lines do
             collection do
               post :new_line
             end
@@ -36,8 +44,6 @@ Rails.application.routes.draw do
           end
         end
       end
-
-      resources :categories, shallow: true
 
       resources :user_organizations, shallow: true
     end

@@ -1,0 +1,12 @@
+<tr>
+  <th scope="row"><%= category.id %></th>
+  <td><%= category.name %></td>
+  <td>BEST 54 ITEMS</td>
+  <td class="minimal"><%= category.boolean_label(category.status) %></td>
+  <td class="minimal"><%= humanized_money_with_symbol Money.new(150) %></td>
+  <td class="minimal">
+    <%= link_to admin_category_path(category), class: 'btn btn-success' do %>
+      <i class="bi bi-pencil-square"></i> VIEW
+    <% end %>
+  </td>
+</tr>
