@@ -2,26 +2,36 @@
 class FileParserService
   def initialize(file)
     @file_path = file&.file
-    puts @file_path
   end
 
   ##
   # Return the records objects to be created in Worker
   # @return Object[]
   def parse
-    debugger
-    case File.extname(@file_path)
-    when '.csv' then parse_csv
-    when '.xls' then parse_xls
-    when '.xlsx' then parse_xlsx
-    when '.xml' then parse_xml
-    when '.json' then parse_json
-    else
-      raise "Unsupported file format: #{File.extname(@file_path)}"
-    end
+    result =
+      case File.extname(@file_path)
+      when '.csv' then parse_csv
+      when '.xls' then parse_xls
+      when '.xlsx' then parse_xlsx
+      when '.xml' then parse_xml
+      when '.json' then parse_json
+      else
+        raise "Unsupported file format: #{File.extname(@file_path)}"
+      end
+
+    result
   end
 
   private
+  ##
+  # Get all headers of spreadsheet
+  # @return Object
+  def get_headers(spreadsheet)
+    return nil if spreadsheet.nil?
+
+    headers = spreadsheet.row(1)
+    headers.map { |h| h.to_s.strip.gsub(' ', '_').downcase.to_sym }
+  end
 
   # Open the spreadsheet using Roo
   # XLS & XLSX
@@ -43,13 +53,31 @@ class FileParserService
     require 'roo'
 
     spreadsheet = open_spreadsheet('xls')
-    debugger
   end
 
   def parse_xlsx
     require 'roo'
-    debugger
     spreadsheet = open_spreadsheet('xlsx')
+    headers = get_headers(spreadsheet)
+
+    result = []
+
+    return {} unless headers.present?
+
+    (2..spreadsheet.last_row).each do |i|
+      row = spreadsheet.row(i)
+
+      next if row.compact.blank? # Skip blank rows
+
+      data = {}
+      headers.each_with_index do |_value, index|
+        data[headers[index].to_sym] = row[index] if row[index].present?
+      end
+
+      result << data
+    end
+
+    result
   end
 
   def parse_csv

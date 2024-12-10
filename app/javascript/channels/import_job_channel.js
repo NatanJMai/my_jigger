@@ -15,21 +15,23 @@ document.addEventListener('turbo:load', () => {
       },
 
       received(data) {
-        let message = renderPartial({ title: data.title, body: data.body });
-        element.insertAdjacentHTML('beforeend', message);
+        // 'data' is the array of hashes received
+        data.forEach(item => {
+          // Dynamically generate HTML for each item
+          let message = renderPartial(item);
+          element.insertAdjacentHTML('beforeend', message);
+        });
       }
     });
 })
 
-function renderPartial(content) {
-  const partialTemplate = `
-    <p class="import-log-info">
-      ${content.title}
-      ${content.body}
-    </p>
-  `;
+// renderPartial function
+function renderPartial(item) {
+  // Generate HTML dynamically from the keys and values of the object
+  let details = Object.keys(item)
+    .map(key => `<p>${key.replace(/_/g, ' ')}: ${item[key]}</p>`)
+    .join('');
 
-  // Return the generated HTML string
-  return partialTemplate;
+  return `<div class="import-log-info"><h3>${item.item}</h3>${details}</div>`;
 }
 

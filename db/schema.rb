@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_07_053822) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_10_105238) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -139,11 +139,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_07_053822) do
   create_table "staging_tables", force: :cascade do |t|
     t.bigint "import_job_id"
     t.datetime "date"
-    t.string "import_status"
     t.string "staging_table"
     t.string "staging_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "row_data"
+    t.string "data_type"
+    t.string "attribute_name"
+    t.integer "reference_key"
     t.index ["import_job_id"], name: "index_staging_tables_on_import_job_id"
   end
 

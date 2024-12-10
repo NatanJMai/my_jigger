@@ -37,11 +37,11 @@
 *.yml
 log/.keep
 *.xml
-.idea/workspace.xml
 .idea/my_jigger.iml
 *.meta
 *.txt
 *.iml
+/public/
 .idea/
 .idea/dataSources.local.xml
 .idea/dataSources.xml
