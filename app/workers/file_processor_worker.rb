@@ -21,8 +21,11 @@ class FileProcessorWorker
     file = @import_job.file
 
     begin
-      item_records = FileParserService.new(file.file).parse
+      @object_name, item_records = FileParserService.new(file.file).parse
+      @import_job.update(reference_name: @object_name) if @object_name.present?
       process_item_rows(item_records)
+      sleep(1)
+      StagingService.new(@import_job).handle_item
 
     rescue => e
       Rails.logger.error("Failed to process file: #{e.message}")
@@ -60,7 +63,7 @@ class FileProcessorWorker
     log_data = []
 
     # All lines
-    item_records.each do |record|
+    item_records.each_with_index do |record, index|
       log_data << record
 
       record.each_pair do |key, value|
@@ -69,9 +72,9 @@ class FileProcessorWorker
                                            row_data: value,
                                            data_type: data_type,
                                            date: Time.zone.now,
+                                           object_number: index + 1,
                                            staging_table: @import_type,
                                            staging_status: 'in_progress')
-
       end
     end
 

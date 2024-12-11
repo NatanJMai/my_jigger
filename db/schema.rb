@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_10_105238) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_11_115009) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,7 +51,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_10_105238) do
     t.string "import_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reference_name", default: "NEW OBJECT"
+    t.integer "reference_key"
     t.index ["organization_id"], name: "index_import_jobs_on_organization_id"
+    t.index ["reference_key"], name: "index_import_jobs_on_reference_key"
+    t.index ["reference_name"], name: "index_import_jobs_on_reference_name"
     t.index ["user_id"], name: "index_import_jobs_on_user_id"
   end
 
@@ -83,7 +87,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_10_105238) do
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "category_id", null: false
+    t.integer "category_id"
     t.string "unit"
     t.float "volume"
     t.text "prep_method"
@@ -95,9 +99,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_10_105238) do
     t.integer "customer_price_cents", default: 0, null: false
     t.string "customer_price_currency", default: "BRL", null: false
     t.bigint "menu_id"
+    t.bigint "organization_id"
     t.index ["category_id", "name"], name: "index_items_on_category_id_and_name", unique: true
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["menu_id"], name: "index_items_on_menu_id"
+    t.index ["organization_id"], name: "index_items_on_organization_id"
   end
 
   create_table "menu_items", force: :cascade do |t|
@@ -146,8 +152,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_10_105238) do
     t.string "row_data"
     t.string "data_type"
     t.string "attribute_name"
-    t.integer "reference_key"
+    t.integer "object_number"
     t.index ["import_job_id"], name: "index_staging_tables_on_import_job_id"
+    t.index ["object_number"], name: "index_staging_tables_on_object_number"
   end
 
   create_table "user_organizations", force: :cascade do |t|

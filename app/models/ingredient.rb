@@ -7,4 +7,11 @@ class Ingredient < ApplicationRecord
   belongs_to :item, class_name: 'Item'
   validates :name, :item, presence: true
 
+
+  ##
+  # Define those attributes that we can update from import files.
+  # @return Array
+  def self.permitted_methods
+    %i[name unit quantity volume cost_cents]
+  end
 end

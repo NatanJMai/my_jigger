@@ -37,6 +37,7 @@
 *.yml
 log/.keep
 *.xml
+/coverage/
 .idea/my_jigger.iml
 *.meta
 *.txt

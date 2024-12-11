@@ -32,6 +32,6 @@ function renderPartial(item) {
     .map(key => `<p>${key.replace(/_/g, ' ')}: ${item[key]}</p>`)
     .join('');
 
-  return `<div class="import-log-info"><h3>${item.item}</h3>${details}</div>`;
+  return `<div class="import-log-info"><h3>${item.name}</h3>${details}</div>`;
 }
 

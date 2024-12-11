@@ -8,28 +8,30 @@ class FileParserService
   # Return the records objects to be created in Worker
   # @return Object[]
   def parse
-    result =
-      case File.extname(@file_path)
-      when '.csv' then parse_csv
-      when '.xls' then parse_xls
-      when '.xlsx' then parse_xlsx
-      when '.xml' then parse_xml
-      when '.json' then parse_json
-      else
-        raise "Unsupported file format: #{File.extname(@file_path)}"
-      end
+    name, result =
+                  case File.extname(@file_path)
+                  when '.csv' then parse_csv
+                  when '.xls' then parse_xls
+                  when '.xlsx' then parse_xlsx
+                  when '.xml' then parse_xml
+                  when '.json' then parse_json
+                  else
+                    raise "Unsupported file format: #{File.extname(@file_path)}"
+                  end
 
-    result
+    [name, result]
   end
 
   private
   ##
   # Get all headers of spreadsheet
+  # @param spreadsheet Object
+  # @param row Integer
   # @return Object
-  def get_headers(spreadsheet)
-    return nil if spreadsheet.nil?
+  def get_headers(spreadsheet, row)
+    return nil if spreadsheet.nil? || row.nil?
 
-    headers = spreadsheet.row(1)
+    headers = spreadsheet.row(row)
     headers.map { |h| h.to_s.strip.gsub(' ', '_').downcase.to_sym }
   end
 
@@ -58,13 +60,18 @@ class FileParserService
   def parse_xlsx
     require 'roo'
     spreadsheet = open_spreadsheet('xlsx')
-    headers = get_headers(spreadsheet)
+    name = get_headers(spreadsheet, 1)
+    headers = get_headers(spreadsheet, 2)
 
     result = []
 
     return {} unless headers.present?
 
-    (2..spreadsheet.last_row).each do |i|
+    # We are assuming Item name is the first row
+    # And the second one is all headers
+    object_name = name.select(&:present?).join(' ')
+
+    (3..spreadsheet.last_row).each do |i|
       row = spreadsheet.row(i)
 
       next if row.compact.blank? # Skip blank rows
@@ -77,7 +84,7 @@ class FileParserService
       result << data
     end
 
-    result
+    [object_name, result]
   end
 
   def parse_csv
