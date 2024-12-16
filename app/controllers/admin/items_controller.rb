@@ -1,94 +1,77 @@
-class Admin::ItemsController < AdminController
-  load_and_authorize_resource
-  load_and_authorize_resource :menu
-  load_and_authorize_resource :item, through: :menu
-  load_and_authorize_resource :organization, through: :menu
+class Admin::ItemsController < ApplicationController
+  before_action :load_and_authorize_objects
 
-  decorates_assigned :items, :item
-  decorates_assigned :menu
+  decorates_assigned :items, :item, :menu
 
-  # GET /items or /items.json
   def index
-    # @items = @category.items
-    @organization = current_organization
+    # If there's a menu, get items from that menu, otherwise get items from the organization
+    @items = if @menu
+               @menu.items
+             else
+               @organization.items
+             end
   end
 
-  # GET /items/1 or /items/1.json
   def show
-    @menu = @item.menu
+    # Show a single item (works for both organizations and menus)
+    authorize! :read, @item
   end
 
-  # GET /items/new
   def new
-    @item = @menu.items.new
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @item = @organization.items.build
   end
 
-  # GET /items/1/edit
-  def edit
-  end
-
-  # POST /items or /items.json
   def create
-    @item = @menu.items.new(item_params)
-
-    @item.datasheet.create(name: 'Datasheet 1')
-
-    respond_to do |format|
-      if @item.save
-        format.html do
-          redirect_to admin_menu_items_path(@menu),
-                      notice: 'Item was successfully created.'
-        end
-
-        format.json { render :show, status: :created, location: @item }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+    @item = @organization.items.build(item_params)
+    if @item.save
+      redirect_to admin_organization_items_path(@organization), notice: 'Item created successfully.'
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /items/1 or /items/1.json
+  def edit
+    authorize! :update, @item
+  end
+
   def update
-    respond_to do |format|
-      if @item.update(item_params)
-        format.html do
-          redirect_to admin_menu_items_path(@menu),
-                      notice: 'Item was successfully updated.' end
-
-        format.json { render :show, status: :ok, location: @item }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+    if @item.update(item_params)
+      redirect_to admin_organization_items_path(@organization, @item), notice: 'Item updated successfully.'
+    else
+      render :edit
     end
   end
 
-  # DELETE /items/1 or /items/1.json
   def destroy
     @item.destroy
-
-    respond_to do |format|
-      format.html do
-        redirect_to admin_category_items_path(@category),
-                    notice: 'Item was successfully destroyed.'
-      end
-
-      format.json { head :no_content }
-    end
+    redirect_to admin_organization_items_path(@organization), notice: 'Item deleted successfully.'
   end
 
   private
 
-  # Only allow a list of trusted parameters through.
+  def load_and_authorize_objects
+    # If the action requires an item (e.g., show, edit, update, destroy), load it
+
+    if params[:id].present?
+      @item = Item.find(params[:id])
+      authorize! :read, @item
+    # First, try to load the organization based on organization_id
+    elsif params[:organization_id].present?
+      @organization = Organization.find(params[:organization_id])
+      authorize! :read, @organization
+    elsif params[:menu_id].present?
+      # If menu_id is present, load the menu and its organization
+      @menu = Menu.find(params[:menu_id])
+      @organization = @menu.organization
+      authorize! :read, @menu
+    else
+      redirect_to root_path, alert: 'Organization or Menu is required.'
+    end
+
+
+  end
+
   def item_params
-    full_attributes = %i[name category_id status customer_price 
-    customer_price_cents purchase_price purchase_price_cents]
-    
-    params.require(:item).permit(full_attributes)
+    params.require(:item).permit(:name, :description, :price, :menu_id)
   end
 end

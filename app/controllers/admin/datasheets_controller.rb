@@ -71,7 +71,13 @@ class Admin::DatasheetsController < AdminController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_datasheet
-    @datasheet = @item.datasheet
+    @datasheet = if @item.datasheet.present?
+                   @item.datasheet
+                 else
+
+                   @item.datasheet.create(name: 'New Datasheet')
+                 end
+
     @datasheet_lines = @datasheet.datasheet_lines
   end
 

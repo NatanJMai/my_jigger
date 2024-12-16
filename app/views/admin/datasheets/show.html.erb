@@ -14,8 +14,7 @@
           <%= render partial: 'admin/datasheet_lines/header' %>
 
           <% datasheet_lines.each do |line| %>
-            <%= render partial: 'admin/datasheet_lines/line', locals: { datasheet_line: line,
-                                                                        item: line.item } %>
+            <%= render partial: 'admin/datasheet_lines/line', locals: { datasheet_line: line } %>
           <% end %>
         <% end %>
 

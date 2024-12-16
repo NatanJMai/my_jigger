@@ -1,18 +1,14 @@
 class Admin::ImportJobsController < AdminController
-
-  before_action :set_organization
-
   load_and_authorize_resource
-  # load_and_authorize_resource :organization
-  # load_and_authorize_resource :import_job, through: :organization
+  load_and_authorize_resource :organization
 
   # Decorate assigned resources for view enhancements
-  # decorates_assigned :import_job, :import_jobs
+  decorates_assigned :import_job, :import_jobs
   decorates_assigned :organization
 
   # GET /menus or /menus.json
   def index
-    @import_jobs = @organization.import_jobs
+    @import_jobs = current_organization.import_jobs
   end
 
   # GET /menus/1 or /menus/1.json
@@ -21,7 +17,7 @@ class Admin::ImportJobsController < AdminController
 
   # GET /menus/new
   def new
-    @import_job = @organization.import_jobs.new
+    @import_job = current_organization.import_jobs.new
     respond_to do |format|
       format.html
       format.js
@@ -30,11 +26,9 @@ class Admin::ImportJobsController < AdminController
 
   # POST /menus or /menus.json
   def create
-    @import_job = @organization.import_jobs.new(import_job_params)
+    @import_job = current_organization.import_jobs.new(import_job_params)
     @import_job.user_id = current_user.id
     @import_job.import_status = 'in_progress'
-
-    # @import_job.import_logs.create!(date: Time.zone.now, log_type: 'info')
 
     if @import_job.save
       # Enqueue the worker to process the file
@@ -43,7 +37,7 @@ class Admin::ImportJobsController < AdminController
       # Render the document view to start real-time updates
       respond_to do |format|
         format.html {
-          redirect_to admin_organization_import_job_path(@organization, @import_job),
+          redirect_to admin_organization_import_job_path(current_organization, @import_job),
                       notice: 'Document uploaded successfully. Processing started.'
         }
         # format.turbo_stream
@@ -69,9 +63,6 @@ class Admin::ImportJobsController < AdminController
     end
   end
   
-  def set_organization
-    @organization = Organization.find(params[:organization_id])
-  end
 
   private
 

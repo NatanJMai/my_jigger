@@ -5,20 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/channels/import_job_channel.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/channels/import_job_channel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/ingredient.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ingredient.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/datasheets_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/datasheets_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/import_jobs_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/import_jobs_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/items_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/items_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/datasheet.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/datasheet.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/datasheet_line.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/datasheet_line.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/item.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/organization.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/organization.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/staging_table.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/staging_table.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/file_parser_service.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/file_parser_service.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/services/staging_service.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/staging_service.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/workers/file_processor_worker.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/workers/file_processor_worker.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/_item.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/_item.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/_organization_info.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/_organization_info.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/organizations/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/organizations/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/spec_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/spec_helper.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +76,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;my-jigger&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/natanjmai/Documents/_projects/my_jigger/my_jigger/app/enums&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/natanjmai/Documents/GitHub/simplecov-csv&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -408,7 +414,10 @@
       <workItem from="1733545085591" duration="7887000" />
       <workItem from="1733744235230" duration="3768000" />
       <workItem from="1733826900822" duration="8907000" />
-      <workItem from="1733910511757" duration="8460000" />
+      <workItem from="1733910511757" duration="9077000" />
+      <workItem from="1733999078038" duration="890000" />
+      <workItem from="1734090582640" duration="5099000" />
+      <workItem from="1734347685730" duration="4864000" />
     </task>
     <servers />
   </component>

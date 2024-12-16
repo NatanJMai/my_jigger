@@ -6,19 +6,19 @@
     </div>
 
     <div class="col">
-      <%= item&.name %>
+      <%= datasheet_line&.name %>
     </div>
 
     <div class="col-1">
-      <%= item&.volume %>
+      <%= datasheet_line&.volume %>
     </div>
 
     <div class="col-1">
-      <%= item&.unit %>
+      <%= datasheet_line&.unit %>
     </div>
 
     <div class="col-1">
-      <%= humanized_money_with_symbol item&.purchase_price_cents %>
+      <%#= humanized_money_with_symbol datasheet_line&.purchase_price_cents %>
     </div>
 
     <div class="col-1">
@@ -30,11 +30,11 @@
     </div>
 
     <div class="col-1">
-      <%= link_to edit_admin_item_datasheet_datasheet_line_path(@item, datasheet_line), class: "btn btn-info",
+      <%#= link_to edit_admin_item_datasheet_datasheet_line_path(@item, datasheet_line), class: "btn btn-info",
                     data: { turbo_stream: true } do %>
 
         <i class="bi bi-pencil-square"></i>
-      <% end %>
+      <%# end %>
 
       <%#= button_to admin_item_datasheet_datasheet_line_path(@item, datasheet_line), class: "btn btn-danger",
                     method: :delete, form: { data: { turbo_stream: true, method: :delete } } do %>

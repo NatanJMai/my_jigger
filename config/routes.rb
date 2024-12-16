@@ -15,30 +15,29 @@ Rails.application.routes.draw do
     get '/sign_up'        => 'users/registrations#new'
   end
 
+  # Admin namespace
   namespace :admin do
-    resources :organizations, param: :id do
-      resources :menus do
+    resources :organizations do
+      resources :menus, shallow: true do
         member do
           get :cost_analysis
           get :best_items
           get :matrix_popularity
           get :sales_performance
         end
-
-        resources :items
+        resources :items, only: %i[index show]
       end
 
       resources :categories, only: %i[index show]
       resources :import_jobs, except: %i[edit delete]
 
-      resources :items do
-        resource :datasheet, shallow: false, except: :index do
-          resources :datasheet_lines do
+      resources :items, shallow: true do
+        resource :datasheet, shallow: true, except: :index do
+          resources :datasheet_lines, shallow: true do
             collection do
               post :new_line
             end
           end
-
           member do
             get :calculate_cmv
           end

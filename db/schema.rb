@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_11_115009) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_16_131427) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,12 +26,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_11_115009) do
 
   create_table "datasheet_lines", force: :cascade do |t|
     t.bigint "datasheet_id", null: false
-    t.bigint "item_id"
     t.float "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.float "volume"
+    t.string "unit"
+    t.integer "cost_cents", default: 0, null: false
+    t.string "cost_currency", default: "BRL", null: false
     t.index ["datasheet_id"], name: "index_datasheet_lines_on_datasheet_id"
-    t.index ["item_id"], name: "index_datasheet_lines_on_item_id"
   end
 
   create_table "datasheets", force: :cascade do |t|
@@ -106,17 +109,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_11_115009) do
     t.index ["organization_id"], name: "index_items_on_organization_id"
   end
 
-  create_table "menu_items", force: :cascade do |t|
-    t.bigint "menu_id"
-    t.bigint "item_id"
-    t.boolean "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_menu_items_on_item_id"
-    t.index ["menu_id", "item_id"], name: "index_menu_items_on_menu_id_and_item_id", unique: true
-    t.index ["menu_id"], name: "index_menu_items_on_menu_id"
-  end
-
   create_table "menus", force: :cascade do |t|
     t.string "name"
     t.bigint "organization_id"
@@ -187,8 +179,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_11_115009) do
   add_foreign_key "categories", "organizations"
   add_foreign_key "datasheets", "items"
   add_foreign_key "items", "categories"
-  add_foreign_key "menu_items", "items"
-  add_foreign_key "menu_items", "menus"
   add_foreign_key "organizations", "users", column: "manager_id"
   add_foreign_key "user_organizations", "organizations"
   add_foreign_key "user_organizations", "users"

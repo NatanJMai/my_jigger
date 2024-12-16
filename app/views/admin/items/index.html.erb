@@ -26,7 +26,7 @@
           </table>
         </div>
 
-        <%= button_to 'Add Item', new_admin_menu_item_path(@menu),
+        <%= button_to 'Add Item', new_admin_organization_item_path(current_organization),
                       class: "btn btn-light shadow-sm px-4 mb-2",
                       :method => :get %>
       </div>

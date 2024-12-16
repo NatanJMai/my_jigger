@@ -50,6 +50,12 @@
                          text: "#{@organization.name} Menus" } %>
 
     <%= render partial: 'layouts/cards/menu_card',
+               locals: { url: admin_organization_items_path(@organization),
+                         title: 'Items',
+                         class: '',
+                         text: "#{@organization.name} Items" } %>
+
+    <%= render partial: 'layouts/cards/menu_card',
                locals: { url: new_admin_organization_import_job_path(@organization),
                          title: 'Jobs',
                          class: '',

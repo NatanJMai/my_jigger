@@ -2,7 +2,7 @@
   <th scope="row"><%= item.id %></th>
   <td><%= item.name %></td>
   <td><%= item.volume %></td>
-  <td><%= item.unit&.text %></td>
+  <td><%#= item.unit&.text %></td>
   <td><%= humanized_money_with_symbol Money.new(item.purchase_price_cents) %></td>
   <td><%= humanized_money_with_symbol Money.new(item.customer_price_cents) %></td>
   <td class="minimal"><%= item.boolean_label(item.status) %></td>

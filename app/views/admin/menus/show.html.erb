@@ -62,3 +62,9 @@
     </div>
   </div>
 </div>
+
+<%= render partial: 'layouts/cards/menu_card',
+           locals: { url: new_admin_organization_import_job_path(current_organization),
+                     title: 'Jobs',
+                     class: '',
+                     text: "#{menu.name} Jobs" } %>
