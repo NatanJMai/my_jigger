@@ -24,7 +24,8 @@ class Datasheet < ApplicationRecord
   def calculate_cmv(value = 0.0)
     return 0.0 unless value.positive?
 
-    get_total_price / value
+    total = (total_costs.to_f / value.to_f) * 100
+    total.round(2)
   end
 
   ##
@@ -48,8 +49,7 @@ class Datasheet < ApplicationRecord
   # Returns Total Price of Datasheet
   # Sum of all Datasheet Lines
   # @return Decimal
-  def get_total_price
-    #datasheet_lines.map(&:calculated_price).sum
-    0
+  def total_costs
+    datasheet_lines.sum { |line| line.calculated_price.to_f }
   end
 end

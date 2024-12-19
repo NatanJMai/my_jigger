@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_16_131427) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_19_102612) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,8 +32,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_16_131427) do
     t.string "name"
     t.float "volume"
     t.string "unit"
-    t.integer "cost_cents", default: 0, null: false
     t.string "cost_currency", default: "BRL", null: false
+    t.integer "cost_cents", default: 0, null: false
     t.index ["datasheet_id"], name: "index_datasheet_lines_on_datasheet_id"
   end
 

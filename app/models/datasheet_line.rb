@@ -4,11 +4,10 @@ class DatasheetLine < ApplicationRecord
 
   validates :datasheet_id, presence: true
 
-  ##
-  # FIXME fix calc
-  def calculated_price
-    return unless volume && quantity
+  monetize :cost_cents, as: :cost
 
-    (quantity / volume).to_f * 100
+  def calculated_price
+    return 0 unless volume && quantity && cost
+    (quantity.to_f / volume) * cost
   end
 end

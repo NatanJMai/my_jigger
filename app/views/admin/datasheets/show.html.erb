@@ -12,13 +12,8 @@
       <div class="datasheet-table">
         <%= turbo_frame_tag "list" do %>
           <%= render partial: 'admin/datasheet_lines/header' %>
-
-          <% datasheet_lines.each do |line| %>
-            <%= render partial: 'admin/datasheet_lines/line', locals: { datasheet_line: line } %>
-          <% end %>
+          <%= render partial: 'admin/datasheet_lines/line', collection: datasheet_lines, as: :datasheet_line %>
         <% end %>
-
-        <%#= render partial: 'admin/datasheet_lines/totals', locals: { datasheet: @datasheet } %>
       </div>
 
 
@@ -53,12 +48,12 @@
               </div>
 
               <div class="row values">
-                <div class="col-4 selling">30$</div>
-                <div class="col-3 costs">15$</div>
+                <div class="col-4 selling"><%= humanized_money_with_symbol item.customer_price %></div>
+                <div class="col-3 costs"><%= humanized_money_with_symbol datasheet.total_costs %></div>
               </div>
 
               <div class="row values">
-                <div class="col-3 cmv">30%</div>
+                <div class="col-3 cmv"><%= datasheet.calculate_cmv(item.customer_price&.to_f) %>%</div>
                 <div class="col-8 cmv-text">Acceptable between 25 and 33%</div>
               </div>
             </div>

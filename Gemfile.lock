@@ -425,7 +425,8 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   jquery-rails
-  money-rails (~> 1.12)
+  money
+  money-rails
   nokogiri
   pg (~> 1.1)
   puma (>= 5.0)

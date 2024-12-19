@@ -44,10 +44,11 @@
 
         <div class="row">
           <div class="col-3">
-            <%= f.input :purchase_price_cents,
+            <%= f.input :purchase_price,
                         label: 'Purchase Price',
                         hint: 'Enter Purchase Price',
-                        wrapper_html: { class: 'jigger-label' } %>
+                        wrapper_html: { class: 'jigger-label' },
+                        currency: 'BRL' %>
 
           </div>
 

@@ -12,6 +12,6 @@ class Ingredient < ApplicationRecord
   # Define those attributes that we can update from import files.
   # @return Array
   def self.permitted_methods
-    %i[name unit quantity volume cost_cents]
+    %i[name unit quantity volume cost_cents cost]
   end
 end
