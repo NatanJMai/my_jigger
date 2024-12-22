@@ -21,7 +21,7 @@
         <div class="grid-item col-6">
           <%= form_with scope: :any, url: new_line_admin_item_datasheet_datasheet_lines_path(@item) do %>
 
-            <%= button_to 'Add Item', nil,
+            <%= button_to 'Add Item', new_line_admin_item_datasheet_datasheet_lines_path(@item),
                           class: "btn btn-light shadow-sm px-4 mb-2",
                           :method => :get %>
 

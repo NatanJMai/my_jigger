@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class DatasheetLine < ApplicationRecord
   belongs_to :datasheet, class_name: 'Datasheet'
-
+  belongs_to :ingredient, class_name: 'Ingredient', optional: true
   validates :datasheet_id, presence: true
 
   monetize :cost_cents, as: :cost

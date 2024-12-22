@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_19_102612) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_22_133308) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,7 +34,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_19_102612) do
     t.string "unit"
     t.string "cost_currency", default: "BRL", null: false
     t.integer "cost_cents", default: 0, null: false
+    t.bigint "ingredient_id"
     t.index ["datasheet_id"], name: "index_datasheet_lines_on_datasheet_id"
+    t.index ["ingredient_id"], name: "index_datasheet_lines_on_ingredient_id"
   end
 
   create_table "datasheets", force: :cascade do |t|

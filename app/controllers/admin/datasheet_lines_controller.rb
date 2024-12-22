@@ -1,5 +1,6 @@
 class Admin::DatasheetLinesController < AdminController
-  before_action :set_datasheet_line
+  load_and_authorize_resource :item
+
   before_action :set_datasheet
 
   def index
@@ -27,10 +28,12 @@ class Admin::DatasheetLinesController < AdminController
   # POST /items or /items.json
   def create
     @datasheet_line = @datasheet.datasheet_lines.new(datasheet_line_params)
-    
+
+    Rails.logger.debug("Accepted formats: #{request.format}")
+
     respond_to do |format|
-      if @datasheet_line.save
-        format.turbo_stream {}
+      if @datasheet_line.save!
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @datasheet_line.errors, status: :unprocessable_entity }
@@ -67,21 +70,15 @@ class Admin::DatasheetLinesController < AdminController
   private
 
   def set_datasheet
-    @datasheet =
-      if @datasheet_line.present?
-        @datasheet_line.datasheet
-      else
-        Datasheet.find_by(id: params[:datasheet_id])
-      end
-  end
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_datasheet_line
-    @datasheet_line = DatasheetLine.find_by(id: params[:id])
+    @datasheet = @item&.datasheet
   end
 
   # Only allow a list of trusted parameters through.
   def datasheet_line_params
-    params.require(:datasheet_line).permit(:datasheet_id, :item_id, :unit, :quantity)
+    params.require(:datasheet_line).permit(:datasheet_id,
+                                           :item_id,
+                                           :ingredient_id,
+                                           :unit,
+                                           :quantity)
   end
 end

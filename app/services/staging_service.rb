@@ -12,6 +12,7 @@ class StagingService
   def handle_item
     return nil unless @import_job.present?
 
+    organization = @import_job.organization
     staging_records = @import_job.staging_tables
                                  .by_table('item')
                                  .by_status('in_progress')
@@ -19,13 +20,18 @@ class StagingService
     new_item = Item.create(name: @import_job.reference_name,
                            data_imported: true,
                            menu: @import_job.organization.menus.first,
-                           organization: @import_job.organization)
+                           organization: organization)
 
     grouped_records = staging_records.group_by(&:object_number)
     permitted_attributes = Ingredient.permitted_methods
 
     grouped_records.each_value do |records|
-      new_ingredient = new_item.ingredients.new
+      ingredient_name = records.select{ |a| a.attribute_name == 'name' }.first&.row_data || 'Not Found'
+
+      new_ingredient = organization.ingredients.find_or_create_by(name: ingredient_name) do |ingredient|
+        ingredient.item = new_item
+      end
+
       new_datasheet_line = new_item.datasheet_lines.new
 
       records.each do |record|

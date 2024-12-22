@@ -5,19 +5,19 @@
     </div>
 
     <div class="col">
-      <%= f.input :product_id, as: :select, collection: Product.all, label: false %>
+      <%= f.input :ingredient_id, as: :select, collection: Ingredient.all, label: false %>
     </div>
 
     <div class="col-1">
-      <%= datasheet_line.product&.volume %>
+      <%= datasheet_line.ingredient&.volume %>
     </div>
 
     <div class="col-1">
-      <%= datasheet_line.product&.unit %>
+      <%= datasheet_line.ingredient&.unit %>
     </div>
 
     <div class="col-1">
-      <%= humanized_money_with_symbol datasheet_line.product&.price %>
+      <%= humanized_money_with_symbol datasheet_line.ingredient&.cost %>
     </div>
 
     <div class="col-2">

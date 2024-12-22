@@ -32,8 +32,8 @@ Rails.application.routes.draw do
       resources :import_jobs, except: %i[edit delete]
 
       resources :items, shallow: true do
-        resource :datasheet, shallow: true, except: :index do
-          resources :datasheet_lines, shallow: true do
+        resource :datasheet, except: :index do
+          resources :datasheet_lines do
             collection do
               post :new_line
             end
