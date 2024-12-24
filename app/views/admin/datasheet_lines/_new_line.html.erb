@@ -1,3 +1,39 @@
 <%= turbo_frame_tag "new_form" do %>
-  <%= render partial: 'form', locals: { datasheet_line: datasheet_line, model: model } %>
+  <%= simple_form_for([:admin, @item, @datasheet, @datasheet_line],
+                      url: admin_item_datasheet_datasheet_lines_path(@item)) do |f| %>
+
+      <div class="row datasheet_line_row">
+      <div class="col-1">
+        <%= datasheet_line&.id.presence || "ID" %>
+      </div>
+
+      <div class="col">
+        <%= f.input :ingredient_id, as: :select, collection: Ingredient.all, label: false %>
+      </div>
+
+      <div class="col-1">
+        <%= datasheet_line.ingredient&.volume %>
+      </div>
+
+      <div class="col-1">
+        <%= datasheet_line.ingredient&.unit %>
+      </div>
+
+      <div class="col-1">
+        <%= humanized_money_with_symbol datasheet_line.ingredient&.cost %>
+      </div>
+
+      <div class="col-2">
+        <%= f.input :quantity, label: false %>
+      </div>
+
+      <div class="col-1">
+        <%= humanized_money_with_symbol Money.new(datasheet_line.calculated_price) %>
+      </div>
+
+      <div class="col minimal">
+        <%= f.button :submit, "SAVE", class: "btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
 <% end %>

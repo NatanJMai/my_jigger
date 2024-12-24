@@ -1,6 +1,13 @@
 class DatasheetLineDecorator < ApplicationDecorator
   delegate_all
 
+  ##
+  # Return Name or Ingredient Name
+  # @return String
+  def display_name
+    name.presence || ingredient&.name
+  end
+
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #

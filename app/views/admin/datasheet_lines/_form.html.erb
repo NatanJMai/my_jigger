@@ -1,4 +1,4 @@
-<%= simple_form_for(model) do |f| %>
+<%= simple_form_for([:admin, @item, @datasheet, datasheet_line], data: { turbo: true }) do |f| %>
   <div class="row datasheet_line_row">
     <div class="col-1">
       <%= datasheet_line&.id.presence || "ID" %>

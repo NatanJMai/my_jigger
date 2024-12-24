@@ -1,7 +1,10 @@
 class Admin::DatasheetLinesController < AdminController
   load_and_authorize_resource :item
-
   before_action :set_datasheet
+
+  decorates_assigned :item
+  decorates_assigned :datasheet
+  decorates_assigned :datasheet_line
 
   def index
     @datasheet_lines = @datasheet.datasheet_lines
@@ -29,11 +32,10 @@ class Admin::DatasheetLinesController < AdminController
   def create
     @datasheet_line = @datasheet.datasheet_lines.new(datasheet_line_params)
 
-    Rails.logger.debug("Accepted formats: #{request.format}")
-
     respond_to do |format|
-      if @datasheet_line.save!
-        format.turbo_stream
+      if @datasheet_line.save
+        format.turbo_stream {}
+        format.html { redirect_to admin_item_datasheet_path(@item, @datasheet), notice: "Datasheet line created." }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @datasheet_line.errors, status: :unprocessable_entity }

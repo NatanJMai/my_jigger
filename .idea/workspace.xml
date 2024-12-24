@@ -7,15 +7,14 @@
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/admin/datasheet_lines_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/datasheet_lines_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/datasheet_line.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/datasheet_line.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/organization.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/organization.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/staging_service.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/staging_service.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/decorators/datasheet_decorator.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/decorators/datasheet_decorator.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_line.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_line.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_new_line.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_new_line.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_totals.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_totals.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/create.turbo_stream.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/create.turbo_stream.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/new_line.turbo_stream.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/new_line.turbo_stream.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheets/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheets/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -410,7 +409,8 @@
       <workItem from="1734090582640" duration="5099000" />
       <workItem from="1734347685730" duration="4864000" />
       <workItem from="1734601631575" duration="4605000" />
-      <workItem from="1734873349083" duration="2941000" />
+      <workItem from="1734873349083" duration="3057000" />
+      <workItem from="1735012798928" duration="2947000" />
     </task>
     <servers />
   </component>
