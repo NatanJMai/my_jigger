@@ -1,7 +1,7 @@
 class Admin::ItemsController < ApplicationController
   before_action :load_and_authorize_objects
 
-  decorates_assigned :items, :item, :menu
+  decorates_assigned :items, :item, :menu, :organization
 
   def index
     # If there's a menu, get items from that menu, otherwise get items from the organization
@@ -35,8 +35,8 @@ class Admin::ItemsController < ApplicationController
   end
 
   def update
-    if @item.update(item_params)
-      redirect_to admin_organization_items_path(@organization, @item), notice: 'Item updated successfully.'
+    if @item.update!(item_params)
+      redirect_to admin_organization_items_path(@organization), notice: 'Item updated successfully.'
     else
       render :edit
     end
@@ -67,11 +67,10 @@ class Admin::ItemsController < ApplicationController
     else
       redirect_to root_path, alert: 'Organization or Menu is required.'
     end
-
-
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :purchase_price, :customer_price_cents, :menu_id)
+    params.require(:item).permit(:name, :customer_price, :menu_id, :image,
+                                 :status, :category_id, :data_imported, :prep_method)
   end
 end

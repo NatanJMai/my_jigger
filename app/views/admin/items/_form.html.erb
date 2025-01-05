@@ -8,61 +8,22 @@
     <div class="row">
       <div class="col-8">
         <div class="row">
-          <div class="col-8">
+          <div class="col-6">
             <%= f.input :name, hint: 'Menu name', wrapper_html: { class: 'jigger-label' } %>
           </div>
 
-          <div class="col-4">
+          <div class="col-3">
             <%= f.association :category, as: :select,
                               collection: Category.active.order(:name),
                               prompt: 'Select a category',
                               hint: 'Menu released at',
                               wrapper_html: { class: 'jigger-label' } %>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col-3">
-            <%= f.input :unit, as: :select, collection: Unit.all,
-                        prompt: 'Select unit type',
-                        wrapper_html: { class: 'jigger-label' } %>
-
-          </div>
 
           <div class="col-3">
-            <%= f.input :volume, label: 'Volume', hint: 'Enter Item volume',
-                        wrapper_html: { class: 'jigger-label' } %>
-          </div>
-
-          <div class="col-6">
-            <%= f.input :best_before,
-                        as: :date,
-                        hint: 'Item best before date',
-                        wrapper_html: { class: 'jigger-label' } %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-3">
-            <%= f.input :purchase_price,
-                        label: 'Purchase Price',
-                        hint: 'Enter Purchase Price',
-                        wrapper_html: { class: 'jigger-label' },
-                        currency: 'BRL' %>
-
-          </div>
-
-          <div class="col-3">
-            <%= f.input :customer_price_cents,
+            <%= f.input :customer_price,
                         label: 'Customer Price',
                         hint: 'Enter Customer Price',
-                        wrapper_html: { class: 'jigger-label' } %>
-          </div>
-
-          <div class="col-6">
-            <%= f.input :prep_method,
-                        as: :text,
-                        hint: 'Item prepare method of this item',
                         wrapper_html: { class: 'jigger-label' } %>
           </div>
         </div>
@@ -80,18 +41,37 @@
         </div>
 
         <div class="row">
+          <div class="col-12">
+            <%= f.input :prep_method,
+                        as: :text,
+                        hint: 'Item prepare method of this item',
+                        wrapper_html: { class: 'jigger-label' } %>
+          </div>
+        </div>
+
+        <div class="row">
           <div class="col-3">
             <%= f.button :submit, "Add/Save Item", class: "form-btn"  %>
           </div>
         </div>
-  <% end %>
   </div>
 
   <div class="col-4">
     <div class="vertical-line">
-      <%= render partial: 'admin/menus/organization_info' %>
+      <% if item.image.present? %>
+        <!-- Show the existing image -->
+        <%= image_tag item.image.url, alt: "Uploaded Image", class: "img-thumbnail shadow-sm form-photo"%>
+      <% else %>
+        <!-- Show the upload button -->
+        <label for="image-upload" class="btn btn-outline-primary img-thumbnail shadow-sm form-photo">
+          Upload Image
+        </label>
+      <% end %>
+
+      <!-- Hidden File Input -->
+      <%= f.file_field :image, id: "image-upload", class: "d-none" %>
     </div>
   </div>
   </div>
 </div>
-
+<% end %>

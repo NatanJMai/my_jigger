@@ -14,7 +14,4 @@ class User < ApplicationRecord
   has_many :user_organizations, class_name: 'UserOrganization', dependent: :destroy
   has_many :employers, through: :user_organizations, source: :organization
 
-  private
-    def full_name
-    end
 end

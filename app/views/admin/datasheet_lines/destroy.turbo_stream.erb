@@ -1,5 +1,5 @@
 <%= turbo_stream.remove @datasheet_line %>
 
 <%= turbo_stream.replace 'totals' do %>
-  <%= render partial: 'admin/datasheet_lines/totals', locals: { datasheet: @datasheet } %>
+  <%= render partial: 'admin/datasheet_lines/totals', locals: { datasheet: datasheet, item: datasheet.item } %>
 <% end %>

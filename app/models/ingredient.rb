@@ -4,9 +4,7 @@ class Ingredient < ApplicationRecord
 
   classy_enum_attr :unit, class_name: 'Unit'
 
-  belongs_to :item, class_name: 'Item'
-  validates :name, :item, presence: true
-
+  validates :name, presence: true
 
   ##
   # Define those attributes that we can update from import files.

@@ -1,35 +1,13 @@
-<%= turbo_frame_tag 'totals' do %>
-  <div class="row datasheet_line_footer">
-    <div class="col-1">$<small class="now">(Now)</small></div>
-    <div class="col">CMV<small class="now">(Now)</small></div>
-    <div class="col-1"></div>
-    <div class="col-1">$<small class="new">(New)</small></div>
-    <div class="col-1"></div>
-    <div class="col-2">CMV<small class="new">(New)</small></div>
-    <div class="col-1">TOTAL</div>
-    <div class="col"></div>
-  </div>
-
-  <div class="row datasheet-footer">
-    <div class="col-1">
-      <%#= humanized_money_with_symbol Money.new(datasheet.item.customer_price_cents) %>
-    </div>
-    <div class="col">
-      <%#= datasheet.calculate_cmv(datasheet.item.customer_price.to_d).round(2) %> %
+ <%= turbo_frame_tag 'totals' do %>
+    <div class="row values">
+      <div class="col-4 selling">
+        <%= humanized_money_with_symbol item.customer_price %>
+      </div>
+      <div class="col-3 costs"><%= humanized_money_with_symbol datasheet.total_costs %></div>
     </div>
 
-    <div class="col-1"></div>
-    <div class="col-1">
-      <%= text_field_tag "datasheet-price", nil, class: 'inline-datasheet-price col-1',
-                         data: { url: calculate_cmv_admin_item_datasheet_path(@item) } %>
+    <div class="row values">
+      <div class="col-3 cmv"><%= datasheet.calculate_cmv(item.customer_price&.to_f) %>%</div>
+      <div class="col-8 cmv-text">Acceptable between 25 and 33%</div>
     </div>
-    <div class="col-1"><i class="fas fa-sync datasheet-price-refresh"></i></div>
-    <div class="col-2 datasheet-cmv"></div>
-    <div class="col-1">
-      <%= humanized_money_with_symbol Money.new(datasheet.total_costs) %>
-    </div>
-    <div class="col"></div>
-  </div>
-<% end %>
-
-
+  <% end %>

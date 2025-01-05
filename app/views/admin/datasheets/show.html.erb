@@ -20,14 +20,8 @@
       <div class="form-action">
         <div class="grid-item col-6">
           <%= form_with scope: :any, url: new_line_admin_item_datasheet_datasheet_lines_path(@item) do %>
-
-            <%= button_to 'Add Item', new_line_admin_item_datasheet_datasheet_lines_path(@item),
-                          class: "btn btn-light shadow-sm px-4 mb-2",
-                          :method => :get %>
-
-            <%#= button_to 'NEW', new_line_admin_item_datasheet_datasheet_lines_path(@item),
-                          class: "btn btn-info shadow-sm px-4 mb-2",
-                          :method => :get %>
+            <%= button_to 'Add Ingredient', new_line_admin_item_datasheet_datasheet_lines_path(@item),
+                          class: "btn btn-light shadow-sm px-4 mb-2" %>
           <% end %>
         </div>
 
@@ -47,21 +41,9 @@
                 </div>
               </div>
 
-              <div class="row values">
-                <div class="col-4 selling"><%= humanized_money_with_symbol item.customer_price %></div>
-                <div class="col-3 costs"><%= humanized_money_with_symbol datasheet.total_costs %></div>
-              </div>
-
-              <div class="row values">
-                <div class="col-3 cmv"><%= datasheet.calculate_cmv(item.customer_price&.to_f) %>%</div>
-                <div class="col-8 cmv-text">Acceptable between 25 and 33%</div>
-              </div>
+              <%= render partial: 'admin/datasheet_lines/totals', locals: { datasheet: datasheet, item: item } %>
             </div>
-
           </div>
-          <%#= button_to 'REMOVE', admin_item_datasheet_path(@item),
-                        class: "btn btn-warning shadow-sm px-4 mb-2",
-                        :method => :delete %>
         </div>
       </div>
     </div>

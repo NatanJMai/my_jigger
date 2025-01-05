@@ -28,11 +28,16 @@ class FileParserService
   # @param spreadsheet Object
   # @param row Integer
   # @return Object
-  def get_headers(spreadsheet, row)
+  def get_headers(spreadsheet, row, format = true)
     return nil if spreadsheet.nil? || row.nil?
 
     headers = spreadsheet.row(row)
-    headers.map { |h| h.to_s.strip.gsub(' ', '_').downcase.to_sym }
+
+    if format
+      headers.map { |h| h.to_s.strip.gsub(' ', '_').downcase.to_sym }
+    else
+      headers.map { |h| h.to_s.titleize.to_sym }
+    end
   end
 
   # Open the spreadsheet using Roo
@@ -47,7 +52,7 @@ class FileParserService
     when 'xlsx'
       Roo::Excelx.new(@file_path)
     else
-      raise "Invalid spreadsheet format"
+      raise 'Invalid spreadsheet format'
     end
   end
 
@@ -60,7 +65,7 @@ class FileParserService
   def parse_xlsx
     require 'roo'
     spreadsheet = open_spreadsheet('xlsx')
-    name = get_headers(spreadsheet, 1)
+    name = get_headers(spreadsheet, 1, false)
     headers = get_headers(spreadsheet, 2)
 
     result = []

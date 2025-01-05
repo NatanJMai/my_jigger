@@ -1,11 +1,20 @@
 <tr>
-  <th scope="row"><%= item.id %></th>
+  <th scope="row"><% if item.image.present? %>
+    <!-- Use the icon version of the image -->
+    <%= image_tag item.image.icon.url, alt: "#{item.name} Icon", class: "img-thumbnail" %>
+    <% else %>
+      <!-- Fallback for no image -->
+      <span class="text-muted">No Image</span>
+    <% end %>
+  </th>
   <td><%= item.name %></td>
-  <td><%= item.volume %></td>
-  <td><%#= item.unit&.text %></td>
-  <td><%= humanized_money_with_symbol Money.new(item.purchase_price_cents) %></td>
-  <td><%= humanized_money_with_symbol Money.new(item.customer_price_cents) %></td>
+
+  <td class="minimal"><%= humanized_money_with_symbol Money.new(item.customer_price_cents) %></td>
   <td class="minimal"><%= item.boolean_label(item.status) %></td>
+  <td class="minimal"><%= item.boolean_label(item.data_imported,
+                                             label = { true => 'Imported',
+                                                       false => 'Not Imported' }) %>
+  </td>
   <td class="minimal">
     <%= link_to admin_item_datasheet_path(item), class: 'btn btn-success' do %>
       <i class="bi bi-pencil-square"></i> CMV
@@ -20,7 +29,7 @@
     <% end %>
 
     <%= button_to admin_item_path(item), class: "btn btn-danger",
-                  method: :delete, form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
+                  method: :delete, form: { data: { turbo: true, method: :delete } } do %>
 
       <i class="bi bi-trash"></i> DELETE
     <% end %>

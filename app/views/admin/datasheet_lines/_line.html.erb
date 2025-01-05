@@ -32,14 +32,14 @@
       <%#= link_to edit_admin_item_datasheet_datasheet_line_path(@item, datasheet_line), class: "btn btn-info",
                     data: { turbo_stream: true } do %>
 
-        <i class="bi bi-pencil-square"></i>
+      <i class="bi bi-pencil-square"></i>
       <%# end %>
 
-      <%#= button_to admin_item_datasheet_datasheet_line_path(@item, datasheet_line), class: "btn btn-danger",
-                    method: :delete, form: { data: { turbo_stream: true, method: :delete } } do %>
+      <%= button_to admin_datasheet_line_path(datasheet_line), class: "btn btn-danger",
+                    method: :delete, form: { data: { method: :delete } } do %>
 
         <i class="bi bi-trash"></i>
-      <%# end %>
+      <% end %>
     </div>
   </div>
 <% end %>

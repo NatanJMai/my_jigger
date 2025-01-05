@@ -2,7 +2,7 @@
   <%= simple_form_for([:admin, @item, @datasheet, @datasheet_line],
                       url: admin_item_datasheet_datasheet_lines_path(@item)) do |f| %>
 
-      <div class="row datasheet_line_row">
+    <div class="row datasheet_line_row">
       <div class="col-1">
         <%= datasheet_line&.id.presence || "ID" %>
       </div>

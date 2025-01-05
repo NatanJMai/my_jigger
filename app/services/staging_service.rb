@@ -19,6 +19,7 @@ class StagingService
 
     new_item = Item.create(name: @import_job.reference_name,
                            data_imported: true,
+                           status: true,
                            menu: @import_job.organization.menus.first,
                            organization: organization)
 
@@ -28,9 +29,7 @@ class StagingService
     grouped_records.each_value do |records|
       ingredient_name = records.select{ |a| a.attribute_name == 'name' }.first&.row_data || 'Not Found'
 
-      new_ingredient = organization.ingredients.find_or_create_by(name: ingredient_name) do |ingredient|
-        ingredient.item = new_item
-      end
+      new_ingredient = organization.ingredients.find_or_create_by(name: ingredient_name)
 
       new_datasheet_line = new_item.datasheet_lines.new
 

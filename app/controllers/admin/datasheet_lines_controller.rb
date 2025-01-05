@@ -1,4 +1,5 @@
 class Admin::DatasheetLinesController < AdminController
+  load_and_authorize_resource
   load_and_authorize_resource :item
   before_action :set_datasheet
 
@@ -22,9 +23,16 @@ class Admin::DatasheetLinesController < AdminController
 
   def new_line
     @datasheet_line = @datasheet.datasheet_lines.build
+    @datasheet_line.build_ingredient
 
     respond_to do |format|
-      format.turbo_stream {}
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.append(
+          :list,
+          partial: 'admin/datasheet_lines/new_line',
+          locals: { datasheet_line: @datasheet_line, model: [:admin, @item, @datasheet, @datasheet_line] }
+        )
+      end
     end
   end
 
@@ -35,7 +43,7 @@ class Admin::DatasheetLinesController < AdminController
     respond_to do |format|
       if @datasheet_line.save
         format.turbo_stream {}
-        format.html { redirect_to admin_item_datasheet_path(@item, @datasheet), notice: "Datasheet line created." }
+        format.html { redirect_to admin_item_datasheet_path(@item, @datasheet), notice: 'Datasheet line created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @datasheet_line.errors, status: :unprocessable_entity }
@@ -64,7 +72,7 @@ class Admin::DatasheetLinesController < AdminController
     respond_to do |format|
       format.turbo_stream {}
       format.html {
-        redirect_to admin_datasheet_path(@datasheet), notice: "Item was successfully destroyed." }
+        redirect_to admin_datasheet_path(@datasheet), notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -81,6 +89,7 @@ class Admin::DatasheetLinesController < AdminController
                                            :item_id,
                                            :ingredient_id,
                                            :unit,
-                                           :quantity)
+                                           :quantity,
+                                           ingredient_attributes: [:name, :unit])
   end
 end

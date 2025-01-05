@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_22_133308) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_05_080116) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -93,14 +93,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_22_133308) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
-    t.string "unit"
-    t.float "volume"
     t.text "prep_method"
-    t.date "best_before"
     t.string "image"
     t.boolean "data_imported"
-    t.integer "purchase_price_cents", default: 0, null: false
-    t.string "purchase_price_currency", default: "BRL", null: false
     t.integer "customer_price_cents", default: 0, null: false
     t.string "customer_price_currency", default: "BRL", null: false
     t.bigint "menu_id"
