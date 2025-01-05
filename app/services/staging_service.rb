@@ -6,6 +6,17 @@ class StagingService
     @import_job = import_job
   end
 
+  def start(object_type)
+    return unless object_type
+
+    case object_type
+    when :menu
+      handle_menu
+    when :item
+      handle_item
+    end
+  end
+
   ##
   # Handle all records created in Staging Table for ImportJob
   # Copy from Staging to original table (item) if all data is correct.

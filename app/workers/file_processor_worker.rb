@@ -21,11 +21,11 @@ class FileProcessorWorker
     file = @import_job.file
 
     begin
-      @object_name, item_records = FileParserService.new(file.file).parse
+      @object_name, item_records = FileParserService.new(file.file).parse(import_type.to_sym)
       @import_job.update(reference_name: @object_name) if @object_name.present?
       process_item_rows(item_records)
       sleep(1)
-      StagingService.new(@import_job).handle_item
+      StagingService.new(@import_job).start(import_type.to_sym)
 
     rescue => e
       Rails.logger.error("Failed to process file: #{e.message}")
@@ -46,8 +46,6 @@ class FileProcessorWorker
       :integer
     when Float
       :float
-    when Boolean
-      :boolean
     else
       :unknown
     end
@@ -61,7 +59,7 @@ class FileProcessorWorker
     return unless item_records.present?
 
     log_data = []
-
+    
     # All lines
     item_records.each_with_index do |record, index|
       log_data << record

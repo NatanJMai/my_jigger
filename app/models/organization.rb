@@ -7,6 +7,7 @@ class Organization < ApplicationRecord
   has_many :employees, through: :user_organizations, source: :user
   has_many :categories, class_name: 'Category', dependent: :destroy
   has_many :import_jobs, class_name: 'ImportJob', dependent: :destroy
+  has_many :orders, class_name: 'Order', dependent: :destroy
 
   before_save { email.downcase! }
 

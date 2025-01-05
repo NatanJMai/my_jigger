@@ -6,65 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/datasheet_line.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/datasheet_line.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/datasheet_lines_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/datasheet_lines_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/items_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/items_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/products_controller.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/decorators/menu_section_decorator.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/decorators/product_decorator.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/departments_helper.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/menu_sections_helper.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/products_helper.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/roles_helper.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/datasheet_line.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/datasheet_line.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/ingredient.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ingredient.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/item.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/import_jobs_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/import_jobs_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/organization.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/organization.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/services/file_parser_service.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/file_parser_service.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/services/staging_service.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/staging_service.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/dashboard.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/dashboard.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_line.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_line.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_new_line.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_new_line.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_totals.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_totals_2.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/destroy.turbo_stream.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/destroy.turbo_stream.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/new_line.turbo_stream.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheets/_card.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheets/_datasheet.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheets/_form.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheets/edit.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheets/index.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheets/new.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheets/show.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/departments/_card.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/departments/_department.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/departments/_form.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/departments/edit.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/departments/index.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/departments/new.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/departments/show.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/items/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/items/_item.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/_item.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/items/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/edit.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/items/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/items/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/items/show_old.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menu_sections/_card.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menu_sections/_form.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menu_sections/_menu_section.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menu_sections/edit.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menu_sections/index.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menu_sections/new.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menu_sections/show.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/organizations/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/organizations/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/organizations/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/organizations/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/organizations/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/organizations/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/roles/_form.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/roles/_role.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/roles/edit.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/roles/index.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/roles/new.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/roles/show.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/workers/file_processor_worker.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/workers/file_processor_worker.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -464,7 +410,7 @@
       <workItem from="1734601631575" duration="4605000" />
       <workItem from="1734873349083" duration="3057000" />
       <workItem from="1735012798928" duration="3778000" />
-      <workItem from="1736058647737" duration="10751000" />
+      <workItem from="1736058647737" duration="14825000" />
     </task>
     <servers />
   </component>
