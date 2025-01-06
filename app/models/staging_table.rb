@@ -1,5 +1,6 @@
 class StagingTable < ApplicationRecord
   include ClassyEnum::ActiveRecord
+  include ApplicationHelper
 
   belongs_to :import_job, class_name: 'ImportJob'
   has_many :import_logs, class_name: 'ImportLog'
@@ -32,13 +33,13 @@ class StagingTable < ApplicationRecord
   def return_data
     case data_type&.to_sym
     when :string
-      row_data.to_s
+      normalize_string(row_data.to_s)
     when :integer
       row_data.to_i
     when :float
       row_data.to_f
     when :boolean
-      row_data.to_s
+      normalize_string(row_data.to_s)
     else
       nil
     end

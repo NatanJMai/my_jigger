@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_05_104325) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_06_054552) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -100,6 +100,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_05_104325) do
     t.string "customer_price_currency", default: "BRL", null: false
     t.bigint "menu_id"
     t.bigint "organization_id"
+    t.string "normalized_name"
     t.index ["category_id", "name"], name: "index_items_on_category_id_and_name", unique: true
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["menu_id"], name: "index_items_on_menu_id"
@@ -126,6 +127,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_05_104325) do
     t.string "unit_price_currency", default: "BRL", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "total_amount_cents", default: 0, null: false
+    t.string "total_amount_currency", default: "BRL", null: false
     t.index ["item_id"], name: "index_order_items_on_item_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
   end
@@ -134,8 +137,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_05_104325) do
     t.bigint "organization_id"
     t.bigint "order_number"
     t.datetime "date"
-    t.integer "total_amount_cents", default: 0, null: false
-    t.string "total_amount_currency", default: "BRL", null: false
     t.boolean "data_imported"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

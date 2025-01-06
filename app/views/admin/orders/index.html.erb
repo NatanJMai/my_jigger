@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-12">
+    <div class="container jigger-form">
+      <div class="container-fluid p-0">
+        <h5>Orders List</h5>
+
+        <div class="row">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th scope="col">Order Nr</th>
+              <th scope="col">Order Date</th>
+              <th scope="col">Items</th>
+              <th scope="col"></th>
+              <th class="col-2">Total Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+              <%= render partial: 'admin/orders/order', collection: orders, as: :order %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

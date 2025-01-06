@@ -9,10 +9,13 @@ class FileParserService
   # Return the records objects to be created in Worker
   # @return Object[]
   def parse(object_type = nil)
-    if object_type == :menu
+    case object_type
+    when :menu
       name, result = MenuParserService.new(@file).parse
-    elsif object_type == :item
+    when :item
       name, result = ItemParserService.new(@file).parse
+    when :order
+      name, result = OrderParserService.new(@file).parse
     end
 
     [name, result]

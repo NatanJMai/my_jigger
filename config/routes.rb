@@ -28,10 +28,23 @@ Rails.application.routes.draw do
         resources :items, only: %i[index show]
       end
 
-      resources :categories, only: %i[index show]
+      resources :categories, shallow: true, only: %i[index show] do
+        resources :charts, only: [] do
+          collection do
+            get 'sales_performance_by_category'
+          end
+        end
+      end
+
       resources :import_jobs, except: %i[edit delete]
 
       resources :items, shallow: true do
+        resources :charts, only: [] do
+          collection do
+            get 'sales_performance_by_item'
+          end
+        end
+
         resource :datasheet, except: :index do
           resources :datasheet_lines do
             collection do
@@ -45,6 +58,7 @@ Rails.application.routes.draw do
       end
 
       resources :user_organizations, shallow: true
+      resources :orders, shallow: true, only: %i[show index]
     end
   end
 

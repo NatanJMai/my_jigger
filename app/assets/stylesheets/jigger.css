@@ -364,7 +364,8 @@ body {
 /* Boolean labels */
 .boolean-label {
   height: 20px;
-  width: 100px;
+  min-width: 100px;
+  max-width: 150px;
   border-radius: 50px;
   font-size: small;
   color: white;

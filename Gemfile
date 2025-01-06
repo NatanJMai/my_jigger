@@ -92,3 +92,7 @@ gem 'carrierwave'
 gem 'sidekiq'
 gem 'nokogiri'
 gem 'roo'
+gem 'fuzzy_match'
+gem "chartkick"
+gem "groupdate"
+

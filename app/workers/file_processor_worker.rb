@@ -22,6 +22,7 @@ class FileProcessorWorker
 
     begin
       @object_name, item_records = FileParserService.new(file.file).parse(import_type.to_sym)
+
       @import_job.update(reference_name: @object_name) if @object_name.present?
       process_item_rows(item_records)
       sleep(1)

@@ -1,5 +1,6 @@
 <tr>
-  <th scope="row"><% if item.image.present? %>
+  <th scope="row">
+    <% if item.image.present? %>
     <!-- Use the icon version of the image -->
     <%= image_tag item.image.icon.url, alt: "#{item.name} Icon", class: "img-thumbnail" %>
     <% else %>

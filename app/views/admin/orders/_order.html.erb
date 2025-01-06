@@ -1,0 +1,10 @@
+<tr>
+  <td><%= order.order_number %></td>
+  <td><%= date_label('', order.date)%></td>
+  <td><%= order.display_items %></td>
+  <td class="minimal"><%= order.boolean_label(order.data_imported,
+                                              label = { true => 'Imported',
+                                                        false => 'Not Imported' }) %>
+  </td>
+  <td class="minimal"><%= humanized_money_with_symbol Money.new(order.total_amount) %></td>
+</tr>

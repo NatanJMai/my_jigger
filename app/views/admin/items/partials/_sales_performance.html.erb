@@ -6,6 +6,11 @@
   </div>
 </div>
 
-<%= link_to 'View All', sales_performance_admin_menu_path(menu),
-            class: "btn btn-light shadow-sm px-4 mb-2" %>
+<%= sales_performance_by_item(item) %>
+<%= sales_performance_by_category(item.category) %>
+
+
+
+
+
 

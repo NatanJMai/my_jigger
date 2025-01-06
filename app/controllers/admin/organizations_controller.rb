@@ -1,6 +1,7 @@
 class Admin::OrganizationsController < AdminController
   load_and_authorize_resource
 
+  decorates_assigned :organization
 
   # GET /organizations or /organizations.json
   def index

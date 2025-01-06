@@ -42,6 +42,12 @@
                          class: '',
                          text: "#{@organization.name} Jobs" } %>
 
+    <%= render partial: 'layouts/cards/menu_card',
+               locals: { url: admin_organization_orders_path(@organization),
+                         title: 'Orders',
+                         class: '',
+                         text: "#{@organization.name} Orders" } %>
+
   </div>
 </div>
 

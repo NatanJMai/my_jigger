@@ -1,7 +1,7 @@
 class Admin::ItemsController < ApplicationController
   before_action :load_and_authorize_objects
 
-  decorates_assigned :items, :item, :menu, :organization
+  decorates_assigned :items, :item, :orders, :menu, :organization
 
   def index
     # If there's a menu, get items from that menu, otherwise get items from the organization
@@ -54,7 +54,9 @@ class Admin::ItemsController < ApplicationController
 
     if params[:id].present?
       @item = Item.find(params[:id])
+      @orders = @item.orders
       authorize! :read, @item
+      authorize! :read, @orders
     # First, try to load the organization based on organization_id
     elsif params[:organization_id].present?
       @organization = Organization.find(params[:organization_id])

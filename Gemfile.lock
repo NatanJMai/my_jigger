@@ -119,6 +119,7 @@ GEM
       image_processing (~> 1.1)
       marcel (~> 1.0.0)
       ssrf_filter (~> 1.0)
+    chartkick (5.1.2)
     classy_enum (4.0.0)
       activerecord (>= 3.2)
     concurrent-ruby (1.2.3)
@@ -155,8 +156,11 @@ GEM
     ffi (1.16.3)
     font-awesome-sass (6.5.2)
       sassc (~> 2.0)
+    fuzzy_match (2.1.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    groupdate (6.5.1)
+      activesupport (>= 7)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     image_processing (1.13.0)
@@ -415,6 +419,7 @@ DEPENDENCIES
   cancancan
   capybara
   carrierwave
+  chartkick
   classy_enum (~> 4.0)
   debug
   devise (~> 4.9)
@@ -422,6 +427,8 @@ DEPENDENCIES
   factory_bot_rails
   faker!
   font-awesome-sass
+  fuzzy_match
+  groupdate
   importmap-rails
   jbuilder
   jquery-rails
