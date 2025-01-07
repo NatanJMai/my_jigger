@@ -68,6 +68,6 @@ class Item < ApplicationRecord
     return if datasheet.present?
 
     self.datasheet = Datasheet.create(item: self, name: 'New Datasheet')
-    save
+    save!
   end
 end

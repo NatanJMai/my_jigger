@@ -24,6 +24,7 @@ class Organization < ApplicationRecord
   # @return Item
   def find_closest_item_or_create(product_name)
     normalized_input = normalize_string(product_name)
+
     items.find_or_create_by!(normalized_name: normalized_input) do |item|
       item.name = normalized_input
       item.category = Category.first

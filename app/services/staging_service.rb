@@ -30,11 +30,8 @@ class StagingService
                                  .by_table('item')
                                  .by_status('in_progress')
 
-    new_item = Item.create(name: @import_job.reference_name,
-                           data_imported: true,
-                           status: true,
-                           menu: @import_job.organization.menus.first,
-                           organization: organization)
+    new_item = organization.find_closest_item_or_create(@import_job.reference_name)
+    return unless new_item.present?
 
     grouped_records = staging_records.group_by(&:object_number)
     permitted_attributes = Ingredient.permitted_methods
