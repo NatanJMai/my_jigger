@@ -20,4 +20,9 @@ module ApplicationHelper
     str.gsub(/[^a-z0-9\s]/, ' ')           # Replace special characters with space
        .gsub(/\s+/, ' ')                   # Replace multiple spaces with a single space
   end
+
+  def money_graph_label(str)
+    money = Money.new(str)
+    "#{money}"
+  end
 end

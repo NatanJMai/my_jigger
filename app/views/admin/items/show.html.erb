@@ -31,6 +31,10 @@
     <div class="container jigger-form child-list sale-item blue">
       <%= render partial: 'layouts/shared/sale_items/sale_item' %>
     </div>
+
+    <div class="container jigger-form child-list sale-item white">
+      <%= render partial: 'layouts/shared/sale_items/sale_item' %>
+    </div>
   </div>
 </div>
 
@@ -38,15 +42,15 @@
   <div class="col-8">
     <div class="container jigger-form child-list">
       <div class="row">
-        <div class="col-6">
-          <%= render partial: 'admin/items/partials/sales_by_user' %>
+        <div class="col-12">
+          <%= render partial: 'admin/items/partials/revenue_performance' %>
         </div>
       </div>
     </div>
   </div>
   <div class="col-3">
     <div class="container jigger-form weekly-sales">
-      <%#= render partial: 'admin/items/partials/weekly_sales' %>
+      <%= render partial: 'admin/items/partials/weekly_sales' %>
     </div>
   </div>
 </div>

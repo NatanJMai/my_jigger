@@ -27,27 +27,31 @@ class Item < ApplicationRecord
     where(status: true).limit(5)
   }
 
-  # Instance method for sales performance of a single item
-  def sales_performance
-    # Define the month you are working with (example: January 2025)
-    start_date = Date.new(2025, 1, 1)
-    end_date = start_date.end_of_month
-
-    # Generate all dates within the month
-    all_dates = (start_date..end_date).to_a
+  def sales_performance_by_item(week = false)
+    start_date, end_date = if week
+                             [Date.today.beginning_of_week, Date.today.end_of_week]
+                           else
+                             [Date.today.beginning_of_month, Date.today.end_of_month]
+                           end
 
     # Query to get sales data
     sales = order_items
-              .where(item_id: id)
-              .joins(:order)
-              .where(orders: { date: start_date..end_date })
-              .group("DATE(orders.date)")
-              .select("DATE(orders.date) as sale_date, SUM(order_items.quantity) as total_sales")
+            .where(item_id: self.id)
+            .joins(:order)
+            .where(orders: { date: start_date..end_date })
+            .group('DATE(orders.date)')
+            .select('DATE(orders.date) as sale_date, SUM(order_items.quantity) as total_sales')
 
-    # Create a hash for sales data with all dates and corresponding sales, if any
-    sales_data = all_dates.map do |date|
-      sales_for_date = sales.find { |record| record.sale_date.to_date == date }
-      [date.to_s, sales_for_date ? sales_for_date.total_sales : 0] # If no sales, set to 0
+    sales_hash = sales.to_a.pluck(:sale_date, :total_sales).to_h
+
+    sales_data = (start_date..end_date).map do |date|
+      date_str = if week
+                   date.strftime("%A")
+                 else
+                   date.to_s
+                 end
+
+      [date_str, sales_hash[date] || 0] # 0 if no sales on a given date
     end
 
     sales_data
