@@ -1,8 +1,42 @@
 module StatisticsItemHelper
+  def item_production_costs(item)
+    pie_chart item_production_costs_admin_item_charts_path(item),
+              suffix: "%",
+              donut: true,
+              legend: "bottom",
+              download: { background: '#ffffff' },
+
+              library: {
+                plugins: {
+                  legend: {
+                    labels: {
+                      font: {
+                        size: 10
+                      }
+                    }
+                  }
+                },
+                rotation: 10,
+                animation: {
+                  duration: 1500,
+                  easing: 'easeInOutQuart'
+                }
+              },
+              title: 'Item Production Costs'
+  end
+
+
   def sales_performance_by_item(item)
     area_chart sales_performance_by_item_admin_item_charts_path(item),
                download: { background: '#ffffff' },
+               suffix: " items",
                library: {
+                 scales: {
+                   y: {
+                     ticks: { stepSize: 5 }
+                   }
+                 },
+
                  animation: {
                    duration: 1500,
                    easing: 'easeInOutQuart'
@@ -21,44 +55,31 @@ module StatisticsItemHelper
   end
 
   def sales_performance_by_item_weekly(item)
-    colors = %w[#005B96 #6497B1 #FF6F61 #6B4226 #FFD662]
+    bar_chart sales_performance_by_item_admin_item_charts_path(item, week: true),
+              colors: ['#FFA834'],
+              title: 'Item Performance (Week)',
+              suffix: " items",
+              library: {
+                scales: {
+                  x: {
+                    ticks: { stepSize: 5 },
+                    title: { display: false }
+                  }
+                },
+                barThickness: 15,
 
-    column_chart sales_performance_by_item_admin_item_charts_path(item, week: true),
-                 colors: colors,
-                 title: 'Item Performance (Week)',
-                 library: {
-                   scales: {
-                     y: {
-                       ticks: { stepSize: 5 },
-                       title: {
-                         display: true,
-                         text: 'Sales Quantity',
-                         color: 'gray',
-                         font: { size: 12 }
-                       }
-                     }
-                   },
+                animation: {
+                  duration: 1500,
+                  easing: 'easeInOutQuart'
+                },
 
-                   elements: {
-                     bar: {
-                       borderRadius: 2,
-                       borderWidth: 1
-                     }
-                   },
-
-                   animation: {
-                     duration: 1500,
-                     easing: 'easeInOutQuart'
-                   },
-
-                   plugins: {
-                     title: {
-                       display: true,
-                       padding: {
-                         bottom: 25
-                       }
-                     }
-                   }
-                 }
+                plugins: {
+                  title: {
+                    padding: {
+                      bottom: 25
+                    }
+                  }
+                }
+              }
   end
 end

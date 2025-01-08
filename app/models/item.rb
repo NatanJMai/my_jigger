@@ -27,12 +27,36 @@ class Item < ApplicationRecord
     where(status: true).limit(5)
   }
 
-  def sales_performance_by_item(week = false)
-    start_date, end_date = if week
+  ##
+  # Production costs of Item (percentage)
+  # @return [] - ['Gin', 20.0]
+  def item_production_costs
+    total_cost = datasheet_lines.sum(:cost_cents)
+    datasheet_lines.pluck(:name, :cost_cents).map do |name, cost_cents|
+      percentage = (cost_cents.to_f / total_cost) * 100
+      [name, percentage.round(1)]
+    end
+  end
+
+  ##
+  # Return sales performance by item
+  # @param options (Hash) - options
+  # :week - Weekly report
+  # :month - Monthly report
+  # :attribute - Order Item (:quantity or :total_amount_cents)
+  # :total_amount_cents - Order Item Total Amount report
+  # @return Object []
+  def sales_performance_by_item(options = {})
+    attribute = options[:attribute].presence || :quantity
+    weekday = options[:week]
+
+    start_date, end_date = if weekday
                              [Date.today.beginning_of_week, Date.today.end_of_week]
                            else
                              [Date.today.beginning_of_month, Date.today.end_of_month]
                            end
+
+    str = "SUM(order_items.#{attribute.to_s})"
 
     # Query to get sales data
     sales = order_items
@@ -40,21 +64,50 @@ class Item < ApplicationRecord
             .joins(:order)
             .where(orders: { date: start_date..end_date })
             .group('DATE(orders.date)')
-            .select('DATE(orders.date) as sale_date, SUM(order_items.quantity) as total_sales')
+            .select("DATE(orders.date) as sale_date, #{str} as total_sales")
 
     sales_hash = sales.to_a.pluck(:sale_date, :total_sales).to_h
 
-    sales_data = (start_date..end_date).map do |date|
-      date_str = if week
+    sales_data = format_sales_data(start_date,
+                                   end_date,
+                                   sales_hash,
+                                   {
+                                     week: weekday,
+                                     money: attribute == :total_amount_cents
+                                   })
+
+    # [["01-01-Jan", 10], ["01-01-Feb", 15], ["01-01-Mar", 25]]
+    sales_data
+  end
+
+  ##
+  # Format Sales data to send to Chartkick graphs
+  # @param start_date Date
+  # @param end_date Date
+  # @param sales_hash (Hash) - Hash object from sales performance method
+  # @param options Hash
+  # - week: date format %A - Monday, Tuesday, etc.
+  # - money: money string from cents - 20.00, etc.
+  # @return [[]]
+  def format_sales_data(start_date, end_date, sales_hash, options = {})
+    weekday = options[:week].present?
+    money = options[:money].present?
+
+    (start_date..end_date).map do |date|
+      date_str = if weekday
                    date.strftime("%A")
                  else
                    date.to_s
                  end
 
-      [date_str, sales_hash[date] || 0] # 0 if no sales on a given date
-    end
+      hash_str = if money
+                   money_graph_label(sales_hash[date] || 0)
+                 else
+                   sales_hash[date] || 0
+                 end
 
-    sales_data
+      [date_str, hash_str]
+    end
   end
 
   private

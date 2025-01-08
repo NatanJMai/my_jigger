@@ -5,11 +5,17 @@ class Admin::ChartsController < ApplicationController
   load_and_authorize_resource :category
   decorates_assigned :item
 
+  ##
+  # Category
+  # Sales Performance by Category
   def revenue_performance_by_category
     data = @category.sales_performance
     render json: data
   end
 
+  ##
+  # Category
+  # Sales Performance by Category
   def sales_performance_by_category
     items = @category.items
 
@@ -23,8 +29,20 @@ class Admin::ChartsController < ApplicationController
     render json: sales_performance
   end
 
+  ##
+  # Item
+  # Sales Performance by Item
   def sales_performance_by_item
-    sales_data = @item.sales_performance_by_item(params[:week])
+    sales_data = @item.sales_performance_by_item({ week: params[:week], attribute: :quantity })
+
+    render json: sales_data
+  end
+
+  ##
+  # Item
+  # Sales Performance by Item
+  def item_production_costs
+    sales_data = @item.item_production_costs
 
     render json: sales_data
   end

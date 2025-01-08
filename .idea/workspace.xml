@@ -5,12 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/form.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/form.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/charts_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/charts_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/admin/import_jobs_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/import_jobs_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/statistics_category_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/statistics_category_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/statistics_item_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/statistics_item_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/category.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/category.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/datasheet_line.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/datasheet_line.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/ingredient.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ingredient.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/item.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/organization.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/organization.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/staging_service.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/staging_service.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/partials/_item_info.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/partials/_item_info.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/shared/sale_items/_sale_item.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/shared/sale_items/_sale_item.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -411,7 +424,8 @@
       <workItem from="1735012798928" duration="3778000" />
       <workItem from="1736058647737" duration="14825000" />
       <workItem from="1736137078087" duration="22300000" />
-      <workItem from="1736207548833" duration="17506000" />
+      <workItem from="1736207548833" duration="18743000" />
+      <workItem from="1736305804202" duration="16922000" />
     </task>
     <servers />
   </component>

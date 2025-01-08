@@ -91,7 +91,6 @@
 
     .item-description {
       margin-top: 20px;
-
     }
   }
 
@@ -135,6 +134,10 @@
   &.weekly-sales {
     min-height: 320px;
   }
+
+  &.item-info {
+    height: 387px;
+  }
 }
 
 .jigger-form.child-list {
@@ -157,6 +160,10 @@
 .sale-item {
   height: 130px;
   background: var(--jigger-background);
+
+  .orders {
+    font-size: small;
+  }
 
   .fa {
     font-size: xx-large;

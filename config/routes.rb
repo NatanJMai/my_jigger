@@ -32,6 +32,7 @@ Rails.application.routes.draw do
         resources :charts, only: [] do
           collection do
             get 'sales_performance_by_category'
+            get 'revenue_performance_by_category'
           end
         end
       end
@@ -42,6 +43,7 @@ Rails.application.routes.draw do
         resources :charts, only: [] do
           collection do
             get 'sales_performance_by_item'
+            get 'item_production_costs'
           end
         end
 

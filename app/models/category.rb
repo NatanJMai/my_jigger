@@ -13,14 +13,14 @@ class Category < ApplicationRecord
   }
 
   ##
-  # Return hash with information
+  # Return hash with sales information (total_amount) by date period
   # e.g { name: "Item", data: { "Jan" => 10, "Feb" => 15, "Mar" => 25 } }
   # @return Object
   def sales_performance
     items.includes(order_items: :order).map do |item|
       {
         name: item.name,
-        data: item.sales_performance_by_item.to_h # Convert sales performance to a hash for Chartkick
+        data: item.sales_performance_by_item({ attribute: :total_amount_cents }).to_h # Convert sales performance to a hash for Chartkick
       }
     end
   end

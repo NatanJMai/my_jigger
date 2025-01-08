@@ -6,11 +6,18 @@ class DatasheetLine < ApplicationRecord
 
   accepts_nested_attributes_for :ingredient
 
+  before_save :titleize_name
+
   monetize :cost_cents, as: :cost
 
   def calculated_price
     return 0 unless volume && quantity && cost
 
     (quantity.to_f / volume) * cost
+  end
+
+  private
+  def titleize_name
+    self.name = titleize_string(name)
   end
 end

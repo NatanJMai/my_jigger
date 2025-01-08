@@ -21,6 +21,16 @@ module ApplicationHelper
        .gsub(/\s+/, ' ')                   # Replace multiple spaces with a single space
   end
 
+  ##
+  # Titleize string, usually used in before save
+  # @return String
+  def titleize_string(str)
+    str.titleize
+  end
+
+  ##
+  # Return string Money
+  # @return String
   def money_graph_label(str)
     money = Money.new(str)
     "#{money}"

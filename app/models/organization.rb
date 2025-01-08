@@ -1,6 +1,4 @@
 class Organization < ApplicationRecord
-  include ApplicationHelper
-
   belongs_to :manager, class_name: 'User'
   has_many :menus, class_name: 'Menu', dependent: :destroy
   has_many :items, class_name: 'Item', dependent: :destroy
@@ -25,10 +23,14 @@ class Organization < ApplicationRecord
   def find_closest_item_or_create(product_name)
     normalized_input = normalize_string(product_name)
 
-    items.find_or_create_by!(normalized_name: normalized_input) do |item|
-      item.name = normalized_input
-      item.category = Category.first
-      item.data_imported = true
+    item = items.find_by(normalized_name: normalized_input)
+
+    unless item.present?
+      item = items.create(name: normalized_input,
+                          category: categories.first,
+                          data_imported: true)
     end
+
+    item
   end
 end

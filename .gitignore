@@ -43,6 +43,9 @@ log/.keep
 *.txt
 *.iml
 /public/
+/cocktails/
+*.xls
+*.xlsx
 .idea/
 .idea/dataSources.local.xml
 .idea/dataSources.xml
