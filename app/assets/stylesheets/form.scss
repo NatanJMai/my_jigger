@@ -158,11 +158,42 @@
 }
 
 .sale-item {
-  height: 130px;
+  height: 122px;
   background: var(--jigger-background);
+  padding-left: 25px;
+  padding-right: 10px;
+  padding-top: 15px;
+
+  .title {
+    font-size: large;
+    font-weight: bold;
+    text-align: left;
+  }
 
   .orders {
     font-size: small;
+    font-weight: 100;
+    color: lightblue;
+    font-family: "Lucida Console", "Courier New", monospace;
+  }
+
+  .value {
+    font-size: xx-large;
+    font-weight: 700;
+
+    .date-str {
+      margin-left: 3px;
+      font-size: small;
+      font-weight: 100;
+      font-family: "Lucida Console", "Courier New", monospace;
+    }
+  }
+
+  .value:hover {
+    transform: scale(1.01);
+    transition: all linear 200ms;
+    z-index: 1;
+    cursor: pointer;
   }
 
   .fa {
@@ -170,7 +201,18 @@
   }
 
   &.blue {
+    margin-top: 0;
     background: var(--jigger-blue);
+    color: var(--jigger-background);
+  }
+
+  &.orange {
+    background: var(--jigger-square-orange);
+    color: var(--jigger-background);
+  }
+
+  &.purple {
+    background: var(--jigger-square-purple);
     color: var(--jigger-background);
   }
 

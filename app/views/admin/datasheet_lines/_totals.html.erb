@@ -1,9 +1,9 @@
  <%= turbo_frame_tag 'totals' do %>
     <div class="row values">
-      <div class="col-4 selling">
+      <div class="col-5 selling">
         <%= humanized_money_with_symbol item.customer_price %>
       </div>
-      <div class="col-3 costs"><%= humanized_money_with_symbol datasheet.total_costs %></div>
+      <div class="col-5 costs"><%= humanized_money_with_symbol Money.new(datasheet.total_costs) %></div>
     </div>
 
     <div class="row values">

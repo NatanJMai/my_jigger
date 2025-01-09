@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-8 title">
+    <div>
+      Nr of Orders M
+    </div>
+  </div>
+
+  <div class="col-2">
+    <i class="fa fa-cart-shopping" aria-hidden="true"></i>
+  </div>
+</div>
+
+<div class="row">
+  <div class="value">
+    <%= item.total_orders(attribute: :quantity) %>
+  </div>
+</div>

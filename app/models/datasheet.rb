@@ -24,7 +24,7 @@ class Datasheet < ApplicationRecord
   def calculate_cmv(value = 0.0)
     return 0.0 unless value.positive?
 
-    total = (total_costs.to_f / value.to_f) * 100
+    total = total_costs.to_f / value.to_f
     total.round(2)
   end
 

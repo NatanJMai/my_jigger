@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   include ClassyEnum::ActiveRecord
+  include ItemsHelper
 
   monetize :customer_price_cents, allow_nil: true
 
@@ -26,6 +27,34 @@ class Item < ApplicationRecord
   scope :best_five, lambda {
     where(status: true).limit(5)
   }
+
+  def best_day_month
+    sales = sales_performance_by_item(week: false)
+    value = sales.to_h&.max_by {|_key, value| value }
+
+    best_day_format(value[0], value[1])
+  end
+
+  # @param options (Hash) - options
+  # :week - Weekly report
+  # :attribute - Order Item (:quantity or :total_amount_cents)
+  # :total_amount_cents - Order Item Total Amount report
+  # @return Integer
+  def total_orders(options = {})
+    week = options[:week].present?
+    attribute = options[:attribute].presence || :quantity
+
+    start_date, end_date = if week
+                             [Date.today.beginning_of_week, Date.today.end_of_week]
+                           else
+                             [Date.today.beginning_of_month, Date.today.end_of_month]
+                           end
+
+    order_items
+      .joins(:order)
+      .where(orders: { date: start_date..end_date })
+      .sum(attribute)
+  end
 
   ##
   # Production costs of Item (percentage)
@@ -68,16 +97,14 @@ class Item < ApplicationRecord
 
     sales_hash = sales.to_a.pluck(:sale_date, :total_sales).to_h
 
-    sales_data = format_sales_data(start_date,
-                                   end_date,
-                                   sales_hash,
-                                   {
-                                     week: weekday,
-                                     money: attribute == :total_amount_cents
-                                   })
-
     # [["01-01-Jan", 10], ["01-01-Feb", 15], ["01-01-Mar", 25]]
-    sales_data
+    format_sales_data(start_date,
+                      end_date,
+                      sales_hash,
+                      {
+                        week: weekday,
+                        money: attribute == :total_amount_cents
+                      })
   end
 
   ##

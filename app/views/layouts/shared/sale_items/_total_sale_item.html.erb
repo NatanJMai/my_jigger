@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-8 title">
+    <div>
+      Total Sales (M)
+    </div>
+  </div>
+
+  <div class="col-3 align-right">
+    <i class="fa fa-solid fa-sack-dollar"></i>
+  </div>
+</div>
+
+<div class="row">
+  <div class="value">
+    <%= humanized_money_with_symbol Money.new(item.total_orders(attribute: :total_amount_cents))%>
+  </div>
+</div>

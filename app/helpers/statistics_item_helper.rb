@@ -51,13 +51,13 @@ module StatisticsItemHelper
                    }
                  }
                },
-               title: 'Sales Performance'
+               title: 'Sales Performance (Month)'
   end
 
   def sales_performance_by_item_weekly(item)
     bar_chart sales_performance_by_item_admin_item_charts_path(item, week: true),
               colors: ['#FFA834'],
-              title: 'Item Performance (Week)',
+              title: 'Item Performance (Current Week)',
               suffix: " items",
               library: {
                 scales: {

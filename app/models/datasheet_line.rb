@@ -11,9 +11,9 @@ class DatasheetLine < ApplicationRecord
   monetize :cost_cents, as: :cost
 
   def calculated_price
-    return 0 unless volume && quantity && cost
+    return 0 unless volume && quantity && cost_cents
 
-    (quantity.to_f / volume) * cost
+    (quantity.to_f / volume) * cost_cents
   end
 
   private
