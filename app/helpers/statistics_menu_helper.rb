@@ -1,0 +1,53 @@
+module StatisticsMenuHelper
+  def menu_sales_pie(menu)
+    pie_chart sales_performance_by_menu_pie_admin_menu_charts_path(menu),
+              title: 'Sales Performance By Menu',
+              legend: "bottom",
+              download: { background: '#ffffff' },
+              suffix: " items",
+              library: {
+                plugins: {
+                  legend: {
+                    labels: {
+                      font: {
+                        size: 10
+                      }
+                    }
+                  }
+                },
+                rotation: 10,
+                animation: {
+                  duration: 1500,
+                  easing: 'easeInOutQuart'
+                }
+              }
+  end
+
+  def sales_performance_by_menu(menu)
+    line_chart sales_performance_by_menu_admin_menu_charts_path(menu),
+               download: { background: '#ffffff' },
+               suffix: " items",
+               library: {
+                 scales: {
+                   y: {
+                     ticks: { stepSize: 5 }
+                   }
+                 },
+
+                 animation: {
+                   duration: 1500,
+                   easing: 'easeInOutQuart'
+                 },
+
+                 plugins: {
+                   title: {
+                     display: true,
+                     padding: {
+                       bottom: 25
+                     }
+                   }
+                 }
+               },
+               title: 'Sales Performance (Month)'
+  end
+end

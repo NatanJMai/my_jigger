@@ -10,4 +10,12 @@ class ItemDecorator < ApplicationDecorator
   #     end
   #   end
 
+  ##
+  # Return label of Best Day
+  # e.g Wednesday, 22nd January
+  # @return String
+  def best_day_label
+    value = best_day_month
+    best_day_format(value[0], value[1])
+  end
 end

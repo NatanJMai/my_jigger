@@ -25,6 +25,14 @@ Rails.application.routes.draw do
           get :matrix_popularity
           get :sales_performance
         end
+
+        resources :charts, only: [] do
+          collection do
+            get 'sales_performance_by_menu_pie'
+            get 'sales_performance_by_menu'
+          end
+        end
+
         resources :items, only: %i[index show]
       end
 

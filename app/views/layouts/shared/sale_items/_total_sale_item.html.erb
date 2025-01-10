@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-8 title">
     <div>
-      Total Sales (M)
+      <%= label %>
     </div>
   </div>
 
@@ -12,6 +12,6 @@
 
 <div class="row">
   <div class="value">
-    <%= humanized_money_with_symbol Money.new(item.total_orders(attribute: :total_amount_cents))%>
+    <%= humanized_money_with_symbol Money.new total %>
   </div>
 </div>

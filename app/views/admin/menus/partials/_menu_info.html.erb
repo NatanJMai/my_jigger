@@ -1,37 +1,54 @@
-<div class="card-header">
-  <div class="row">
-    <div class="col-4">
-      <h4 class="card-title text-left"><%= menu.name %></h4>
-    </div>
-    <div class="col-3">
+<div class="row card-header">
+  <div class="col-5">
+    <h4 class="card-title text-left"><%= menu.name %></h4>
+  </div>
+
+  <div class="col-7">
+    <div class="row">
+      <div class="col-5">
         <%= menu.boolean_label(menu.status) %>
+      </div>
+      <div class="col-5">
+        <%= menu.boolean_label(menu.data_imported,
+                               label = { true => 'Data Imported',
+                                         false => 'Not Imported' }) %>
+      </div>
     </div>
+  </div>
+</div>
 
-    <div class="col-3">
-      <%= menu.boolean_label(menu.data_imported,
-                             label = { true => 'Data Imported',
-                                       false => 'Not Imported' }) %>
+<div class="row">
+  <div class="col-6">
+    <div class="row jigger-label">
+      <div class="col-12 align-left info-description">
+        <%= menu.organization.name %>
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-12">
-      <h7 class="card-title text-left"><%= menu.organization.name %></h7>
+  <div class="col-6">
+    <div class="row jigger-label">
+      <div class="align-center info-label"><%= menu.description %></div>
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-12">
-      <h7 class="card-title text-left"><%= menu.release_date %></h7>
+<div class="row">
+  <div class="col-12">
+    <div class="row jigger-label">
+      <div class="col-6 align-left info-description">
+        <%= menu.released_at %>
+      </div>
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-12 info-label">
-      <br>
-      <div><b>Description</b></div>
-
-      <div class="text-left"><%= menu.description %></div>
+<div class="item-table">
+  <div class="col-12">
+    <div class="row jigger-label">
+      <div class="col-12 align-left info-description">
+        <%= render partial: 'admin/menus/partials/item_list' %>
+      </div>
     </div>
   </div>
 </div>

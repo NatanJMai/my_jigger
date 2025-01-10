@@ -30,9 +30,8 @@ class Item < ApplicationRecord
 
   def best_day_month
     sales = sales_performance_by_item(week: false)
-    value = sales.to_h&.max_by {|_key, value| value }
-
-    best_day_format(value[0], value[1])
+    value = sales.to_h&.max_by { |_key, value| value }
+    value
   end
 
   # @param options (Hash) - options

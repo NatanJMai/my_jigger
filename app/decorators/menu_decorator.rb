@@ -14,6 +14,6 @@ class MenuDecorator < ApplicationDecorator
   # Returns CSS Label (status) Style
   # @return String
   def released_at
-    h.date_label('Released On:', release_date) if release_date.present?
+    h.date_label('Released on', release_date) if release_date.present?
   end
 end

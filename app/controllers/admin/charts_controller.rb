@@ -2,8 +2,9 @@ class Admin::ChartsController < ApplicationController
   include MoneyRails::ActionViewExtension
 
   load_and_authorize_resource :item
+  load_and_authorize_resource :menu
   load_and_authorize_resource :category
-  decorates_assigned :item
+  decorates_assigned :item, :menu, :category
 
   ##
   # Category
@@ -45,5 +46,29 @@ class Admin::ChartsController < ApplicationController
     sales_data = @item.item_production_costs
 
     render json: sales_data
+  end
+
+  ##
+  # Menu (PIE)
+  # Item sale performance
+  def sales_performance_by_menu_pie
+    items = @menu.items
+
+    # Query to get sales performance of all items in the menu
+    sales_performance = items
+                        .joins(:order_items)
+                        .select('items.id, items.name, SUM(order_items.quantity) AS total_quantity')
+                        .group('items.id, items.name')
+                        .pluck('items.name, SUM(order_items.quantity) AS total_quantity')
+
+    render json: sales_performance
+  end
+
+  ##
+  # Menu (Line Bar`)
+  # Item sale performance
+  def sales_performance_by_menu
+    data = @menu.sales_performance_quantity
+    render json: data
   end
 end

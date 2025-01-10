@@ -1,5 +1,10 @@
+.jigger-form.child-list.matrix-popularity {
+  padding: 15px;
+}
+
 .matrix-popularity {
-  height: 100%;
+  height: 387px;
+  padding-left: 20px;
 
   .line-with-arrow {
     position: relative;
@@ -25,10 +30,10 @@
 
   .right .label {
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     width: 100px;
-    transform: translateX(-75%);
+    transform: translateX(-50%);
     background-color: #f0f0f0;
     padding: 2px 5px;
     font-size: 14px;
@@ -37,7 +42,7 @@
 
   .top {
     width: 1px;
-    height: 450px;
+    height: 300px;
     background-color: var(--jigger-border);
   }
 
@@ -67,6 +72,8 @@
 
   .row-left-square {
     margin-bottom: -20px;
+    margin-top: -20px;
+    height: 320px;
   }
 
   .row-square {

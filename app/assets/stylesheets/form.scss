@@ -137,6 +137,10 @@
 
   &.item-info {
     height: 387px;
+
+    .item-table {
+      margin-top: 50px;
+    }
   }
 }
 
@@ -148,7 +152,13 @@
 
     .custom-col {
       min-width: 150px;
+      height: 350px;
       scale: 0.95;
+
+      .row-square {
+        margin-top: 5px;
+        height: 145px;
+      }
 
       h4 {
         font-size: 14pt;
