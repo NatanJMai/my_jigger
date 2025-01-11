@@ -34,6 +34,22 @@ class Item < ApplicationRecord
     value
   end
 
+  ##
+  # Item price - costs
+  # @return Integer
+  def profit
+    customer_price_cents - costs
+  end
+
+  ##
+  # Item costs
+  # @return Integer
+  def costs
+    datasheet_lines.map(&:calculated_price).sum
+  end
+
+  ##
+  # Return Total (attribute) information
   # @param options (Hash) - options
   # :week - Weekly report
   # :attribute - Order Item (:quantity or :total_amount_cents)
@@ -59,10 +75,10 @@ class Item < ApplicationRecord
   # Production costs of Item (percentage)
   # @return [] - ['Gin', 20.0]
   def item_production_costs
-    total_cost = datasheet_lines.sum(:cost_cents)
-    datasheet_lines.pluck(:name, :cost_cents).map do |name, cost_cents|
-      percentage = (cost_cents.to_f / total_cost) * 100
-      [name, percentage.round(1)]
+    total_cost = costs
+    datasheet_lines.map do |line|
+      percentage = (line.calculated_price / total_cost) * 100
+      [line.name, percentage.round(1)]
     end
   end
 

@@ -30,6 +30,7 @@ Rails.application.routes.draw do
           collection do
             get 'sales_performance_by_menu_pie'
             get 'sales_performance_by_menu'
+            get 'price_vs_costs_by_menu'
           end
         end
 

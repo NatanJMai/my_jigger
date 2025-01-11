@@ -50,4 +50,16 @@ module StatisticsMenuHelper
                },
                title: 'Sales Performance (Month)'
   end
+
+  def price_vs_costs(menu)
+    colors = %w[#FFCCCB #ADD8E6]
+    bar_chart price_vs_costs_by_menu_admin_menu_charts_path(menu),
+              stacked: true,
+              prefix: "$",
+              colors: colors,
+              library: {
+                indexAxis: 'y',
+                barThickness: 15,
+              }, title: 'Cost vs Price'
+  end
 end

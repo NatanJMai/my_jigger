@@ -8,7 +8,7 @@ class Admin::MenusController < AdminController
   load_and_authorize_resource :menu, through: :organization  # Load the menu for the given organization
 
   decorates_assigned :menus, :menu
-  decorates_assigned :items, :best_five
+  decorates_assigned :items, :best_five, :ranking_items
 
   # GET /menus or /menus.json
   def index
@@ -18,6 +18,7 @@ class Admin::MenusController < AdminController
   # GET /menus/1 or /menus/1.json
   def show
     @items = @menu.items.order(:name)
+    @ranking_items = @menu.ranking_items
     @best_five = @items.best_five
   end
 

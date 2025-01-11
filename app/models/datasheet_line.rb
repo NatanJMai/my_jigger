@@ -8,7 +8,7 @@ class DatasheetLine < ApplicationRecord
 
   before_save :titleize_name
 
-  monetize :cost_cents, as: :cost
+  monetize :cost_cents
 
   def calculated_price
     return 0 unless volume && quantity && cost_cents

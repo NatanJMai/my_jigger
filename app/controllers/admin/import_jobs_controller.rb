@@ -32,7 +32,7 @@ class Admin::ImportJobsController < AdminController
 
     if @import_job.save
       # Enqueue the worker to process the file
-      FileProcessorWorker.perform_async(@import_job.id, 'order')
+      FileProcessorWorker.perform_async(@import_job.id, 'item')
 
       # Render the document view to start real-time updates
       respond_to do |format|

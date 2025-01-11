@@ -41,7 +41,7 @@ class StagingService
 
       new_ingredient = organization.ingredients.find_or_create_by(name: ingredient_name)
 
-      new_datasheet_line = new_item.datasheet_lines.new
+      new_datasheet_line = new_item.datasheet.datasheet_lines.new
 
       records.each do |record|
         attribute = record.attribute_name.to_sym

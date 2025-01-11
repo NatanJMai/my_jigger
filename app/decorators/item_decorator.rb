@@ -18,4 +18,11 @@ class ItemDecorator < ApplicationDecorator
     value = best_day_month
     best_day_format(value[0], value[1])
   end
+
+  ##
+  # Return Item name with link
+  # @return String
+  def display_item_link
+    "<a class='item-link' href='#{Rails.application.routes.url_helpers.admin_item_path(id)}'>#{ERB::Util.html_escape(name)}</a>".html_safe
+  end
 end

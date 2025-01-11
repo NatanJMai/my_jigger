@@ -34,28 +34,43 @@
 </div>
 
 <div class="row">
-  <div class="col-7">
-    <div class="container jigger-form child-list">
-      <div class="row">
-        <div class="col-12">
-          <%= render partial: 'admin/menus/partials/sales_performance' %>
+  <div class="custom-container col-7">
+    <div class="row">
+      <div class="col-12">
+        <div class="container jigger-form child-list">
+          <div class="row">
+            <div class="col-12">
+              <%= render partial: 'admin/menus/partials/sales_performance' %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-</div>
+    <div class="row">
+      <div class="col-12">
+        <div class="container jigger-form child-list">
+          <%= render partial: 'admin/menus/partials/price_vs_costs' %>
+        </div>
+      </div>
 
-<div class="row">
-  <div class="col-4">
-    <div class="container jigger-form child-list">
-      <%= render partial: 'admin/menus/partials/sales_performance' %>
+<!--      <div class="col-5">-->
+<!--        <div class="container jigger-form child-list matrix-popularity ">-->
+          <%#= render partial: 'admin/menus/partials/matrix/menu_matrix' %>
+<!--        </div>-->
+<!--      </div>-->
     </div>
   </div>
 
-  <div class="col-3">
-    <div class="container jigger-form child-list matrix-popularity ">
-      <%= render partial: 'admin/menus/partials/matrix/menu_matrix' %>
+  <div class="ranking-container col-3">
+    <div class="col-12">
+      <div class="container jigger-form child-list">
+        <div class="row">
+          <div class="col-12">
+            <%= render partial: 'admin/menus/partials/ranking_items' %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

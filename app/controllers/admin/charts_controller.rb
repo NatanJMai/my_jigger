@@ -71,4 +71,13 @@ class Admin::ChartsController < ApplicationController
     data = @menu.sales_performance_quantity
     render json: data
   end
+
+  ##
+  # Menu (Double Bar`)
+  # Price vs Costs graph
+  def price_vs_costs_by_menu
+    data = @menu.price_vs_costs
+
+    render json: data
+  end
 end
