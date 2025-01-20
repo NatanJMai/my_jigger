@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-12" >
+    <% best_five.each do |item| %>
+      <% if item.image.present? %>
+        <!-- Use the icon version of the image -->
+        <%= image_tag item.image.thumb.url, alt: "#{item.name} Icon", class: "img-thumbnail" %>
+      <% else %>
+        <!-- Fallback for no image -->
+          <span class="text-muted">No Image</span>
+      <% end %>
+    <% end %>
+  </div>
+</div>

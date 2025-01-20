@@ -41,11 +41,23 @@ class Item < ApplicationRecord
     customer_price_cents - costs
   end
 
+  def markup_percentage
+    return 0 if customer_price_cents.zero? # Avoid division by zero
+    (profit / customer_price_cents) * 100
+  end
+
   ##
   # Item costs
   # @return Integer
   def costs
     datasheet_lines.map(&:calculated_price).sum
+  end
+
+  ##
+  # Item costs
+  # @return Integer
+  def costs_percentage
+    datasheet.calculate_cmv
   end
 
   ##

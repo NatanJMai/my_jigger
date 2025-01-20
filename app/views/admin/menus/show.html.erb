@@ -1,79 +1,55 @@
-<div class="row">
-  <div class="col-5">
-    <div class="container jigger-form item-info">
-      <%= render partial: 'admin/menus/partials/menu_info' %>
-    </div>
+<!-- Secondary Navbar with Tabs -->
+<nav class="navbar secondary-navbar">
+  <div class="container-fluid">
+    <ul class="nav nav-tabs" id="secondaryTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1"
+                type="button" role="tab" aria-controls="tab1" aria-selected="true">
+          Dashboard
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2"
+                type="button" role="tab" aria-controls="tab2" aria-selected="false">
+          Items
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3"
+                type="button" role="tab" aria-controls="tab3" aria-selected="false">
+          Categories
+        </button>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab4-tab" data-bs-toggle="tab" data-bs-target="#tab4"
+                type="button" role="tab" aria-controls="tab4" aria-selected="false">
+          Insights
+        </button>
+      </li>
+    </ul>
   </div>
+</nav>
 
-  <div class="col-2">
-    <div class="container jigger-form child-list sale-item blue">
-      <%= render partial: 'layouts/shared/sale_items/total_sale_item',
-                 locals: { label: 'Total Sales (M)',
-                           total: menu.total_item_orders(:total_amount_cents)} %>
-    </div>
+<div class="container">
+  <div class="tab-content" id="tabContent">
+    <!-- Tab 1 -->
+   <%= render partial: 'admin/menus/partials/tab1' %>
 
-    <div class="container jigger-form child-list sale-item purple">
-      <%= render partial: 'layouts/shared/sale_items/number_orders_item',
-                 locals: { label: 'Nr of Orders M',
-                           total: menu.total_item_orders(:quantity) } %>
-    </div>
+    <!-- Tab 2 -->
+    <%= render partial: 'admin/menus/partials/tab2' %>
 
-    <!-- FIXME: Need to calculate the best day of Menu  -->
-    <div class="container jigger-form child-list sale-item orange">
-      <%= render partial: 'layouts/shared/sale_items/best_day_item',
-                 locals: { label: 'The Best Day',
-                           total: items.first.best_day_label } %>
-    </div>
-  </div>
+    <!-- Tab 3 -->
+    <%= render partial: 'admin/menus/partials/tab3' %>
 
-  <div class="col-3">
-    <div class="container jigger-form category-performance">
-      <%= render partial: 'admin/menus/partials/menu_sales_pie' %>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="custom-container col-7">
-    <div class="row">
-      <div class="col-12">
-        <div class="container jigger-form child-list">
-          <div class="row">
-            <div class="col-12">
-              <%= render partial: 'admin/menus/partials/sales_performance' %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12">
-        <div class="container jigger-form child-list">
-          <%= render partial: 'admin/menus/partials/price_vs_costs' %>
-        </div>
-      </div>
-
-<!--      <div class="col-5">-->
-<!--        <div class="container jigger-form child-list matrix-popularity ">-->
-          <%#= render partial: 'admin/menus/partials/matrix/menu_matrix' %>
-<!--        </div>-->
-<!--      </div>-->
-    </div>
-  </div>
-
-  <div class="ranking-container col-3">
-    <div class="col-12">
-      <div class="container jigger-form child-list">
-        <div class="row">
-          <div class="col-12">
-            <%= render partial: 'admin/menus/partials/ranking_items' %>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Tab 4 -->
+    <%= render partial: 'admin/menus/partials/tab4' %>
   </div>
 </div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 <%= render partial: 'layouts/cards/menu_card',
            locals: { url: new_admin_organization_import_job_path(current_organization),

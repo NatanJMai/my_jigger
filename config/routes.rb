@@ -29,8 +29,11 @@ Rails.application.routes.draw do
         resources :charts, only: [] do
           collection do
             get 'sales_performance_by_menu_pie'
+            get 'sales_performance_by_categories_pie'
             get 'sales_performance_by_menu'
+            get 'revenue_by_category'
             get 'price_vs_costs_by_menu'
+            get 'costs_vs_profit_by_menu'
           end
         end
 

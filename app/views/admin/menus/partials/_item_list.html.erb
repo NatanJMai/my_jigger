@@ -1,13 +1,42 @@
-<div class="row">
-  <div class="col-12" >
-    <% best_five.each do |item| %>
-      <% if item.image.present? %>
-        <!-- Use the icon version of the image -->
-        <%= image_tag item.image.thumb.url, alt: "#{item.name} Icon", class: "img-thumbnail" %>
-      <% else %>
-        <!-- Fallback for no image -->
-          <span class="text-muted">No Image</span>
-      <% end %>
-    <% end %>
+<div class="card-header">
+  <div class="col-12">
+    <h4 class="card-title text-left">Menu Items</h4>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-12">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th class="col">Category</th>
+        <th class="col">Price ($)</th>
+        <th class="col">Cost of Goods ($)</th>
+        <th class="col">Cost of Goods (%)</th>
+        <th class="col">Profit Margin ($)</th>
+        <th class="col">Markup Margin (%)</th>
+        <th class="col">Quantity Sold</th>
+        <th class="col">Total Revenue</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <% items.each do |item| %>
+        <tr>
+          <td><%= item.display_item_link %></td>
+          <td><%= item.category.decorate.display_category_link %></td>
+          <td><%= humanized_money_with_symbol Money.new(item.customer_price_cents)  %></td>
+          <td><%= humanized_money_with_symbol Money.new(item.costs) %></td>
+          <td><%= item.costs_percentage %>%</td>
+          <td><%= humanized_money_with_symbol Money.new(item.profit) %></td>
+          <td><%= item.markup_percentage.round(2) %>%</td>
+          <td><%= item.total_orders(attribute: :quantity) %> units</td>
+          <td><%= humanized_money_with_symbol Money.new(item.total_orders(attribute: :total_amount_cents) )%></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+

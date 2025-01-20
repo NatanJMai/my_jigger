@@ -1,6 +1,7 @@
 class Menu < ApplicationRecord
   belongs_to :organization, class_name: 'Organization'
   has_many :items, class_name: 'Item'
+  has_many :categories, class_name: 'Category', through: :items
 
   validates :name, :organization_id, presence: true
 
@@ -45,6 +46,24 @@ class Menu < ApplicationRecord
     end
   end
 
+  ##
+  # Return hash with revenue by Category
+  # @return Object
+  def revenue_by_category
+    values = categories.map do |category|
+      {
+        name: category.name,
+        total: Money.new(category.total_sold).to_f
+      }
+    end
+
+    [{ name: 'Total', data: values.map { |item| [item[:name], item[:total]] } }]
+  end
+
+  ##
+  # Return hash with sales information (total_amount) by date period
+  # e.g { name: "Item", data: { "price" => 10, "cost" => 15 } }
+  # @return Object
   def price_vs_costs
     values = items.map do |item|
       {
@@ -54,14 +73,27 @@ class Menu < ApplicationRecord
       }
     end
 
-    [{
-       name: "Cost",
-       data: values.map { |item| [item[:name], item[:cost]] }
-     },
-     {
-        name: "Price",
-        data: values.map { |item| [item[:name], item[:price]] }
+    [{ name: 'Cost', data: values.map { |item| [item[:name], item[:cost]] } },
+     { name: 'Price', data: values.map { |item| [item[:name], item[:price]] } }]
+  end
+
+
+  ##
+  # Return hash with sales information (total_amount) by date period
+  # e.g { name: "Item", data: { "price" => 10, "cost" => 15 } }
+  # @return Object
+  def costs_vs_profit
+    values = items.map do |item|
+      {
+        name: item.name,
+        cost: Money.new(item.costs).to_f,
+        price: Money.new(item.customer_price_cents).to_f,
+        profit: Money.new(item.profit).to_f
       }
-    ]
+    end
+
+    [{ name: 'Cost', data: values.map { |item| [item[:name], item[:cost]] } },
+     { name: 'Price', data: values.map { |item| [item[:name], item[:price]] } },
+     { name: 'Profit', data: values.map { |item| [item[:name], item[:profit]] } }]
   end
 end

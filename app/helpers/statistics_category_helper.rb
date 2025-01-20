@@ -1,8 +1,9 @@
 module StatisticsCategoryHelper
   def monthly_revenue_performance(category)
-    colors = %w[#005B96 #6497B1 #FF6F61 #6B4226 #FFD662]
+    colors = ["#FF6F61", "#FFD700", "#00CED1", "#FF4500", "#7CFC00",
+              "#00FA9A", "#1E90FF", "#FF1493", "#FF8C00", "#ADFF2F"]
 
-    area_chart revenue_performance_by_category_admin_category_charts_path(category),
+    line_chart revenue_performance_by_category_admin_category_charts_path(category),
                title: 'Monthly Revenue Performance',
                colors: colors,
                suffix: "$",

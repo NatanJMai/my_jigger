@@ -21,8 +21,8 @@ class Datasheet < ApplicationRecord
   # Returns CMV of Datasheet from given value (Customer Price)
   # @param value (Decimal)
   # @return Decimal
-  def calculate_cmv(value = 0.0)
-    return 0.0 unless value.positive?
+  def calculate_cmv(value = item&.customer_price&.to_f)
+    return 0.0 unless value.present? && value.positive?
 
     total = total_costs.to_f / value.to_f
     total.round(2)

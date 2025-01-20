@@ -1,0 +1,36 @@
+<div class="card-header">
+  <div class="col-12">
+    <h4 class="card-title text-left">Categories</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th class="col"></th>
+        <th class="col">Nr Items</th>
+        <th class="col">Quantity Sold</th>
+        <th class="col">Total Revenue</th>
+        <th class="col">Description</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <% categories.each do |category| %>
+        <tr>
+          <td><%= category.display_category_link %></td>
+          <td><%= category.boolean_label(category.status) %></td>
+          <td><%= category.number_items %> items</td>
+          <td><%= category.quantity_sold %> items</td>
+          <td><%= humanized_money_with_symbol Money.new(category.total_sold) %></td>
+          <td><%= category.description %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+

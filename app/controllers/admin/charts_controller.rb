@@ -65,6 +65,31 @@ class Admin::ChartsController < ApplicationController
   end
 
   ##
+  # Menu (Categories PIE)
+  # Categories sale performance
+  def sales_performance_by_categories_pie
+    items = @menu.items
+
+    # Query to get sales performance of all items in the menu
+    sales_performance = items
+                        .joins(:order_items)
+                        .joins(:category)
+                        .select('categories.id, categories.name, SUM(order_items.quantity) AS total_quantity')
+                        .group('categories.id, categories.name')
+                        .pluck('categories.name, SUM(order_items.quantity) AS total_quantity')
+
+    render json: sales_performance
+  end
+
+  ##
+  # Menu (Categories Column Bar)
+  # Categories sale performance
+  def revenue_by_category
+    data = @menu.revenue_by_category
+    render json: data
+  end
+
+  ##
   # Menu (Line Bar`)
   # Item sale performance
   def sales_performance_by_menu
@@ -73,10 +98,19 @@ class Admin::ChartsController < ApplicationController
   end
 
   ##
-  # Menu (Double Bar`)
+  # Menu (Double Bar)
   # Price vs Costs graph
   def price_vs_costs_by_menu
     data = @menu.price_vs_costs
+
+    render json: data
+  end
+
+  ##
+  # Menu (Double Bar)
+  # Costs vs Profit
+  def costs_vs_profit_by_menu
+    data = @menu.costs_vs_profit
 
     render json: data
   end

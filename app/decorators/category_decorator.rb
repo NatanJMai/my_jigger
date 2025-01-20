@@ -10,4 +10,10 @@ class CategoryDecorator < ApplicationDecorator
   #     end
   #   end
 
+  ##
+  # Return Item name with link
+  # @return String
+  def display_category_link
+    "<a class='item-link' href='#{Rails.application.routes.url_helpers.admin_category_path(id)}'>#{ERB::Util.html_escape(name)}</a>".html_safe
+  end
 end
