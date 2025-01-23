@@ -78,3 +78,6 @@ vendor/bundle/ruby/3.2.0/bundler/gems/faker-56a96cc3d54b/
 .idea/my_jigger.iml
 .idea/sqldialects.xml
 .idea/workspace.xml
+*.xls
+*.xlsx
+*.xlsx*

@@ -154,7 +154,20 @@
 .jigger-form.child-list {
   margin-top: 10px;
 
+  // Insight tab (Menu screen)
   &.matrix-popularity {
+    &.matrix-insight {
+      height: 550px;
+
+      .line-with-arrow.top {
+        height: 460px;
+      }
+
+      .row-left-square {
+        height: 480px;
+      }
+    }
+
     padding: 40px;
 
     .custom-col {
