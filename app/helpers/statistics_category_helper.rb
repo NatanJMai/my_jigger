@@ -1,12 +1,11 @@
 module StatisticsCategoryHelper
   def monthly_revenue_performance(category)
-    colors = ["#FF6F61", "#FFD700", "#00CED1", "#FF4500", "#7CFC00",
-              "#00FA9A", "#1E90FF", "#FF1493", "#FF8C00", "#ADFF2F"]
+    colors = %w[#FF6F61 #FFD700 #00CED1 #FF4500 #7CFC00 #00FA9A #1E90FF #FF1493 #FF8C00 #ADFF2F]
 
     line_chart revenue_performance_by_category_admin_category_charts_path(category),
                title: 'Monthly Revenue Performance',
                colors: colors,
-               suffix: "$",
+               suffix: '$',
                library: {
                  scales: {
                    y: {
@@ -39,9 +38,9 @@ module StatisticsCategoryHelper
   def sales_performance_by_category(category)
     pie_chart sales_performance_by_category_admin_category_charts_path(category),
               title: 'Sales Performance By Category',
-              legend: "bottom",
+              legend: 'bottom',
               download: { background: '#ffffff' },
-              suffix: " items",
+              suffix: ' items',
               library: {
                 plugins: {
                   legend: {

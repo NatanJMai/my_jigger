@@ -7,10 +7,8 @@
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/form.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/form.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab4.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab4.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_matrix_popularity.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_matrix_popularity.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_menu_matrix.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_menu_matrix.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_squares.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_squares.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/statistics_category_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/statistics_category_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/statistics_menu_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/statistics_menu_helper.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/admin/menus/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/show.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -421,6 +419,8 @@
       <workItem from="1736853530520" duration="3008000" />
       <workItem from="1737366843124" duration="6733000" />
       <workItem from="1737544946529" duration="2584000" />
+      <workItem from="1737635364180" duration="828000" />
+      <workItem from="1737788939510" duration="754000" />
     </task>
     <servers />
   </component>

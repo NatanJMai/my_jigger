@@ -49,26 +49,26 @@ module StatisticsMenuHelper
 
   def revenue_by_category(menu)
     column_chart revenue_by_category_admin_menu_charts_path(menu),
-              title: 'Revenue By Categories',
-                 colors: ['#9087FC'],
-              legend: "bottom",
-              prefix: "$",
-                 library: {
-                plugins: {
-                  legend: {
-                    labels: {
-                      font: {
-                        size: 10
-                      }
-                    }
-                  }
-                },
-                rotation: 10,
-                animation: {
-                  duration: 1500,
-                  easing: 'easeInOutQuart'
-                }
-              }
+                 title: 'Revenue By Categories',
+                    colors: ['#9087FC'],
+                 legend: "bottom",
+                 prefix: "$",
+                    library: {
+                   plugins: {
+                     legend: {
+                       labels: {
+                         font: {
+                           size: 10
+                         }
+                       }
+                     }
+                   },
+                   rotation: 10,
+                   animation: {
+                     duration: 1500,
+                     easing: 'easeInOutQuart'
+                   }
+                 }
   end
 
   def sales_performance_by_menu(menu)
@@ -108,18 +108,26 @@ module StatisticsMenuHelper
               library: {
                 indexAxis: 'y',
                 barThickness: 15,
+                animation: {
+                  duration: 1500,
+                  easing: 'easeInOutQuart'
+                }
               }, title: 'Cost vs Price'
   end
 
   def cost_vs_profit(menu)
     colors = %w[#FFCCCB #ADD8E6 #90EE90]
     column_chart costs_vs_profit_by_menu_admin_menu_charts_path(menu),
-              stacked: false,
-              prefix: "$",
-              colors: colors,
-              library: {
-                indexAxis: 'x',
-                barThickness: 15,
-              }, title: 'Cost vs Price'
+                 stacked: false,
+                 prefix: "$",
+                 colors: colors,
+                 library: {
+                   indexAxis: 'x',
+                   barThickness: 15,
+                   animation: {
+                     duration: 1500,
+                     easing: 'easeInOutQuart'
+                   }
+                 }, title: 'Cost vs Price'
   end
 end
