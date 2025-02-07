@@ -6,50 +6,67 @@
     </button>
   </div>
 
-  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
+  <p class="text-gray font-weight-bold text-uppercase small pb-4 mb-0">Main</p>
 
-  <ul class="nav flex-column mb-0 px-3">
+  <ul class="nav ">
     <li class="nav-item">
-      <%= link_to admin_organizations_path, class: "btn btn-outline-dark mb-4" do %>
+      <%= link_to admin_organizations_path, class: "" do %>
         <i class="fa fa-home" aria-hidden="true"></i>
       <% end %>
     </li>
   </ul>
 
-  <ul class="nav flex-column mb-0 px-3">
+  <ul class="nav ">
     <li class="nav-item">
-      <%= link_to admin_organizations_path, class: "btn btn-outline-dark mb-4" do %>
+      <%= link_to admin_organizations_path, class: "4" do %>
         <i class="fa fa-pie-chart" aria-hidden="true"></i>
       <% end %>
     </li>
   </ul>
 
-  <ul class="nav flex-column mb-0 px-3">
+  <ul class="nav ">
     <li class="nav-item">
-      <%= link_to admin_organizations_path, class: "btn btn-outline-dark mb-4" do %>
-        <i class="fa fa-line-chart" aria-hidden="true"></i>
+      <%= link_to admin_organizations_path, class: "" do %>
+        <i class="fa fa-thin fa-chart-simple"></i>
       <% end %>
     </li>
   </ul>
 
-  <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">About me</p>
+  <ul class="nav ">
+    <li class="nav-item">
+      <%= link_to admin_organizations_path, class: "" do %>
+        <i class="fa fa-regular fa-money-bill-1"></i>
+      <% end %>
+    </li>
+  </ul>
 
-  <ul class="nav flex-column mb-0">
-    <% if current_user %>
-      <li class="nav-item">
-        <%= link_to "Edit Profile", edit_user_registration_path(current_user),
-                    class: "nav-link text-dark font-italic" %>
-      </li>
+  <ul class="nav ">
+    <li class="nav-item">
+      <%= link_to admin_organizations_path, class: "" do %>
+        <i class="fa fa-solid fa-gear"></i>
+      <% end %>
+    </li>
+  </ul>
 
-      <li class="nav-item">
-        <%= link_to "Sign Out", sign_out_path,
-                    class: "nav-link text-dark font-italic" %>
-      </li>
-    <% else %>
-      <li class="nav-item">
-        <%= link_to "Sign In", sign_in_path,
-                    class: "nav-link text-dark font-italic" %>
-      </li>
-    <% end %>
+  <p class="text-gray font-weight-bold text-uppercase small py-4 mb-0">Me</p>
+
+  <ul class="nav ">
+    <li class="nav-item">
+      <% if current_user %>
+        <%= link_to edit_user_registration_path(current_user),
+                    class: "" do %>
+          <i class="fa fa-solid fa-user"></i>
+        <% end %>
+      <% end %>
+    </li>
+  </ul>
+
+  <ul class="nav ">
+    <li class="nav-item">
+      <%= link_to sign_out_path,
+                  class: "" do %>
+        <i class="fa fa-solid fa-gear"></i>
+      <% end %>
+    </li>
   </ul>
 </div>
