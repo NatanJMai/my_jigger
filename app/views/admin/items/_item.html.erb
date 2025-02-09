@@ -8,7 +8,7 @@
       <span class="text-muted">No Image</span>
     <% end %>
   </th>
-  <td><%= item.name %></td>
+  <td><%= item.display_item_link %></td>
 
   <td class="minimal"><%= humanized_money_with_symbol Money.new(item.customer_price_cents) %></td>
   <td class="minimal"><%= item.boolean_label(item.status) %></td>
@@ -19,10 +19,6 @@
   <td class="minimal">
     <%= link_to admin_item_datasheet_path(item), class: 'btn btn-success' do %>
       <i class="bi bi-pencil-square"></i> CMV
-    <% end %>
-
-    <%= link_to admin_item_path(item), class: 'btn btn-success' do %>
-      <i class="bi bi-pencil-square"></i> VIEW
     <% end %>
 
     <%= link_to edit_admin_item_path(item), class: 'btn btn-info' do %>
