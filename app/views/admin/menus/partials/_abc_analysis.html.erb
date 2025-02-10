@@ -6,25 +6,7 @@
 
 <div class="row">
   <div class="col-12">
-    <table class="table table-hover">
-      <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th class="col">Qtd</th>
-        <th class="col">Sales</th>
-      </tr>
-      </thead>
-      <tbody>
-
-      <% ranking_items.each do |item| %>
-        <tr>
-          <td><%#= item.display_item_link %></td>
-          <td><%#= item.total_quantity %></td>
-          <td><%#= humanized_money_with_symbol Money.new item.total_order_amount %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+    <%= render partial: 'admin/menus/partials/abc_table' %>
   </div>
 </div>
 

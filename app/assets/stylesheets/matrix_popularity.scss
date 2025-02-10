@@ -2,6 +2,29 @@
   padding: 15px;
 }
 
+table.abc-table {
+  tr.red {
+    td {
+      background-color: var(--jigger-red);
+      color: white
+    }
+  }
+
+  tr.orange {
+    td {
+      background-color: var(--jigger-orange);;
+      color: white
+    }
+  }
+
+  tr.green {
+    td {
+      background-color: var(--jigger-green);;
+      color: white
+    }
+  }
+}
+
 .matrix-popularity {
   height: 387px;
   padding-left: 20px;

@@ -1,0 +1,23 @@
+<table class="table table-hover abc-table">
+  <thead>
+  <tr>
+    <th scope="col">Item</th>
+    <th class="col">Category</th>
+    <th class="col">Revenue ($)</th>
+    <th class="col">% Total</th>
+    <th class="col">ABC</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% items.each do |item| %>
+    <tr class="<%= item.get_abc_class %>">
+      <td><%= item.name %></td>
+      <td><%= item.category&.decorate&.name %></td>
+      <td><%= humanized_money_with_symbol Money.new(item.total_orders(attribute: :total_amount_cents)) %></td>
+      <td><%= "22%" %></td>
+      <td><%= "A" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

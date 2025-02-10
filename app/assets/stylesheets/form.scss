@@ -156,8 +156,12 @@
 
   // Insight tab (Menu screen)
   &.matrix-popularity {
+    &.matrix-abc {
+      height: 530px;
+    }
+
     &.matrix-insight {
-      height: 570px;
+      height: 600px;
 
       .line-with-arrow.top {
         height: 460px;

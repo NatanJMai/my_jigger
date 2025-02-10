@@ -41,6 +41,13 @@ class Item < ApplicationRecord
     customer_price_cents - costs
   end
 
+  ##
+  # Return ABC CSS Class
+  # @return String
+  def get_abc_class
+    %w[green orange red].sample
+  end
+
   def markup_percentage
     return 0 if customer_price_cents.zero? # Avoid division by zero
     (profit / customer_price_cents) * 100
