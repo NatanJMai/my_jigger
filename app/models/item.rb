@@ -20,7 +20,9 @@ class Item < ApplicationRecord
 
   before_save :set_normalized_name
   after_create :create_datasheet
-  
+
+  attr_accessor :abc_category
+
   ##
   # Return best five items
   # @return Scope
@@ -42,10 +44,17 @@ class Item < ApplicationRecord
   end
 
   ##
+  # Return ABC Category if present
+  # @return String
+  def get_abc_category
+    abc_category
+  end
+
+  ##
   # Return ABC CSS Class
   # @return String
   def get_abc_class
-    %w[green orange red].sample
+    abc_category.present? ? abc_category : 'grey'
   end
 
   def markup_percentage
@@ -81,7 +90,8 @@ class Item < ApplicationRecord
     start_date, end_date = if week
                              [Date.today.beginning_of_week, Date.today.end_of_week]
                            else
-                             [Date.today.beginning_of_month, Date.today.end_of_month]
+                             [1.year.ago, Date.today]
+                             # [Date.today.beginning_of_month, Date.today.end_of_month]
                            end
 
     order_items
@@ -169,6 +179,13 @@ class Item < ApplicationRecord
 
       [date_str, hash_str]
     end
+  end
+
+  ##
+  # Return total value sold for each item
+  # @return Float
+  def total_value
+    total_orders(attribute: :quantity) * customer_price_cents.to_f
   end
 
   private

@@ -16,12 +16,41 @@ class Menu < ApplicationRecord
          .order('total_order_amount DESC, total_quantity DESC')
   end
 
+  def perform_abc_analysis
+    menu_items = items.sort_by { |item| -item.total_value }
+
+    # Calculate total revenue from all items
+    total_revenue = menu_items.sum(&:total_value)
+
+    # Define percentage thresholds for A, B, and C categories
+    a_threshold = total_revenue * 0.20 # A-items: top 20%
+    b_threshold = total_revenue * 0.50 # B-items: next 30%
+
+    cumulative_value = 0.0
+
+    menu_items.each do |item|
+      cumulative_value += item.total_value
+
+      # Categorize based on cumulative total value
+      if cumulative_value <= a_threshold
+        puts 'UPDATE A'
+        item.update(abc_category: 'A')
+      elsif cumulative_value <= b_threshold
+        puts 'UPDATE B'
+        item.update(abc_category: 'B')
+      else
+        puts 'UPDATE C'
+        item.update(abc_category: 'C')
+      end
+    end
+  end
+
   ##
   # Get SUM of total orders of Items
   # @param attribute (Symbol) - total_amount_cents or quantity
   # @return Integer
   def total_item_orders(attribute = :total_amount_cents)
-    items.map {|item|item.total_orders(attribute: attribute)}.sum
+    items.map {|item| item.total_orders(attribute: attribute)}.sum
   end
 
   ##

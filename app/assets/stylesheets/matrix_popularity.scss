@@ -3,26 +3,11 @@
 }
 
 table.abc-table {
-  tr.red {
-    td {
-      background-color: var(--jigger-red);
-      color: white
-    }
-  }
-
-  tr.orange {
-    td {
-      background-color: var(--jigger-orange);;
-      color: white
-    }
-  }
-
-  tr.green {
-    td {
-      background-color: var(--jigger-green);;
-      color: white
-    }
-  }
+  td { color: var(--jigger-white) }
+  tr.red { td { background-color: var(--jigger-red); } }
+  tr.orange { td { background-color: var(--jigger-orange); } }
+  tr.green { td { background-color: var(--jigger-green); } }
+  tr.grey { td { background-color: var(--jigger-dark-grey); } }
 }
 
 .matrix-popularity {

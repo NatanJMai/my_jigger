@@ -10,13 +10,13 @@
   </thead>
   <tbody>
 
-  <% items.each do |item| %>
+  <% items.sort_by { |item| -item.total_value }.each do |item| %>
     <tr class="<%= item.get_abc_class %>">
       <td><%= item.name %></td>
       <td><%= item.category&.decorate&.name %></td>
       <td><%= humanized_money_with_symbol Money.new(item.total_orders(attribute: :total_amount_cents)) %></td>
-      <td><%= "22%" %></td>
-      <td><%= "A" %></td>
+      <td><%= item.get_abc_category %></td>
+      <td><%= item.get_abc_category %></td>
     </tr>
   <% end %>
   </tbody>
