@@ -1,9 +1,9 @@
 module StatisticsItemHelper
   def item_production_costs(item)
     pie_chart item_production_costs_admin_item_charts_path(item),
-              suffix: "%",
+              suffix: '%',
               donut: true,
-              legend: "bottom",
+              legend: 'bottom',
               download: { background: '#ffffff' },
 
               library: {
@@ -27,9 +27,11 @@ module StatisticsItemHelper
 
 
   def sales_performance_by_item(item)
+    colors = %w[#7570B3 #E7298A #66A61E #E6AB02 #A6761D #666666]
     area_chart sales_performance_by_item_admin_item_charts_path(item),
                download: { background: '#ffffff' },
-               suffix: " items",
+               colors: colors,
+               suffix: ' items',
                library: {
                  scales: {
                    y: {
@@ -58,7 +60,7 @@ module StatisticsItemHelper
     bar_chart sales_performance_by_item_admin_item_charts_path(item, week: true),
               colors: ['#FFA834'],
               title: 'Item Performance (Current Week)',
-              suffix: " items",
+              suffix: ' items',
               library: {
                 scales: {
                   x: {

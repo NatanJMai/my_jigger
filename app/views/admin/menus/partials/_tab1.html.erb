@@ -13,14 +13,14 @@
                              total: menu.total_item_orders(:total_amount_cents)} %>
       </div>
 
-      <div class="container jigger-form child-list sale-item purple">
+      <div class="container jigger-form child-list sale-item white">
         <%= render partial: 'layouts/shared/sale_items/number_orders_item',
                    locals: { label: 'Nr of Orders M',
                              total: menu.total_item_orders(:quantity) } %>
       </div>
 
       <!-- FIXME: Need to calculate the best day of Menu  -->
-      <div class="container jigger-form child-list sale-item orange">
+      <div class="container jigger-form child-list sale-item white">
         <%= render partial: 'layouts/shared/sale_items/best_day_item',
                    locals: { label: 'The Best Day',
                              total: items.first.best_day_label } %>

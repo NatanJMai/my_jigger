@@ -6,13 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/jigger.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/jigger.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/matrix_popularity.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/matrix_popularity.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/import_jobs_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/import_jobs_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/item.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/menu.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/menu.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_abc_table.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_abc_table.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/statistics_item_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/statistics_item_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/statistics_menu_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/statistics_menu_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab1.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab1.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -428,6 +424,7 @@
       <workItem from="1739131887548" duration="2199000" />
       <workItem from="1739177357814" duration="3762000" />
       <workItem from="1739218809776" duration="2178000" />
+      <workItem from="1739268103825" duration="3012000" />
     </task>
     <servers />
   </component>
