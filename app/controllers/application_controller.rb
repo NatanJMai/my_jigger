@@ -10,13 +10,13 @@ class ApplicationController < ActionController::Base
   end
 
   def set_organization
+    @organization = Organization.first
     @organization = find_organization_from_context || find_organization_from_session
 
     if @organization
       session[:organization_id] = @organization.id
     else
       session.delete(:organization_id)
-      redirect_to root_path, alert: 'Organization not found.'
     end
   end
 

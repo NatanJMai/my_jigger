@@ -40,7 +40,7 @@ Rails.application.routes.draw do
         resources :items, only: %i[index show]
       end
 
-      resources :categories, shallow: true, only: %i[index show] do
+      resources :categories, shallow: true do
         resources :charts, only: [] do
           collection do
             get 'sales_performance_by_category'

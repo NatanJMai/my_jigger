@@ -8,5 +8,13 @@
     <%= link_to admin_category_path(category), class: 'btn btn-success' do %>
       <i class="bi bi-pencil-square"></i> VIEW
     <% end %>
+
+    <%= button_to admin_category_path(category),
+                  class: "btn btn-danger",
+                  method: :delete,
+                  form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
+
+      <i class="bi bi-trash"></i>
+    <% end %>
   </td>
 </tr>

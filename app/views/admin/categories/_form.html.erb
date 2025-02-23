@@ -3,44 +3,32 @@
                       html: { class: 'row row-cols' } ) do |f| %>
 
     <%= render partial: 'layouts/shared/form/header',
-               locals: { title: 'Add/Save Menu',
-                         subtitle: 'Menu details' } %>
+               locals: { title: 'Add/Save Category',
+                         subtitle: 'Category details' } %>
 
     <div class="row">
       <div class="col-8">
         <div class="row">
           <div class="col-8">
-            <%= f.input :name, hint: 'Menu name', wrapper_html: { class: 'jigger-label' } %>
+            <%= f.input :name, hint: 'Category name', wrapper_html: { class: 'jigger-label' } %>
           </div>
 
           <div class="col-4">
-            <%= f.input :release_date, as: :date, hint: 'Menu released at',
-                        wrapper_html: { class: 'jigger-label' } %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-3">
-            <%= f.input :status, label: 'Status (Active)', hint: 'Is this menu active?',
-                        wrapper_html: { class: 'jigger-label' } %>
-          </div>
-
-          <div class="col-3">
-            <%= f.input :data_imported, label: 'Data Imported?', hint: 'Is this menu data imported?',
+            <%= f.input :status, label: 'Status (Active)', hint: 'Is this Category active?',
                         wrapper_html: { class: 'jigger-label' } %>
           </div>
         </div>
 
         <div class="row">
           <div class="col-12">
-            <%= f.input :description, hint: 'Menu description (e.g where it is from)',
+            <%= f.input :description, hint: 'Category description (e.g where it is from)',
                         wrapper_html: { class: 'jigger-label' } %>
           </div>
         </div>
 
         <div class="row">
           <div class="col-3">
-            <%= f.button :submit, "Add/Save Menu", class: "form-btn"  %>
+            <%= f.button :submit, "Add/Save Category", class: "form-btn"  %>
           </div>
         </div>
       <% end %>

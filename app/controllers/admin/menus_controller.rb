@@ -5,7 +5,7 @@ class Admin::MenusController < AdminController
   load_and_authorize_resource
   load_and_authorize_resource :item
   load_and_authorize_resource :organization
-  load_and_authorize_resource :menu, through: :organization  # Load the menu for the given organization
+  load_and_authorize_resource :menu, through: :organization
 
   decorates_assigned :menus, :menu
   decorates_assigned :items, :best_five, :ranking_items, :categories
@@ -49,7 +49,7 @@ class Admin::MenusController < AdminController
 
     respond_to do |format|
       if @menu.save
-        format.html { redirect_to admin_organization_menus_path(@organization), notice: "Menu was successfully created." }
+        format.html { redirect_to admin_organization_menus_path(@organization), notice: 'Menu was successfully created.' }
         format.json { render :show, status: :created, location: @menu }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -62,7 +62,7 @@ class Admin::MenusController < AdminController
   def update
     respond_to do |format|
       if @menu.update(menu_params)
-        format.html { redirect_to admin_organization_menus_path(@organization), notice: "Menu was successfully updated." }
+        format.html { redirect_to admin_organization_menus_path(@organization), notice: 'Menu was successfully updated.' }
         format.json { render :show, status: :ok, location: @menu }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -77,7 +77,7 @@ class Admin::MenusController < AdminController
     @menu.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_organization_menus_path(@organization), notice: "Menu was successfully destroyed." }
+      format.html { redirect_to admin_organization_menus_path(@organization), notice: 'Menu was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

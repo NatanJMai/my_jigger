@@ -23,7 +23,7 @@
       <div class="container jigger-form child-list sale-item white">
         <%= render partial: 'layouts/shared/sale_items/best_day_item',
                    locals: { label: 'The Best Day',
-                             total: items.first.best_day_label } %>
+                             total: items.first&.best_day_label } %>
       </div>
     </div>
 

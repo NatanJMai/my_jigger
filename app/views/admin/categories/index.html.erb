@@ -24,9 +24,9 @@
             </thead>
             <tbody>
 
-            <% categories.order(:name).each do |category| %>
-              <%= render partial: 'category', locals: { category: category } %>
-            <% end %>
+              <% categories.each do |category| %>
+                <%= render partial: 'category', locals: { category: category } %>
+              <% end %>
             </tbody>
           </table>
         </div>
@@ -34,3 +34,7 @@
     </div>
   </div>
 </div>
+
+<%= button_to 'NEW', new_admin_organization_category_path(@organization.id),
+              class: "btn btn-success shadow-sm px-4 mb-2",
+              :method => :get %>
