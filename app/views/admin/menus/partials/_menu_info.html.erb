@@ -1,9 +1,10 @@
 <div class="row card-header">
-  <div class="col-5">
+  <div class="col-6">
     <h4 class="card-title text-left"><%= menu.name %></h4>
+    <%= menu.released_at %>
   </div>
 
-  <div class="col-7">
+  <div class="col-6">
     <div class="row">
       <div class="col-5">
         <%= menu.boolean_label(menu.status) %>
@@ -18,27 +19,9 @@
 </div>
 
 <div class="row">
-  <div class="col-6">
-    <div class="row jigger-label">
-      <div class="col-12 align-left info-description">
-        <%= menu.organization.name %>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-6">
-    <div class="row jigger-label">
-      <div class="align-center info-label"><%= menu.description %></div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
   <div class="col-12">
     <div class="row jigger-label">
-      <div class="col-6 align-left info-description">
-        <%= menu.released_at %>
-      </div>
+      <div class="align-center info-label menu-description"><%= menu.description %></div>
     </div>
   </div>
 </div>

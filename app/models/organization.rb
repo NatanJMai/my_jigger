@@ -28,6 +28,7 @@ class Organization < ApplicationRecord
     unless item.present?
       item = items.create(name: normalized_input,
                           category: categories.first,
+                          menu_id: self.menus.first.id,
                           data_imported: true)
     end
 

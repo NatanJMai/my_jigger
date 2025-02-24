@@ -21,6 +21,7 @@ class Admin::MenusController < AdminController
     @categories = @menu.categories.includes(:items).order(:name)
     @ranking_items = @menu.ranking_items
     @best_five = @items.best_five
+    @import_job = current_organization.import_jobs.new
     @menu.perform_abc_analysis
   end
 

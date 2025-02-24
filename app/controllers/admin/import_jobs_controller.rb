@@ -30,9 +30,11 @@ class Admin::ImportJobsController < AdminController
     @import_job.user_id = current_user.id
     @import_job.import_status = 'in_progress'
 
+    option_select = params[:option_select].presence || 'item'
+
     if @import_job.save
       # Enqueue the worker to process the file
-      FileProcessorWorker.perform_async(@import_job.id, 'item')
+      FileProcessorWorker.perform_async(@import_job.id, option_select)
 
       # Render the document view to start real-time updates
       respond_to do |format|

@@ -1,0 +1,30 @@
+<div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="tab6-tab">
+  <div class="row">
+    <div class="col-7">
+      <div class="col-12">
+        <div class="container jigger-form child-list">
+          <%= simple_form_for [:admin, @organization, @import_job], html: { multipart: true } do |f| %>
+            <div class="row">
+              <div class="col-6">
+                <%= f.input :file, as: :file, label: false, hint: 'Select file to import',
+                            wrapper_html: { class: 'jigger-label' } %>
+                <%= f.button :submit, "Upload Document", class: 'btn btn-light shadow-sm px-4 mb-2', data: { turbo: false } %>
+              </div>
+
+              <div class="col-3">
+                <div class="mb-3 select optional item_category jigger-label">
+<!--                  <label class="form-label select optional" for="option_select">Import Type</label>-->
+                  <select class="form-select is-valid select optional" name="option_select" id="option_select">
+                    <option value="item">Item</option>
+                    <option value="order">Order</option>
+                  </select>
+                  <div class="form-text">Import Item or Import Order</div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

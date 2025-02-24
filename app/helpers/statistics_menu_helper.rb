@@ -4,7 +4,7 @@ module StatisticsMenuHelper
     pie_chart sales_performance_by_menu_pie_admin_menu_charts_path(menu),
               colors: colors,
               title: 'Sales Performance By Menu',
-              legend: 'bottom',
+              legend: false,
               download: { background: '#ffffff' },
               suffix: ' items',
               library: {
