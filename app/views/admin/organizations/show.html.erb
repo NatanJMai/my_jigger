@@ -6,17 +6,6 @@
 
 <div class="container-fluid p-0">
   <div class="row">
-    <%= render partial: 'layouts/cards/menu_card',
-               locals: { url: admin_organization_path(@organization),
-                         title: 'Departments',
-                         text: "#{@organization.name} Departments" } %>
-
-    <%= render partial: 'layouts/cards/menu_card',
-               locals: { url: admin_organization_user_organizations_path(@organization),
-                         title: 'Staff',
-                         class: '',
-                         text: "#{@organization.name} Staff" } %>
-
 
     <%= render partial: 'layouts/cards/menu_card',
                locals: { url: admin_organization_categories_path(@organization),
@@ -35,12 +24,6 @@
                          title: 'Items',
                          class: '',
                          text: "#{@organization.name} Items" } %>
-
-    <%= render partial: 'layouts/cards/menu_card',
-               locals: { url: new_admin_organization_import_job_path(@organization),
-                         title: 'Jobs',
-                         class: '',
-                         text: "#{@organization.name} Jobs" } %>
 
     <%= render partial: 'layouts/cards/menu_card',
                locals: { url: admin_organization_orders_path(@organization),

@@ -83,3 +83,4 @@ vendor/bundle/ruby/3.2.0/bundler/gems/faker-56a96cc3d54b/
 *.xlsx*
 .idea/dataSources.local.xml
 .idea/workspace.xml
+*.sql
