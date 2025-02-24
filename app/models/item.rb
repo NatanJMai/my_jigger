@@ -21,8 +21,6 @@ class Item < ApplicationRecord
   before_save :set_normalized_name
   after_create :create_datasheet
 
-  attr_accessor :abc_category
-
   ##
   # Return best five items
   # @return Scope
@@ -54,7 +52,16 @@ class Item < ApplicationRecord
   # Return ABC CSS Class
   # @return String
   def get_abc_class
-    abc_category.present? ? abc_category : 'grey'
+    case abc_category
+    when 'A'
+      'green'
+    when 'B'
+      'orange'
+    when 'C'
+      'red'
+    else
+      'grey'
+    end
   end
 
   def markup_percentage
