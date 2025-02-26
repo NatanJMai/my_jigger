@@ -7,6 +7,8 @@
     <% @organizations.each do |organization| %>
       <%= render 'admin/organizations/card', organization: organization %>
     <% end %>
+
+    <%= render partial: 'layouts/new_button', locals: { url: new_admin_organization_path }  %>
   </div>
 </div>
 

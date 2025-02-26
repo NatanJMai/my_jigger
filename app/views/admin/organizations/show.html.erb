@@ -1,5 +1,5 @@
 <h2 class="display-4">
-  <%= @organization.name %> (Organization)
+  <%= organization.name %>
 </h2>
 
 <div class="separator"></div>
@@ -8,28 +8,28 @@
   <div class="row">
 
     <%= render partial: 'layouts/cards/menu_card',
-               locals: { url: admin_organization_categories_path(@organization),
+               locals: { url: admin_organization_categories_path(organization),
                          title: 'Categories',
                          class: '',
-                         text: "#{@organization.name} Categories" } %>
+                         text: "#{organization.name} Categories" } %>
 
     <%= render partial: 'layouts/cards/menu_card',
-               locals: { url: admin_organization_menus_path(@organization),
+               locals: { url: admin_organization_menus_path(organization),
                          title: 'Menus',
                          class: '',
-                         text: "#{@organization.name} Menus" } %>
+                         text: "#{organization.name} Menus" } %>
 
     <%= render partial: 'layouts/cards/menu_card',
-               locals: { url: admin_organization_items_path(@organization),
+               locals: { url: admin_organization_items_path(organization),
                          title: 'Items',
                          class: '',
-                         text: "#{@organization.name} Items" } %>
+                         text: "#{organization.name} Items" } %>
 
     <%= render partial: 'layouts/cards/menu_card',
-               locals: { url: admin_organization_orders_path(@organization),
+               locals: { url: admin_organization_orders_path(organization),
                          title: 'Orders',
                          class: '',
-                         text: "#{@organization.name} Orders" } %>
+                         text: "#{organization.name} Orders" } %>
 
   </div>
 </div>

@@ -326,6 +326,40 @@ body {
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2), 0 5px 10px 0 rgba(0,0,0,0.19);
 }
 
+.new-button-container {
+  width: 100px;
+  .new-button {
+    position: absolute;
+    top: 50%;
+    width: 100px;
+    height: 50px;
+    background: linear-gradient(135deg, #5DADE2, #3498DB); /* Lighter blue gradient */
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2); /* Softer shadow */
+    border-radius: 10px; /* Smooth rounded corners */
+    transition: all 0.3s ease-in-out;
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+
+  /* Hover effect */
+  .new-button:hover {
+    transform: scale(0.95); /* Press effect */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
 .circle-link {
   margin-top: 50%;
   display: inline-block;

@@ -23,16 +23,16 @@
           </div>
         </div>
       <% end %>
+
+      <%= button_to admin_menu_path(menu), class: "btn btn-danger",
+                    method: :delete, form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
+
+        <i class="bi bi-trash"></i>
+      <% end %>
     </div>
 
     <div class="card-footer">
       <small class="text-muted"><%= menu.released_at %></small>
     </div>
   </div>
-
-  <%= button_to admin_menu_path(menu), class: "btn btn-danger",
-                method: :delete, form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
-
-    <i class="bi bi-trash"></i>
-  <% end %>
 </div>

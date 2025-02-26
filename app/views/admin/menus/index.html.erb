@@ -1,11 +1,9 @@
 <div class="container-fluid p-0">
-  <%= button_to 'NEW', new_admin_organization_menu_path(@organization.id),
-                class: "btn btn-success shadow-sm px-4 mb-2",
-                :method => :get %>
-
   <div class="row">
     <% menus.each do |menu| %>
       <%= render 'admin/menus/card', menu: menu, items: menu.items.best_five %>
     <% end %>
+
+    <%= render partial: 'layouts/new_button', locals: { url: new_admin_organization_menu_path(@organization.id) }  %>
   </div>
 </div>

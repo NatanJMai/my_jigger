@@ -30,11 +30,11 @@
             </tbody>
           </table>
         </div>
+
+        <%= button_to 'Add Category', new_admin_organization_category_path(@organization.id),
+                      class: "btn btn-light shadow-sm px-4 mb-2",
+                      :method => :get %>
       </div>
     </div>
   </div>
 </div>
-
-<%= button_to 'NEW', new_admin_organization_category_path(@organization.id),
-              class: "btn btn-success shadow-sm px-4 mb-2",
-              :method => :get %>
