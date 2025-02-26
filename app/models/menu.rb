@@ -6,7 +6,7 @@ class Menu < ApplicationRecord
   validates :name, :organization_id, presence: true
 
   def ranking_items
-    start_date = Date.today.beginning_of_month
+    start_date = 1.year.ago
     end_date = Date.today.end_of_month
 
     items.joins(order_items: :order)
@@ -17,31 +17,26 @@ class Menu < ApplicationRecord
   end
 
   def perform_abc_analysis
-    menu_items = items.sort_by { |item| -item.total_value }
+    menu_items = items.sort_by { |item| -item.total_value } # Sort items by total revenue descending
 
-    # Calculate total revenue from all items
-    total_revenue = menu_items.sum(&:total_value)
-
-    # Define percentage thresholds for A, B, and C categories
-    a_threshold = total_revenue * 0.20 # A-items: top 20%
-    b_threshold = total_revenue * 0.50 # B-items: next 30%
-
+    total_revenue = menu_items.sum(&:total_value) # Calculate total revenue from all items
     cumulative_value = 0.0
 
     menu_items.each do |item|
       cumulative_value += item.total_value
+      percentage = (cumulative_value / total_revenue) * 100 # Cumulative percentage
 
-      # Categorize based on cumulative total value
-      if cumulative_value <= a_threshold
-        puts 'UPDATE A'
-        item.update(abc_category: 'A')
-      elsif cumulative_value <= b_threshold
-        puts 'UPDATE B'
-        item.update(abc_category: 'B')
-      else
-        puts 'UPDATE C'
-        item.update(abc_category: 'C')
-      end
+      # Categorize based on cumulative percentage
+      abc_category = if percentage <= 70
+                       'A'
+                     elsif percentage <= 90
+                       'B'
+                     else
+                       'C'
+                     end
+
+      puts "Updating #{item.name} to category #{abc_category}"
+      item.update(abc_category: abc_category)
     end
   end
 
