@@ -89,7 +89,7 @@ class Menu < ApplicationRecord
   # @param attribute (Symbol) - total_amount_cents or quantity
   # @return Integer
   def total_item_orders(attribute = :total_amount_cents)
-    items.map {|item| item.total_orders(attribute: attribute)}.sum
+    items.map {|item| item.total_orders(attribute: attribute, )}.sum
   end
 
   ##

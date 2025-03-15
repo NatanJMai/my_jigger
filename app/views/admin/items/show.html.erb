@@ -8,13 +8,13 @@
   <div class="col-2">
     <div class="container jigger-form child-list sale-item blue">
       <%= render partial: 'layouts/shared/sale_items/total_sale_item',
-                 locals: { label: 'Total Sales (M)',
+                 locals: { label: 'Total Sales',
                            total: item.total_orders(attribute: :total_amount_cents)} %>
     </div>
 
     <div class="container jigger-form child-list sale-item white">
       <%= render partial: 'layouts/shared/sale_items/number_orders_item',
-                 locals: { label: 'Nr of Orders M',
+                 locals: { label: 'Nr of Orders',
                            total: item.total_orders(attribute: :quantity) } %>
     </div>
 

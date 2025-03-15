@@ -28,7 +28,7 @@ module StatisticsItemHelper
 
   def sales_performance_by_item(item)
     colors = %w[#7570B3 #E7298A #66A61E #E6AB02 #A6761D #666666]
-    area_chart sales_performance_by_item_admin_item_charts_path(item),
+    area_chart sales_performance_by_item_admin_item_charts_path(item, month: true),
                download: { background: '#ffffff' },
                colors: colors,
                suffix: ' items',

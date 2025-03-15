@@ -95,15 +95,19 @@ class Item < ApplicationRecord
   # Return Total (attribute) information
   # @param options (Hash) - options
   # :week - Weekly report
+  # :month - Monthly report
   # :attribute - Order Item (:quantity or :total_amount_cents)
   # :total_amount_cents - Order Item Total Amount report
   # @return Integer
   def total_orders(options = {})
     week = options[:week].present?
+    month = options[:month].present?
     attribute = options[:attribute].presence || :quantity
 
     start_date, end_date = if week
                              [Date.today.beginning_of_week, Date.today.end_of_week]
+                           elsif month
+                             [Date.today.beginning_of_month, Date.today.end_of_month]
                            else
                              [1.year.ago, Date.today]
                              # [Date.today.beginning_of_month, Date.today.end_of_month]

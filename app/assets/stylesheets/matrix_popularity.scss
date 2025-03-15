@@ -122,9 +122,11 @@ table.abc-table {
       display: grid;
       grid-template-columns: repeat(2, 1fr); /* Adjust column count */
       text-align: center;
+
+      .item-link {
+        color: white;
+      }
     }
-
-
   }
 
   .row-square:hover {
