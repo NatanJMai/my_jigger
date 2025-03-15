@@ -116,6 +116,15 @@ table.abc-table {
       text-align: center;
       margin-top: 5%;
     }
+
+    .items-container {
+      font-size: 10pt;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Adjust column count */
+      text-align: center;
+    }
+
+
   }
 
   .row-square:hover {

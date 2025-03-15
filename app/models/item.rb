@@ -28,6 +28,14 @@ class Item < ApplicationRecord
     where(status: true).limit(5)
   }
 
+  ##
+  # Return Matrix category items
+  # @param category String
+  # @return Scope
+  scope :matrix_category, lambda { |category|
+    where(matrix_category: category) if category.present?
+  }
+
   def best_day_month
     sales = sales_performance_by_item(week: false)
     value = sales.to_h&.max_by { |_key, value| value }
@@ -193,6 +201,13 @@ class Item < ApplicationRecord
   # @return Float
   def total_value
     total_orders(attribute: :quantity) * customer_price_cents.to_f
+  end
+
+  ##
+  # Return total value sold for each item
+  # @return Integer
+  def quantity_sold
+    total_orders(attribute: :quantity)
   end
 
   private

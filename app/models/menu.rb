@@ -16,6 +16,50 @@ class Menu < ApplicationRecord
          .order('total_order_amount DESC, total_quantity DESC')
   end
 
+  ##
+  # Return Average Profit of Menu Items
+  # @return Float
+  def average_profit
+    profits = items.map { |item| item.profit / 100.0 }
+    profits.sum / profits.size.to_f
+  end
+
+  ##
+  # Return Average Quantity Sold of Menu Items
+  # @return Integer
+  def average_quantity_sold
+    profits = items.map(&:quantity_sold)
+    profits.sum / profits.size
+  end
+
+  def categorize_menu_items
+    menu_items = items
+
+    # Calculate averages for popularity (sales count) & profitability (profit per item)
+    avg_sales = average_quantity_sold || 0
+    avg_profit = average_profit || 0
+
+    menu_items.each do |item|
+      popularity = item.quantity_sold
+      profitability = item.profit
+
+      # Categorize based on the thresholds
+      category =
+        if popularity >= avg_sales && profitability >= avg_profit
+          'star' # High sales, high profit
+        elsif popularity >= avg_sales && profitability < avg_profit
+          'plow_horse' # High sales, low profit
+        elsif popularity < avg_sales && profitability >= avg_profit
+          'puzzle' # Low sales, high profit
+        else
+          'dog' # Low sales, low profit
+        end
+
+      puts "Item: #{item.name} -> Category: #{category}"
+      item.update(matrix_category: category) # Save category to database
+    end
+  end
+
   def perform_abc_analysis
     menu_items = items.sort_by { |item| -item.total_value } # Sort items by total revenue descending
 

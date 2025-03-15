@@ -22,7 +22,16 @@ class Admin::MenusController < AdminController
     @ranking_items = @menu.ranking_items
     @best_five = @items.best_five
     @import_job = current_organization.import_jobs.new
+
+    # ABC Analysis
     @menu.perform_abc_analysis
+
+    # Matrix Popularity
+    @menu.categorize_menu_items
+    @stars = @items.matrix_category('star')
+    @plow_horses = @items.matrix_category('plow_horse')
+    @puzzles = @items.matrix_category('puzzle')
+    @dogs = @items.matrix_category('dog')
   end
 
   def cost_analysis; end
