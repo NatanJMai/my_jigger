@@ -9,6 +9,8 @@ class Organization < ApplicationRecord
   has_many :import_jobs, class_name: 'ImportJob', dependent: :destroy
   has_many :orders, class_name: 'Order', dependent: :destroy
 
+  mount_uploader :image, ImageUploader
+
   before_save { email.downcase! }
 
   validates :name, presence: true

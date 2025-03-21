@@ -1,7 +1,7 @@
 class Admin::OrganizationsController < AdminController
   load_and_authorize_resource
 
-  decorates_assigned :organization
+  decorates_assigned :organization, :organizations
 
   # GET /organizations or /organizations.json
   def index
@@ -61,7 +61,7 @@ class Admin::OrganizationsController < AdminController
 
   private
     # Only allow a list of trusted parameters through.
-    def organization_params
-      params.require(:organization).permit(:name, :email, :address, :site)
-    end
+  def organization_params
+    params.require(:organization).permit(:name, :email, :address, :site, :image, :status)
+  end
 end

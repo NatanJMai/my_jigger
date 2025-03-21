@@ -1,53 +1,61 @@
-<h2 class="display-4 text-white">My Organizations</h2>
+<div class="container jigger-form">
+  <%= simple_form_for(model, html: { class: 'row row-cols' } ) do |f| %>
 
-<div class="separator"></div>
-
-<div class="container">
-  <%= simple_form_for([:admin, @organization],
-                      html: { class: 'jform row row-cols align-items-center' }) do |f| %>
-
-    <div class="card-header">
-      <h5 class="card-title text-center">New Organization</h5>
-    </div>
-
-    <legend><span class="number">1</span> Detail</legend>
+    <%= render partial: 'layouts/shared/form/header',
+               locals: { title: 'Add/Save Organization' } %>
 
     <div class="row">
-      <div class="col-6">
-        <%= f.input :name %>
+      <div class="col-8">
+        <div class="row">
+          <div class="col-8">
+            <%= f.input :name, hint: 'Organization name', wrapper_html: { class: 'jigger-label' } %>
+          </div>
+
+          <div class="col-4">
+            <%= f.input :status, label: 'Status (Active)', hint: 'Is this organization active?',
+                        wrapper_html: { class: 'jigger-label' } %>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <%= f.input :email,
+                        label: 'Email',
+                        hint: 'Best email to reach',
+                        wrapper_html: { class: 'jigger-label' } %>
+          </div>
+
+
+          <div class="col-6">
+            <%= f.input :address, label: 'Address', hint: 'Organization address',
+                        wrapper_html: { class: 'jigger-label' } %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <%= f.button :submit, "Add/Save Item", class: "form-btn"  %>
+          </div>
+        </div>
       </div>
 
-      <div class="col-6">
-        <%= f.input :email %>
-      </div>
-    </div>
 
-    <legend><span class="number">2</span> Contact</legend>
-    <div class="row">
       <div class="col-4">
-        <%= f.input :address %>
+        <div class="vertical-line">
+          <% if organization.image.present? %>
+            <!-- Show the existing image -->
+            <%= image_tag organization.image.url, alt: "Uploaded Image", class: "img-thumbnail shadow-sm form-photo"%>
+          <% else %>
+            <!-- Show the upload button -->
+            <label for="image-upload" class="btn btn-outline-primary img-thumbnail shadow-sm form-photo">
+              Upload Image
+            </label>
+          <% end %>
+
+          <!-- Hidden File Input -->
+          <%= f.file_field :image, id: "image-upload", class: "d-none" %>
+        </div>
       </div>
-
-      <div class="col-4">
-        <%= f.input :site %>
-      </div>
-
-      <div class="col-4">
-        <%= f.input :site %>
-      </div>
-    </div>
-
-    <legend><span class="number">3</span> Status</legend>
-
-    <div class="row">
-      <div class="col-4">
-        <%= f.input :status %>
-      </div>
-    </div>
-
-    <div class="row">
-          <%= f.button :submit, "Create", class: "form-btn"  %>
     </div>
   <% end %>
 </div>
-
