@@ -1,8 +1,8 @@
 class Ingredient < ApplicationRecord
   include ClassyEnum::ActiveRecord
   monetize :cost_cents, allow_nil: true
-
   classy_enum_attr :unit, class_name: 'Unit'
+  mount_uploader :image, ImageUploader
 
   before_save :titleize_name
   validates :name, presence: true
@@ -12,6 +12,13 @@ class Ingredient < ApplicationRecord
   # @return Array
   def self.permitted_methods
     %i[name unit quantity volume cost_cents cost]
+  end
+
+  def self.calculated_price(volume, quantity, cost_cents)
+    return 0 unless volume && quantity && cost_cents
+    return 0 if [volume, quantity, cost_cents].any?{|a| a.negative?}
+
+    (quantity.to_f / volume) * cost_cents
   end
 
   private

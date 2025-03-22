@@ -1,0 +1,3 @@
+<% if @ingredient %>
+  $('.datasheet-cmv').html('<%= j(render partial: "admin/datasheets/card", locals: { line: @ingredient }) %>');
+<% end %>

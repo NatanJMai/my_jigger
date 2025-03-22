@@ -7,32 +7,48 @@
         <%= datasheet_line&.id.presence || "ID" %>
       </div>
 
-      <div class="col">
-        <%= f.input :ingredient_id, as: :select, collection: Ingredient.all, label: false %>
+      <div class="col-4">
+        <%= f.input :ingredient_id, as: :select,
+                    input_html: {
+                      class: 'ingredient-js',
+                      data: { url: find_admin_organization_ingredients_path(@organization) } },
+                    collection: Ingredient.all, label: false %>
       </div>
 
       <div class="col-1">
-        <%= datasheet_line.ingredient&.volume %>
+        <%= f.input :volume, input_html: { class: 'volume-js',
+                                           data: {
+                                             url: calculate_admin_organization_ingredients_path(@organization)
+                                           }
+        }, label: false %>
       </div>
 
       <div class="col-1">
-        <%= datasheet_line.ingredient&.unit %>
+        <%= f.input :unit, as: :select,
+                    input_html: { class: 'unit-js' },
+                    collection: Unit.select_options, label: false %>
       </div>
 
       <div class="col-1">
-        <%= humanized_money_with_symbol datasheet_line.ingredient&.cost %>
-      </div>
-
-      <div class="col-2">
-        <%= f.input :quantity, label: false %>
+        <%= f.input :cost, input_html: { class: 'cost-cents-js',
+                                         data: {
+                                           url: calculate_admin_organization_ingredients_path(@organization)
+                                         }
+        }, label: false %>
       </div>
 
       <div class="col-1">
-        <%= humanized_money_with_symbol Money.new(datasheet_line.calculated_price) %>
+        <%= f.input :quantity, input_html: { class: 'quantity-js',
+                                             data: {
+                                               url: calculate_admin_organization_ingredients_path(@organization)
+                                             }
+        }, label: false %>
       </div>
 
-      <div class="col minimal">
-        <%= f.button :submit, "SAVE", class: "btn btn-success" %>
+      <div class="col-1 calculated-price-js"></div>
+
+      <div class="col-1">
+        <%= f.button :submit, "Save", class: "btn btn-success" %>
       </div>
     </div>
   <% end %>

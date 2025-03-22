@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-10">
+  <div class="col-9">
     <div class="container jigger-form">
       <div class="card-header">
         <div class="row">
@@ -15,7 +15,6 @@
           <%= render partial: 'admin/datasheet_lines/line', collection: datasheet_lines, as: :datasheet_line %>
         <% end %>
       </div>
-
 
       <div class="form-action">
         <div class="grid-item col-6">
@@ -49,6 +48,11 @@
     </div>
   </div>
 
+  <div class="col-2">
+    <div class="jigger-form datasheet-cmv">
+      <%= render partial: 'card', locals: { line: datasheet_lines.first } %>
+    </div>
+  </div>
 </div>
 
 

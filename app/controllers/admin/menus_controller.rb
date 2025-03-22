@@ -34,13 +34,6 @@ class Admin::MenusController < AdminController
     @dogs = @items.matrix_category('dog')
   end
 
-  def cost_analysis; end
-  
-  def best_items; end
-  
-  def matrix_popularity; end
-  def sales_performance; end
-
   # GET /menus/new
   def new
     @menu = @organization.menus.new

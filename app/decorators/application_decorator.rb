@@ -21,4 +21,26 @@ class ApplicationDecorator < Draper::Decorator
   def status_label
     object.status? ? 'active-status' : 'inactive-status'
   end
+
+  ##
+  # Return Volume with Unit
+  # @return String
+  def display_volume
+    "#{object.volume} #{object.unit}"
+  end
+
+  ##
+  # Return Name or Ingredient Name
+  # @return String
+  def display_name
+    object.name.presence
+  end
+
+  ##
+  # Return Prep Method
+  # @return String
+  def display_prep_method
+    object.respond_to?(:prep_method) ? object.prep_method : ''
+  end
+
 end

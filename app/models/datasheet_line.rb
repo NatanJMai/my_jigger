@@ -18,6 +18,6 @@ class DatasheetLine < ApplicationRecord
 
   private
   def titleize_name
-    self.name = titleize_string(name)
+    self.name = titleize_string(name) if name.present?
   end
 end

@@ -73,6 +73,17 @@ Rails.application.routes.draw do
 
       resources :user_organizations, shallow: true
       resources :orders, shallow: true, only: %i[show index]
+
+      resources :ingredients, only: [] do
+        collection do
+          get 'find'
+          get 'calculate'
+        end
+
+        member do
+          get 'details'
+        end
+      end
     end
   end
 

@@ -6,6 +6,7 @@ class Admin::DatasheetLinesController < AdminController
   decorates_assigned :item
   decorates_assigned :datasheet
   decorates_assigned :datasheet_line
+  decorates_assigned :organization
 
   def index
     @datasheet_lines = @datasheet.datasheet_lines
@@ -22,6 +23,8 @@ class Admin::DatasheetLinesController < AdminController
   end
 
   def new_line
+    @organization = @datasheet.item.organization
+    @ingredients = @organization.ingredients.order(:name)
     @datasheet_line = @datasheet.datasheet_lines.build
     @datasheet_line.build_ingredient
 
@@ -90,6 +93,8 @@ class Admin::DatasheetLinesController < AdminController
                                            :ingredient_id,
                                            :unit,
                                            :quantity,
+                                           :volume,
+                                           :cost,
                                            ingredient_attributes: [:name, :unit])
   end
 end

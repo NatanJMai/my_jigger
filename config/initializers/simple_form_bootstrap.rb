@@ -41,7 +41,7 @@ SimpleForm.setup do |config|
 
   # add validation classes to `input_field`
   config.input_field_error_class = 'is-invalid'
-  config.input_field_valid_class = 'is-valid'
+  config.input_field_valid_class = ''
 
 
   # vertical forms
@@ -56,7 +56,7 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
     b.use :label, class: 'form-label'
-    b.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :input, class: 'form-control'
     b.use :full_error, wrap_with: { class: 'invalid-feedback' }
     b.use :hint, wrap_with: { class: 'form-text' }
   end
@@ -184,7 +184,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.use :label, class: 'col-sm-3 col-form-label pt-0'
     b.wrapper :grid_wrapper, class: 'col-sm-9' do |ba|
-      ba.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
+      # ba.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
       ba.use :full_error, wrap_with: { class: 'invalid-feedback d-block' }
       ba.use :hint, wrap_with: { class: 'form-text' }
     end
@@ -271,7 +271,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.use :label, class: 'visually-hidden'
 
-    b.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
+    # b.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'
     b.use :error, wrap_with: { class: 'invalid-feedback' }
     b.optional :hint, wrap_with: { class: 'form-text' }
   end

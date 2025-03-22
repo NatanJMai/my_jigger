@@ -1,7 +1,6 @@
 .datasheet-table {
   input, select {
     height: 25px;
-    //min-width: 130px;
     padding: 0 10px;
     font-size: 10pt;
   }
@@ -119,5 +118,16 @@
         color: var(--jigger-light-grey);
       }
     }
+  }
+}
+
+.jigger-form.datasheet-cmv {
+  padding: 30px;
+
+  .item-title {
+    font-weight: bold;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 20px;
   }
 }
