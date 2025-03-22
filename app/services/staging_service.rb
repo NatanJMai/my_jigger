@@ -40,8 +40,8 @@ class StagingService
       ingredient_name = records.select { |a| a.attribute_name == 'name' }.first&.row_data || 'Not Found'
 
       new_ingredient = organization.ingredients.find_or_create_by(name: ingredient_name)
-
       new_datasheet_line = new_item.datasheet.datasheet_lines.new
+      new_datasheet_line.ingredient = new_ingredient
 
       records.each do |record|
         attribute = record.attribute_name.to_sym

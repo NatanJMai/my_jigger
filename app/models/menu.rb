@@ -29,6 +29,8 @@ class Menu < ApplicationRecord
   # @return Integer
   def average_quantity_sold
     profits = items.map(&:quantity_sold)
+
+    return 0 unless profits.size.positive?
     profits.sum / profits.size
   end
 
