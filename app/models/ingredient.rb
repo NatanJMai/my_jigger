@@ -4,6 +4,8 @@ class Ingredient < ApplicationRecord
   classy_enum_attr :unit, class_name: 'Unit'
   mount_uploader :image, ImageUploader
 
+  belongs_to :organization, class_name: 'Organization'
+
   before_save :titleize_name
   validates :name, presence: true
 

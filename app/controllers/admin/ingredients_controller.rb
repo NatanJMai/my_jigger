@@ -1,7 +1,64 @@
 class Admin::IngredientsController < ApplicationController
   load_and_authorize_resource
   load_and_authorize_resource :organization
+  load_and_authorize_resource :ingredient, through: :organization
+  decorates_assigned :organization
   decorates_assigned :ingredient
+  decorates_assigned :ingredients
+
+  def index
+    @ingredients = @organization.ingredients
+  end
+
+  def new
+    @ingredient = @organization.ingredients.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  # GET /menus/1/edit
+  def edit; end
+
+  # POST /menus or /menus.json
+  def create
+    @ingredient = @organization.ingredients.new(ingredient_params)
+
+    respond_to do |format|
+      if @ingredient.save
+        format.html { redirect_to admin_organization_ingredients_path(@organization), notice: 'Ingredient was successfully created.' }
+        format.json { render :show, status: :created, location: @ingredient }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @ingredient.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /menus/1 or /menus/1.json
+  def update
+    respond_to do |format|
+      if @ingredient.update(ingredient_params)
+        format.html { redirect_to admin_organization_ingredients_path(@organization), notice: 'Ingredient was successfully updated.' }
+        format.json { render :show, status: :ok, location: @ingredient }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @ingredient.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /menus/1 or /menus/1.json
+  def destroy
+    @organization = @ingredient.organization
+    @ingredient.destroy
+
+    respond_to do |format|
+      format.html { redirect_to admin_organization_ingredients_path(@organization), notice: 'Ingredient was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 
   def find
     ingredient = Ingredient.find_by(id: params[:id])
@@ -38,6 +95,10 @@ class Admin::IngredientsController < ApplicationController
   private
 
   def ingredient_params
-    params.require(:ingredient).permit(:name, :cost_cents, :item_id, :quantity)
+    params.require(:ingredient).permit(:name,
+                                       :volume, :unit, :cost,
+                                       :prep_method, :image,
+                                       :cost_cents,
+                                       :item_id, :quantity)
   end
 end

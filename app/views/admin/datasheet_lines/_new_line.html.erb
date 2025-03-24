@@ -12,7 +12,7 @@
                     input_html: {
                       class: 'ingredient-js',
                       data: { url: find_admin_organization_ingredients_path(@organization) } },
-                    collection: Ingredient.all, label: false %>
+                    collection: @organization.ingredients.all, label: false %>
       </div>
 
       <div class="col-1">

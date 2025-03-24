@@ -3,7 +3,7 @@
     <div class="col-1 datasheet-id-js"><%= datasheet_line.id %></div>
     <div class="col-4 name-js"
          data-ingredient-id="<%= datasheet_line.ingredient_id %>"
-         data-url="<%= details_admin_organization_ingredient_path(@organization, datasheet_line.ingredient_id) if datasheet_line.ingredient_id %>"
+         data-url="<%= details_admin_ingredient_path(datasheet_line.ingredient_id) if datasheet_line.ingredient_id %>"
          data-org-id="<%= datasheet.item.organization_id %>">
       <%= datasheet_line&.display_name %>
     </div>

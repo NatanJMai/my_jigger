@@ -1,0 +1,29 @@
+<tr>
+  <th scope="row">
+    <% if ingredient.image.present? %>
+      <!-- Use the icon version of the image -->
+      <%= image_tag ingredient.image.icon.url, alt: "#{ingredient.name} Icon", class: "img-thumbnail" %>
+    <% else %>
+      <!-- Fallback for no image -->
+      <span class="text-muted">No Image</span>
+    <% end %>
+  </th>
+  <td><%= ingredient.name %></td>
+
+  <td class="minimal"><%= ingredient.volume %></td>
+  <td class="minimal"><%= ingredient.unit %></td>
+  <td class="minimal"><%= humanized_money_with_symbol Money.new(ingredient.cost_cents) %></td>
+
+  <td class="minimal">
+
+    <%= link_to edit_admin_ingredient_path(ingredient), class: 'btn btn-info' do %>
+      <i class="bi bi-pencil-square"></i> EDIT
+    <% end %>
+
+    <%= button_to admin_ingredient_path(ingredient), class: "btn btn-danger",
+                  method: :delete, form: { data: { turbo: true, method: :delete } } do %>
+
+      <i class="bi bi-trash"></i> DELETE
+    <% end %>
+  </td>
+</tr>

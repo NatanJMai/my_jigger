@@ -1,0 +1,70 @@
+<div class="container jigger-form">
+  <%= simple_form_for(model, html: { class: 'row row-cols' } ) do |f| %>
+
+    <%= render partial: 'layouts/shared/form/header',
+               locals: { title: 'Add/Save Ingredient'} %>
+
+    <div class="row">
+      <div class="col-8">
+        <div class="row">
+          <div class="col-12">
+            <%= f.input :name, hint: 'Ingredient name', wrapper_html: { class: 'jigger-label' } %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <%= f.input :volume, wrapper_html: { class: 'jigger-label' },
+                        hint: 'Ingredient volume',
+                        label: 'Volume' %>
+          </div>
+
+          <div class="col-3">
+            <%= f.input :unit, as: :select,
+                        wrapper_html: { class: 'jigger-label' },
+                        hint: 'Ingredient volume',
+                        collection: Unit.select_options, label: 'Unit' %>
+          </div>
+
+          <div class="col-3">
+            <%= f.input :cost, wrapper_html: { class: 'jigger-label' },
+                        hint: 'Ingredient volume', label: 'Cost ($)' %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <%= f.input :prep_method,
+                        as: :text,
+                        hint: 'Prepare method of this item',
+                        wrapper_html: { class: 'jigger-label' } %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <%= f.button :submit, "Add/Save", class: "form-btn"  %>
+          </div>
+        </div>
+      </div>
+
+
+  <div class="col-4">
+    <div class="vertical-line">
+      <% if ingredient.image.present? %>
+        <!-- Show the existing image -->
+        <%= image_tag ingredient.image.url, alt: "Uploaded Image", class: "img-thumbnail shadow-sm form-photo"%>
+      <% else %>
+        <!-- Show the upload button -->
+        <label for="image-upload" class="btn btn-outline-primary img-thumbnail shadow-sm form-photo">
+          Upload Image
+        </label>
+      <% end %>
+
+      <!-- Hidden File Input -->
+      <%= f.file_field :image, id: "image-upload", class: "d-none" %>
+    </div>
+  </div>
+  </div>
+</div>
+<% end %>

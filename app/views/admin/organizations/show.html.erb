@@ -26,6 +26,12 @@
                          text: "#{organization.name} Items" } %>
 
     <%= render partial: 'layouts/cards/menu_card',
+               locals: { url: admin_organization_ingredients_path(organization),
+                         title: 'Ingredients',
+                         class: '',
+                         text: "#{organization.name} Ingredients" } %>
+
+    <%= render partial: 'layouts/cards/menu_card',
                locals: { url: admin_organization_orders_path(organization),
                          title: 'Orders',
                          class: '',
