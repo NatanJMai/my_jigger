@@ -25,7 +25,7 @@
       <% items.each do |item| %>
         <tr>
           <td><%= item.display_item_link %></td>
-          <td><%= item.category.decorate.display_category_link %></td>
+          <td><%= item.category&.decorate&.display_category_link %></td>
           <td><%= humanized_money_with_symbol Money.new(item.customer_price_cents)  %></td>
           <td><%= humanized_money_with_symbol Money.new(item.costs) %></td>
           <td><%= item.costs_percentage %>%</td>

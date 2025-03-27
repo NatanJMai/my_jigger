@@ -39,7 +39,10 @@ class StagingService
     grouped_records.each_value do |records|
       ingredient_name = records.select { |a| a.attribute_name == 'name' }.first&.row_data || 'Not Found'
 
-      new_ingredient = organization.ingredients.find_or_create_by(name: ingredient_name)
+      new_ingredient = organization.find_closest_ingredient_or_create(ingredient_name)
+
+      next unless new_ingredient
+
       new_datasheet_line = new_item.datasheet.datasheet_lines.new
       new_datasheet_line.ingredient = new_ingredient
 
