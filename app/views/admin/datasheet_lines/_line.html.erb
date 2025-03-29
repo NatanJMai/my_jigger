@@ -10,7 +10,7 @@
     <div class="col-1"><%= datasheet_line&.volume %></div>
     <div class="col-1"><%= datasheet_line&.unit %></div>
     <div class="col-1"><%= humanized_money_with_symbol datasheet_line&.cost %></div>
-    <div class="col-1"><%= datasheet_line.quantity %></div>
+    <div class="col-1"><%= datasheet_line.show_quantity %></div>
     <div class="col-1"><%= humanized_money_with_symbol Money.new datasheet_line.calculated_price %></div>
 
     <div class="col-1">

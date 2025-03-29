@@ -17,18 +17,20 @@
                                                        false => 'Not Imported' }) %>
   </td>
   <td class="minimal">
-    <%= link_to admin_item_datasheet_path(item), class: 'btn btn-success' do %>
-      <i class="bi bi-pencil-square"></i> CMV
+    <%= link_to admin_item_datasheet_path(item), class: 'btn', title: 'Open CMV' do %>
+      <i class="fa-solid fa-file-import item-datasheet-icon"></i>
     <% end %>
 
-    <%= link_to edit_admin_item_path(item), class: 'btn btn-info' do %>
-      <i class="bi bi-pencil-square"></i> EDIT
+    <%= link_to edit_admin_item_path(item), class: 'btn', title: 'Edit Item' do %>
+      <i class="fa-regular fa-pen-to-square edit-button"></i>
     <% end %>
 
-    <%= button_to admin_item_path(item), class: "btn btn-danger",
-                  method: :delete, form: { data: { turbo: true, method: :delete } } do %>
+    <%= button_to admin_item_path(item),
+                  method: :delete,
+                  title: 'Delete Item',
+                  class: "trash-icon-button" do %>
 
-      <i class="bi bi-trash"></i> DELETE
+      <i class="fas fa-trash-alt"></i> <!-- Font Awesome Trash Icon -->
     <% end %>
   </td>
 </tr>

@@ -7,7 +7,7 @@ class Admin::CategoriesController < AdminController
 
   # GET /menus or /menus.json
   def index
-    @categories = @organization.categories
+    @categories = @organization.categories.includes(:items)
   end
 
   # GET /menus/1 or /menus/1.json

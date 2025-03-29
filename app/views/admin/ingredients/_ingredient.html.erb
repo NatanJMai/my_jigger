@@ -15,15 +15,15 @@
   <td class="minimal"><%= humanized_money_with_symbol Money.new(ingredient.cost_cents) %></td>
 
   <td class="minimal">
-
-    <%= link_to edit_admin_ingredient_path(ingredient), class: 'btn btn-info' do %>
-      <i class="bi bi-pencil-square"></i> EDIT
+    <%= link_to edit_admin_ingredient_path(ingredient), class: 'btn' do %>
+      <i class="fa-regular fa-pen-to-square edit-button"></i>
     <% end %>
 
-    <%= button_to admin_ingredient_path(ingredient), class: "btn btn-danger",
-                  method: :delete, form: { data: { turbo: true, method: :delete } } do %>
-
-      <i class="bi bi-trash"></i> DELETE
+    <%= button_to admin_ingredient_path(ingredient),
+                  method: :delete,
+                  title: 'Delete Ingredient',
+                  class: "trash-icon-button" do %>
+      <i class="fas fa-trash-alt"></i>
     <% end %>
   </td>
 </tr>

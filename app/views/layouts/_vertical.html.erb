@@ -16,37 +16,54 @@
     </li>
   </ul>
 
-  <ul class="nav ">
-    <li class="nav-item">
-      <%= link_to admin_organizations_path, class: "4" do %>
-        <i class="fa fa-pie-chart" aria-hidden="true"></i>
-      <% end %>
-    </li>
-  </ul>
+  <% if @organization %>
+<!--    <ul class="nav ">-->
+<!--      <li class="nav-item">-->
+        <%#= link_to admin_organizations_path, class: "4" do %>
+<!--          <i class="fa fa-building" aria-hidden="true"></i>-->
+        <%# end %>
+<!--      </li>-->
+<!--    </ul>-->
 
-  <ul class="nav ">
-    <li class="nav-item">
-      <%= link_to admin_organizations_path, class: "" do %>
-        <i class="fa fa-thin fa-chart-simple"></i>
-      <% end %>
-    </li>
-  </ul>
+    <ul class="nav ">
+      <li class="nav-item">
+        <%= link_to admin_organization_menus_path(@organization), class: "4" do %>
+          <i class="fa fa-book-open" aria-hidden="true"></i>
+        <% end %>
+      </li>
+    </ul>
 
-  <ul class="nav ">
-    <li class="nav-item">
-      <%= link_to admin_organizations_path, class: "" do %>
-        <i class="fa fa-regular fa-money-bill-1"></i>
-      <% end %>
-    </li>
-  </ul>
+    <ul class="nav ">
+      <li class="nav-item">
+        <%= link_to admin_organization_items_path(@organization), class: "" do %>
+          <i class="fa fa-cocktail"></i>
+        <% end %>
+      </li>
+    </ul>
+    <ul class="nav ">
+      <li class="nav-item">
+        <%= link_to admin_organization_ingredients_path(@organization), class: "" do %>
+          <i class="fa fa-file-alt"></i>
+        <% end %>
+      </li>
+    </ul>
 
-  <ul class="nav ">
-    <li class="nav-item">
-      <%= link_to admin_organizations_path, class: "" do %>
-        <i class="fa fa-solid fa-gear"></i>
-      <% end %>
-    </li>
-  </ul>
+    <ul class="nav ">
+      <li class="nav-item">
+        <%= link_to admin_organization_orders_path(@organization), class: "" do %>
+          <i class="fa fa-regular fa-money-bill-1"></i>
+        <% end %>
+      </li>
+    </ul>
+
+    <ul class="nav ">
+      <li class="nav-item">
+        <%= link_to admin_organizations_path, class: "" do %>
+          <i class="fa fa-solid fa-gear"></i>
+        <% end %>
+      </li>
+    </ul>
+  <% end %>
 
   <p class="text-gray font-weight-bold text-uppercase small py-4 mb-0">Me</p>
 

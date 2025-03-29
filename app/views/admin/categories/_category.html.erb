@@ -1,20 +1,19 @@
 <tr>
   <th scope="row"><%= category.id %></th>
   <td><%= category.name %></td>
-  <td>BEST 54 ITEMS</td>
+  <td><%= category.items.best_five.map(&:name).join(', ') %></td>
   <td class="minimal"><%= category.boolean_label(category.status) %></td>
-  <td class="minimal"><%= humanized_money_with_symbol Money.new(150) %></td>
   <td class="minimal">
-    <%= link_to admin_category_path(category), class: 'btn btn-success' do %>
-      <i class="bi bi-pencil-square"></i> VIEW
+    <%= link_to edit_admin_category_path(category), class: 'btn', title: 'Edit Category' do %>
+      <i class="fa-regular fa-pen-to-square edit-button"></i>
     <% end %>
 
     <%= button_to admin_category_path(category),
-                  class: "btn btn-danger",
                   method: :delete,
-                  form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
+                  title: 'Delete Category',
+                  class: "trash-icon-button" do %>
 
-      <i class="bi bi-trash"></i>
+      <i class="fas fa-trash-alt"></i> <!-- Font Awesome Trash Icon -->
     <% end %>
   </td>
 </tr>

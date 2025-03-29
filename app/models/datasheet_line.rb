@@ -8,7 +8,7 @@ class DatasheetLine < ApplicationRecord
 
   before_save :titleize_name
 
-  delegate :name, :volume, :quantity, :cost_cents, to: :ingredient
+  delegate :name, :volume, :cost_cents, to: :ingredient
 
   monetize :cost_cents
 
@@ -16,6 +16,10 @@ class DatasheetLine < ApplicationRecord
     return 0 unless volume && quantity && cost_cents
 
     (quantity.to_f / volume) * cost_cents
+  end
+
+  def show_quantity
+    self.quantity.present? ? quantity : ingredient.quantity
   end
 
   private

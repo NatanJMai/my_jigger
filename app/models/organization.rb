@@ -43,10 +43,9 @@ class Organization < ApplicationRecord
   # @return Ingredient
   def find_closest_ingredient_or_create(ingredient_name)
     normalized_input = normalize_string(ingredient_name)
+    ingredient = ingredients.find_by(name: titleize_string(normalized_input))
 
-    ingredients_var = ingredients.find_by(name: normalized_input)
-
-    unless ingredients_var.present?
+    if ingredient.nil?
       ingredient = ingredients.create(name: normalized_input)
     end
 

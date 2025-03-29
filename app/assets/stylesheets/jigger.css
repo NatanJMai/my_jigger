@@ -241,6 +241,7 @@ body {
   transition: all 0.4s;
   height: 20px;
   font-size: 10pt;
+  padding-bottom: 35px;
 }
 
 #alert-msg.active {
@@ -376,6 +377,16 @@ body {
 
 .circle-link:hover {
   background-color: #0056b3; /* Change background color on hover */
+}
+
+.edit-button {
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+}
+
+.edit-button:hover {
+  text-shadow: 0 0 black;
 }
 
 .cancel-button {

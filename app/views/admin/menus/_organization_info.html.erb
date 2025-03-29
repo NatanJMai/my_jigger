@@ -1,11 +1,7 @@
 <div class="row">
   <div class="col-12">
-    <img src='https://media-cdn.tripadvisor.com/media/photo-s/2a/54/6c/75/jardin.jpg'
-         alt="..." class="mr-3 img-thumbnail shadow-sm form-photo">
+    <%= image_tag @organization.image&.url, class: "card-img-top" %>
   </div>
 
-  <div class="col-12 text-center">
-    <span><%= current_organization&.name %></span>
-    <span><%= current_organization&.status %></span>
-  </div>
+  <div class="col-12 text-center"></div>
 </div>

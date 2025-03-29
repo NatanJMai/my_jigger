@@ -1,9 +1,19 @@
 <div class="row card-header">
-  <div class="col-5">
-    <h4 class="card-title text-left"><%= item.name %></h4>
+  <div class="col-6">
+    <h4 class="card-title text-left">
+      <%= item.name %>
+      <%= link_to admin_item_datasheet_path(item), class: 'btn', title: 'Open CMV' do %>
+        <i class="fa-solid fa-file-import item-datasheet-icon"></i>
+      <% end %>
+
+      <%= link_to edit_admin_item_path(item), class: 'edit-button' do %>
+        <i class="fa-regular fa-pen-to-square edit-button"></i>
+      <% end %>
+
+    </h4>
   </div>
 
-  <div class="col-7">
+  <div class="col-6">
     <div class="row">
       <div class="col-5">
         <%= item.boolean_label(item.status) %>

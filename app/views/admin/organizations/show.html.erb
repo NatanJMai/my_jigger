@@ -1,12 +1,14 @@
-<h2 class="display-4">
+<h4 class="display-7">
   <%= organization.name %>
-</h2>
+  <%= link_to edit_admin_organization_path(organization) do %>
+    <i class="fa-regular fa-pen-to-square edit-button"></i>
+  <% end %>
+</h4>
 
 <div class="separator"></div>
 
 <div class="container-fluid p-0">
   <div class="row">
-
     <%= render partial: 'layouts/cards/menu_card',
                locals: { url: admin_organization_categories_path(organization),
                          title: 'Categories',
