@@ -204,7 +204,7 @@ class Item < ApplicationRecord
   # Return total value sold for each item
   # @return Float
   def total_value
-    total_orders(attribute: :quantity) * customer_price_cents.to_f
+    total_orders(attribute: :total_amount_cents)
   end
 
   ##

@@ -1,7 +1,7 @@
 <div class="container-fluid p-0">
   <div class="row">
     <% menus.each do |menu| %>
-      <%= render 'admin/menus/card', menu: menu, items: menu.items.best_five %>
+      <%= render 'admin/menus/card', menu: menu, items: menu.items.best_five.limit(3) %>
     <% end %>
 
     <%= render partial: 'layouts/new_button', locals: { url: new_admin_organization_menu_path(@organization.id) }  %>

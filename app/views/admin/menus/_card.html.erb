@@ -4,35 +4,41 @@
       <%= link_to admin_menu_path(menu) do %>
         <div id="<%= dom_id menu %>">
           <div class="row card-title">
-            <div class="col-6">
-              <h5><%= menu.name %></h5>
+            <div class="col-8">
+              <h6><%= menu.name %></h6>
             </div>
-            <%= menu.boolean_label(menu.status) %>
+
+            <div class="col-2 row">
+              <div class="col-6">
+                <%= menu.boolean_label(menu.status) %>
+              </div>
+            </div>
           </div>
 
           <div class="card-description">
             <%= menu.description %>
           </div>
 
-          <div class="row menu-items">
-            <% items.each do |item| %>
-              <div class="item col-2">
-                <%= item.name %>
-              </div>
-            <% end %>
+          <div class="row jigger-label menu-items">
+            <div class="col-12 align-left info-description">
+              <%= render partial: 'admin/menus/partials/best_five', locals: { best_five: items } %>
+            </div>
           </div>
         </div>
       <% end %>
 
-      <%= button_to admin_menu_path(menu), class: "btn btn-danger",
+      <%= button_to admin_menu_path(menu), class: "trash-icon-button ",
                     method: :delete, form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
 
-        <i class="bi bi-trash"></i>
+        <i class="fas fa-trash-alt"></i> <!-- Font Awesome Trash Icon -->
       <% end %>
     </div>
 
     <div class="card-footer">
-      <small class="text-muted"><%= menu.released_at %></small>
+      <div class="col-12">
+        <small class="text-muted"><%= menu.released_at %>
+        </small>
+      </div>
     </div>
   </div>
 </div>
