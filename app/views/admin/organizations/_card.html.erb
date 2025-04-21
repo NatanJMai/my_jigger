@@ -20,6 +20,17 @@
           Manager: <%= organization.manager.email %>
         </p>
       </div>
+
+      <%= button_to admin_organization_path(organization), class: "trash-icon-button ",
+                    method: :delete,
+                    form: {
+                      data: {
+                        turbo: true, turbo_confirm: 'Are you sure?', method: :delete
+                      }
+                    } do %>
+        <i class="fas fa-trash-alt"></i>
+
+      <% end %>
     </div>
 
     <div class="card-footer">

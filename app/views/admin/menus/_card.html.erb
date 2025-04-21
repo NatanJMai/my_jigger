@@ -28,9 +28,14 @@
       <% end %>
 
       <%= button_to admin_menu_path(menu), class: "trash-icon-button ",
-                    method: :delete, form: { data: { turbo: true, turbo_confirm: 'Are you sure?', method: :delete } } do %>
+                    method: :delete,
+                    form: {
+                      data: {
+                        turbo: true, turbo_confirm: 'Are you sure?', method: :delete
+                      }
+                    } do %>
 
-        <i class="fas fa-trash-alt"></i> <!-- Font Awesome Trash Icon -->
+        <i class="fas fa-trash-alt"></i>
       <% end %>
     </div>
 

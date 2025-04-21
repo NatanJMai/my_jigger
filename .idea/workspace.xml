@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/item.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/_card.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/_card.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/index.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -438,7 +435,9 @@
       <workItem from="1742813194990" duration="3633000" />
       <workItem from="1743068109908" duration="3980000" />
       <workItem from="1743249943165" duration="6421000" />
-      <workItem from="1743315179613" duration="1275000" />
+      <workItem from="1743315179613" duration="1946000" />
+      <workItem from="1743412867856" duration="1204000" />
+      <workItem from="1745225142690" duration="355000" />
     </task>
     <servers />
   </component>
