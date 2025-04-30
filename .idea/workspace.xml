@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/show.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,40 +47,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RSpec.datasheets_spec.executor&quot;: &quot;Run&quot;,
-    &quot;RSpec.items_spec.executor&quot;: &quot;Run&quot;,
-    &quot;RSpec.products_spec.executor&quot;: &quot;Run&quot;,
-    &quot;Rails.my_jigger.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;my-jigger&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/natanjmai/Documents/_projects/my_jigger/my_jigger/app/views/admin/ingredients&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
-    &quot;ruby.structure.view.model.defaults.configured&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/var/lib/snapd/snap/rubymine/470/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RSpec.datasheets_spec.executor": "Run",
+    "RSpec.items_spec.executor": "Run",
+    "RSpec.products_spec.executor": "Run",
+    "Rails.my_jigger.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "my-jigger",
+    "last_opened_file_path": "/home/natanjmai/Documents/_projects/my_jigger/my_jigger/app/views/admin/menus/partials",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ruby.rails.projectView.checked": "true",
+    "ruby.structure.view.model.defaults.configured": "true",
+    "settings.editor.selected.configurable": "terminal",
+    "ts.external.directory.path": "/var/lib/snapd/snap/rubymine/470/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/admin/menus/partials" />
       <recent name="$PROJECT_DIR$/app/views/admin/ingredients" />
       <recent name="$PROJECT_DIR$/app/views/admin/categories" />
-      <recent name="$PROJECT_DIR$/app/views/admin/menus/partials" />
       <recent name="$PROJECT_DIR$/app/views/admin/items/partials" />
       <recent name="$PROJECT_DIR$/app/helpers" />
     </key>
@@ -437,7 +438,8 @@
       <workItem from="1743249943165" duration="6421000" />
       <workItem from="1743315179613" duration="1946000" />
       <workItem from="1743412867856" duration="1204000" />
-      <workItem from="1745225142690" duration="355000" />
+      <workItem from="1745225142690" duration="1070000" />
+      <workItem from="1746010923052" duration="957000" />
     </task>
     <servers />
   </component>

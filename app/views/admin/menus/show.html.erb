@@ -8,6 +8,14 @@
           Dashboard
         </button>
       </li>
+
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab7-tab" data-bs-toggle="tab" data-bs-target="#tab7"
+                type="button" role="tab" aria-controls="tab7" aria-selected="false">
+          AI Assistant
+        </button>
+      </li>
+
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2"
                 type="button" role="tab" aria-controls="tab2" aria-selected="false">
@@ -43,6 +51,9 @@
   <div class="tab-content" id="tabContent">
     <!-- Tab 1 -->
    <%= render partial: 'admin/menus/partials/tab1' %>
+
+    <!-- Tab 7 -->
+    <%= render partial: 'admin/menus/partials/tab7' %>
 
     <!-- Tab 2 -->
     <%= render partial: 'admin/menus/partials/tab2' %>
