@@ -404,6 +404,20 @@ body {
   background-color: #2640fe;
 }
 
+.btn-blue {
+  font-size: smaller;
+  height: 30px;
+  color: var(--jigger-white);
+  background-color: var(--jigger-blue);
+  border: 1px solid var(--jigger-white);
+}
+
+.btn-blue:hover {
+  background-color: var(--jigger-white);
+  color: var(--jigger-blue);
+  border: 1px solid var(--jigger-blue);
+}
+
 .btn-light {
   font-size: smaller;
   height: 30px;
