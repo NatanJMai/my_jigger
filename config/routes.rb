@@ -85,6 +85,14 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    namespace :ai do
+      namespace :assistant do
+        post 'analyze_menu',    to: 'ai_assistant#analyze_menu'
+        post 'feedback',        to: 'ai_assistant#feedback'
+        get  'recommendations', to: 'ai_assistant#recommendations'
+      end
+    end
   end
 
   get '/index' => 'public#index'

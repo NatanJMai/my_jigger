@@ -10,9 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_24_104654) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_05_104044) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ai_prompt_logs", force: :cascade do |t|
+    t.bigint "organization_id"
+    t.bigint "prompt_type_id"
+    t.datetime "date"
+    t.jsonb "prompt_input", default: {}, null: false
+    t.text "prompt_text"
+    t.text "response_text"
+    t.integer "tokens"
+    t.boolean "success"
+    t.text "error_message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_ai_prompt_logs_on_organization_id"
+    t.index ["prompt_type_id"], name: "index_ai_prompt_logs_on_prompt_type_id"
+  end
+
+  create_table "ai_recommendation_topics", force: :cascade do |t|
+    t.string "name"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_ai_recommendation_topics_on_name"
+  end
+
+  create_table "ai_recommendations", force: :cascade do |t|
+    t.bigint "ai_recommendation_topic_id"
+    t.bigint "organization_id"
+    t.datetime "date"
+    t.text "message"
+    t.string "feedback"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ai_recommendation_topic_id"], name: "index_ai_recommendations_on_ai_recommendation_topic_id"
+    t.index ["organization_id"], name: "index_ai_recommendations_on_organization_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
@@ -207,6 +243,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_24_104654) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "ai_prompt_logs", "ai_recommendation_topics", column: "prompt_type_id"
+  add_foreign_key "ai_prompt_logs", "organizations"
+  add_foreign_key "ai_recommendations", "ai_recommendation_topics"
+  add_foreign_key "ai_recommendations", "organizations"
   add_foreign_key "categories", "organizations"
   add_foreign_key "datasheets", "items"
   add_foreign_key "items", "categories"
