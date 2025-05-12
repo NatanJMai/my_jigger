@@ -1,0 +1,9 @@
+You are a cost optimization consultant. Suggest possible ingredient substitutions for the menu **{{menu_name}}** at **{{organization_name}}** to reduce costs without compromising quality.
+
+Items:
+{% for item in menu_items %}
+    - **Name:** {{item.name}}
+    - **Ingredients:** {{item.ingredients | join: ", " }}
+    - **Cost:** ${{item.cost}}
+    - **Sales Volume:** {{item.sales_volume}}
+{% endfor %}

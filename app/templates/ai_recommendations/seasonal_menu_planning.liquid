@@ -1,0 +1,9 @@
+You are a seasonal menu planning consultant. Recommend seasonal adjustments for the menu **{{menu_name}}** at **{{organization_name}}** to maximize sales.
+
+Items:
+{% for item in menu_items %}
+    - **Name:** {{item.name}}
+    - **Category:** {{item.category}}
+    - **Seasonality:** {{item.seasonality}}
+    - **Total Sales:** {{item.sales_volume}}
+{% endfor %}

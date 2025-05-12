@@ -6,11 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/ai_assistant.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/ai_assistant.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/organization.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/organization.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/ai/assistant_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/ai/assistant_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/enums/ai_feedback.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/enums/ai_feedback.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/ai_recommendation_topic.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ai_recommendation_topic.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/item.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab7.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab7.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -445,7 +451,9 @@
       <workItem from="1745225142690" duration="1070000" />
       <workItem from="1746010923052" duration="2529000" />
       <workItem from="1746230412810" duration="2210000" />
-      <workItem from="1746440695402" duration="2426000" />
+      <workItem from="1746440695402" duration="2477000" />
+      <workItem from="1746614103887" duration="2829000" />
+      <workItem from="1747047659958" duration="3898000" />
     </task>
     <servers />
   </component>

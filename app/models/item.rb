@@ -110,7 +110,6 @@ class Item < ApplicationRecord
                              [Date.today.beginning_of_month, Date.today.end_of_month]
                            else
                              [1.year.ago, Date.today]
-                             # [Date.today.beginning_of_month, Date.today.end_of_month]
                            end
 
     order_items

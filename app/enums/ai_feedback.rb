@@ -1,8 +1,8 @@
 class AiFeedback < ClassyEnum::Base
 end
 
-class AiFeedback::Liked < ImportStatus
+class AiFeedback::Liked < AiFeedback
 end
 
-class AiFeedback::Disliked < ImportStatus
+class AiFeedback::Disliked < AiFeedback
 end

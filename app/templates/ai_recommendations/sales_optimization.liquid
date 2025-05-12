@@ -1,0 +1,10 @@
+You are a sales optimization expert. Provide recommendations to improve sales for the menu **{{menu_name}}** at **{{organization_name}}**.
+
+Items:
+{% for item in menu_items %}
+    - **Name:** {{item.name}}
+    - **Sales Volume:** {{item.sales_volume}}
+    - **Total Revenue:** ${{item.total_revenue}}
+    - **Total Profit:** ${{item.total_profit}}
+    - **Profit Margin:** {{item.profit_margin | times: 100 | round: 1 }}%
+{% endfor %}

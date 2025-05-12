@@ -288,3 +288,41 @@ Product.create_or_find_by(name: 'Vermute Rosso',
 Category.with(active: true).create_or_find_by(name: 'Food', organization_id: 1)
 Category.create_or_find_by(name: 'Street Food', organization_id: 1)
 Category.create_or_find_by(name: 'Classic Cocktails', organization_id: 1)
+
+
+AiRecommendationTopic.create_or_find_by!(name: 'Pricing Opportunity', template:
+<<~TEXT
+  Analyze the pricing for the menu {{menu_name}}. Focus on items with high cost-to-price ratios or underpriced high-margin items:\n\n{{menu_items}}
+TEXT
+)
+
+AiRecommendationTopic.create_or_find_by!(name: 'Ingredient Substitution', template:
+<<~TEXT
+  Suggest ingredient substitutions for the menu {{menu_name}} to reduce costs without sacrificing quality:\n\n{{menu_items}}
+TEXT
+)
+
+AiRecommendationTopic.create_or_find_by!(name: 'Performance Analysis', template:
+<<~TEXT
+  Provide performance insights for the menu {{menu_name}} based on the following items:\n\n{{menu_items}}
+TEXT
+)
+
+AiRecommendationTopic.create_or_find_by!(name: 'Repeated Ingredients', template:
+<<~TEXT
+  Identify repeated ingredients across the menu {{menu_name}} for cost efficiency:\n\n{{menu_items}}
+TEXT
+)
+
+
+AiRecommendationTopic.create_or_find_by!(name: 'Product Profit Maximization', template:
+<<~TEXT
+  Recommend profit-maximizing strategies for the menu {{menu_name}}:\n\n{{menu_items}}
+TEXT
+)
+
+AiRecommendationTopic.create_or_find_by!(name: 'New Product Opportunities', template:
+<<~TEXT
+  Identify opportunities for new products based on the current menu {{menu_name}}:\n\n{{menu_items}}
+TEXT
+)

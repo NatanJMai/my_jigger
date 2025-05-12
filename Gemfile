@@ -95,4 +95,4 @@ gem 'roo'
 gem 'fuzzy_match'
 gem "chartkick"
 gem "groupdate"
-
+gem 'liquid'

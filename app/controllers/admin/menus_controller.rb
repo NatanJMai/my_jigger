@@ -32,6 +32,9 @@ class Admin::MenusController < AdminController
     @plow_horses = @items.matrix_category('plow_horse')
     @puzzles = @items.matrix_category('puzzle')
     @dogs = @items.matrix_category('dog')
+
+    # AI Assistant
+    @recommendation_topics = AiRecommendationTopic.all.order(:name)
   end
 
   # GET /menus/new

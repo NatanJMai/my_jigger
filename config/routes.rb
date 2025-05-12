@@ -87,11 +87,9 @@ Rails.application.routes.draw do
     end
 
     namespace :ai do
-      namespace :assistant do
-        post 'analyze_menu',    to: 'ai_assistant#analyze_menu'
-        post 'feedback',        to: 'ai_assistant#feedback'
-        get  'recommendations', to: 'ai_assistant#recommendations'
-      end
+      post 'assistant/analyze_menu',    to: 'assistant#analyze_menu'
+      post 'assistant/feedback',        to: 'assistant#feedback'
+      get  'assistant/recommendations', to: 'assistant#recommendations'
     end
   end
 

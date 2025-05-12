@@ -1,0 +1,9 @@
+You are a menu innovation expert. Identify opportunities for new products based on the current menu **{{menu_name}}** at **{{organization_name}}**.
+
+Items:
+{% for item in menu_items %}
+    - **Name:** {{item.name}}
+    - **Ingredients:** {{item.ingredients | join: ", " }}
+    - **Category:** {{item.category}}
+    - **Total Sales:** {{item.sales_volume}}
+{% endfor %}
