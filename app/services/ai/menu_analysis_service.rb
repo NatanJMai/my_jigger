@@ -35,7 +35,7 @@ class Ai::MenuAnalysisService
   private
 
   def template_file_path(topic)
-    file_name = "#{topic.downcase.gsub(' ', '_')}.liquid"
+    file_name = "#{topic.name.downcase.gsub(' ', '_')}.liquid"
     TEMPLATE_PATH.join(file_name)
   end
 
@@ -50,7 +50,7 @@ class Ai::MenuAnalysisService
       'category' => item.category.to_s,
       'price' => Money.new(item.customer_price_cents).to_f,
       'cost' => Money.new(item.costs).to_f,
-      'profit_margin' => item.markup_percentage,
+      'profit_margin' => item.markup_percentage&.round(2),
       'sales_volume' => item.quantity_sold,
       'total_revenue' => Money.new(item.total_value).to_f,
       'total_cost' => Money.new(item.costs.to_f * item.quantity_sold).to_f,

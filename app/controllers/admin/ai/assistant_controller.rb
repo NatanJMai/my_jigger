@@ -1,12 +1,13 @@
 class Admin::Ai::AssistantController < ApplicationController
   def analyze_menu
-    menu = Menu.find_by(id: params[:menu_id])
-    organization = menu.organization
+    return unless current_organization
+
+    menu = current_organization.menus.find_by(id: params[:menu_id])
     topics = AiRecommendationTopic.all
 
-    return unless organization.present? && menu.present?
+    return unless menu.present?
 
-    result = Ai::MenuAnalysisService.new(organization, menu).analyse(topics)
+    Ai::MenuAnalysisService.new(current_organization, menu).analyse(topics)
 
   end
 end

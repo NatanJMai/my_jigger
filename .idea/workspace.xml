@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/ai/assistant_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/ai/assistant_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/services/ai/menu_analysis_service.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/ai/menu_analysis_service.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/ingredient_substitution.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/ingredient_substitution.liquid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/menu_performance.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/menu_performance.liquid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/new_product_opportunities.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/new_product_opportunities.liquid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/pricing_opportunity.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/pricing_opportunity.liquid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/profit_maximization.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/profit_maximization.liquid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/repeated_ingredients.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/repeated_ingredients.liquid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/sales_optimization.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/sales_optimization.liquid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/seasonal_menu_planning.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/seasonal_menu_planning.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab7.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab7.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -452,7 +448,9 @@
       <workItem from="1746440695402" duration="2477000" />
       <workItem from="1746614103887" duration="2829000" />
       <workItem from="1747047659958" duration="3898000" />
-      <workItem from="1747301978343" duration="2396000" />
+      <workItem from="1747301978343" duration="2709000" />
+      <workItem from="1747658397706" duration="308000" />
+      <workItem from="1748348072607" duration="447000" />
     </task>
     <servers />
   </component>

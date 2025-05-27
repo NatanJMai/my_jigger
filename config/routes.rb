@@ -38,6 +38,12 @@ Rails.application.routes.draw do
         end
 
         resources :items, only: %i[index show]
+
+        namespace :ai do
+          post 'assistant/analyze', to: 'assistant#analyze_menu'
+          post 'assistant/feedback', to: 'assistant#feedback'
+          get 'assistant/recommendations', to: 'assistant#recommendations'
+        end
       end
 
       resources :categories, shallow: true do
@@ -84,12 +90,6 @@ Rails.application.routes.draw do
           get 'details'
         end
       end
-    end
-
-    namespace :ai do
-      post 'assistant/analyze_menu',    to: 'assistant#analyze_menu'
-      post 'assistant/feedback',        to: 'assistant#feedback'
-      get  'assistant/recommendations', to: 'assistant#recommendations'
     end
   end
 
