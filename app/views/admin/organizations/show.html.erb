@@ -10,6 +10,12 @@
 <div class="container-fluid p-0">
   <div class="row">
     <%= render partial: 'layouts/cards/menu_card',
+               locals: { url: admin_organization_ai_ai_prompt_logs_path(organization),
+                         title: 'AI Prompt Logs',
+                         class: '',
+                         text: "#{organization.name} AI Prompt Logs" } %>
+
+    <%= render partial: 'layouts/cards/menu_card',
                locals: { url: admin_organization_categories_path(organization),
                          title: 'Categories',
                          class: '',

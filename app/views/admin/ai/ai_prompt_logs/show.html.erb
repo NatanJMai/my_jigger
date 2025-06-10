@@ -1,0 +1,15 @@
+<div class="container jigger-form">
+  <div class="row col-12">
+    <div><%= ai_prompt_log.prompt_type&.name %></div>
+    <div><%= ai_prompt_log.date %></div>
+    <div><%= ai_prompt_log.success %></div>
+    <div><%= ai_prompt_log.response_text %></div>
+  </div>
+
+  <div class="row">
+    <div>
+      <%= text_area_tag :response_text, ai_prompt_log.prompt_text, rows: 80, cols: 150,  disabled: true %>
+    </div>
+  </div>
+</div>
+

@@ -90,6 +90,10 @@ Rails.application.routes.draw do
           get 'details'
         end
       end
+
+      namespace :ai do
+        resources :ai_prompt_logs, only: %w[index show]
+      end
     end
   end
 

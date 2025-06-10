@@ -27,8 +27,17 @@ class Ai::MenuAnalysisService
       template_file = template_file_path(topic)
       return "Template #{topic} not found" unless File.exist?(template_file)
 
-      template = File.read(template_file)
-      puts Liquid::Template.parse(template).render(context)
+      template = Liquid::Template.parse(File.read(template_file))
+      prompt_text = template.render(context)
+
+      @organization.ai_prompt_logs.create(
+        date: DateTime.now,
+        prompt_type: topic,
+        prompt_input: context,
+        prompt_text: prompt_text
+      )
+
+      # Call API with prompt_text
     end
   end
 

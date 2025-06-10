@@ -1,0 +1,14 @@
+<tr>
+  <td><%= ai_prompt_log.id %></td>
+  <td><%= ai_prompt_log.prompt_type&.name %></td>
+  <td class="minimal"><%= ai_prompt_log.date %></td>
+  <td class="minimal"><%= ai_prompt_log.success %></td>
+  <td class="minimal"><%= ai_prompt_log.response_text %></td>
+  <td><%= ai_prompt_log.display_text %></td>
+
+  <td class="minimal">
+    <%= link_to admin_organization_ai_ai_prompt_log_path(current_organization, ai_prompt_log), class: 'btn' do %>
+      <i class="fa-regular fa-pen-to-square edit-button"></i>
+    <% end %>
+  </td>
+</tr>
