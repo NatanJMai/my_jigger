@@ -96,3 +96,6 @@ gem 'fuzzy_match'
 gem "chartkick"
 gem "groupdate"
 gem 'liquid'
+gem 'ruby-openai'
+gem 'faraday'
+

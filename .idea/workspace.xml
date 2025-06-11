@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="" />
+    <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/ai_prompt_log.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ai_prompt_log.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/ai/menu_analysis_service.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/ai/menu_analysis_service.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/ingredient_substitution.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/ingredient_substitution.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/new_product_opportunities.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/new_product_opportunities.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/performance_analysis.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/performance_analysis.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/pricing_opportunity.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/pricing_opportunity.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/product_profit_maximization.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/product_profit_maximization.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/repeated_ingredients.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/repeated_ingredients.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/sales_optimization.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/sales_optimization.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/seasonal_menu_planning.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/seasonal_menu_planning.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/ai/ai_prompt_logs/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/ai/ai_prompt_logs/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,7 +70,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1749548229794",
+    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1749634334478",
     "git-widget-placeholder": "my-jigger",
     "last_opened_file_path": "/home/natanjmai/Documents/_projects/my_jigger/my_jigger",
     "node.js.detected.package.eslint": "true",
@@ -446,7 +462,8 @@
       <workItem from="1747658397706" duration="308000" />
       <workItem from="1748348072607" duration="447000" />
       <workItem from="1749547416568" duration="705000" />
-      <workItem from="1749548168290" duration="4784000" />
+      <workItem from="1749548168290" duration="4887000" />
+      <workItem from="1749634272834" duration="4423000" />
     </task>
     <servers />
   </component>

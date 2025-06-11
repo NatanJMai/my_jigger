@@ -23,6 +23,7 @@ class Ai::MenuAnalysisService
       'menu_items' => @menu.items.map { |item| format_item(item) }
     }
 
+    ai_prompt_logs = []
     topics.each do |topic|
       template_file = template_file_path(topic)
       return "Template #{topic} not found" unless File.exist?(template_file)
@@ -30,15 +31,16 @@ class Ai::MenuAnalysisService
       template = Liquid::Template.parse(File.read(template_file))
       prompt_text = template.render(context)
 
-      @organization.ai_prompt_logs.create(
+      ai_prompt_logs << @organization.ai_prompt_logs.create(
         date: DateTime.now,
         prompt_type: topic,
         prompt_input: context,
         prompt_text: prompt_text
       )
-
-      # Call API with prompt_text
     end
+
+    # Call API with prompt_text
+    # Ai::ChatgptService.new.send_request(ai_prompt_logs)
   end
 
   private

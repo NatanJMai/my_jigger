@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_12_111159) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_11_095707) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_12_111159) do
     t.text "error_message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "prompt_output", default: {}, null: false
     t.index ["organization_id"], name: "index_ai_prompt_logs_on_organization_id"
     t.index ["prompt_type_id"], name: "index_ai_prompt_logs_on_prompt_type_id"
   end
