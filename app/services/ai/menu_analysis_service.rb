@@ -31,7 +31,7 @@ class Ai::MenuAnalysisService
       template = Liquid::Template.parse(File.read(template_file))
       prompt_text = template.render(context)
 
-      ai_prompt_logs << @organization.ai_prompt_logs.create(
+      ai_prompt_logs << @menu.ai_prompt_logs.create(
         date: DateTime.now,
         prompt_type: topic,
         prompt_input: context,

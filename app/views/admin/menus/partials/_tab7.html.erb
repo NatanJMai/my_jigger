@@ -62,32 +62,24 @@
                       <th class="col">Feedback</th>
                     </tr>
                     </thead>
+
                     <tbody>
-                      <tr>
-                        <td>Rec 1</td>
-                        <td>Like / Dislike</td>
-                      </tr>
+                    <% ai = ai_prompt_logs.first %>
 
+                    <% ai.display_by_item.each do |item| %>
                       <tr>
-                        <td>Rec 1</td>
+                        <td><%= item.html_safe %></td>
                         <td>Like / Dislike</td>
                       </tr>
-
-                      <tr>
-                        <td>Rec 1</td>
-                        <td>Like / Dislike</td>
-                      </tr>
+                    <% end %>
                     </tbody>
                   </table>
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>

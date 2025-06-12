@@ -8,7 +8,7 @@ class Admin::MenusController < AdminController
   load_and_authorize_resource :menu, through: :organization
 
   decorates_assigned :menus, :menu
-  decorates_assigned :items, :best_five, :ranking_items, :categories
+  decorates_assigned :items, :best_five, :ranking_items, :categories, :ai_prompt_logs
 
   # GET /menus or /menus.json
   def index
@@ -35,6 +35,7 @@ class Admin::MenusController < AdminController
 
     # AI Assistant
     @recommendation_topics = AiRecommendationTopic.all.order(:name)
+    @ai_prompt_logs = @menu.ai_prompt_logs
   end
 
   # GET /menus/new

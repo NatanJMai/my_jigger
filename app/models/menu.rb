@@ -2,6 +2,7 @@ class Menu < ApplicationRecord
   belongs_to :organization, class_name: 'Organization'
   has_many :items, class_name: 'Item'
   has_many :categories, class_name: 'Category', through: :items
+  has_many :ai_prompt_logs, class_name: 'AiPromptLog', dependent: :destroy
 
   validates :name, :organization_id, presence: true
 

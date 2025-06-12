@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_11_095707) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_12_101204) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "ai_prompt_logs", force: :cascade do |t|
-    t.bigint "organization_id"
     t.bigint "prompt_type_id"
     t.datetime "date"
     t.jsonb "prompt_input", default: {}, null: false
@@ -27,7 +26,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_11_095707) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.jsonb "prompt_output", default: {}, null: false
-    t.index ["organization_id"], name: "index_ai_prompt_logs_on_organization_id"
+    t.bigint "menu_id"
+    t.index ["menu_id"], name: "index_ai_prompt_logs_on_menu_id"
     t.index ["prompt_type_id"], name: "index_ai_prompt_logs_on_prompt_type_id"
   end
 
@@ -246,7 +246,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_11_095707) do
   end
 
   add_foreign_key "ai_prompt_logs", "ai_recommendation_topics", column: "prompt_type_id"
-  add_foreign_key "ai_prompt_logs", "organizations"
   add_foreign_key "ai_recommendations", "ai_recommendation_topics"
   add_foreign_key "ai_recommendations", "organizations"
   add_foreign_key "categories", "organizations"

@@ -11,9 +11,9 @@ class Ai::ChatgptService
     ai_prompt_logs.each do |log|
       response = @client.chat(
         parameters: {
-          model: "gpt-3.5-turbo",
+          model: 'gpt-3.5-turbo',
           messages: [
-            { role: "user", content: log.prompt_text }
+            { role: 'user', content: log.prompt_text }
           ],
           temperature: 0.7
         }

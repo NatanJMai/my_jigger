@@ -7,10 +7,8 @@ class Admin::Ai::AiPromptLogsController < ApplicationController
   decorates_assigned :organization
 
   def index
-    @ai_prompt_logs = organization.ai_prompt_logs.order(date: :desc)
+    @ai_prompt_logs = @organization.ai_prompt_logs.order(date: :desc)
   end
 
-  def show
-
-  end
+  def show; end
 end
