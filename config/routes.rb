@@ -92,7 +92,11 @@ Rails.application.routes.draw do
       end
 
       namespace :ai do
-        resources :ai_prompt_logs, only: %w[index show]
+        resources :ai_prompt_logs, only: %w[index show] do
+          collection do
+            get 'by_topic'
+          end
+        end
       end
     end
   end

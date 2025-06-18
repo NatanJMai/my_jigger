@@ -47,7 +47,9 @@
               <h6><b>Recommendation Topics</b></h6>
               <div class="container jigger-form child-list">
                 <% @recommendation_topics.each do |rec_topic| %>
-                  <div><%= link_to "*#{rec_topic.name}" %></div>
+                  <div><%= link_to "*#{rec_topic.name}",
+                                   by_topic_admin_organization_ai_ai_prompt_logs_path(@organization, ai_recommendation_topic_id: rec_topic.id),
+                                   data: { turbo_method: :get, turbo_stream: true } %></div>
                 <% end %>
               </div>
             </div>
@@ -55,25 +57,7 @@
             <div class="col-8 ai-content-recommendations">
               <div class="row">
                 <div class="col-12">
-                  <table class="table table-hover">
-                    <thead>
-                    <tr>
-                      <th class="col-10">Recommendation</th>
-                      <th class="col">Feedback</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <% ai = ai_prompt_logs.first %>
-
-                    <% ai.display_by_item.each do |item| %>
-                      <tr>
-                        <td><%= item.html_safe %></td>
-                        <td>Like / Dislike</td>
-                      </tr>
-                    <% end %>
-                    </tbody>
-                  </table>
+                  <%= render partial: 'admin/ai/ai_recommendations/table', locals: { ai_prompt_logs: ai_prompt_logs } %>
                 </div>
               </div>
             </div>

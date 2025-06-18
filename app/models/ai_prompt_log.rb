@@ -4,6 +4,14 @@ class AiPromptLog < ApplicationRecord
 
   validates :menu_id, :date, presence: true
 
+  ##
+  # Filter by Topic
+  # @param topic_id Integer
+  # @return Scope
+  scope :by_prompt_type, lambda { |topic_id|
+    where(prompt_type_id: topic_id)
+  }
+
   def parse_result_by_item
     content = prompt_output["choices"][0]["message"]["content"]&.to_json
     remove_st = content.gsub(/,\s*(\]|\})/, '\1')

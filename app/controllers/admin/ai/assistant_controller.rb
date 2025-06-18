@@ -8,6 +8,5 @@ class Admin::Ai::AssistantController < ApplicationController
     return unless menu.present?
 
     Ai::MenuAnalysisService.new(current_organization, menu).analyse(topics)
-
   end
 end
