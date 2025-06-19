@@ -14,7 +14,7 @@ class Admin::Ai::AiPromptLogsController < ApplicationController
   def show; end
 
   def by_topic
-    @ai_prompt_logs = @ai_prompt_logs.by_prompt_type(params[:ai_recommendation_topic_id]).decorate
+    @pagy, @ai_prompt_logs = pagy(@ai_prompt_logs.by_prompt_type(params[:ai_recommendation_topic_id]).decorate)
 
     respond_to do |format|
       format.turbo_stream do

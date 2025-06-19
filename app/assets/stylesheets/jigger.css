@@ -423,6 +423,11 @@ body {
   height: 30px;
   background-color: white;
   border: 1px solid var(--jigger-blue);
+
+  &.ai-topics {
+    width: 250px;
+  }
+
 }
 
 .btn-light:hover {

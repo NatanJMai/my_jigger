@@ -18,6 +18,9 @@
         </tr>
       <% end %>
     <% end %>
+
+    <%== pagy_nav(@pagy) if @pagy.present? %>
+
     </tbody>
   </table>
 <% end %>

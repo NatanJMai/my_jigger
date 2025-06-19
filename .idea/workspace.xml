@@ -6,11 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/jigger.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/jigger.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/admin/ai/ai_prompt_logs_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/ai/ai_prompt_logs_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/ai/assistant_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/ai/assistant_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/ai_prompt_log.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ai_prompt_log.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/ai/ai_recommendations/_table.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/ai/ai_recommendations/_table.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_item_list.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_item_list.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab7.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab7.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +66,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1750239935365",
+    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1750338591089",
     "git-widget-placeholder": "my-jigger",
     "last_opened_file_path": "/home/natanjmai/Documents/_projects/my_jigger/my_jigger",
     "node.js.detected.package.eslint": "true",
@@ -457,7 +462,8 @@
       <workItem from="1749634272834" duration="4538000" />
       <workItem from="1749722948062" duration="2215000" />
       <workItem from="1749725193135" duration="38000" />
-      <workItem from="1750239868582" duration="3348000" />
+      <workItem from="1750239868582" duration="4030000" />
+      <workItem from="1750338530790" duration="1231000" />
     </task>
     <servers />
   </component>

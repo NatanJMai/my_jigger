@@ -18,6 +18,8 @@ class Admin::MenusController < AdminController
   # GET /menus/1 or /menus/1.json
   def show
     @items = @menu.items.includes(:category, :datasheet_lines, :order_items).order(:name)
+    @pagy, @items = pagy(@items)
+
     @categories = @menu.categories.includes(:items).order(:name)
     @ranking_items = @menu.ranking_items
     @best_five = @items.best_five

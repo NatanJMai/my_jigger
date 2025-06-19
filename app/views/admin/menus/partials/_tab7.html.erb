@@ -47,9 +47,12 @@
               <h6><b>Recommendation Topics</b></h6>
               <div class="container jigger-form child-list">
                 <% @recommendation_topics.each do |rec_topic| %>
-                  <div><%= link_to "*#{rec_topic.name}",
+                  <div>
+                    <%= link_to "#{rec_topic.name}",
                                    by_topic_admin_organization_ai_ai_prompt_logs_path(@organization, ai_recommendation_topic_id: rec_topic.id),
-                                   data: { turbo_method: :get, turbo_stream: true } %></div>
+                                class: 'btn btn-light ai-topics shadow-sm px-4 mb-2',
+                                data: { turbo_method: :get, turbo_stream: true } %>
+                  </div>
                 <% end %>
               </div>
             </div>
