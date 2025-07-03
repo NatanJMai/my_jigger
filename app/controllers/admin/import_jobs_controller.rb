@@ -1,10 +1,13 @@
+require "pdf-reader"
+
 class Admin::ImportJobsController < AdminController
   load_and_authorize_resource
   load_and_authorize_resource :organization
+  load_and_authorize_resource :menu
 
   # Decorate assigned resources for view enhancements
   decorates_assigned :import_job, :import_jobs
-  decorates_assigned :organization
+  decorates_assigned :organization, :menu
 
   # GET /menus or /menus.json
   def index
@@ -34,7 +37,12 @@ class Admin::ImportJobsController < AdminController
 
     if @import_job.save
       # Enqueue the worker to process the file
-      FileProcessorWorker.perform_async(@import_job.id, option_select)
+      if option_select == 'pdf_document'
+        Ai::MenuAnalysisService.new(current_organization, menu).pdf_analyse(@import_job.file)
+      else
+        FileProcessorWorker.perform_async(@import_job.id, option_select)
+      end
+
 
       # Render the document view to start real-time updates
       respond_to do |format|
@@ -47,7 +55,6 @@ class Admin::ImportJobsController < AdminController
     else
       respond_to do |format|
         format.html { render :new, status: :unprocessable_entity }
-        # format.turbo_stream { render turbo_stream: turbo_stream.replace('form-errors', partial: 'shared/form_errors', locals: { resource: @import_job }) }
       end
     end
   end

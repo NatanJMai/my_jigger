@@ -9,6 +9,10 @@ class Ai::MenuAnalysisService
     @menu = menu
   end
 
+  def pdf_analyse(file)
+    extract_data_from_file(file)
+  end
+
   ##
   # Return the records objects to be created in Worker
   # @param topics AiRecommendationTopic
@@ -44,6 +48,19 @@ class Ai::MenuAnalysisService
   end
 
   private
+
+  def extract_data_from_file(file)
+    return unless file.present?
+
+    if file.content_type == "application/pdf"
+      reader = PDF::Reader.new(file.path)
+      pages = reader.pages.map(&:text)
+    else
+      pages = [file.read]
+    end
+
+    puts pages
+  end
 
   def template_file_path(topic)
     file_name = "#{topic.name.downcase.gsub(' ', '_')}.liquid"

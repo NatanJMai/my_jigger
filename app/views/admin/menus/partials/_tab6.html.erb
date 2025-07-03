@@ -8,13 +8,15 @@
               <div class="col-6">
                 <%= f.input :file, as: :file, label: false, hint: 'Select file to import',
                             wrapper_html: { class: 'jigger-label' } %>
+
+                <%= hidden_field_tag :menu_id, @menu.id %>
                 <%= f.button :submit, "Upload Document", class: 'btn btn-light shadow-sm px-4 mb-2', data: { turbo: false } %>
               </div>
 
-              <div class="col-3">
+              <div class="col-4">
                 <div class="mb-3 select optional item_category jigger-label">
-<!--                  <label class="form-label select optional" for="option_select">Import Type</label>-->
                   <select class="form-select is-valid select optional" name="option_select" id="option_select">
+                    <option value="pdf_document">PDF Document</option>
                     <option value="item">Item</option>
                     <option value="order">Order</option>
                   </select>

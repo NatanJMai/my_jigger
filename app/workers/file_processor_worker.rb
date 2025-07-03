@@ -21,12 +21,18 @@ class FileProcessorWorker
     file = @import_job.file
 
     begin
-      @object_name, item_records = FileParserService.new(file.file).parse(import_type.to_sym)
-
-      @import_job.update(reference_name: @object_name) if @object_name.present?
-      process_item_rows(item_records)
-      sleep(1)
-      StagingService.new(@import_job).start(import_type.to_sym)
+      if %i[order item].include?(import_type.to_sym)
+        @object_name, item_records = FileParserService.new(file.file).parse(import_type.to_sym)
+  
+        @import_job.update(reference_name: @object_name) if @object_name.present?
+        process_item_rows(item_records)
+        sleep(1)
+        StagingService.new(@import_job).start(import_type.to_sym)
+      else
+        #PDF document analysis
+        
+        
+      end
 
     rescue => e
       Rails.logger.error("Failed to process file: #{e.message}")

@@ -99,4 +99,5 @@ gem 'liquid'
 gem 'ruby-openai'
 gem 'faraday'
 gem 'pagy', '~> 9.3'
+gem 'pdf-reader'
 
