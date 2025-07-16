@@ -34,11 +34,12 @@ class Admin::ImportJobsController < AdminController
     @import_job.import_status = 'in_progress'
 
     option_select = params[:option_select].presence || 'item'
+    topics = AiRecommendationTopic.all
 
     if @import_job.save
       # Enqueue the worker to process the file
       if option_select == 'pdf_document'
-        Ai::MenuAnalysisService.new(current_organization, menu).pdf_analyse(@import_job.file)
+        Ai::MenuAnalysisService.new(current_organization, menu).pdf_analyse(@import_job.file, topics)
       else
         FileProcessorWorker.perform_async(@import_job.id, option_select)
       end

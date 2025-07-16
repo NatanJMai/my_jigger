@@ -5,15 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/admin/import_jobs_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/import_jobs_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/organizations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/organizations_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/decorators/ai_prompt_log_decorator.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/decorators/ai_prompt_log_decorator.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/ai_prompt_log.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ai_prompt_log.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/services/ai/menu_analysis_service.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/ai/menu_analysis_service.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/uploaders/file_uploader.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/uploaders/file_uploader.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab6.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab6.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/workers/file_processor_worker.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/workers/file_processor_worker.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/ingredient_substitution.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/ingredient_substitution.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/new_product_opportunities.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/new_product_opportunities.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/performance_analysis.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/performance_analysis.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/pricing_opportunity.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/pricing_opportunity.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/product_profit_maximization.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/product_profit_maximization.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/repeated_ingredients.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/repeated_ingredients.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/sales_optimization.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/sales_optimization.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/ai_recommendations/seasonal_menu_planning.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ai_recommendations/seasonal_menu_planning.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/ai/ai_prompt_logs/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/ai/ai_prompt_logs/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/ai/ai_recommendations/_table.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/ai/ai_recommendations/_table.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/_toggle_button.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_toggle_button.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +74,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1751538571836",
+    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1752663159987",
     "git-widget-placeholder": "import-files",
     "last_opened_file_path": "/home/natanjmai/Documents/_projects/my_jigger/my_jigger",
     "node.js.detected.package.eslint": "true",
@@ -464,7 +474,10 @@
       <workItem from="1750338530790" duration="1269000" />
       <workItem from="1750761181575" duration="1611000" />
       <workItem from="1751453382531" duration="779000" />
-      <workItem from="1751538512385" duration="2027000" />
+      <workItem from="1751538512385" duration="2184000" />
+      <workItem from="1752065176991" duration="1033000" />
+      <workItem from="1752141235637" duration="1214000" />
+      <workItem from="1752663089764" duration="1230000" />
     </task>
     <servers />
   </component>

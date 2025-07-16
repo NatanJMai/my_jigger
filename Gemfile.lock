@@ -103,6 +103,8 @@ GEM
     bootstrap (5.3.2)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.8, < 3)
+    breadcrumbs_on_rails (4.1.0)
+      railties (>= 5.0)
     builder (3.2.4)
     cancancan (3.6.1)
     capybara (3.39.2)
@@ -450,6 +452,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   bootstrap
+  breadcrumbs_on_rails
   cancancan
   capybara
   carrierwave

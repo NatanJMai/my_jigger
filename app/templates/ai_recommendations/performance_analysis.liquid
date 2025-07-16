@@ -10,13 +10,21 @@ Example output:
   ]
 }
 
-Items:
-{% for item in menu_items %}
-    - **Name:** {{item.name}}
-    - **Category:** {{item.category}}
-    - **Sales Volume:** {{item.sales_volume}}
-    - **Total Revenue:** ${{item.total_revenue}}
-    - **Total Profit:** ${{item.total_profit}}
-    - **Profit Margin:** {{item.profit_margin}}%
-    - **ABC Popularity Score:** {{item.abc_popularity}}
-{% endfor %}
+{% if pdf %}
+    Menu data extracted from PDF:
+    {{ pdf_text }}
+
+    Please extract relevant item names, ingredients, costs, and sales volume (if available) from this PDF content and suggest optimizations accordingly.
+{% else %}
+    Items:
+    {% for item in menu_items %}
+        - **Name:** {{item.name}}
+        - **Category:** {{item.category}}
+        - **Sales Volume:** {{item.sales_volume}}
+        - **Total Revenue:** ${{item.total_revenue}}
+        - **Total Profit:** ${{item.total_profit}}
+        - **Profit Margin:** {{item.profit_margin}}%
+        - **ABC Popularity Score:** {{item.abc_popularity}}
+    {% endfor %}
+{% endif %}
+

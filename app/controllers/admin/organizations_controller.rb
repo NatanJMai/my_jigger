@@ -10,6 +10,7 @@ class Admin::OrganizationsController < AdminController
 
   # GET /organizations/1 or /organizations/1.json
   def show
+    add_breadcrumb 'Organizations', :admin_organizations_path
   end
 
   # GET /organizations/new
@@ -27,7 +28,7 @@ class Admin::OrganizationsController < AdminController
 
     respond_to do |format|
       if @organization.update(organization_params)
-        format.html { redirect_to admin_organizations_url, notice: "Organization was successfully created." }
+        format.html { redirect_to admin_organizations_url, notice: 'Organization was successfully created.' }
         format.json { render :show, status: :created, location: @organization }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +41,7 @@ class Admin::OrganizationsController < AdminController
   def update
     respond_to do |format|
       if @organization.update(organization_params)
-        format.html { redirect_to admin_organization_url(@organization), notice: "Organization was successfully updated." }
+        format.html { redirect_to admin_organization_url(@organization), notice: 'Organization was successfully updated.' }
         format.json { render :show, status: :ok, location: @organization }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +55,7 @@ class Admin::OrganizationsController < AdminController
     @organization.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_organizations_url, notice: "Organization was successfully destroyed." }
+      format.html { redirect_to admin_organizations_url, notice: 'Organization was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

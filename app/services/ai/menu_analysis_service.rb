@@ -9,8 +9,33 @@ class Ai::MenuAnalysisService
     @menu = menu
   end
 
-  def pdf_analyse(file)
-    extract_data_from_file(file)
+  def pdf_analyse(file, topics)
+    pdf_text = extract_data_from_file(file)
+
+    context = {
+      'organization_name' => @organization.name,
+      'menu_name' => @menu.name,
+      'menu_description' => @menu.description,
+      'menu_items' => @menu.items.map { |item| format_item(item) },
+      'pdf' => true,
+      'pdf_text' => pdf_text
+    }
+
+    ai_prompt_logs = []
+    topics.each do |topic|
+      template_file = template_file_path(topic)
+      return "Template #{topic} not found" unless File.exist?(template_file)
+
+      template = Liquid::Template.parse(File.read(template_file))
+      prompt_text = template.render(context)
+
+      ai_prompt_logs << @menu.ai_prompt_logs.create(
+        date: DateTime.now,
+        prompt_type: topic,
+        prompt_input: context,
+        prompt_text: prompt_text
+      )
+    end
   end
 
   ##
@@ -24,7 +49,8 @@ class Ai::MenuAnalysisService
       'organization_name' => @organization.name,
       'menu_name' => @menu.name,
       'menu_description' => @menu.description,
-      'menu_items' => @menu.items.map { |item| format_item(item) }
+      'menu_items' => @menu.items.map { |item| format_item(item) },
+      'pdf' => false
     }
 
     ai_prompt_logs = []
@@ -52,14 +78,11 @@ class Ai::MenuAnalysisService
   def extract_data_from_file(file)
     return unless file.present?
 
-    if file.content_type == "application/pdf"
-      reader = PDF::Reader.new(file.path)
-      pages = reader.pages.map(&:text)
+    if file.content_type == 'application/pdf'
+      PDF::Reader.new(file.path).pages.map(&:text).join
     else
-      pages = [file.read]
+      file.read
     end
-
-    puts pages
   end
 
   def template_file_path(topic)

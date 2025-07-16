@@ -62,6 +62,10 @@ body {
     font-size: 10pt;
     border: none;
     text-decoration: underline;
+
+    a {
+      color: #3498DB;
+    }
   }
 
   .container {

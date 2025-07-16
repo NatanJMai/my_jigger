@@ -10,8 +10,16 @@ Example output:
   ]
 }
 
-Ingredients:
-{% for item in menu_items %}
-    - **Name:** {{item.name}}
-    - **Ingredients:** {{item.ingredients}}
-{% endfor %}
+{% if pdf %}
+    Menu data extracted from PDF:
+    {{ pdf_text }}
+
+    Please extract relevant item names, ingredients, costs, and sales volume (if available) from this PDF content and suggest optimizations accordingly.
+{% else %}
+    Ingredients:
+    {% for item in menu_items %}
+        - **Name:** {{item.name}}
+        - **Ingredients:** {{item.ingredients}}
+    {% endfor %}
+{% endif %}
+

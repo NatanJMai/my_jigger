@@ -11,12 +11,12 @@
     <% ai_prompt_logs.each do |log| %>
       <% items = log.display_by_item %>
 
-      <% items.each do |item| %>
-        <tr>
-          <td><%= item.html_safe %></td>
-          <td>Like / Dislike</td>
-        </tr>
-      <% end %>
+      <%# items.each do |item| %>
+<!--        <tr>-->
+<!--          <td><%#= item.html_safe %></td>-->
+<!--          <td>Like / Dislike</td>-->
+<!--        </tr>-->
+      <%# end %>
     <% end %>
 
     <%== pagy_nav(@pagy) if @pagy.present? %>

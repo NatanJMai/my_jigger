@@ -6,4 +6,9 @@
 
 <%= link_to admin_organizations_path, class: "btn mb-4 toggle-button" do %>
   <i class="fa fa-home" aria-hidden="true"></i>
+
 <% end %>
+
+<span class="btn mb-4 toggle-button">
+  <%= render_breadcrumbs :separator => "/" %>
+</span>

@@ -13,10 +13,12 @@ class AiPromptLog < ApplicationRecord
   }
 
   def parse_result_by_item
-    content = prompt_output["choices"][0]["message"]["content"]&.to_json
-    remove_st = content.gsub(/,\s*(\]|\})/, '\1')
+    return prompt_text
 
-    result_text = JSON.parse(remove_st)
-    JSON.parse(result_text.gsub(/,\s*(\]|\})/, '\1'))
+    # content = prompt_output["choices"]&[0]&["message"]&["content"]&.to_json
+    # remove_st = content.gsub(/,\s*(\]|\})/, '\1')
+    #
+    # result_text = JSON.parse(remove_st)
+    # JSON.parse(result_text.gsub(/,\s*(\]|\})/, '\1'))
   end
 end
