@@ -16,15 +16,7 @@
     </li>
   </ul>
 
-  <% if @organization %>
-<!--    <ul class="nav ">-->
-<!--      <li class="nav-item">-->
-        <%#= link_to admin_organizations_path, class: "4" do %>
-<!--          <i class="fa fa-building" aria-hidden="true"></i>-->
-        <%# end %>
-<!--      </li>-->
-<!--    </ul>-->
-
+  <% if @organization&.persisted? %>
     <ul class="nav ">
       <li class="nav-item">
         <%= link_to admin_organization_menus_path(@organization), class: "4" do %>

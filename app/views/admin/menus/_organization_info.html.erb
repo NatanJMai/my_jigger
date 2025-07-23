@@ -1,7 +1,8 @@
 <div class="row">
-  <div class="col-12">
-    <%= image_tag @organization.image&.url, class: "card-img-top" %>
-  </div>
-
+  <% if @organization&.image.present? %>
+    <div class="col-12">
+      <%= image_tag @organization.image&.url, class: "card-img-top" %>
+    </div>
+  <% end %>
   <div class="col-12 text-center"></div>
 </div>

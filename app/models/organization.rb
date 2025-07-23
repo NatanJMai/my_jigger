@@ -8,7 +8,6 @@ class Organization < ApplicationRecord
   has_many :categories, class_name: 'Category', dependent: :destroy
   has_many :import_jobs, class_name: 'ImportJob', dependent: :destroy
   has_many :orders, class_name: 'Order', dependent: :destroy
-  has_many :ai_recommendations, class_name: 'AiRecommendationTopic', dependent: :destroy
   has_many :ai_prompt_logs, through: :menus, class_name: 'AiPromptLog', dependent: :destroy
 
   mount_uploader :image, ImageUploader

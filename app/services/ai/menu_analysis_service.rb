@@ -36,6 +36,9 @@ class Ai::MenuAnalysisService
         prompt_text: prompt_text
       )
     end
+
+    # Call API with prompt_text
+    # Ai::ChatgptService.new.send_request(ai_prompt_logs)
   end
 
   ##
