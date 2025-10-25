@@ -1,0 +1,73 @@
+// 
+// _root.scss
+//
+
+// Google fonts
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+
+    // Font Family Secondary
+
+    --#{$prefix}font-family-secondary:    "Public Sans", sans-serif;
+    // Logo
+    --#{$prefix}logo-lg-height:                 22px;
+    --#{$prefix}logo-sm-height:                 22px;
+
+    // Sidebar
+    --#{$prefix}sidenav-width:                          240px;
+    --#{$prefix}sidenav-width-md:                       150px;
+    --#{$prefix}sidenav-width-sm:                       75px;
+
+    // Topbar
+    --#{$prefix}topbar-height:                           70px;
+
+    // Menu items
+    --#{$prefix}sidenav-item-icon-size:                  1rem;
+    --#{$prefix}sidenav-item-gap:                        12px;
+    --#{$prefix}sidenav-item-padding-x:                  12px;
+    --#{$prefix}sidenav-item-padding-y:                  8px;
+    --#{$prefix}sidenav-item-font-size:                  0.875rem;
+    --#{$prefix}sidenav-item-font-weight:                400;
+
+    // Sub Menu Items
+    --#{$prefix}sidenav-sub-item-font-size:              0.875rem;
+    --#{$prefix}sidenav-sub-item-font-weight:            400;
+    --#{$prefix}sidenav-sub-item-gap:                    4px;
+    --#{$prefix}sidenav-sub-item-padding-x:              10px;
+    --#{$prefix}sidenav-sub-item-padding-y:              7px;
+
+    --#{$prefix}theme-card-border-width:                 0;
+    --#{$prefix}theme-card-box-shadow:                   var(--#{$prefix}box-shadow-sm);
+    --#{$prefix}theme-card-border-color:                 var(--#{$prefix}border-color);
+
+    --#{$prefix}font-weight-medium:                      500;
+    --#{$prefix}font-weight-semibold:                    600;
+    --#{$prefix}font-weight-bold:                        700;
+
+    --#{$prefix}font-size-xxs:                           11px;
+    --#{$prefix}font-size-xs:                            12px;
+    --#{$prefix}font-size-base:                          14px;
+    --#{$prefix}font-size-sm:                            14px;
+    --#{$prefix}font-size-md:                            15px;
+    --#{$prefix}font-size-lg:                            16px;
+    --#{$prefix}font-size-xl:                            18px;
+    --#{$prefix}font-size-xxl:                           20px;
+
+    --#{$prefix}chart-primary:                           #6658dd;
+    --#{$prefix}chart-primary-rgb:                       #{to-rgb(#6658dd)};
+    --#{$prefix}chart-secondary:                         #4a81d4;
+    --#{$prefix}chart-secondary-rgb:                     #{to-rgb(#4a81d4)};
+    --#{$prefix}chart-gray:                              #edeff3;
+    --#{$prefix}chart-gray-rgb:                          #{to-rgb(#edeff3)};
+    --#{$prefix}chart-dark:                              #1abc9c;
+    --#{$prefix}chart-dark-rgb:                          #{to-rgb(#1abc9c)};
+    --#{$prefix}chart-border-color:                      #ecf4fc;
+    --#{$prefix}chart-title-color:                      #bbcae1;
+}
+
+[data-bs-theme="dark"]{
+    --#{$prefix}chart-border-color:                      #242c31;
+    --#{$prefix}chart-gray:                              #40424f;
+    --#{$prefix}chart-gray-rgb:                          #{to-rgb(#40424f)};
+}

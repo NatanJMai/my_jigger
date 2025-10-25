@@ -13,8 +13,12 @@ SimpleForm.setup do |config|
   # wrapper, change the order or even add your own to the
   # stack. The options given below are used to wrap the
   # whole input.
-  config.wrappers :default, class: :input,
-    hint_class: :field_with_hint, error_class: :field_with_errors, valid_class: :field_without_errors do |b|
+
+  config.wrappers :default,
+                  label_required_text: '<span class="text-danger">*</span>',
+                  class: :input,
+                  hint_class: :field_with_hint, error_class: :field_with_errors, valid_class: :field_without_errors do |b|
+
     ## Extensions enabled by default
     # Any of these extensions can be disabled for a
     # given input by passing: `f.input EXTENSION_NAME => false`.
@@ -64,6 +68,15 @@ SimpleForm.setup do |config|
     # b.use :full_error, wrap_with: { tag: :span, class: :error }
   end
 
+  config.wrappers :floating_label, tag: :div, class: 'form-floating', error_class: 'is-invalid', valid_class: 'is-valid' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :input, class: 'form-control'
+    b.use :label
+    b.use :full_error, wrap_with: { tag: :div, class: 'invalid-feedback' }
+    b.use :hint, wrap_with: { tag: :div, class: 'form-text' }
+  end
+
   # The default wrapper to be used by the FormBuilder.
   config.default_wrapper = :default
 
@@ -107,7 +120,7 @@ SimpleForm.setup do |config|
   # config.item_wrapper_class = nil
 
   # How the label text should be generated altogether with the required text.
-  # config.label_text = lambda { |label, required, explicit_label| "#{required} #{label}" }
+  config.label_text = lambda { |label, required, explicit_label| "#{label} #{required.html_safe}" }
 
   # You can define the class to use on all labels. Default is nil.
   # config.label_class = nil

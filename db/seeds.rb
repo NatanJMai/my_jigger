@@ -15,6 +15,8 @@ Product.create_or_find_by(name: 'Gin Believer',
                           price_cents: 6500,
                           unit: 'liter')
 
+User.create!(email: 'natan2@hotmail.com', password: 'password')
+
 Product.create_or_find_by(name: 'Vermute de Caju com botânicos',
                           organization_id: 1,
                           volume: 0.7,

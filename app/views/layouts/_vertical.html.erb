@@ -1,81 +1,36 @@
-<!-- Vertical navbar -->
-<div class="vertical-nav text-center" id="sidebar">
-  <div class="nav-rectangle">
-    <button type="button" class="btn btn-outline mb-4 sidebarCollapse">
-      <i class="fa fa-bars mr-2"></i>
-    </button>
+<!DOCTYPE html>
+<html <%= @html_attributes || "" %>>
+
+<head>
+  <%= render 'layouts/partials/title_meta', title: @title %>
+
+  <%= render 'layouts/partials/head_css' %>
+</head>
+
+<body <%= @body_attributes || "" %>>
+
+<div class="wrapper">
+
+  <%= render 'layouts/partials/sidenav' %>
+
+  <%= render 'layouts/partials/topbar' %>
+
+  <div class="content-page">
+
+    <div class="container-fluid">
+
+      <%= yield %>
+
+    </div>
+
+    <%= render 'layouts/partials/footer' %>
+
   </div>
-
-  <p class="text-gray font-weight-bold text-uppercase small pb-4 mb-0">Main</p>
-
-  <ul class="nav ">
-    <li class="nav-item">
-      <%= link_to admin_organizations_path, class: "" do %>
-        <i class="fa fa-home" aria-hidden="true"></i>
-      <% end %>
-    </li>
-  </ul>
-
-  <% if @organization&.persisted? %>
-    <ul class="nav ">
-      <li class="nav-item">
-        <%= link_to admin_organization_menus_path(@organization), class: "4" do %>
-          <i class="fa fa-book-open" aria-hidden="true"></i>
-        <% end %>
-      </li>
-    </ul>
-
-    <ul class="nav ">
-      <li class="nav-item">
-        <%= link_to admin_organization_items_path(@organization), class: "" do %>
-          <i class="fa fa-cocktail"></i>
-        <% end %>
-      </li>
-    </ul>
-    <ul class="nav ">
-      <li class="nav-item">
-        <%= link_to admin_organization_ingredients_path(@organization), class: "" do %>
-          <i class="fa fa-file-alt"></i>
-        <% end %>
-      </li>
-    </ul>
-
-    <ul class="nav ">
-      <li class="nav-item">
-        <%= link_to admin_organization_orders_path(@organization), class: "" do %>
-          <i class="fa fa-regular fa-money-bill-1"></i>
-        <% end %>
-      </li>
-    </ul>
-
-    <ul class="nav ">
-      <li class="nav-item">
-        <%= link_to admin_organizations_path, class: "" do %>
-          <i class="fa fa-solid fa-gear"></i>
-        <% end %>
-      </li>
-    </ul>
-  <% end %>
-
-  <p class="text-gray font-weight-bold text-uppercase small py-4 mb-0">Me</p>
-
-  <ul class="nav ">
-    <li class="nav-item">
-      <% if current_user %>
-        <%= link_to edit_user_registration_path(current_user),
-                    class: "" do %>
-          <i class="fa fa-solid fa-user"></i>
-        <% end %>
-      <% end %>
-    </li>
-  </ul>
-
-  <ul class="nav ">
-    <li class="nav-item">
-      <%= link_to sign_out_path,
-                  class: "" do %>
-        <i class="fa fa-solid fa-gear"></i>
-      <% end %>
-    </li>
-  </ul>
 </div>
+
+<%= render 'layouts/partials/customizer' %>
+
+<%= render 'layouts/partials/footer_scripts' %>
+
+</body>
+</html>

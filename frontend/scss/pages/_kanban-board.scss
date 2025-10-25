@@ -1,0 +1,63 @@
+//
+// _kanban-board.scss
+//
+
+.kanban-app {
+    .kanban-content {
+        display: flex;
+        align-items: stretch;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+
+        .kanban-board {
+            min-width: 320px;
+            width: 320px;
+            flex-shrink: 0;
+            border-right: 1px dashed var(--#{$prefix}border-color);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .kanban-board-group {
+            flex: 1 1 auto;
+            height: calc(100vh - 347px); // Adjust based on header/filter height
+            padding: 0 1rem;
+            overflow-x: hidden;
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(lg) {
+        
+        .kanban-content {
+            
+            .kanban-board-group {
+                height: auto;
+                overflow-y: visible;
+                height: calc(100vh - 300px); // Adjust based on header/filter height
+            }
+        }
+    }
+}
+
+// Sortable Plguins overwrite
+.sortable-fallback {
+    opacity: 1 !important;
+
+    .card {
+        transform: rotate(10deg);
+        opacity: 1 !important;
+    }
+}
+
+.sortable-item-ghost {
+    .card {
+        background-color: rgba(var(--#{$prefix}warning-rgb), 0.1) !important;
+    }
+}

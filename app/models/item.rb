@@ -126,7 +126,7 @@ class Item < ApplicationRecord
     datasheet_lines.map do |line|
       percentage = (line.calculated_price / total_cost) * 100
       [line.name, percentage.round(1)]
-    end
+    end.to_h
   end
 
   ##
@@ -140,33 +140,47 @@ class Item < ApplicationRecord
   def sales_performance_by_item(options = {})
     attribute = options[:attribute].presence || :quantity
     weekday = options[:week]
+    monthly = options[:month] # Capture the separate :month option
 
     start_date, end_date = if weekday
-                             [Date.today.beginning_of_week, Date.today.end_of_week]
+                             [Date.current.beginning_of_week, Date.current.end_of_week]
+                           elsif monthly
+                             [Date.current.beginning_of_month, Date.current.end_of_month]
                            else
-                             [Date.today.beginning_of_month, Date.today.end_of_month]
+                             # Default to month if neither is specified, or adjust as needed
+                             [Date.current.beginning_of_month, Date.current.end_of_month]
                            end
 
+    # The attribute column is used directly in the SUM function
     str = "SUM(order_items.#{attribute.to_s})"
 
     # Query to get sales data
     sales = order_items
-            .where(item_id: self.id)
-            .joins(:order)
-            .where(orders: { date: start_date..end_date })
-            .group('DATE(orders.date)')
-            .select("DATE(orders.date) as sale_date, #{str} as total_sales")
+              .where(item_id: self.id)
+              .joins(:order)
+              # Use Date.current for safety, though Date.today often works
+              .where(orders: { date: start_date..end_date })
+              .group('DATE(orders.date)')
+              .select("DATE(orders.date) as sale_date, #{str} as total_sales")
 
     sales_hash = sales.to_a.pluck(:sale_date, :total_sales).to_h
 
-    # [["01-01-Jan", 10], ["01-01-Feb", 15], ["01-01-Mar", 25]]
+    # Determine if we should pass the 'week' flag to format_sales_data
+    # If 'month' is true and 'week' is false/nil, you likely want to pass 'week: false'
+    # or handle it based on the period derived above.
+    period_flag = if weekday
+                    { week: true }
+                  else
+                    { week: false } # Indicates a period longer than a week (like a month)
+                  end
+
+    # format_sales_data handles filling in missing dates with zero/nil values
     format_sales_data(start_date,
                       end_date,
                       sales_hash,
-                      {
-                        week: weekday,
-                        money: attribute == :total_amount_cents
-                      })
+                      period_flag.merge({
+                                          money: attribute == :total_amount_cents
+                                        }))
   end
 
   ##

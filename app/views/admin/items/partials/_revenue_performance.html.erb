@@ -1,8 +1,17 @@
-<div class="card-header">
-  <div class="row">
-    <div class="col-12">
-      <%= monthly_revenue_performance(item.category) %>
+<div class="col-xl-8">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Simple line chart</h4>
+    </div>
+    <div class="card-body">
+      <div dir="ltr">
+        <%# Add data endpoint and loading text %>
+        <div class="apex-charts"
+             id="line-chart"
+             data-chart-endpoint="<%= sales_performance_by_item_admin_item_charts_path(item, month: true, attribute: :total_amount_cents) %>">
+          <div id="line-chart-loading" class="text-center text-muted p-5">Loading monthly sales chart...</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-

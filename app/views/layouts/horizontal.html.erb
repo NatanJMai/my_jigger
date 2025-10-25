@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html data-layout="topnav" data-topbar-color="dark" data-menu-color="light">
+
+<head>
+  <%= render 'layouts/partials/title_meta', title: @title %>
+  
+  <%= render 'layouts/partials/head_css' %>
+</head>
+
+<body <%= @body_attributes || "" %>>
+
+<div class="wrapper">
+
+  <%= render 'layouts/partials/topbar' %>
+
+  <%= render 'layouts/partials/horizontal_nav' %>
+
+  <div class="content-page">
+
+     <div class="container-fluid">
+
+        <%= yield %>
+
+      </div>
+
+    <%= render 'layouts/partials/footer' %>
+
+  </div>
+</div>
+
+<%= render 'layouts/partials/customizer' %>
+
+<%= render 'layouts/partials/footer_scripts' %>
+
+</body>
+</html>

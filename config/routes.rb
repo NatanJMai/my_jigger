@@ -1,18 +1,34 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    # Use the custom controller for registrations (sign_up)
+    registrations: 'users/registrations',
+
+    # Now tell Devise to use your custom controller for passwords
+    passwords: 'users/passwords',
+    sessions: 'users/sessions'
+  }
+
   # Sidekiq web UI route, add authentication if needed
   mount Sidekiq::Web => '/sidekiq'
 
-  devise_for :users
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   devise_scope :user do
+    # This line creates the GET /login route
+    get '/login'          => 'users/sessions#new'
+
+    # This line creates the GET /sign_in route
+    get '/sign_in'        => 'users/sessions#new'
+
+    # This defines the sign_up path
+    get '/sign_up'        => 'users/registrations#new'
+
+    # Sign out routes (often a GET for easy links, but Devise prefers DELETE/POST)
     get '/users/sign_out' => 'devise/sessions#destroy'
     get '/sign_out'       => 'devise/sessions#destroy'
-    get '/sign_in'        => 'devise/sessions#new'
-    get '/login'          => 'devise/sessions#new'
-    get '/sign_up'        => 'users/registrations#new'
   end
 
   # Admin namespace
@@ -55,7 +71,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :import_jobs, except: %i[edit delete]
+      resources :import_jobs, except: %i[edit destroy]
 
       resources :items, shallow: true do
         resources :charts, only: [] do
@@ -65,7 +81,7 @@ Rails.application.routes.draw do
           end
         end
 
-        resource :datasheet, except: :index do
+        resource :datasheet do
           resources :datasheet_lines do
             collection do
               post :new_line
@@ -99,10 +115,13 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    get "dashboard/index-2", to: "dashboard#index_2"
+    get "dashboard/index"
   end
 
   get '/index' => 'public#index'
-  get '/admin' => 'admin/organizations#index'
+  get '/admin' => 'admin/dashboard#index'
   get '/admin/dashboard' => 'admin#dashboard'
 
   root to: 'public#index'

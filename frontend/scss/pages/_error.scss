@@ -1,0 +1,11 @@
+//
+// _error.scss
+//
+
+// Gradient Text
+.error-text-alt {
+    background: linear-gradient(90deg, $primary 0%, $danger 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: $font-weight-bold;
+}

@@ -1,7 +1,19 @@
-<div class="card-header">
-  <div class="row">
-    <div class="col-12">
-      <%= sales_performance_by_item_weekly(item) %>
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Basic Bar Charts</h4>
+      </div>
+      <div class="card-body">
+        <div dir="ltr">
+          <%# 1. HTML CONTAINER: Add data endpoint and loading text %>
+          <div class="apex-charts"
+               id="basic-bar"
+               data-chart-endpoint="<%= sales_performance_by_item_admin_item_charts_path(item, week: true) %>">
+            <div id="basic-bar-loading" class="text-center text-muted p-5">Loading sales performance chart...</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

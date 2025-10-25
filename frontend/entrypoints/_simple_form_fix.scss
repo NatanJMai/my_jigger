@@ -1,0 +1,12 @@
+// app/frontend/entrypoints/_simple_form_fix.scss (ou onde você centraliza o seu CSS)
+
+// Sobrescreve a classe que o Simple Form aplica ao campo para o label flutuante
+.form-floating > .form-control.is-valid + label,
+.form-floating > .form-control:valid + label,
+.form-floating > .form-control:focus + label,
+.form-floating > .form-control:not(:placeholder-shown) + label,
+.form-floating > .form-select + label {
+  // A propriedade 'left' é o que o Simple Form pode estar definindo incorretamente.
+  // Usamos 'padding-left' do Bootstrap como o valor ideal (geralmente 16px ou 0.75rem).
+  left: 0.75rem;
+}

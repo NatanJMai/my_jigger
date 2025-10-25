@@ -34,9 +34,29 @@ class Admin::ChartsController < ApplicationController
   # Item
   # Sales Performance by Item
   def sales_performance_by_item
-    sales_data = @item.sales_performance_by_item({ week: params[:week], attribute: :quantity })
+    # 1. Capture the attribute from URL params, defaulting to :quantity if not present
+    requested_attribute = params[:attribute].presence&.to_sym || :quantity
 
-    render json: sales_data
+    # 2. Pass the dynamic attribute to the model method
+    sales_data_array = @item.sales_performance_by_item({
+                                                         week: params[:week],
+                                                         month: params[:month], # Pass month param too, for completeness
+                                                         attribute: requested_attribute
+                                                       })
+
+    # 3. Separate the data into the two arrays ApexCharts requires
+    categories = sales_data_array.map(&:first)
+    sales_values = sales_data_array.map(&:last)
+
+    # 4. Use the requested attribute for the series name
+    render json: {
+      categories: categories,
+      series: [{
+                 name: requested_attribute.to_s.humanize,
+                 data: sales_values
+               }]
+    }
+
   end
 
   ##
@@ -45,7 +65,11 @@ class Admin::ChartsController < ApplicationController
   def item_production_costs
     sales_data = @item.item_production_costs
 
-    render json: sales_data
+    # ApexCharts expects separate 'series' (values) and 'labels' (keys)
+    render json: {
+      series: sales_data.values,
+      labels: sales_data.keys
+    }
   end
 
   ##

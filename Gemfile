@@ -1,12 +1,11 @@
 source 'https://rubygems.org'
 
-ruby '3.2.2'
+ruby '3.4.4'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.1.2'
+gem "rails", "~> 8.0.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem 'sprockets-rails'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
@@ -77,13 +76,10 @@ end
 gem 'draper'
 
 # Custom GEM
-gem 'bootstrap'
-gem 'sassc-rails'
-gem 'jquery-rails'
+gem 'vite_rails'
 gem 'classy_enum', '~> 4.0'
 gem 'money'
 gem 'money-rails'
-gem 'font-awesome-sass'
 
 gem 'devise', '~> 4.9'
 gem 'simple_form'

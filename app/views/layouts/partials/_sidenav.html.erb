@@ -1,0 +1,222 @@
+<!-- Sidenav Menu Start -->
+<div class="sidenav-menu">
+  <!-- Brand Logo -->
+  <a class="logo" href="<%#= url_for(:controller => 'dashboard', :action => 'index') %>">
+<span class="logo logo-light">
+<span class="logo-lg"><img alt="logo" src="<%= vite_asset_path 'images/logo.png' %>"/></span>
+<span class="logo-sm"><img alt="small logo" src="<%= vite_asset_path 'images/logo-sm.png' %>"/></span>
+</span>
+    <span class="logo logo-dark">
+<span class="logo-lg"><img alt="dark logo" src="<%= vite_asset_path 'images/logo-black.png' %>"/></span>
+<span class="logo-sm"><img alt="small logo" src="<%= vite_asset_path 'images/logo-sm.png' %>"/></span>
+</span>
+  </a>
+  <!-- Sidebar Hover Menu Toggle Button -->
+  <button class="button-on-hover">
+    <i class="ti ti-menu-4 fs-22 align-middle"></i>
+  </button>
+  <!-- Full Sidebar Menu Close Button -->
+  <button class="button-close-offcanvas">
+    <i class="ti ti-x align-middle"></i>
+  </button>
+  <div class="scrollbar" data-simplebar="">
+    <!-- User -->
+    <div class="sidenav-user">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <a class="link-reset" href='<%#= url_for(:controller => 'users', :action => 'profile') %>'>
+            <img alt="user-image" class="rounded-circle mb-2 avatar-md" src="<%= vite_asset_path 'images/users/user-3.jpg' %>"/>
+            <span class="sidenav-user-name fw-bold">Geneva K.</span>
+            <span class="fs-12 fw-semibold" data-lang="user-role">Art Director</span>
+          </a>
+        </div>
+        <div>
+          <a aria-expanded="false" aria-haspopup="false" class="dropdown-toggle drop-arrow-none link-reset sidenav-user-set-icon" data-bs-offset="0,12" data-bs-toggle="dropdown" href="#!">
+            <i class="ti ti-settings fs-24 align-middle ms-1"></i>
+          </a>
+          <div class="dropdown-menu">
+            <!-- Header -->
+            <div class="dropdown-header noti-title">
+              <h6 class="text-overflow m-0">Welcome back!</h6>
+            </div>
+            <!-- My Profile -->
+            <a class="dropdown-item" href="<%#= url_for(:controller => 'users', :action => 'profile') %>">
+              <i class="ti ti-user-circle me-2 fs-17 align-middle"></i>
+              <span class="align-middle">Profile</span>
+            </a>
+            <!-- Notifications -->
+            <a class="dropdown-item" href="javascript:void(0);">
+              <i class="ti ti-bell-ringing me-2 fs-17 align-middle"></i>
+              <span class="align-middle">Notifications</span>
+            </a>
+            <!-- Settings -->
+            <a class="dropdown-item" href="javascript:void(0);">
+              <i class="ti ti-settings-2 me-2 fs-17 align-middle"></i>
+              <span class="align-middle">Account Settings</span>
+            </a>
+            <!-- Support -->
+            <a class="dropdown-item" href="javascript:void(0);">
+              <i class="ti ti-headset me-2 fs-17 align-middle"></i>
+              <span class="align-middle">Support Center</span>
+            </a>
+            <!-- Divider -->
+            <div class="dropdown-divider"></div>
+            <!-- Lock -->
+            <a class="dropdown-item" href='<%#= url_for(:controller => 'auth', :action => 'lock_screen') %>'>
+              <i class="ti ti-lock me-2 fs-17 align-middle"></i>
+              <span class="align-middle">Lock Screen</span>
+            </a>
+            <!-- Logout -->
+            <a class="dropdown-item fw-semibold" href="javascript:void(0);">
+              <i class="ti ti-logout-2 me-2 fs-17 align-middle"></i>
+              <span class="align-middle">Log Out</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--- Sidenav Menu -->
+    <ul class="side-nav">
+      <li class="side-nav-title mt-2" data-lang="menu-title">Navigation</li>
+      <li class="side-nav-item">
+        <a aria-controls="sidebarDashboards" aria-expanded="false" class="side-nav-link" data-bs-toggle="collapse" href="#sidebarDashboards">
+          <span class="menu-icon"><i data-lucide="circle-gauge"></i></span>
+          <span class="menu-text" data-lang="dashboards">Dashboards</span>
+          <span class="badge bg-success">02</span>
+        </a>
+        <div class="collapse" id="sidebarDashboards">
+          <ul class="sub-menu">
+            <li class="side-nav-item">
+              <a class="side-nav-link" href="<%= url_for(:controller => 'dashboard', :action => 'index') %>">
+                <span class="menu-text" data-lang="dashboard-one">Dashboard 1ss</span>
+              </a>
+            </li>
+            <li class="side-nav-item">
+              <a class="side-nav-link" href='<%#= url_for(:controller => 'dashboard', :action => 'index_2') %>'>
+                <span class="menu-text" data-lang="dashboard-two">Dashboard 2</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="side-nav-item">
+        <a class="side-nav-link" href='<%#= url_for(:controller => 'landing', :action => 'index' ) %>' target="_blank">
+          <span class="menu-icon"><i data-lucide="earth"></i></span>
+          <span class="menu-text" data-lang="landing-page">Landing Page</span>
+        </a>
+      </li>
+      <li class="side-nav-title" data-lang="apps-title">Organisations</li>
+      <li class="side-nav-item">
+        <a class="side-nav-link" href="<%= url_for(:controller => 'admin/organizations', :action => 'index') %>">
+          <span class="menu-icon"><i data-lucide="message-square-dot"></i></span>
+          <span class="menu-text" data-lang="organisations"> Organisations </span>
+        </a>
+      </li>
+
+      <li class="side-nav-item">
+        <a aria-controls="sidebarEcommerce" aria-expanded="false" class="side-nav-link" data-bs-toggle="collapse" href="#sidebarEcommerce">
+          <span class="menu-icon"><i data-lucide="shopping-bag"></i></span>
+          <span class="menu-text" data-lang="ecommerce">Menus</span>
+          <span class="menu-arrow"></span>
+        </a>
+        <div class="collapse" id="sidebarEcommerce">
+          <ul class="sub-menu">
+            <li class="side-nav-item">
+              <a aria-controls="sidebarProducts" aria-expanded="false" class="side-nav-link" data-bs-toggle="collapse" href="#sidebarProducts">
+                <span class="menu-text" data-lang="eco-products">Products</span>
+                <span class="menu-arrow"></span>
+              </a>
+              <div class="collapse" id="sidebarProducts">
+                <ul class="sub-menu">
+                  <li class="side-nav-item">
+                    <a class="side-nav-link" href='<%= admin_organization_items_path(@organization) %>'>
+                      <span class="menu-text" data-lang="eco-pro-listing">Listing</span>
+                    </a>
+                  </li>
+                  <li class="side-nav-item">
+                    <a class="side-nav-link" href='<%#= new_admin_organization_item_path(@organization) %>'>
+                      <span class="menu-text" data-lang="eco-pro-grid">Products Grid</span>
+                    </a>
+                  </li>
+                  <li class="side-nav-item">
+                    <a class="side-nav-link" href='<%= new_admin_organization_item_path(@organization) %>'>
+                      <span class="menu-text" data-lang="eco-pro-add">Add Product</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="side-nav-item">
+              <a aria-controls="sidebarIngredients" aria-expanded="false" class="side-nav-link" data-bs-toggle="collapse" href="#sidebarIngredients">
+                <span class="menu-text" data-lang="eco-ingredients">Ingredients</span>
+                <span class="menu-arrow"></span>
+              </a>
+              <div class="collapse" id="sidebarIngredients">
+                <ul class="sub-menu">
+                  <li class="side-nav-item">
+                    <a class="side-nav-link" href='<%= admin_organization_ingredients_path(@organization) %>'>
+                      <span class="menu-text" data-lang="eco-pro-listing">Listing</span>
+                    </a>
+                  </li>
+                  <li class="side-nav-item">
+                    <a class="side-nav-link" href='<%#= url_for(:controller => 'ecommerce', :action => 'add_product') %>'>
+                      <span class="menu-text" data-lang="eco-pro-add-ingredient">Add Ingredient</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="side-nav-item">
+              <a class="side-nav-link" href='<%= admin_organization_categories_path(@organization) %>'>
+                <span class="menu-text" data-lang="eco-categories">Categories</span>
+              </a>
+            </li>
+            <li class="side-nav-item">
+              <a aria-controls="sidebarOrders" aria-expanded="false" class="side-nav-link" data-bs-toggle="collapse" href="#sidebarOrders">
+                <span class="menu-text" data-lang="eco-orders">Orders</span>
+                <span class="menu-arrow"></span>
+              </a>
+              <div class="collapse" id="sidebarOrders">
+                <ul class="sub-menu">
+                  <li class="side-nav-item">
+                    <a class="side-nav-link" href='<%#= url_for(:controller => 'ecommerce', :action => 'orders') %>'>
+                      <span class="menu-text" data-lang="eco-orders-list">Orders</span>
+                    </a>
+                  </li>
+                  <li class="side-nav-item">
+                    <a class="side-nav-link" href='<%#= url_for(:controller => 'ecommerce', :action => 'order_details') %>'>
+                      <span class="menu-text" data-lang="eco-order-details">Order Details</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="side-nav-item">
+              <a aria-controls="sidebarMenus" aria-expanded="false" class="side-nav-link" data-bs-toggle="collapse" href="#sidebarMenus">
+                <span class="menu-text" data-lang="eco-menus"> Menus </span>
+                <span class="menu-arrow"></span>
+              </a>
+              <div class="collapse" id="sidebarMenus">
+                <ul class="sub-menu">
+                  <li class="side-nav-item">
+                    <a class="side-nav-link" href='<%= admin_organization_menus_path(@organization) %>'>
+                      <span class="menu-text" data-lang="eco-menus-list">Menus</span>
+                    </a>
+                  </li>
+                  <li class="side-nav-item">
+                    <a class="side-nav-link" href='<%#= url_for(:controller => 'ecommerce', :action => 'seller_details') %>'>
+                      <span class="menu-text" data-lang="eco-menus-details">Menu Details</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- Sidenav Menu End -->

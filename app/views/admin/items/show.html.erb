@@ -1,68 +1,150 @@
-<div class="row">
-  <div class="col-5">
-    <div class="container jigger-form item-info">
-      <%= render partial: 'admin/items/partials/item_info' %>
-    </div>
-  </div>
+<% @title = "Product Details - #{item.name}" %>
 
-  <div class="col-2">
-    <div class="container jigger-form child-list sale-item blue">
-      <%= render partial: 'layouts/shared/sale_items/total_sale_item',
-                 locals: { label: 'Total Sales',
-                           total: item.total_orders(attribute: :total_amount_cents)} %>
-    </div>
-
-    <div class="container jigger-form child-list sale-item white">
-      <%= render partial: 'layouts/shared/sale_items/number_orders_item',
-                 locals: { label: 'Nr of Orders',
-                           total: item.total_orders(attribute: :quantity) } %>
-    </div>
-
-    <div class="container jigger-form child-list sale-item white">
-      <%= render partial: 'layouts/shared/sale_items/best_day_item',
-                 locals: { label: 'The Best Day',
-                           total: item.best_day_label } %>
-    </div>
-  </div>
-
-  <div class="col-3">
-    <div class="container jigger-form category-performance">
-      <%= render partial: 'admin/items/partials/item_production_costs' %>
-    </div>
-  </div>
-</div>
+<%= render 'layouts/partials/page_title', subtitle: "Ecommerce", title: item.name %>
 
 <div class="row">
-  <div class="col-7">
-    <div class="container jigger-form child-list">
-      <div class="row">
-        <div class="col-12">
-          <%= render partial: 'admin/items/partials/sales_performance' %>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-4">
+            <div class="card card-top-sticky border-0">
+              <div class="card-body p-0">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" id="itemImagesCarousel">
+                  <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                      <% if item.image.present? %>
+                        <%= image_tag item.image.url, alt: "#{item.name} Image", class: "d-block w-100" %>
+                      <% else %>
+                        <div class="d-block w-100 bg-light text-center py-5">
+                          <i class="ti ti-photo fs-xl text-muted"></i>
+                          <p class="text-muted mt-2">Image Placeholder</p>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center my-3">
+                  <a class="btn btn-light me-1" href='<%= edit_admin_item_path(item) %>'><i class="ti ti-pencil fs-lg me-1"></i>
+                    Edit
+                  </a>
+
+                  <%= button_to admin_item_path(item), method: :delete,
+                                data: { turbo_confirm: 'Are you sure you want to delist/delete this item?' },
+                                form_class: 'd-inline',
+                                class: 'btn btn-danger' do %>
+                    <i class="ti ti-circle-dashed-x fs-lg me-1"></i> Delete
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-8">
+            <div class="p-4">
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <% if item.status %>
+                    <span class="badge bg-success-subtle text-success px-2 py-1 fs-base rounded-pill">Active</span>
+                  <% else %>
+                    <span class="badge bg-danger-subtle text-danger px-2 py-1 fs-base rounded-pill">Inactive</span>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="mt-3 mb-4">
+                <h4 class="fs-xl"><%= item.name %></h4>
+              </div>
+
+              <%# --- 2. CORE PRODUCT INFO --- %>
+              <div class="row">
+                <div class="col-md-2 col-xl-2">
+                  <h6 class="mb-1 text-muted text-uppercase">Category:</h6>
+                  <p class="fw-medium mb-0"><%= item.category.name if item.category %></p>
+                </div>
+                <div class="col-md-4 col-xl-3">
+                  <h6 class="mb-1 text-muted text-uppercase">Published:</h6>
+                  <p class="fw-medium mb-0">
+                    <%= item.created_at.strftime('%d %b, %Y') %>
+                    <small class="text-muted"><%= item.created_at.strftime('%I:%M %p') %></small>
+                  </p>
+                </div>
+
+                <div class="col-md-2 col-xl-2">
+                  <h6 class="mb-1 text-muted text-uppercase">Orders:</h6>
+                  <p class="fw-medium mb-0">
+                    <%= item.total_orders(attribute: :quantity) %>
+                  </p>
+                </div>
+
+                <div class="col-md-2 col-xl-2">
+                  <h6 class="mb-1 text-muted text-uppercase">Revenue:</h6>
+                  <p class="fw-medium mb-0">
+                    <%# Assuming total_amount_cents is total revenue %>
+                    <%= humanized_money_with_symbol Money.new(item.total_orders(attribute: :total_amount_cents)) %>
+                  </p>
+                </div>
+
+                <%# Best Day Placeholder %>
+                <div class="col-md-4 col-xl-3">
+                  <h6 class="mb-1 text-muted text-uppercase">Best Sales Day:</h6>
+                  <p class="fw-medium mb-0">
+                    <%= item.best_day_label || 'N/A' %>
+                  </p>
+                </div>
+              </div>
+
+              <%# --- 4. PRICE DISPLAY --- %>
+              <h3 class="text-muted d-flex align-items-center gap-2 mb-4">
+                <span class="fw-bold text-danger"><%= humanized_money_with_symbol item.customer_price %></span>
+              </h3>
+
+              <%# --- 5. DESCRIPTION & DETAILS (PLACEHOLDERS) --- %>
+              <h5 class="text-uppercase text-muted fs-xs mb-2">Product Info:</h5>
+              <p><%= item.prep_method || "Placeholder: Detailed product description." %></p>
+
+
+              <%# --- 6. PERFORMANCE PARTIALS (From old code - placed at the bottom for easy access) --- %>
+              <div class="mt-5 pt-3 border-top border-dashed">
+
+                <%# Performance Row 1: Production Cost & Weekly Sales %>
+                <div class="row g-4">
+                  <div class="col-xl-6">
+                    <%= render partial: 'admin/items/partials/item_production_costs', locals: { item: item } %>
+                  </div>
+
+                  <div class="col-xl-6">
+                    <%= render partial: 'admin/items/partials/weekly_sales', locals: { item: item } %>
+                  </div>
+                </div>
+
+                <%# Performance Row 2: Sales and Revenue Performance %>
+                <div class="row g-4 mt-4">
+                  <div class="col-xl-12">
+                    <%= render partial: 'admin/items/partials/sales_performance', locals: { item: item } %>
+                  </div>
+                </div>
+                <div class="row g-4 mt-4">
+                  <div class="col-xl-12">
+                    <%= render partial: 'admin/items/partials/revenue_performance', locals: { item: item } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="col-3">
-    <div class="container jigger-form weekly-sales child-list">
-      <%= render partial: 'admin/items/partials/weekly_sales' %>
-    </div>
-  </div>
 </div>
 
-<div class="row">
-  <div class="col-7">
-    <div class="container jigger-form child-list">
-      <div class="row">
-        <div class="col-12">
-          <%= render partial: 'admin/items/partials/revenue_performance' %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-3">
-    <div class="container jigger-form category-performance child-list">
-      <%= render partial: 'admin/menus/partials/category_performance' %>
-    </div>
-  </div>
-</div>
+<% content_for :javascript do %>
+  <%= vite_javascript_tag 'js/pages/custom-table.js' %>
+  <%= vite_javascript_tag 'js/pages/chart-apex-pie.js' %>
+  <%= vite_javascript_tag 'js/pages/chart-apex-bar.js' %>
+  <script src="https://apexcharts.com/samples/assets/github-data.js"></script>
+  <script src="https://apexcharts.com/samples/assets/irregular-data-series.js"></script>
+  <%= vite_javascript_tag 'js/pages/chart-apex-area.js' %>
+  <%= vite_javascript_tag 'js/pages/chart-apex-line.js' %>
+<% end %>

@@ -1,78 +1,194 @@
-<div class="container jigger-form">
-  <%= simple_form_for(model, html: { class: 'row row-cols' } ) do |f| %>
+<% @title = "Create New Products" %>
 
-    <%= render partial: 'layouts/shared/form/header',
-               locals: { title: 'Add/Save Item',
-                         subtitle: 'Item details' } %>
+<%= render 'layouts/partials/page_title', subtitle: "Ecommerce", title: "Add Product" %>
 
-    <div class="row">
-      <div class="col-8">
-        <div class="row">
-          <div class="col-6">
-            <%= f.input :name, hint: 'Menu name', wrapper_html: { class: 'jigger-label' } %>
+<%= simple_form_for model, html: { id: 'add-item-form' } do |f| %>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-xxl-8">
+          <div class="card">
+            <div class="card-header d-block p-3">
+              <h4 class="card-title mb-1">Product Information</h4>
+              <p class="text-muted mb-0">To add a new product, please provide the necessary
+                details in the fields below.</p>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="mb-3">
+                    <label class="form-label">Product Name
+                      <span class="text-danger">*</span>
+                    </label>
+                    <%= f.input :name,
+                                label: false,
+                                required: true,
+                                input_html: { placeholder: 'Enter product name', class: 'form-control' },
+                                wrapper: false %>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div>
+                    <label class="form-label">Prep Method (Description)
+                      <span class="text-muted">(Optional)</span>
+                    </label>
+                    <div id="snow-editor" style="height: 300px;">
+                      <%= f.object.prep_method.html_safe if f.object.prep_method.present? %>
+                    </div>
+                    <%= f.input :prep_method,
+                                as: :text,
+                                input_html: { id: 'model_prep_method_hidden_input', style: 'display:none;' },
+                                wrapper: false,
+                                label: false %>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div class="col-3">
-            <%= f.association :category, as: :select,
-                              collection: f.object.organization.categories.active.order(:name),
-                              prompt: 'Select a category',
-                              hint: 'Menu released at',
-                              wrapper_html: { class: 'jigger-label' } %>
-          </div>
-
-          <div class="col-3">
-            <%= f.input :customer_price,
-                        label: 'Customer Price',
-                        hint: 'Enter Customer Price',
-                        wrapper_html: { class: 'jigger-label' } %>
+          <div class="card">
+            <div class="card-header d-block p-3">
+              <h4 class="card-title mb-1">Product Image</h4>
+              <p class="text-muted mb-0">To upload a product image, please use the option below to
+                select and upload the relevant file.</p>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="dropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate" id="myAwesomeDropzone">
+                    <div class="fallback">
+                      <%= f.input :image, as: :file, wrapper: false %>
+                    </div>
+                    <div class="dz-message needsclick">
+                      <div class="avatar-lg mx-auto mb-3">
+                        <span class="avatar-title bg-info-subtle text-info rounded-circle">
+                          <i class="fs-24 ti ti-cloud-upload"></i>
+                        </span>
+                      </div>
+                      <h4 class="mb-2">Drop files here or click to upload.</h4>
+                      <p class="text-muted fst-italic mb-3">You can drag images here, or
+                        browse files via the button below.</p>
+                      <button class="btn btn-sm shadow btn-default" type="button">Browse
+                        Images
+                      </button>
+                    </div>
+                  </div>
+                  <div class="dropzone-previews mt-3" id="file-previews"></div>
+                  <div class="d-none" id="uploadPreviewTemplate">
+                    <div class="card mt-1 mb-0 border-dashed border">
+                      <div class="p-2">
+                        <div class="row align-items-center">
+                          <div class="col-auto">
+                            <img alt="" class="avatar-sm rounded bg-light" data-dz-thumbnail="" src="#"/>
+                          </div>
+                          <div class="col ps-0">
+                            <a class="fw-semibold" data-dz-name="" href="javascript:void(0);"></a>
+                            <p class="mb-0 text-muted" data-dz-size=""></p>
+                          </div>
+                          <div class="col-auto">
+                            <a class="btn btn-link btn-lg text-danger" data-dz-remove="" href="">
+                              <i class="ti ti-x"></i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="row">
-          <div class="col-3">
-            <%= f.input :status, label: 'Status (Active)', hint: 'Is this item active?',
-                        wrapper_html: { class: 'jigger-label' } %>
+        <div class="col-xxl-4">
+          <div class="card">
+            <div class="card-header d-block p-3">
+              <h4 class="card-title mb-1">Pricing</h4>
+              <p class="text-muted mb-0">Set the base price and applicable discount for the
+                product using the options below.</p>
+            </div>
+            <div class="card-body">
+              <div class="mb-3">
+                <label class="form-label">Base Price
+                  <span class="text-danger">*</span>
+                </label>
+                <%= f.input :customer_price,
+                            label: false,
+                            as: :decimal,
+                            input_html: { placeholder: '29.99', class: 'form-control' },
+                            required: true,
+                            wrapper: false %>
+              </div>
+            </div>
           </div>
-
-          <div class="col-3">
-            <%= f.input :data_imported, label: 'Data Imported?', hint: 'Is this item data imported?',
-                        wrapper_html: { class: 'jigger-label' } %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12">
-            <%= f.input :prep_method,
-                        as: :text,
-                        hint: 'Item prepare method of this item',
-                        wrapper_html: { class: 'jigger-label' } %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-3">
-            <%= f.button :submit, "Add/Save Item", class: "form-btn"  %>
+          <div class="card">
+            <div class="card-header d-block p-3">
+              <h4 class="card-title mb-1">Organize</h4>
+              <p class="text-muted mb-0">Organize your product by selecting the appropriate brand,
+                category, sub-category, status, and tags.</p>
+            </div>
+            <div class="card-body">
+              <div class="mb-3">
+                <label class="form-label" for="brand">Brand</label>
+                <div class="app-search">
+                  <input class="form-control" id="brand" placeholder="Enter brand name" type="text"/>
+                  <i class="app-search-icon text-muted" data-lucide="layers"></i>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Category
+                  <span class="text-danger">*</span>
+                </label>
+                <%= f.association :category,
+                                  collection: Category.all.order(:name),
+                                  label: false,
+                                  required: true,
+                                  prompt: 'Choose Category',
+                                  input_html: { class: 'form-select' },
+                                  wrapper: false %>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Status
+                  <span class="text-danger">*</span>
+                </label>
+                <%= f.input :status,
+                            as: :select,
+                            collection: [['Active', true], ['Inactive', false]],
+                            prompt: 'Choose Status',
+                            label: false,
+                            required: true,
+                            input_html: { class: 'form-select form-control my-1 my-md-0' },
+                            wrapper: false %>
+              </div>
+              <div class="mb-3">
+                <%= f.input :data_imported,
+                            as: :select,
+                            collection: [['Yes', true], ['No', false]],
+                            prompt: 'Choose Option',
+                            label: 'Data Imported',
+                            input_html: { class: 'form-select form-control my-1 my-md-0' },
+                            wrapper: false %>
+              </div>
+              <div class="mb-0">
+                <label class="form-label" for="tags">Tags</label>
+                <div class="app-search">
+                  <input class="form-control" id="tags" placeholder="Enter tags separated by commas" type="text"/>
+                  <i class="app-search-icon text-muted" data-lucide="tag"></i>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-
-  <div class="col-4">
-    <div class="vertical-line">
-      <% if item.image.present? %>
-        <!-- Show the existing image -->
-        <%= image_tag item.image.url, alt: "Uploaded Image", class: "img-thumbnail shadow-sm form-photo"%>
-      <% else %>
-        <!-- Show the upload button -->
-        <label for="image-upload" class="btn btn-outline-primary img-thumbnail shadow-sm form-photo">
-          Upload Image
-        </label>
-      <% end %>
-
-      <!-- Hidden File Input -->
-      <%= f.file_field :image, id: "image-upload", class: "d-none" %>
+      <div class="mt-2 mb-4 d-flex gap-2 justify-content-center">
+        <a class="btn btn-link text-danger fw-semibold" href="#!">
+          <i class="fs-sm me-2" data-lucide="clipboard-x"></i> Discard
+        </a>
+        <%= f.button :submit, 'Publish', class: "btn btn-success" %>
+        <%= f.button :submit, 'Save as Draft', class: "btn btn-soft-secondary" %>
+      </div>
     </div>
   </div>
-  </div>
-</div>
+<% end %>
+
+<% content_for :javascript do %>
+  <%= vite_javascript_tag 'js/pages/ecommerce-add-product.js' %>
 <% end %>

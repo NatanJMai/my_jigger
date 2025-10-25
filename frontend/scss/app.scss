@@ -1,0 +1,122 @@
+/**
+ * Template Name: UBold - Admin & Dashboard Template
+ * By (Author): Coderthemes
+ * Module/App (File Name): App CSS File
+*/
+
+//css file
+@import "flatpickr/dist/flatpickr.min.css";
+@import "jsvectormap/dist/jsvectormap.min.css";
+@import "flatpickr/dist/flatpickr.min.css";
+@import "dropzone/dist/dropzone.css";
+@import "quill/dist/quill.core.css";
+@import "quill/dist/quill.snow.css";
+@import "quill/dist/quill.bubble.css";
+@import "nouislider/dist/nouislider.min.css";
+@import "filepond/dist/filepond.min.css";
+@import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
+@import "daterangepicker/daterangepicker.css";
+@import "@simonwep/pickr/dist/themes/classic.min.css";
+@import "@simonwep/pickr/dist/themes/monolith.min.css";
+@import "@simonwep/pickr/dist/themes/nano.min.css";
+@import "choices.js/public/assets/styles/choices.min.css";
+@import "select2/dist/css/select2.min.css";
+@import "summernote/dist/summernote-bs5.min.css";
+@import "leaflet/dist/leaflet.css";
+@import "sweetalert2/dist/sweetalert2.min.css";         
+@import "@sjmc11/tourguidejs/dist/css/tour.min.css";
+@import "jstree/dist/themes/default/style.min.css";
+@import "datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css";
+@import "datatables.net-select-bs5/css/select.bootstrap5.min.css";
+@import "datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css";
+@import "datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css";
+@import "datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css";                
+
+//Tabler Icons
+@import "@tabler/icons-webfont/dist/tabler-icons.min.css";
+
+// Core files
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+@import "variables";
+@import "variables-dark";
+
+@import "bootstrap/scss/bootstrap";
+
+@import "config/root";
+@import "config/theme-default"; // Default Theme
+@import "config/theme-saas";
+@import "config/theme-modern";
+@import "config/theme-material";
+@import "config/theme-minimal";
+@import "config/theme-flat";
+
+// Structure
+@import "structure/topbar";
+@import "structure/sidenav";
+@import "structure/horizontal";
+@import "structure/layout";
+@import "structure/footer";
+
+// Components
+@import "components/background";
+@import "components/accordions";
+@import "components/alert";
+@import "components/avatar";
+@import "components/breadcrumb";
+@import "components/buttons";
+@import "components/badge";
+@import "components/card";
+@import "components/dropdown";
+@import "components/forms";
+@import "components/modal";
+@import "components/nav";
+@import "components/pagination";
+@import "components/popover";
+@import "components/print";
+@import "components/progress";
+@import "components/reboot";
+@import "components/tables";
+@import "components/tooltip";
+@import "components/preloader";
+@import "components/widgets";
+@import "components/list-group";
+
+
+// Pages
+@import "pages/authentication";
+@import "pages/chat";
+@import "pages/email";
+@import "pages/error";
+@import "pages/kanban-board";
+@import "pages/landing";
+@import "pages/outlook";
+@import "pages/sitemap";
+@import "pages/timeline";
+
+
+// Plugins
+@import "plugins/apexcharts";
+@import "plugins/calendar";
+@import "plugins/choice";
+@import "plugins/colorpicker";
+@import "plugins/datatables";
+@import "plugins/daterangepicker";
+@import "plugins/dropzone";
+@import "plugins/filepond";
+@import "plugins/flatpickr";
+@import "plugins/jvectormap";
+@import "plugins/noui-rangeslider";
+@import "plugins/pass-bar";
+@import "plugins/quill-editor";
+@import "plugins/select2";
+@import "plugins/simplebar";
+@import "plugins/sortablejs";
+@import "plugins/summernote";
+@import "plugins/sweetalert2";
+@import "plugins/touchpin";
+@import "plugins/tour";
+@import "plugins/treeview";
+@import "plugins/typehead";
+@import "plugins/wizard";

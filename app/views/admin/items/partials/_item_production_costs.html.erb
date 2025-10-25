@@ -1,7 +1,22 @@
-<div class="card-header">
-  <div class="row">
-    <div class="col-12">
-      <%= item_production_costs(item) %>
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Item Production Costs
+        </h4>
+      </div>
+      <div class="card-body">
+        <div dir="ltr">
+          <%# 1. CHART CONTAINER: The JS will target this ID. %>
+          <div class="apex-charts"
+               id="item-costs-data-display"
+               data-chart-endpoint="<%= item_production_costs_admin_item_charts_path(item) %>">
+
+            <div id="loading-text" class="text-center text-muted p-5">Loading production cost chart...</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
