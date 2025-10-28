@@ -1,10 +1,41 @@
-<tr>
-  <td><%= order.order_number %></td>
-  <td><%= date_label('', order.date)%></td>
-  <td><%= order.display_items %></td>
-  <td class="minimal"><%= order.boolean_label(order.data_imported,
-                                              label = { true => 'Imported',
-                                                        false => 'Not Imported' }) %>
+<tr data-id="<%= order.id %>">
+
+  <td class="ps-3">
+    <input class="form-check-input form-check-input-light fs-14 file-item-check mt-0" type="checkbox" value="<%= order.id %>"/>
   </td>
-  <td class="minimal"><%= humanized_money_with_symbol Money.new(order.total_amount) %></td>
+
+  <td>
+    <h5 class="m-0">
+      <%# Tying the icon color to the data_imported status for visual feedback %>
+      <span class="ti ti-receipt text-<%= order.data_imported ? 'success' : 'info' %> fs-lg"></span>
+      <a class="link-reset fw-semibold" href='<%= url_for(controller: 'admin/orders', action: 'show', id: order.id) %>'>
+        #ORD-<%= order.order_number %>
+      </a>
+    </h5>
+  </td>
+
+  <td><%= date_label('', order.date) %></td>
+  <td><%= order.display_items %></td>
+  <td><%= humanized_money_with_symbol Money.new(order.total_amount) %></td>
+
+  <td>
+    <%# Using a badge to display the imported status %>
+    <% status_label = order.boolean_label(order.data_imported, label = { true => 'Imported', false => 'Not Imported' }) %>
+    <% badge_class = order.data_imported ? 'bg-success-subtle text-success' : 'bg-warning-subtle text-warning' %>
+
+    <span class="badge <%= badge_class %> badge-label" data-table-filter-value="<%= status_label %>">
+      <%= status_label %>
+    </span>
+  </td>
+
+  <%# Actions Column %>
+  <td>
+    <div class="d-flex align-items-center justify-content-center gap-1">
+      <a class="btn btn-default btn-icon btn-sm" href='<%= url_for(controller: 'admin/orders', action: 'show', id: order.id) %>'><i class="ti ti-eye fs-lg"></i></a>
+      <a class="btn btn-default btn-icon btn-sm" href='<%#= url_for(controller: 'orders', action: 'edit', id: order.id) %>'> <i class="ti ti-edit fs-lg"></i></a>
+      <a class="btn btn-default btn-icon btn-sm" data-table-delete-row="" href='<%#= url_for(controller: 'orders', action: 'destroy', id: order.id) %>' data-method="delete" data-confirm="Are you sure you want to delete this order?">
+        <i class="ti ti-trash fs-lg"></i>
+      </a>
+    </div>
+  </td>
 </tr>

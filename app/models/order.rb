@@ -5,6 +5,10 @@ class Order < ApplicationRecord
 
   validates :order_number, :date, :organization_id, presence: true
 
+  accepts_nested_attributes_for :order_items,
+                                allow_destroy: true,
+                                reject_if: :all_blank
+
   ##
   # Define those attributes that we can update from import files.
   # @return Array

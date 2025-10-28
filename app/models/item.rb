@@ -22,6 +22,13 @@ class Item < ApplicationRecord
   after_create :create_datasheet
 
   ##
+  # Return only active items
+  # @return Scope
+  scope :only_active, lambda {
+    where(status: true)
+  }
+
+  ##
   # Return best five items
   # @return Scope
   scope :best_five, lambda {

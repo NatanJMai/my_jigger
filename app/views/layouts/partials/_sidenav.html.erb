@@ -181,7 +181,7 @@
               <div class="collapse" id="sidebarOrders">
                 <ul class="sub-menu">
                   <li class="side-nav-item">
-                    <a class="side-nav-link" href='<%#= url_for(:controller => 'ecommerce', :action => 'orders') %>'>
+                    <a class="side-nav-link" href='<%= admin_organization_orders_path(@organization) %>'>
                       <span class="menu-text" data-lang="eco-orders-list">Orders</span>
                     </a>
                   </li>

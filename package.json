@@ -12,6 +12,7 @@
     "@fullcalendar/list": "^6.1.19",
     "@fullcalendar/timegrid": "^6.1.19",
     "@hotwired/turbo-rails": "^8.0.18",
+    "@nathanvda/cocoon": "^1.2.14",
     "@simonwep/pickr": "^1.9.1",
     "@sjmc11/tourguidejs": "^0.0.27",
     "@tabler/icons-webfont": "^3.34.1",

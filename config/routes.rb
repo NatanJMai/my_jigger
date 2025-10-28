@@ -94,7 +94,7 @@ Rails.application.routes.draw do
       end
 
       resources :user_organizations, shallow: true
-      resources :orders, shallow: true, only: %i[show index]
+      resources :orders, shallow: true
 
       resources :ingredients, shallow: true do
         collection do

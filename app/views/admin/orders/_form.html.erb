@@ -1,0 +1,101 @@
+<% @title = "Create Order" %>
+
+<%= render 'layouts/partials/page_title', subtitle: "Orders", title: "Create Order" %>
+
+<div class="row justify-content-center">
+  <div class="col-xxl-12">
+    <div class="row">
+      <div class="col-xl-9">
+        <div class="card">
+          <%= form_with(model: @order, url: admin_organization_order_path(@organization, @order)) do |f| %>
+            <div class="card-body p-4">
+
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="mb-3">
+                  <label class="form-label fw-semibold">Organization</label>
+                  <p class="form-control-plaintext fw-bold border p-2 rounded">
+                    <%= @organization.name %>
+                  </p>
+
+                  <%= f.hidden_field :organization_id, value: @organization.id %>
+                </div>
+
+                <div class="text-end">
+                  <div class="row g-2 align-items-center">
+                    <div class="col-auto">
+                      <label class="form-label fw-semibold" for="orderNumber">Order #</label>
+                      <%= f.text_field :order_number, class: "form-control", placeholder: "e.g. 10001",
+                                       required: true, id: "orderNumber" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-2">
+                  <label class="form-label" for="orderDate">Order Date</label>
+                  <%= f.text_field :date,
+                                   class: "form-control",
+                                   data: { date_format: "d M, Y", provider: "flatpickr" },
+                                   placeholder: "Select Date",
+                                   id: "orderDate" %>
+                </div>
+                <div class="col-md-2">
+                  <label class="form-label" for="dataImported">Data Imported?</label>
+                  <%= f.hidden_field :data_imported, value: false %>
+                  <p class="form-control-plaintext fw-bold " id="dataImported">
+                    <span class="badge bg-info-subtle text-info mb-2 fs-xs px-2 py-1">No</span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="row mt-4">
+                <div class="col-md-6">
+                  <label class="form-label">Client/Billing Reference</label>
+                  <div class="alert alert-info py-2 mb-0">
+                    Client details will be fetched based on the selected Organization.
+                  </div>
+                </div>
+              </div>
+
+              <hr class="mt-4 mb-3" />
+
+              <h5 class="mb-3">Order Items</h5>
+              <div class="table-responsive">
+                <table class="table table-bordered table-nowrap text-center align-middle">
+                  <thead class="bg-light align-middle bg-opacity-25 thead-sm">
+                  <tr class="text-uppercase fs-xxs">
+                    <th class="text-start" style="width: 40%">Item</th>
+                    <th>Qty</th>
+                    <th>Unit Price</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+
+                  <tbody id="order-items">
+                  <%= f.fields_for :order_items do |item_f| %>
+                    <%= render 'order_item_fields', f: item_f %>
+                  <% end %>
+                  </tbody>
+                </table>
+
+                <%= link_to_add_association 'Add Item', f, :order_items,
+                                            partial: 'order_item_fields',
+                                            data: { association_insertion_node: '#order-items', association_insertion_method: :append },
+                                            class: "btn btn-primary mt-2" %>
+              </div>
+
+              <div class="row mt-4">
+                <div class="col-12 text-center">
+                  <%= f.submit nil, class: "btn btn-success btn-lg" %>
+                  <a class="btn btn-light ms-2" href="<%= admin_organization_orders_path(@organization) %>">
+                    <i class="ti ti-arrow-left me-1"></i> Back to List</a>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

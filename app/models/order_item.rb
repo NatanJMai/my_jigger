@@ -2,7 +2,7 @@ class OrderItem < ApplicationRecord
   belongs_to :order, class_name: 'Order'
   belongs_to :item, class_name: 'Item'
 
-  validates :order_id, :item_id, presence: true
+  validates :item_id, presence: true
   monetize :unit_price_cents, allow_nil: true
   monetize :total_amount_cents, allow_nil: true
 

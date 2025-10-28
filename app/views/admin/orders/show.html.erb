@@ -1,0 +1,110 @@
+<% @title = "Order Details" %>
+
+<%= render 'layouts/partials/page_title', subtitle: "Orders", title: "Order Details" %>
+
+<div class="row justify-content-center">
+  <div class="col-xxl-12">
+    <div class="row">
+      <div class="col-xl-9">
+        <div class="card">
+          <div class="card-body px-4">
+            <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-3">
+              <div class="auth-brand mb-0">
+                <a class="logo-dark" href="<%= url_for(:controller => 'admin/dashboard', :action => 'index') %>">
+                  <img alt="dark logo" height="24" src="<%= vite_asset_path 'images/logo-black.png' %>"/>
+                </a>
+                <a class="logo-light" href="<%= url_for(:controller => 'admin/dashboard', :action => 'index') %>">
+                  <img alt="logo" height="24" src="<%= vite_asset_path 'images/logo.png' %>"/>
+                </a>
+              </div>
+              <div class="text-end">
+                <span class="badge bg-info-subtle text-info mb-2 fs-xs px-2 py-1">Data Imported</span>
+                <h4 class="fw-bold text-dark m-0">Order #ORD-<%= @order.order_number %></h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <h6 class="text-uppercase text-muted mb-2">Details</h6>
+                <p class="mb-1 fw-semibold"><%= @order.organization.name %></p>
+                <p class="text-muted mb-1"><%= @order.organization.address %></p>
+                <p class="text-muted mb-0">Phone: <%= @order.organization.phone %></p>
+              </div>
+              <div class="col-4">
+                <h6 class="text-uppercase text-muted mb-2">Order Date</h6>
+                <p class="mb-1 fw-semibold"><%= @order.date %></p>
+                <p class="text-muted mb-0">Date Imported: <%= @order.created_at.strftime('%Y-%m-%d') %></p>
+              </div>
+            </div>
+            <div class="table-responsive mt-4">
+              <table class="table table-bordered table-nowrap text-center align-middle">
+                <thead class="bg-light align-middle bg-opacity-25 thead-sm">
+                <tr class="text-uppercase fs-xxs">
+                  <th style="width: 50px;">#</th>
+                  <th class="text-start">Item Name</th>
+                  <th>Qty</th>
+                  <th>Unit Price</th>
+                  <th class="text-end">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <% order_items.each.with_index(1) do |order_item, index| %>
+                  <tr>
+                    <td><%= index.to_s.rjust(2, '0') %></td>
+                    <td class="text-start">
+                      <strong><%= order_item.item.name %></strong>
+                      <% if order_item.item.respond_to?(:sku) %>
+                        <div class="text-muted small">(SKU: <%= order_item.item.sku %>)</div>
+                      <% end %>
+                    </td>
+                    <td><%= order_item.quantity %></td>
+                    <td>
+                      <%= humanized_money_with_symbol Money.new(order_item.unit_price_cents) %>
+                    </td>
+                    <td class="text-end">
+                      <%= humanized_money_with_symbol Money.new(order_item.total_amount_cents) %>
+                    </td>
+                  </tr>
+                <% end %>
+
+                </tbody>
+              </table>
+            </div>
+            <div class="d-flex justify-content-end">
+              <table class="table w-auto table-borderless text-end">
+                <tbody>
+                <tr class="border-top pt-2 fs-5 fw-bold">
+                  <td>Total</td>
+                  <td>
+                    <%= humanized_money_with_symbol Money.new(order.total_amount) %>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mt-lg-4 mt-2 bg-light bg-opacity-50 rounded px-3 py-2">
+              <p class="mb-0 text-muted">
+                <strong>Note:</strong> Data for this order was imported on <%= @order.created_at.strftime('%Y-%m-%d %H:%M') %>.
+              </p>
+            </div>
+            <div class="mt-4">
+              <p class="fw-semibold mb-3">Order data from <%= @order.organization.name %>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 d-print-none">
+        <div class="card card-top-sticky">
+          <div class="card-body">
+            <div class="justify-content-center d-flex flex-column gap-2">
+              <a class="btn btn-light" href="javascript: void(0);"><i class="ti ti-pencil me-1"></i> Edit</a>
+              <a class="btn btn-danger btn-lg" href="javascript: void(0);"><i class="ti ti-trash me-1"></i> Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% content_for :javascript do %>
+<% end %>
