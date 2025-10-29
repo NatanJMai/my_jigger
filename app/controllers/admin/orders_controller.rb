@@ -15,7 +15,7 @@ class Admin::OrdersController < AdminController
   end
 
   def new
-    @order = @organization.orders.new
+    @order = @organization.orders.new(data_imported: false)
     @order.order_items.build
   end
 
@@ -34,10 +34,15 @@ class Admin::OrdersController < AdminController
 
   def update
     if @order.update(order_params)
-      redirect_to [:admin, @organization, @order], notice: 'Order was successfully updated.'
+      redirect_to [:admin, @organization, :orders], notice: 'Order was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @order.destroy
+    redirect_to [:admin, @organization, :orders], notice: 'Order deleted successfully.'
   end
 
   private

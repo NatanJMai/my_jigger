@@ -173,26 +173,13 @@
                 <span class="menu-text" data-lang="eco-categories">Categories</span>
               </a>
             </li>
+
             <li class="side-nav-item">
-              <a aria-controls="sidebarOrders" aria-expanded="false" class="side-nav-link" data-bs-toggle="collapse" href="#sidebarOrders">
-                <span class="menu-text" data-lang="eco-orders">Orders</span>
-                <span class="menu-arrow"></span>
+              <a class="side-nav-link" href='<%= admin_organization_orders_path(@organization) %>'>
+                <span class="menu-text" data-lang="eco-orders-list">Orders</span>
               </a>
-              <div class="collapse" id="sidebarOrders">
-                <ul class="sub-menu">
-                  <li class="side-nav-item">
-                    <a class="side-nav-link" href='<%= admin_organization_orders_path(@organization) %>'>
-                      <span class="menu-text" data-lang="eco-orders-list">Orders</span>
-                    </a>
-                  </li>
-                  <li class="side-nav-item">
-                    <a class="side-nav-link" href='<%#= url_for(:controller => 'ecommerce', :action => 'order_details') %>'>
-                      <span class="menu-text" data-lang="eco-order-details">Order Details</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </li>
+
             <li class="side-nav-item">
               <a aria-controls="sidebarMenus" aria-expanded="false" class="side-nav-link" data-bs-toggle="collapse" href="#sidebarMenus">
                 <span class="menu-text" data-lang="eco-menus"> Menus </span>
