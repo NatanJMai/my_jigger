@@ -122,50 +122,15 @@
         <div class="collapse" id="sidebarEcommerce">
           <ul class="sub-menu">
             <li class="side-nav-item">
-              <a aria-controls="sidebarProducts" aria-expanded="false" class="side-nav-link" data-bs-toggle="collapse" href="#sidebarProducts">
+              <a class="side-nav-link" href='<%= admin_organization_items_path(@organization) %>'>
                 <span class="menu-text" data-lang="eco-products">Products</span>
-                <span class="menu-arrow"></span>
               </a>
-              <div class="collapse" id="sidebarProducts">
-                <ul class="sub-menu">
-                  <li class="side-nav-item">
-                    <a class="side-nav-link" href='<%= admin_organization_items_path(@organization) %>'>
-                      <span class="menu-text" data-lang="eco-pro-listing">Listing</span>
-                    </a>
-                  </li>
-                  <li class="side-nav-item">
-                    <a class="side-nav-link" href='<%#= new_admin_organization_item_path(@organization) %>'>
-                      <span class="menu-text" data-lang="eco-pro-grid">Products Grid</span>
-                    </a>
-                  </li>
-                  <li class="side-nav-item">
-                    <a class="side-nav-link" href='<%= new_admin_organization_item_path(@organization) %>'>
-                      <span class="menu-text" data-lang="eco-pro-add">Add Product</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </li>
 
             <li class="side-nav-item">
-              <a aria-controls="sidebarIngredients" aria-expanded="false" class="side-nav-link" data-bs-toggle="collapse" href="#sidebarIngredients">
-                <span class="menu-text" data-lang="eco-ingredients">Ingredients</span>
-                <span class="menu-arrow"></span>
+              <a class="side-nav-link" href='<%= admin_organization_ingredients_path(@organization) %>'>
+                <span class="menu-text" data-lang="eco-pro-listing">Ingredients</span>
               </a>
-              <div class="collapse" id="sidebarIngredients">
-                <ul class="sub-menu">
-                  <li class="side-nav-item">
-                    <a class="side-nav-link" href='<%= admin_organization_ingredients_path(@organization) %>'>
-                      <span class="menu-text" data-lang="eco-pro-listing">Listing</span>
-                    </a>
-                  </li>
-                  <li class="side-nav-item">
-                    <a class="side-nav-link" href='<%#= url_for(:controller => 'ecommerce', :action => 'add_product') %>'>
-                      <span class="menu-text" data-lang="eco-pro-add-ingredient">Add Ingredient</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </li>
 
             <li class="side-nav-item">
@@ -190,11 +155,6 @@
                   <li class="side-nav-item">
                     <a class="side-nav-link" href='<%= admin_organization_menus_path(@organization) %>'>
                       <span class="menu-text" data-lang="eco-menus-list">Menus</span>
-                    </a>
-                  </li>
-                  <li class="side-nav-item">
-                    <a class="side-nav-link" href='<%#= url_for(:controller => 'ecommerce', :action => 'seller_details') %>'>
-                      <span class="menu-text" data-lang="eco-menus-details">Menu Details</span>
                     </a>
                   </li>
                 </ul>

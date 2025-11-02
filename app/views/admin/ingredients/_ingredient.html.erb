@@ -1,29 +1,43 @@
-<tr>
-  <th scope="row">
-    <% if ingredient.image.present? %>
-      <!-- Use the icon version of the image -->
-      <%= image_tag ingredient.image.icon.url, alt: "#{ingredient.name} Icon", class: "img-thumbnail" %>
-    <% else %>
-      <!-- Fallback for no image -->
-      <span class="text-muted">No Image</span>
-    <% end %>
-  </th>
-  <td><%= ingredient.name %></td>
+<tr id="<%= dom_id(ingredient) %>" data-id="<%= ingredient.id %>">
+<td class="ps-3">
+    <input class="form-check-input form-check-input-light fs-14 mt-0" data-table-select-row="" type="checkbox" value="<%= ingredient.id %>"/>
+  </td>
 
-  <td class="minimal"><%= ingredient.volume %></td>
-  <td class="minimal"><%= ingredient.unit %></td>
-  <td class="minimal"><%= humanized_money_with_symbol Money.new(ingredient.cost_cents) %></td>
+  <td>
+    <div class="d-flex align-items-center">
+      <div class="me-2">
+        <% if ingredient.image.present? %>
+          <%= image_tag ingredient.image.icon.url, alt: "#{ingredient.name} Icon", class: "avatar avatar-xs rounded-circle" %>
+        <% else %>
+          <span class="avatar avatar-xs rounded-circle bg-light text-muted fw-bold fs-xs"><%= ingredient.name.first %></span>
+        <% end %>
+      </div>
+      <div class="text-truncate fw-bold">
+        <%= ingredient.name %>
+      </div>
+    </div>
+  </td>
 
-  <td class="minimal">
-    <%= link_to edit_admin_ingredient_path(ingredient), class: 'btn' do %>
-      <i class="fa-regular fa-pen-to-square edit-button"></i>
-    <% end %>
-
-    <%= button_to admin_ingredient_path(ingredient),
-                  method: :delete,
-                  title: 'Delete Ingredient',
-                  class: "trash-icon-button" do %>
-      <i class="fas fa-trash-alt"></i>
-    <% end %>
+  <td><%= ingredient.volume %></td>
+  <td><%= ingredient.unit %></td>
+  <td data-column="cost"><%= humanized_money_with_symbol Money.new(ingredient.cost_cents) %></td>
+  <td><%= time_ago_in_words(ingredient.updated_at) %> ago</td>
+  <td class="text-center">
+    <div class="d-flex justify-content-center align-items-center gap-1">
+      <%= link_to edit_admin_ingredient_path(ingredient),
+                  class: "btn btn-default btn-icon btn-sm",
+                  data: {
+                    turbo_frame: "ingredient_modal"
+                  } do %>
+        <i class="ti ti-edit fs-lg"></i>
+      <% end %>
+      <%= button_to admin_ingredient_path(ingredient),
+                    method: :delete,
+                    data: { confirm: "Are you sure you want to delete this ingredient?", turbo_confirm: "Are you sure you want to delete this ingredient?" },
+                    class: "btn btn-default btn-icon btn-sm" do %>
+        <i class="ti ti-trash fs-lg"></i>
+      <% end %>
+    </div>
   </td>
 </tr>
+

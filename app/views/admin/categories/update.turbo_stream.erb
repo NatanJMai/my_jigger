@@ -1,0 +1,4 @@
+<%= turbo_stream.replace dom_id(category), partial: "category", locals: { category: category } %>
+<%= turbo_stream.update "category_modal" do %>
+  <!-- Clear the modal content -->
+<% end %>

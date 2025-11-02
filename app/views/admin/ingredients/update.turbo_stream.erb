@@ -1,0 +1,4 @@
+<%= turbo_stream.replace dom_id(@ingredient), partial: "ingredient", locals: { ingredient: @ingredient } %>
+<%= turbo_stream.update "ingredient_modal" do %>
+  <!-- Clear the modal content -->
+<% end %>

@@ -4,7 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="" />
+    <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/ingredients_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/ingredients_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/hello_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/hello_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/datasheet.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/datasheet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/entrypoints/application.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/ingredients/_form.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/ingredients/_ingredient.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/ingredients/_ingredient.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/ingredients/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/ingredients/edit.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/ingredients/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/ingredients/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/_item.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/_item.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/_vertical.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_vertical.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/importmap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/importmap.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/entrypoints/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/entrypoints/application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +80,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1761648821171",
+    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1761952250148",
     "git-widget-placeholder": "import-files",
     "last_opened_file_path": "/home/natanjmai/Documents/_projects/my_jigger/my_jigger/app/views/admin/orders",
     "node.js.detected.package.eslint": "true",
@@ -473,6 +498,8 @@
       <workItem from="1761374449639" duration="5636000" />
       <workItem from="1761564712966" duration="1110000" />
       <workItem from="1761648747901" duration="6010000" />
+      <workItem from="1761822879363" duration="4445000" />
+      <workItem from="1761952187988" duration="6502000" />
     </task>
     <servers />
   </component>

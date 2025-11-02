@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-9">
+    <div class="container jigger-form">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="card-title"><%= item.name %> (Datasheet)</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="datasheet-table">
+        <%= turbo_frame_tag "list" do %>
+          <%= render partial: 'admin/datasheet_lines/header' %>
+          <%= render partial: 'admin/datasheet_lines/line', collection: datasheet_lines, as: :datasheet_line %>
+        <% end %>
+      </div>
+
+      <div class="form-action">
+        <div class="grid-item col-6">
+          <%= form_with scope: :any, url: new_line_admin_item_datasheet_datasheet_lines_path(@item) do %>
+            <%= button_to 'Add Ingredient', new_line_admin_item_datasheet_datasheet_lines_path(@item),
+                          class: "btn btn-light shadow-sm px-4 mb-2" %>
+          <% end %>
+        </div>
+
+        <div class="grid-item col-6">
+          <div class="row datasheet-info">
+            <div class="datasheet-cmv-tip col-4">
+              You can edit the selling price to calculate new CMV percentage.
+            </div>
+
+            <div class="datasheet-cmv-info col-7">
+              <div class="row label">
+                <div class="col-8">
+                  Selling Price / Costs
+                </div>
+                <div class="col-2">
+                  <i class="fa-solid fa-sack-dollar orange"></i>
+                </div>
+              </div>
+
+              <%= render partial: 'admin/datasheet_lines/totals', locals: { datasheet: datasheet, item: item } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-2">
+    <div class="jigger-form datasheet-cmv">
+      <%= render partial: 'card', locals: { line: datasheet_lines.first&.ingredient&.decorate } %>
+    </div>
+  </div>
+</div>
+
+

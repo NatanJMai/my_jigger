@@ -84,7 +84,7 @@ Rails.application.routes.draw do
         resource :datasheet do
           resources :datasheet_lines do
             collection do
-              post :new_line
+              get :new_line
             end
           end
           member do

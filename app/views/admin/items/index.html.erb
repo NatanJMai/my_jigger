@@ -58,9 +58,11 @@
           <a class="btn btn-primary btn-icon" href='<%#= url_for(:controller => 'ecommerce', :action => 'products') %>'>
             <i class="fs-lg" data-lucide="list"></i>
           </a>
-          <a class="btn btn-danger ms-1" href='<%= new_admin_organization_item_path(@organization) %>'>
+          <a class="btn btn-danger ms-1"
+             href="<%= new_admin_organization_item_path(@organization) %>">
             <i class="fs-sm me-2" data-lucide="plus"></i> Add Product
           </a>
+
         </div>
       </div>
       <div class="table-responsive">

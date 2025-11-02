@@ -1,58 +1,89 @@
+<% @title = "Datasheet - #{@item.name}" %>
+
+<%= render 'layouts/partials/page_title', subtitle: "Datasheet", title: @item.name %>
+
 <div class="row">
-  <div class="col-9">
-    <div class="container jigger-form">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-12">
-            <h5 class="card-title"><%= item.name %> (Datasheet)</h5>
-          </div>
+  <div class="col-12">
+    <%# Applied new template structure %>
+    <div class="card shadow-sm">
+
+      <%# Card Header from template, adapted for datasheet %>
+      <div class="card-header justify-content-between d-flex align-items-center border-light">
+        <h4 class="card-title m-0">
+          <i class="ti ti-notebook me-2 text-primary"></i>
+          Ingredient List & Costs
+        </h4>
+        <%= link_to 'Back to Item', admin_item_path(@item), class: 'btn btn-sm btn-light' %>
+      </div>
+
+      <%# Card Body from template, adapted for datasheet %>
+      <div class="card-body">
+        <p class="text-muted">
+          This table displays all ingredients and their costs associated with this item.
+        </p>
+
+        <div class="table-responsive">
+          <table class="table align-middle mb-0">
+            <thead class="align-middle thead-sm bg-light bg-opacity-25">
+            <tr class="text-uppercase fs-xxs">
+              <th style="width: 5%;">ID</th>
+              <th style="width: 30%;">Ingredient Name</th>
+              <th style="width: 5%;" data-table-sort="volume">Volume</th>
+              <th style="width: 5%;">Unit</th>
+              <th style="width: 10%;" data-table-sort="cost">Cost</th>
+              <th style="width: 5%;">Quantity</th>
+              <th style="width: 15%;" data-table-sort="calculated_price">Calculated Price</th>
+              <th style="width: 10%;" class="text-center">Actions</th>
+            </tr>
+            </thead>
+            <tbody id="datasheet_lines_list" class="table-group-divider">
+            <%= render partial: 'admin/datasheet_lines/line', collection: datasheet_lines, as: :datasheet_line %>
+            </tbody>
+          </table>
         </div>
-      </div>
 
-      <div class="datasheet-table">
-        <%= turbo_frame_tag "list" do %>
-          <%= render partial: 'admin/datasheet_lines/header' %>
-          <%= render partial: 'admin/datasheet_lines/line', collection: datasheet_lines, as: :datasheet_line %>
-        <% end %>
       </div>
+      <%# Kept functional footer from previous version %>
+      <div class="card-footer border-light d-flex justify-content-between align-items-start p-3">
 
-      <div class="form-action">
-        <div class="grid-item col-6">
-          <%= form_with scope: :any, url: new_line_admin_item_datasheet_datasheet_lines_path(@item) do %>
-            <%= button_to 'Add Ingredient', new_line_admin_item_datasheet_datasheet_lines_path(@item),
-                          class: "btn btn-light shadow-sm px-4 mb-2" %>
+        <!-- Left Side: Add Ingredient Button -->
+        <div class="d-grid gap-2">
+          <%#= link_to "Add Ingredient",
+                      new_line_admin_item_datasheet_datasheet_lines_path(@item, format: :turbo_stream),
+                      data: { turbo_frame: "datasheet_lines_list" },
+                      class: "btn btn-light shadow-sm px-4 mb-2" %>
+
+
+          <%= link_to new_line_admin_item_datasheet_datasheet_lines_path(@item),
+                      data: { turbo_frame: "datasheet_modal" },
+                      class: "btn btn-primary shadow-sm" do %>
+            <i class="ti ti-plus me-1"></i> Add Ingredient
           <% end %>
         </div>
 
-        <div class="grid-item col-6">
-          <div class="row datasheet-info">
-            <div class="datasheet-cmv-tip col-4">
-              You can edit the selling price to calculate new CMV percentage.
+        <!-- Right Side: Totals and CMV Info -->
+        <div class="d-flex flex-column align-items-end">
+          <div class="datasheet-cmv-info mb-2 text-end">
+            <div class="fw-semibold text-muted d-flex align-items-center justify-content-end">
+              Selling Price / Costs <i class="ti ti-sack-dollar ms-2 text-warning fs-5"></i>
             </div>
 
-            <div class="datasheet-cmv-info col-7">
-              <div class="row label">
-                <div class="col-8">
-                  Selling Price / Costs
-                </div>
-                <div class="col-2">
-                  <i class="fa-solid fa-sack-dollar orange"></i>
-                </div>
-              </div>
-
-              <%= render partial: 'admin/datasheet_lines/totals', locals: { datasheet: datasheet, item: item } %>
-            </div>
+            <%= render partial: 'admin/datasheet_lines/totals', locals: { datasheet: datasheet, item: @item } %>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="col-2">
-    <div class="jigger-form datasheet-cmv">
-      <%= render partial: 'card', locals: { line: datasheet_lines.first&.ingredient&.decorate } %>
     </div>
   </div>
 </div>
 
+<%# Modal Placeholder (Unchanged) %>
+<div class="modal fade" id="datasheetModal" tabindex="-1" aria-labelledby="datasheetModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <%= turbo_frame_tag "datasheet_modal" do %>
+        <!-- form content will be replaced dynamically -->
+      <% end %>
+    </div>
+  </div>
+</div>
 

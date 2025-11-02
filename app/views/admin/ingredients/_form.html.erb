@@ -1,70 +1,83 @@
-<div class="container jigger-form">
-  <%= simple_form_for(model, html: { class: 'row row-cols' } ) do |f| %>
-
-    <%= render partial: 'layouts/shared/form/header',
-               locals: { title: 'Add/Save Ingredient'} %>
-
-    <div class="row">
-      <div class="col-8">
-        <div class="row">
-          <div class="col-12">
-            <%= f.input :name, hint: 'Ingredient name', wrapper_html: { class: 'jigger-label' } %>
-          </div>
+<%= simple_form_for([:admin, (ingredient.persisted? ? nil : organization), ingredient].compact, html: { id: 'add-ingredient-form' }) do |f| %>
+  <div class="modal-body">
+    <div class="row g-3">
+      <!-- Left Column -->
+      <div class="col-md-8">
+        <!-- Name -->
+        <div class="mb-3">
+          <label class="form-label">Ingredient Name <span class="text-danger">*</span></label>
+          <%= ingredient.name %>
+          <%= ingredient.name %>
+          <%= ingredient.name %>
+          <%= @organization.ingredients.last.id %>
+          <%= ingredient.name %>
+          <%= f.input :name,
+                      label: false,
+                      required: true,
+                      input_html: { placeholder: 'e.g., Premium Vodka', class: 'form-control' },
+                      wrapper: false %>
         </div>
 
-        <div class="row">
-          <div class="col-3">
-            <%= f.input :volume, wrapper_html: { class: 'jigger-label' },
-                        hint: 'Ingredient volume',
-                        label: 'Volume' %>
-          </div>
-
-          <div class="col-3">
-            <%= f.input :unit, as: :select,
-                        wrapper_html: { class: 'jigger-label' },
-                        hint: 'Ingredient volume',
-                        collection: Unit.select_options, label: 'Unit' %>
-          </div>
-
-          <div class="col-3">
-            <%= f.input :cost, wrapper_html: { class: 'jigger-label' },
-                        hint: 'Ingredient volume', label: 'Cost ($)' %>
-          </div>
+        <!-- Prep Method -->
+        <div class="mb-3">
+          <label class="form-label">Prep Method <span class="text-muted">(Optional)</span></label>
+          <%= f.input :prep_method,
+                      as: :text,
+                      wrapper: false,
+                      label: false,
+                      input_html: { rows: 2, class: 'form-control' } %>
         </div>
 
-        <div class="row">
-          <div class="col-12">
-            <%= f.input :prep_method,
-                        as: :text,
-                        hint: 'Prepare method of this item',
-                        wrapper_html: { class: 'jigger-label' } %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-3">
-            <%= f.button :submit, "Add/Save", class: "form-btn"  %>
+        <!-- Image Upload -->
+        <div class="mb-3">
+          <label class="form-label">Image <span class="text-muted">(Optional)</span></label>
+          <div class="border rounded p-3 text-center bg-light-subtle">
+            <% if @ingredient.image.present? %>
+              <%= image_tag @ingredient.image.url, alt: "Ingredient Image", class: "img-thumbnail mb-2", style: "max-height: 100px;" %><br>
+            <% end %>
+            <%= f.file_field :image, class: "form-control form-control-sm" %>
           </div>
         </div>
       </div>
 
+      <!-- Right Column -->
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label class="form-label">Volume</label>
+          <%= f.input :volume,
+                      as: :decimal,
+                      label: false,
+                      input_html: { placeholder: 'e.g., 750', class: 'form-control', min: 1 },
+                      wrapper: false %>
+        </div>
 
-  <div class="col-4">
-    <div class="vertical-line">
-      <% if ingredient.image.present? %>
-        <!-- Show the existing image -->
-        <%= image_tag ingredient.image.url, alt: "Uploaded Image", class: "img-thumbnail shadow-sm form-photo"%>
-      <% else %>
-        <!-- Show the upload button -->
-        <label for="image-upload" class="btn btn-outline-primary img-thumbnail shadow-sm form-photo">
-          Upload Image
-        </label>
-      <% end %>
+        <div class="mb-3">
+          <label class="form-label">Unit</label>
+          <%= f.input :unit,
+                      as: :select,
+                      collection: Unit.select_options,
+                      prompt: 'Select Unit',
+                      label: false,
+                      input_html: { class: 'form-select' },
+                      wrapper: false %>
+        </div>
 
-      <!-- Hidden File Input -->
-      <%= f.file_field :image, id: "image-upload", class: "d-none" %>
+        <div class="mb-3">
+          <label class="form-label">Cost ($)</label>
+          <%= f.input :cost,
+                      as: :decimal,
+                      label: false,
+                      input_html: { placeholder: 'e.g., 25.00', class: 'form-control' },
+                      wrapper: false %>
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="modal-footer d-flex justify-content-between">
+    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+    <div>
+      <%= f.button :submit, 'Publish', class: "btn btn-success me-2" %>
+    </div>
   </div>
-</div>
 <% end %>

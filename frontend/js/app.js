@@ -1085,12 +1085,15 @@ class I18nManager {
 }
 
 // 
-document.addEventListener('DOMContentLoaded', function (e) {
-    new App().init();
-    new LayoutCustomizer().init();
-    new Plugins().init();
-    new I18nManager().init();
-});
+function initializeApp() {
+  new App().init();
+  new LayoutCustomizer().init();
+  new Plugins().init();
+  new I18nManager().init();
+}
+
+document.addEventListener('DOMContentLoaded', initializeApp);
+document.addEventListener('turbo:load', initializeApp);
 
 
 //

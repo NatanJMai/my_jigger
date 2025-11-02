@@ -7,49 +7,64 @@ class Admin::IngredientsController < ApplicationController
   decorates_assigned :ingredients
 
   def index
-    @ingredients = @organization.ingredients
+    # 1. Load all ingredients for the table list
+    @ingredients = @organization.ingredients.order(:name)
+
+    # 2. Initialize a NEW ingredient for the modal form
+    #    The modal form needs this object to set up the form URL/model.
+    @ingredient = @organization.ingredients.new
   end
 
+  # The 'new' action is no longer strictly needed if the form is in the index view,
+  # but we can keep it standard for other uses.
   def new
     @ingredient = @organization.ingredients.new
+
     respond_to do |format|
-      format.html
       format.js
+      format.html
     end
   end
 
-  # GET /menus/1/edit
-  def edit; end
+  def edit
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
+  end
 
   # POST /menus or /menus.json
   def create
-    @ingredient = @organization.ingredients.new(ingredient_params)
+    @ingredient = @organization.ingredients.build(ingredient_params)
 
-    respond_to do |format|
-      if @ingredient.save
-        format.html { redirect_to admin_organization_ingredients_path(@organization), notice: 'Ingredient was successfully created.' }
-        format.json { render :show, status: :created, location: @ingredient }
-      else
+    if @ingredient.save
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to admin_organization_ingredients_path(@organization) }
+      end
+    else
+      respond_to do |format|
+        format.turbo_stream { render :edit, status: :unprocessable_entity }
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @ingredient.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /menus/1 or /menus/1.json
+
   def update
-    respond_to do |format|
-      if @ingredient.update(ingredient_params)
-        format.html { redirect_to admin_organization_ingredients_path(@organization), notice: 'Ingredient was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ingredient }
-      else
+    if @ingredient.update(ingredient_params)
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to admin_organization_ingredients_path(@organization) }
+      end
+    else
+      respond_to do |format|
+        format.turbo_stream { render :edit, status: :unprocessable_entity }
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @ingredient.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /menus/1 or /menus/1.json
   def destroy
     @organization = @ingredient.organization
     @ingredient.destroy
@@ -57,6 +72,7 @@ class Admin::IngredientsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_organization_ingredients_path(@organization), notice: 'Ingredient was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

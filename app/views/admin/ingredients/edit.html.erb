@@ -1,1 +1,10 @@
-<%= render partial: 'form', locals: { model: [:admin, ingredient] } %>
+<%= turbo_frame_tag "ingredient_modal" do %>
+  <div class="modal-header">
+    <h5 class="modal-title"><%= @ingredient.new_record? ? "Add Ingredient" : "Edit Ingredient" %></h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+
+  <div class="modal-body">
+    <%= render 'form', ingredient: @ingredient, organization: @organization %>
+  </div>
+<% end %>

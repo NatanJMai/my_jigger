@@ -43,16 +43,30 @@ class Admin::DatasheetLinesController < AdminController
   def create
     @datasheet_line = @datasheet.datasheet_lines.new(datasheet_line_params)
 
-    respond_to do |format|
-      if @datasheet_line.save
-        format.turbo_stream {}
-        format.html { redirect_to admin_item_datasheet_path(@item, @datasheet), notice: 'Datasheet line created.' }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @datasheet_line.errors, status: :unprocessable_entity }
+    if @datasheet_line.save
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(
+            dom_id(@datasheet_line, :form),
+            partial: "admin/datasheet_lines/line",
+            locals: { datasheet_line: @datasheet_line }
+          )
+        end
+        format.html { redirect_to admin_item_datasheet_path(@datasheet.item, @datasheet) }
+      end
+    else
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(
+            dom_id(@datasheet_line, :form),
+            partial: "admin/datasheet_lines/new_line",
+            locals: { datasheet_line: @datasheet_line }
+          )
+        end
       end
     end
   end
+
 
   # PATCH/PUT /items/1 or /items/1.json
   def update

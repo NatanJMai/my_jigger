@@ -30,26 +30,30 @@ class Admin::CategoriesController < AdminController
   def create
     @category = @organization.categories.new(category_params)
 
-    respond_to do |format|
-      if @category.save
-        format.html { redirect_to admin_organization_categories_path(@organization), notice: 'Category was successfully created.' }
-        format.json { render :show, status: :created, location: @category }
-      else
+    if @category.save
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to admin_organization_categories_path(@organization) }
+      end
+    else
+      respond_to do |format|
+        format.turbo_stream { render :edit, status: :unprocessable_entity }
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /menus/1 or /menus/1.json
   def update
-    respond_to do |format|
-      if @category.update(menu_params)
-        format.html { redirect_to admin_organization_categories_path(@organization), notice: 'Category was successfully updated.' }
-        format.json { render :show, status: :ok, location: @category }
-      else
+    if @category.update(category_params)
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to admin_organization_categories_path(@organization) }
+      end
+    else
+      respond_to do |format|
+        format.turbo_stream { render :edit, status: :unprocessable_entity }
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -60,7 +64,7 @@ class Admin::CategoriesController < AdminController
     @category.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_organization_path(@organization), notice: 'Category was successfully destroyed.' }
+      format.html { redirect_to admin_organization_categories_path(@organization), notice: 'Category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -1,10 +1,10 @@
 <%= turbo_frame_tag "category_modal" do %>
   <div class="modal-header">
-    <h5 class="modal-title">Add Category</h5>
+    <h5 class="modal-title"><%= category.new_record? ? "Add Category" : "Edit Category" %></h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
 
   <div class="modal-body">
-    <%= render 'form', category: @category, organization: @organization %>
+    <%= render 'form', category: category, organization: @organization %>
   </div>
 <% end %>

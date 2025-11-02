@@ -1,44 +1,47 @@
-<div class="container jigger-form">
-  <%= simple_form_for(model,
-                      html: { class: 'row row-cols' } ) do |f| %>
-
-    <%= render partial: 'layouts/shared/form/header',
-               locals: { title: 'Add/Save Category',
-                         subtitle: 'Category details' } %>
-
-    <div class="row">
-      <div class="col-8">
-        <div class="row">
-          <div class="col-8">
-            <%= f.input :name, hint: 'Category name', wrapper_html: { class: 'jigger-label' } %>
-          </div>
-
-          <div class="col-4">
-            <%= f.input :status, label: 'Status (Active)', hint: 'Is this Category active?',
-                        wrapper_html: { class: 'jigger-label' } %>
-          </div>
+<%= simple_form_for([:admin, (@category.persisted? ? nil : organization), @category].compact, html: { id: 'add-category-form' }) do |f| %>
+  <div class="modal-body">
+    <div class="row g-3">
+      <!-- Left Column (8 units) for primary details -->
+      <div class="col-md-8">
+        <!-- Name (Required) -->
+        <div class="mb-3">
+          <label class="form-label">Category Name <span class="text-danger">*</span></label>
+          <%= f.input :name,
+                      label: false,
+                      required: true,
+                      input_html: { placeholder: 'e.g., Whiskeys, Mixers, Garnishes', class: 'form-control' },
+                      wrapper: false %>
         </div>
 
-        <div class="row">
-          <div class="col-12">
-            <%= f.input :description, hint: 'Category description (e.g where it is from)',
-                        wrapper_html: { class: 'jigger-label' } %>
-          </div>
+        <!-- Description (Textarea) -->
+        <div class="mb-3">
+          <label class="form-label">Description <span class="text-muted">(Optional)</span></label>
+          <%= f.input :description,
+                      as: :text,
+                      wrapper: false,
+                      label: false,
+                      input_html: { rows: 3, placeholder: 'e.g., Spirits derived from fermented grain mash.', class: 'form-control' } %>
         </div>
+      </div>
 
-        <div class="row">
-          <div class="col-3">
-            <%= f.button :submit, "Add/Save Category", class: "form-btn"  %>
-          </div>
+      <!-- Right Column (4 units) for status/metadata -->
+      <div class="col-md-4">
+        <!-- Status (Active/Inactive) -->
+        <div class="mb-3 pt-4">
+          <%= f.input :status,
+                      as: :boolean,
+                      label: 'Status (Active)',
+                      hint: 'Check to make this category active and visible.',
+                      wrapper_html: { class: 'form-check form-switch' } %>
         </div>
-      <% end %>
-    </div>
-
-    <div class="col-4">
-      <div class="vertical-line">
-        <%= render partial: 'admin/menus/organization_info', locals: { organization: @organization } %>
       </div>
     </div>
   </div>
-</div>
 
+  <div class="modal-footer d-flex justify-content-between">
+    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+    <div>
+      <%= f.button :submit, 'Add/Save Category', class: "btn btn-success me-2" %>
+    </div>
+  </div>
+<% end %>

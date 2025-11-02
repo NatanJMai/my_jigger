@@ -1,33 +1,83 @@
+<% @title = "Ingredient List" %>
+
+<%= render 'layouts/partials/page_title', subtitle: "Inventory", title: "Ingredients" %>
+
 <div class="row">
   <div class="col-12">
-    <div class="container jigger-form">
-      <div class="container-fluid p-0">
-        <h5>Ingredient List</h5>
-
-        <div class="row">
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th class="col-2">Volume</th>
-              <th class="col-1">Unit</th>
-              <th class="col-1" scope="col">Cost ($)</th>
-              <th class="minimal"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <% ingredients.order(:name).each do |ingredient| %>
-              <%= render partial: 'ingredient', locals: { ingredient: ingredient } %>
-            <% end %>
-            </tbody>
-          </table>
+    <div class="card" data-table="" data-table-rows-per-page="10">
+      <div class="card-header border-light justify-content-between">
+        <div class="d-flex gap-2">
+          <div class="app-search">
+            <input class="form-control" data-table-search="" placeholder="Search ingredient name..." type="search"/>
+            <i class="app-search-icon text-muted" data-lucide="search"></i>
+          </div>
+          <button class="btn btn-danger d-none" data-table-delete-selected="">Delete</button>
         </div>
 
-        <%= button_to 'Add ingredient', new_admin_organization_ingredient_path(current_organization),
-                      class: "btn btn-light shadow-sm px-4 mb-2",
-                      :method => :get %>
+        <div class="d-flex align-items-center gap-2">
+          <div>
+            <select class="form-select form-control my-1 my-md-0" data-table-set-rows-per-page="">
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="d-flex gap-1">
+          <%= link_to new_admin_organization_ingredient_path(@organization),
+                      data: { turbo_frame: "ingredient_modal" },
+                      class: "btn btn-primary" do %>
+            Add Ingredient
+          <% end %>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-custom table-centered table-select table-hover w-100 mb-0">
+          <thead class="bg-light align-middle bg-opacity-25 thead-sm">
+          <tr class="text-uppercase fs-xxs">
+            <th class="ps-3" style="width: 1%;">
+              <input class="form-check-input form-check-input-light fs-14 mt-0" data-table-select-all="" id="select-all-ingredients" type="checkbox" value="option"/>
+            </th>
+            <th data-table-sort="name">Name</th>
+            <th data-table-sort="volume">Volume</th>
+            <th data-table-sort="unit">Unit</th>
+            <th data-table-sort="cost">Cost ($)</th>
+            <th data-table-sort="">Updated</th>
+            <th class="text-center" style="width: 1%;">Actions</th>
+          </tr>
+          </thead>
+          <tbody id="ingredient-list">
+          <% ingredients.each do |ingredient| %>
+            <%= render partial: 'ingredient', locals: { ingredient: ingredient } %>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card-footer border-0">
+        <div class="d-flex justify-content-between align-items-center">
+          <div data-table-pagination-info="ingredients"></div>
+          <div data-table-pagination=""></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="ingredientModal" tabindex="-1" aria-labelledby="ingredientModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <%= turbo_frame_tag "ingredient_modal" do %>
+        <!-- form content will be replaced dynamically -->
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<% content_for :javascript do %>
+  <%= vite_javascript_tag 'js/pages/custom-table.js' %>
+<% end %>
