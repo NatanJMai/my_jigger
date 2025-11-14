@@ -4,7 +4,6 @@
 
 <div class="row">
   <div class="col-12">
-    <%# Applied new template structure %>
     <div class="card shadow-sm">
 
       <%# Card Header from template, adapted for datasheet %>
@@ -37,38 +36,36 @@
             </tr>
             </thead>
             <tbody id="datasheet_lines_list" class="table-group-divider">
-            <%= render partial: 'admin/datasheet_lines/line', collection: datasheet_lines, as: :datasheet_line %>
+              <%= render partial: 'admin/datasheet_lines/line', collection: datasheet_lines, as: :datasheet_line %>
             </tbody>
           </table>
         </div>
 
-      </div>
-      <%# Kept functional footer from previous version %>
-      <div class="card-footer border-light d-flex justify-content-between align-items-start p-3">
-
-        <!-- Left Side: Add Ingredient Button -->
-        <div class="d-grid gap-2">
-          <%#= link_to "Add Ingredient",
-                      new_line_admin_item_datasheet_datasheet_lines_path(@item, format: :turbo_stream),
-                      data: { turbo_frame: "datasheet_lines_list" },
-                      class: "btn btn-light shadow-sm px-4 mb-2" %>
-
-
-          <%= link_to new_line_admin_item_datasheet_datasheet_lines_path(@item),
-                      data: { turbo_frame: "datasheet_modal" },
-                      class: "btn btn-primary shadow-sm" do %>
-            <i class="ti ti-plus me-1"></i> Add Ingredient
-          <% end %>
+        <div class="mt-2">
+          <%= turbo_frame_tag "new_datasheet_line" %>
         </div>
 
-        <!-- Right Side: Totals and CMV Info -->
-        <div class="d-flex flex-column align-items-end">
-          <div class="datasheet-cmv-info mb-2 text-end">
-            <div class="fw-semibold text-muted d-flex align-items-center justify-content-end">
-              Selling Price / Costs <i class="ti ti-sack-dollar ms-2 text-warning fs-5"></i>
-            </div>
+        <div class="mt-3">
+          <%= link_to new_admin_item_datasheet_datasheet_line_path(@item),
+                                      data: { turbo_frame: "new_datasheet_line" },
+                                      class: "btn btn-primary" do %>
+            <i data-lucide="plus" class="me-2"></i>
+            Add Ingredient Line
+          <% end %>
+        </div>
+      </div>
 
-            <%= render partial: 'admin/datasheet_lines/totals', locals: { datasheet: datasheet, item: @item } %>
+      <div class="card-footer border-light d-flex justify-content-between align-items-start p-3">
+        <div><%# Reserved for future elements like save status or history link %></div>
+        <div class="d-flex flex-column align-items-end">
+          <div class="datasheet-cmv-info card bg-warning-subtle shadow-sm border border-warning">
+            <div class="card-body p-2">
+              <div class="fw-bold text-warning-emphasis d-flex align-items-center justify-content-end mb-1">
+                <i class="ti ti-alert-triangle me-2 fs-5"></i>
+                CMV & Price Information
+              </div>
+              <%= render partial: 'admin/datasheet_lines/totals', locals: { datasheet: datasheet, item: @item } %>
+            </div>
           </div>
         </div>
       </div>
@@ -76,14 +73,4 @@
   </div>
 </div>
 
-<%# Modal Placeholder (Unchanged) %>
-<div class="modal fade" id="datasheetModal" tabindex="-1" aria-labelledby="datasheetModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <%= turbo_frame_tag "datasheet_modal" do %>
-        <!-- form content will be replaced dynamically -->
-      <% end %>
-    </div>
-  </div>
-</div>
 

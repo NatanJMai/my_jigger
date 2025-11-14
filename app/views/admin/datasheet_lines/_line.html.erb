@@ -1,15 +1,30 @@
-<div id="<%= dom_id(datasheet_line) %>" class="datasheet_line_row">
-  <div class="col-1"><%= datasheet_line.id %></div>
-  <div class="col-4"><%= datasheet_line.ingredient.name %></div>
-  <div class="col-1"><%= datasheet_line.volume %></div>
-  <div class="col-1"><%= datasheet_line.unit %></div>
-  <div class="col-1"><%#= number_to_currency(datasheet_line.cost) %></div>
-  <div class="col-1"><%= datasheet_line.quantity %></div>
-  <div class="col-1 calculated-price-js"><%#= datasheet_line.total_price %></div>
-  <div class="col-1">
-    <%#= link_to "Remove",
-                admin_item_datasheet_datasheet_line_path(@item, @datasheet, datasheet_line),
-                data: { turbo_method: :delete, turbo_confirm: "Remove line?" },
-                class: "btn btn-sm btn-outline-danger" %>
-  </div>
-</div>
+<tr id="<%= dom_id(datasheet_line) %>" class="datasheet_line_row">
+  <td><%= datasheet_line.id %></td>
+  <td><%= datasheet_line.ingredient.name %></td>
+  <td><%= datasheet_line.volume %></td>
+  <td><%= datasheet_line.unit %></td>
+  <td><%= humanized_money_with_symbol datasheet_line.cost %></td>
+
+  <td>
+    <%= number_field_tag "datasheet_line[quantity]", datasheet_line.quantity,
+                         class: 'form-control form-control-sm quantity-inline-edit-js',
+                         data: {
+                           datasheet_line_id: datasheet_line.id,
+                           # THIS PATH HELPER IS CRUCIAL
+                           # It correctly points to the update action for the specific datasheet_line
+                           url: admin_datasheet_line_path(datasheet_line)
+                         } %>
+  </td>
+
+  <td class="calculated-price-js"><%= humanized_money_with_symbol Money.new(datasheet_line.calculated_price) %></td>
+  <td class="text-center">
+    <div class="d-flex justify-content-center gap-1">
+      <%= link_to admin_datasheet_line_path(datasheet_line),
+                  data: { turbo_method: :delete },
+                  class: 'btn btn-default btn-icon btn-sm' do %>
+
+        <i class="ti ti-trash fs-lg"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

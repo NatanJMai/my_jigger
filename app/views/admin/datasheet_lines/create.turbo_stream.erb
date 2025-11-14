@@ -1,7 +1,13 @@
-<%= turbo_stream.replace(:new_form, partial: "admin/datasheet_lines/line",
-                         locals: { datasheet_line: datasheet_line }) %>
+<%= turbo_stream.append "datasheet_lines_list" do %>
+  <%= render 'line', datasheet_line: @datasheet_line %>
+<% end %>
 
-<%= turbo_stream.replace 'totals' do %>
+<%= turbo_stream.update "new_datasheet_line", "" %>
+
+<%= turbo_stream.replace "totals" do %>
   <%= render partial: 'admin/datasheet_lines/totals',
-             locals: { datasheet: datasheet, item: datasheet.item } %>
+             locals: {
+               datasheet: @datasheet_line.datasheet,
+               item: @datasheet_line.datasheet.item
+             } %>
 <% end %>

@@ -22,48 +22,24 @@ class Admin::DatasheetLinesController < AdminController
     end
   end
 
-  def new_line
+  def new
     @organization = @datasheet.item.organization
     @ingredients = @organization.ingredients.order(:name)
     @datasheet_line = @datasheet.datasheet_lines.build
     @datasheet_line.build_ingredient
-
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.append(
-          :list,
-          partial: 'admin/datasheet_lines/new_line',
-          locals: { datasheet_line: @datasheet_line, model: [:admin, @item, @datasheet, @datasheet_line] }
-        )
-      end
-    end
   end
 
   # POST /items or /items.json
   def create
-    @datasheet_line = @datasheet.datasheet_lines.new(datasheet_line_params)
+    @datasheet_line = @datasheet.datasheet_lines.build(datasheet_line_params)
 
     if @datasheet_line.save
       respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(
-            dom_id(@datasheet_line, :form),
-            partial: "admin/datasheet_lines/line",
-            locals: { datasheet_line: @datasheet_line }
-          )
-        end
-        format.html { redirect_to admin_item_datasheet_path(@datasheet.item, @datasheet) }
+        format.turbo_stream
+        format.html { redirect_to admin_item_datasheet_path(@item, @datasheet) }
       end
     else
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(
-            dom_id(@datasheet_line, :form),
-            partial: "admin/datasheet_lines/new_line",
-            locals: { datasheet_line: @datasheet_line }
-          )
-        end
-      end
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -72,11 +48,28 @@ class Admin::DatasheetLinesController < AdminController
   def update
     respond_to do |format|
       if @datasheet_line.update(datasheet_line_params)
-        format.turbo_stream {}
-        format.json { render :show, status: :ok, location: @datasheet_line }
+        totals_update_stream = render_to_string(
+          partial: 'admin/datasheet_lines/totals_update', # Use a dedicated partial
+          locals: {
+            datasheet: @datasheet_line.datasheet,
+            item: @datasheet_line.datasheet.item
+          }
+        )
+
+        format.turbo_stream
+        format.json do
+          render json: {
+            # Direct JSON output with the humanized calculated price
+            # Ensure datasheet_line.calculated_price returns a numeric value
+            calculated_price: helpers.humanized_money_with_symbol(Money.new(@datasheet_line.calculated_price)),
+            turbo_stream_updates: totals_update_stream
+          }, status: :ok
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @datasheet_line.errors, status: :unprocessable_entity }
+        format.json {
+          render json: { errors: @datasheet_line.errors.full_messages }, status: :unprocessable_entity
+        }
       end
     end
   end

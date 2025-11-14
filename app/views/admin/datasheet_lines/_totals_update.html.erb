@@ -1,0 +1,6 @@
+<%# app/views/admin/datasheet_lines/_totals_update.html.erb %>
+
+<%= turbo_stream.replace "totals" do %>
+  <%= render partial: 'admin/datasheet_lines/totals',
+             locals: { datasheet: datasheet, item: item } %>
+<% end %>

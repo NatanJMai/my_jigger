@@ -10,6 +10,7 @@
 
 import jQuery from "jquery";
 window.jQuery = jQuery
+window.$ = jQuery;
 
 import bootstrap from "bootstrap/dist/js/bootstrap.bundle";
 window.bootstrap = bootstrap

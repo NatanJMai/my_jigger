@@ -1,13 +1,73 @@
- <%= turbo_frame_tag 'totals' do %>
-    <div class="row values">
-      <div class="col-5 selling">
-        <%= humanized_money_with_symbol item.customer_price %>
-      </div>
-      <div class="col-5 costs"><%= humanized_money_with_symbol Money.new(datasheet.total_costs) %></div>
-    </div>
+<%= turbo_frame_tag 'totals' do %>
 
-    <div class="row values">
-      <div class="col-3 cmv"><%= datasheet.calculate_cmv(item.customer_price&.to_f) %>%</div>
-      <div class="col-8 cmv-text">Acceptable between 25 and 33%</div>
+  <%# Calculate CMV and determine color class for contextual styling %>
+  <% cmv_percent = datasheet.calculate_cmv(item.customer_price&.to_f) %>
+  <% cmv_class = if cmv_percent > 33.0
+                   'text-danger' # Red if too high
+                 elsif cmv_percent < 25.0
+                   'text-info'   # Blue/Info if potentially too low (could be a good sign but deserves review)
+                 else
+                   'text-success' # Green if within the acceptable range
+                 end %>
+
+  <div class="card p-3 shadow-sm border-0">
+    <div class="d-flex flex-column gap-3">
+
+      <%# 1. Primary Focus: Selling Price and CMV Header %>
+      <div class="d-flex justify-content-between align-items-end mb-2">
+        <div class="d-flex flex-column">
+          <div class="text-uppercase text-muted fw-bold fs-6">Selling Price (Customer)</div>
+          <%# Selling Price is the biggest number %>
+          <div class="text-success fw-bolder display-6 lh-1">
+            <%= humanized_money_with_symbol item.customer_price %>
+          </div>
+        </div>
+
+        <div class="text-end">
+          <div class="text-uppercase text-muted fw-bold fs-6">CMV %</div>
+          <%# CMV is the second biggest number, with conditional coloring %>
+          <div class="fw-bolder fs-1 lh-1 <%= cmv_class %>">
+            <%= number_to_percentage(cmv_percent, precision: 1) %>
+          </div>
+        </div>
+      </div>
+
+      <hr class="my-0">
+
+      <%# 2. Secondary Detail: Total Costs Row %>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="text-muted fw-normal">
+          <i class="bi bi-tag-fill me-2"></i>Total Ingredient Cost
+        </div>
+        <div class="text-danger fw-bolder fs-5">
+          <%= humanized_money_with_symbol Money.new(datasheet.total_costs) %>
+        </div>
+      </div>
+
+      <hr class="my-0">
+
+      <%# 3. Contextual CMV Information and Range %>
+      <div class="text-end mt-2">
+        <div class="text-muted fs-7 mb-1">
+          Cost of Merchandise Value (CMV)
+        </div>
+
+        <%# Acceptable Range Badge %>
+        <span class="badge rounded-pill text-bg-light border text-secondary fw-normal me-2">
+        Range: 25% - 33%
+      </span>
+
+        <%# Contextual Alert Text - Use alert classes for better visibility %>
+        <% if cmv_class == 'text-danger' %>
+          <div class="alert alert-danger p-2 mt-2 mb-0 fs-7">
+            <i class="bi bi-exclamation-triangle-fill me-1"></i> CMV is too high. Margins are tight.
+          </div>
+        <% elsif cmv_class == 'text-info' %>
+          <div class="alert alert-info p-2 mt-2 mb-0 fs-7">
+            <i class="bi bi-lightbulb-fill me-1"></i> CMV is low. Review ingredient list for accuracy.
+          </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
+  </div>
+<% end %>

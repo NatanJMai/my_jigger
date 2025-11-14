@@ -23,7 +23,10 @@
                 <div class="text-end">
                   <div class="row g-2 align-items-center">
                     <div class="col-auto">
-                      <label class="form-label fw-semibold" for="orderNumber">Order #</label>
+                      <label class="form-label fw-semibold" for="orderNumber">
+                        <span class="text-danger">*</span>
+                        Order #
+                      </label>
                       <%= f.input :order_number,
                                   label: false,
                                   placeholder: "e.g. 10001",
@@ -36,7 +39,10 @@
 
               <div class="row">
                 <div class="col-md-2">
-                  <label class="form-label" for="orderDate">Order Date</label>
+                  <label class="form-label" for="orderDate">
+                    <span class="text-danger">*</span>
+                    Order Date
+                  </label>
                   <%= f.input :date,
                               as: :string,
                               label: false,

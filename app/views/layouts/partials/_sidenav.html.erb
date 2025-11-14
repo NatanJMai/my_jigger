@@ -146,19 +146,9 @@
             </li>
 
             <li class="side-nav-item">
-              <a aria-controls="sidebarMenus" aria-expanded="false" class="side-nav-link" data-bs-toggle="collapse" href="#sidebarMenus">
-                <span class="menu-text" data-lang="eco-menus"> Menus </span>
-                <span class="menu-arrow"></span>
+              <a class="side-nav-link" href='<%= admin_organization_menus_path(@organization) %>'>
+                <span class="menu-text" data-lang="eco-orders-list">Menus</span>
               </a>
-              <div class="collapse" id="sidebarMenus">
-                <ul class="sub-menu">
-                  <li class="side-nav-item">
-                    <a class="side-nav-link" href='<%= admin_organization_menus_path(@organization) %>'>
-                      <span class="menu-text" data-lang="eco-menus-list">Menus</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </li>
           </ul>
         </div>

@@ -9,10 +9,6 @@ class Admin::IngredientsController < ApplicationController
   def index
     # 1. Load all ingredients for the table list
     @ingredients = @organization.ingredients.order(:name)
-
-    # 2. Initialize a NEW ingredient for the modal form
-    #    The modal form needs this object to set up the form URL/model.
-    @ingredient = @organization.ingredients.new
   end
 
   # The 'new' action is no longer strictly needed if the form is in the index view,

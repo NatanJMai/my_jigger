@@ -1,35 +1,68 @@
-<%= simple_form_for([:admin, @item, @datasheet, datasheet_line], data: { turbo: true }) do |f| %>
-  <div class="row datasheet_line_row">
-    <div class="col-1">
-      <%= datasheet_line&.id.presence || "ID" %>
-    </div>
+<%= simple_form_for([:admin, @item, @datasheet, @datasheet_line],
+                    url: admin_item_datasheet_datasheet_lines_path(@item)) do |f| %>
 
-    <div class="col">
-      <%= f.input :ingredient_id, as: :select, collection: Ingredient.all, label: false %>
-    </div>
+  <div class="row">
+    <% if datasheet_line&.persisted? %>
+      <div class="col-1"><%= datasheet_line&.id.presence %></div>
+    <% end %>
 
-    <div class="col-1">
-      <%= datasheet_line.ingredient&.volume %>
-    </div>
-
-    <div class="col-1">
-      <%= datasheet_line.ingredient&.unit %>
-    </div>
-
-    <div class="col-1">
-      <%= humanized_money_with_symbol datasheet_line.ingredient&.cost %>
-    </div>
-
-    <div class="col-2">
-      <%= f.input :quantity, label: false %>
+    <div class="ms-5 col-4">
+      <label class="form-label">Ingredient
+        <span class="text-danger">*</span>
+      </label>
+      <%= f.input :ingredient_id,
+                  collection: @organization.ingredients,
+                  label: false,
+                  input_html: {
+                    data: { url: find_admin_organization_ingredients_path(@organization) },
+                    class: 'form-select form-select-sm ingredient-js'
+                  } %>
     </div>
 
     <div class="col-1">
-      <%= humanized_money_with_symbol Money.new(datasheet_line.calculated_price) %>
+      <%= f.input :volume, input_html: {
+        class: 'volume-js form-control form-control-sm',
+        data: {
+          url: calculate_admin_organization_ingredients_path(@organization)
+        }
+      }, label: 'Volume', readonly: true %>
     </div>
 
-    <div class="col minimal">
-      <%= f.button :submit, "SAVE", class: "btn btn-success"  %>
+    <div class="col-1">
+      <%= f.input :unit, as: :select,
+                  collection: Unit.select_options,
+                  input_html: { class: 'form-select form-select-sm unit-js', disabled: true },
+                  label: 'Unit' %>
+    </div>
+
+    <div class="col-1">
+      <%= f.input :cost, input_html: {
+        class: 'cost-cents-js form-control form-control-sm',
+        data: {
+          url: calculate_admin_organization_ingredients_path(@organization)
+        }
+      }, label: 'Cost', readonly: true %>
+    </div>
+
+    <div class="col-1">
+      <label class="form-label">Quantity
+        <span class="text-danger">*</span>
+      </label>
+      <%= f.input :quantity, input_html: {
+        class: 'quantity-js form-control form-control-sm',
+        data: {
+          url: calculate_admin_organization_ingredients_path(@organization)
+        }
+      }, label: false %>
+    </div>
+
+    <div class="col-1">
+      <label class="form-label">Calculated $</label>
+      <div class="calculated-price-js"></div>
+    </div>
+
+    <div class="col-1 mt-3">
+      <%= f.button :submit, 'Save', class: 'btn btn-primary btn-sm me-1' %>
     </div>
   </div>
 <% end %>

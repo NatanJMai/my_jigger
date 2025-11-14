@@ -8,7 +8,7 @@ class DatasheetLine < ApplicationRecord
 
   before_save :titleize_name
 
-  delegate :name, :volume, :cost_cents, to: :ingredient
+  delegate :name, :volume, :cost_cents, :unit, to: :ingredient
 
   monetize :cost_cents
 
