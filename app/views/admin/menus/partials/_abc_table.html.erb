@@ -1,21 +1,31 @@
-<table class="table table-hover abc-table">
-  <thead>
-  <tr>
-    <th scope="col">Item</th>
-    <th class="col">Category</th>
-    <th class="col">Sales ($)</th>
-    <th class="col">ABC</th>
-  </tr>
-  </thead>
-  <tbody>
+<div class="table-responsive">
+  <table class="table table-custom table-centered table-select table-hover w-100 mb-0">
 
-  <% items.sort_by { |item| -item.total_value }.each do |item| %>
-    <tr class="<%= item.get_abc_class %>">
-      <td><%= item.name %></td>
-      <td><%= item.category&.decorate&.name %></td>
-      <td><%= humanized_money_with_symbol Money.new(item.total_orders(attribute: :total_amount_cents)) %></td>
-      <td><%= item.get_abc_category %></td>
+    <thead class="bg-light align-middle bg-opacity-25 thead-sm">
+    <tr class="text-uppercase fs-xxs">
+      <th class="ps-3" data-table-sort="item">Item</th>
+      <th data-table-sort="category">Category</th>
+      <th data-table-sort="sales">Sales ($)</th>
+      <th data-table-sort="abc">ABC</th>
     </tr>
-  <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody id="abc-table-list">
+    <% items.sort_by { |item| -item.total_value }.each do |item| %>
+      <tr class="<%= item.get_abc_class %>">
+        <td class="ps-3"><%= item.name %></td>
+        <td><%= item.category&.decorate&.name %></td>
+        <td><%= humanized_money_with_symbol Money.new(item.total_orders(attribute: :total_amount_cents)) %></td>
+        <td class="fw-bold"><%= item.get_abc_category %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="card-footer border-0">
+  <div class="d-flex justify-content-between align-items-center">
+    <div data-table-pagination-info="abc-items"></div>
+    <div data-table-pagination=""></div>
+  </div>
+</div>

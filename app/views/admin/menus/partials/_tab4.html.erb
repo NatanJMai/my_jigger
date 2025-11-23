@@ -1,21 +1,25 @@
 <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
-  <div class="row">
-    <div class="custom-container col-7">
-      <div class="row">
-        <div class="col-12">
-          <div class="container jigger-form child-list matrix-popularity matrix-insight">
-            <%= render partial: 'admin/menus/partials/matrix/matrix_popularity' %>
-          </div>
+
+  <div class="row g-3">
+
+    <div class="col-xl-7">
+      <div class="card h-100">
+        <div class="card-header">
+          <h4 class="card-title">Menu Engineering Matrix</h4>
+        </div>
+        <div class="card-body">
+          <%= render partial: 'admin/menus/partials/matrix/matrix_popularity' %>
         </div>
       </div>
     </div>
 
-    <div class="custom-container col-5">
-      <div class="row">
-        <div class="col-12">
-          <div class="container jigger-form child-list matrix-popularity matrix-insight">
-            <%= render partial: 'admin/menus/partials/matrix/matrix_description' %>
-          </div>
+    <div class="col-xl-5">
+      <div class="card h-100">
+        <div class="card-header">
+          <h4 class="card-title">Matrix Insights</h4>
+        </div>
+        <div class="card-body">
+          <%= render partial: 'admin/menus/partials/matrix/matrix_description' %>
         </div>
       </div>
     </div>

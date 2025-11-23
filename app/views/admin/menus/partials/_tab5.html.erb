@@ -1,23 +1,25 @@
 <div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5-tab">
-  <div class="row">
-    <div class="col-7">
-      <div class="col-12">
-        <div class="container jigger-form child-list">
-          <div class="row">
-            <div class="col-12">
-              <%= render partial: 'admin/menus/partials/abc_analysis' %>
-            </div>
-          </div>
+
+  <div class="row g-3">
+
+    <div class="col-xl-7">
+      <div class="card h-100">
+        <div class="card-header">
+          <h4 class="card-title">ABC Item Categorization</h4>
+        </div>
+        <div class="card-body">
+          <%= render partial: 'admin/menus/partials/abc_analysis' %>
         </div>
       </div>
     </div>
 
-    <div class="custom-container col-5">
-      <div class="row">
-        <div class="col-12">
-          <div class="container jigger-form child-list matrix-popularity matrix-abc">
-            <%= render partial: 'admin/menus/partials/abc_description' %>
-          </div>
+    <div class="col-xl-5">
+      <div class="card h-100">
+        <div class="card-header">
+          <h4 class="card-title">ABC Analysis Insights</h4>
+        </div>
+        <div class="card-body">
+          <%= render partial: 'admin/menus/partials/abc_description' %>
         </div>
       </div>
     </div>

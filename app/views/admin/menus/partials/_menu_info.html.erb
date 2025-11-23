@@ -1,42 +1,67 @@
-<div class="row card-header">
-  <div class="col-7">
-    <h4 class="card-title text-left">
-      <%= menu.name %>
-      <%= link_to edit_admin_menu_path(menu) do %>
-        <i class="fa-regular fa-pen-to-square edit-button"></i>
-      <% end %>
-    </h4>
-    <%= menu.released_at %>
-  </div>
-
-  <div class="col-5">
-    <div class="row">
-      <div class="col-5">
-        <%= menu.boolean_label(menu.status) %>
+<div class="col-xl-3">
+  <div class="card card-top-sticky">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center rounded border-light p-2 bg-light-subtle border">
+        <div class="d-flex justify-content-start align-items-center gap-3">
+          <div class="avatar avatar-xl">
+            <img alt="avatar-store" class="img-fluid rounded-circle" src="<%= vite_asset_path 'images/sellers/1.png' %>"/>
+          </div>
+          <div>
+            <h5 class="text-nowrap fw-bold mb-1"><%= menu.name %></h5>
+            <p class="text-muted mb-0"><%= menu.released_at if menu.released_at %></p>
+          </div>
+        </div>
+        <%# Edit Button %>
+        <div class="d-flex gap-2">
+          <%= link_to edit_admin_menu_path(menu), class: "btn btn-sm btn-icon btn-light" do %>
+            <i class="ti ti-pencil fs-20"></i>
+          <% end %>
+        </div>
       </div>
-      <div class="col-5">
-        <%= menu.boolean_label(menu.data_imported,
-                               label = { true => 'Data Imported',
-                                         false => 'Not Imported' }) %>
+      <div class="mt-3">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <div class="avatar-sm text-bg-light d-flex align-items-center justify-content-center rounded">
+            <i class="ti ti-user fs-xl"></i>
+          </div>
+          <p class="mb-0 fs-sm">Owner: <span class="fw-semibold">Emily Carter</span></p>
+        </div>
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+            <i class="ti ti-briefcase fs-xl"></i>
+          </div>
+          <p class="mb-0 fs-sm">Business Type: <span class="fw-semibold">Premium Apple Reseller</span></p>
+        </div>
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+            <i class="ti ti-calendar-event fs-xl"></i>
+          </div>
+          <p class="mb-0 fs-sm">Founded: <span class="fw-semibold">2017</span></p>
+        </div>
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+            <i class="ti ti-map-pin fs-xl"></i>
+          </div>
+          <p class="mb-0 fs-sm">Location: <span class="fw-semibold">San Francisco, CA</span></p>
+        </div>
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+            <i class="ti ti-mail fs-xl"></i>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+            <i class="ti ti-link fs-xl"></i>
+          </div>
+          <p class="mb-0 fs-sm">Website:
+            <a class="text-primary fw-semibold" href="https://www.machubstore.com">www.machubstore.com</a></p>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-    <div class="row jigger-label">
-      <div class="align-center info-label menu-description"><%= menu.description %></div>
-    </div>
-  </div>
-</div>
-
-<div class="item-table">
-  <div class="col-12">
-    <div class="row jigger-label">
-      <div class="col-12 align-left info-description">
-        <%= render partial: 'admin/menus/partials/best_five' %>
+    <div class="card-body border-top border-dashed">
+      <div class="border-light">
+        <h6 class="text-muted text-uppercase fs-xs mb-2">Description:</h6>
+        <p class="fs-sm text-break"><%= menu.description || "No description provided for this menu." %></p>
       </div>
     </div>
-  </div>
-</div>
+  </div> <!-- end card-->
+</div> <!-- end col-->

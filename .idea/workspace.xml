@@ -5,30 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_OLD_tab1.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/old_menu_info.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/datasheet_lines_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/datasheet_lines_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/ingredients_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/ingredients_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/datasheet.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/datasheet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/datasheet_line.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/datasheet_line.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/categories/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/categories/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_line.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_line.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_new_line.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_totals.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_totals.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/_totals_2.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/create.turbo_stream.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheet_lines/create.turbo_stream.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/destroy.turbo_stream.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/edit.turbo_stream.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/new_line.turbo_stream.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheet_lines/update.turbo_stream.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheets/OLDshow.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/datasheets/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/datasheets/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/orders/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/orders/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/partials/_sidenav.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/partials/_sidenav.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/entrypoints/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/entrypoints/application.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/entrypoints/application.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/entrypoints/application.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/items_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/items_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/uploaders/image_uploader.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/uploaders/image_uploader.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/ai/ai_recommendations/_table.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/ai/ai_recommendations/_table.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/partials/_revenue_performance.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/partials/_revenue_performance.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/_card.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/_card.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_abc_analysis.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_abc_analysis.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_abc_description.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_abc_description.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_abc_table.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_abc_table.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_best_five.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_best_five.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_item_list.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_item_list.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_menu_info.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab1.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab2.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab2.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab3.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab3.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab4.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab4.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab5.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab5.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab6.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab6.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab7.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab7.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_matrix_description.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_matrix_description.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_matrix_popularity.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_matrix_popularity.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/show.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,12 +77,13 @@
     "RSpec.items_spec.executor": "Run",
     "RSpec.products_spec.executor": "Run",
     "Rails.my_jigger.executor": "Run",
+    "RakeTasksRunner#FAILED_RELOADS_PROPERTY": "1",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1763157338581",
+    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1763872470191",
     "git-widget-placeholder": "import-files",
     "last_opened_file_path": "/home/natanjmai/Documents/_projects/my_jigger/my_jigger/app/views/admin/categories",
     "node.js.detected.package.eslint": "true",
@@ -503,7 +506,8 @@
       <workItem from="1762044440723" duration="13697000" />
       <workItem from="1762578006955" duration="6179000" />
       <workItem from="1762591803231" duration="1357000" />
-      <workItem from="1763157278717" duration="1057000" />
+      <workItem from="1763157278717" duration="9274000" />
+      <workItem from="1763872406020" duration="954000" />
     </task>
     <servers />
   </component>

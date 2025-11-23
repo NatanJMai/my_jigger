@@ -1,48 +1,32 @@
-<div class="col-12 col-md-6 col-lg-3">
+<div class="col-lg-3">
   <div class="card">
-    <div class="card-body">
-      <%= link_to admin_menu_path(menu) do %>
-        <div id="<%= dom_id menu %>">
-          <div class="row card-title">
-            <div class="col-8">
-              <h6><%= menu.name %></h6>
-            </div>
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h4 class="card-title mb-0">
+        <%= link_to menu.name, admin_menu_path(menu), class: "text-reset" %>
+      </h4>
+      <div class="card-action d-flex gap-2 align-items-center">
+        <%= link_to 'Dashboard', admin_menu_path(menu), class: "btn btn-sm btn-outline-primary" %>
 
-            <div class="col-2 row">
-              <div class="col-6">
-                <%= menu.boolean_label(menu.status) %>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-description">
-            <%= menu.description %>
-          </div>
-
-          <div class="row jigger-label menu-items">
-            <div class="col-12 align-left info-description">
-              <%= render partial: 'admin/menus/partials/best_five', locals: { best_five: items } %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-
-      <%= button_to admin_menu_path(menu), class: "trash-icon-button ",
-                    method: :delete,
-                    form: {
-                      data: {
-                        turbo: true, turbo_confirm: 'Are you sure?', method: :delete
-                      }
-                    } do %>
-
-        <i class="fas fa-trash-alt"></i>
-      <% end %>
+        <a class="card-action-item" data-action="card-toggle" href="#!"><i class="ti ti-chevron-up"></i></a>
+      </div>
     </div>
+    <div class="card-body">
+      <div class="carousel slide" data-bs-ride="carousel" id="carouselExampleCaption">
+        <%= render partial: 'admin/menus/partials/best_five', locals: { best_five: items } %>
 
+        <a class="carousel-control-prev" data-bs-slide="prev" href="#carouselExampleCaption" role="button">
+          <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+          <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" data-bs-slide="next" href="#carouselExampleCaption" role="button">
+          <span aria-hidden="true" class="carousel-control-next-icon"></span>
+          <span class="visually-hidden">Next</span>
+        </a>
+      </div>
+    </div>
     <div class="card-footer">
       <div class="col-12">
-        <small class="text-muted"><%= menu.released_at %>
-        </small>
+        <small class="text-muted"><%= menu.released_at %></small>
       </div>
     </div>
   </div>

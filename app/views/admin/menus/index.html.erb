@@ -1,9 +1,11 @@
-<div class="container-fluid p-0">
-  <div class="row">
-    <% menus.each do |menu| %>
-      <%= render 'admin/menus/card', menu: menu, items: menu.items.best_five.limit(3) %>
-    <% end %>
+<% @title = "Ingredient List" %>
 
-    <%= render partial: 'layouts/new_button', locals: { url: new_admin_organization_menu_path(@organization.id) }  %>
-  </div>
+<%= render 'layouts/partials/page_title', subtitle: "Inventory", title: "Ingredients" %>
+
+<div class="row">
+  <% menus.each do |menu| %>
+    <div class="col-12">
+      <%= render 'admin/menus/card', menu: menu, items: menu.items %>
+    </div>
+  <% end %>
 </div>

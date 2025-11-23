@@ -8,8 +8,7 @@ module ItemsHelper
     formatted_date = "#{date.day}/#{date.strftime('%B')}"
 
     str = <<~TEXT
-      <div class='date-calendar'>#{formatted_week_date}</div>
-      <div class='date-str'>#{formatted_date} - #{value} sales </div>
+      #{formatted_week_date}
     TEXT
 
     str.html_safe

@@ -1,22 +1,39 @@
 <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
-  <div class="row">
-    <div class="col-9">
-      <div class="container jigger-form">
-        <%= render partial: 'admin/menus/partials/categories_list' %>
+
+  <div class="row g-3 mb-4">
+
+    <div class="col-xl-9">
+      <div class="card h-100">
+        <div class="card-header">
+          <h4 class="card-title">Categories List</h4>
+        </div>
+        <div class="card-body p-0">
+          <%= render partial: 'admin/menus/partials/categories_list' %>
+        </div>
       </div>
     </div>
 
-    <div class="col-3">
-      <div class="container jigger-form">
-        <%= render partial: 'admin/menus/partials/category_sales_pie' %>
+    <div class="col-xl-3">
+      <div class="card h-100">
+        <div class="card-header">
+          <h4 class="card-title">Category Sales Share</h4>
+        </div>
+        <div class="card-body">
+          <%= render partial: 'admin/menus/partials/category_sales_pie' %>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-9">
-      <div class="container jigger-form child-list">
-        <%= render partial: 'admin/menus/partials/revenue_by_category' %>
+  <div class="row g-3">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Revenue by Category</h4>
+        </div>
+        <div class="card-body">
+          <%= render partial: 'admin/menus/partials/revenue_by_category' %>
+        </div>
       </div>
     </div>
   </div>

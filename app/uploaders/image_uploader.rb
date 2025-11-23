@@ -1,5 +1,5 @@
 class ImageUploader < CarrierWave::Uploader::Base
-  include CarrierWave::MiniMagick # Include MiniMagick support
+  include CarrierWave::MiniMagick
 
   # Choose storage type (file or fog for cloud storage like AWS S3)
   storage :file
@@ -19,12 +19,17 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Define the icon version
   version :icon do
-    process resize_to_fill: [50, 50] # Resize the image to 50x50 pixels
+    process resize_to_fill: [50, 50]
   end
 
   # Create different versions of your uploaded files
   version :thumb do
     process resize_to_fit: [100, 100]
+  end
+
+  # New version for medium detail pages (e.g., Item Show Page)
+  version :medium_detail do
+    process resize_to_fit: [250, 250]
   end
 
   # Create different versions of your uploaded files

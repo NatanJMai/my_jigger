@@ -1,79 +1,80 @@
-<!-- Secondary Navbar with Tabs -->
-<nav class="navbar secondary-navbar">
-  <div class="container-fluid">
-    <ul class="nav nav-tabs" id="secondaryTabs" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1"
-                type="button" role="tab" aria-controls="tab1" aria-selected="true">
-          Dashboard
-        </button>
-      </li>
+<% @title = menu.name %>
 
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="tab7-tab" data-bs-toggle="tab" data-bs-target="#tab7"
-                type="button" role="tab" aria-controls="tab7" aria-selected="false">
-          AI Assistant
-        </button>
-      </li>
+<%# 1. Page Title and Subtitle (from the template) %>
+<%= render 'layouts/partials/page_title', subtitle: "Menu Management", title: menu.name %>
 
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2"
-                type="button" role="tab" aria-controls="tab2" aria-selected="false">
-          Items
-        </button>
-      </li>
+<%# 2. Main Content Wrapper: The Template's row/col structure isn't directly applicable here,
+    but we use the main content area (which typically follows the title) %>
 
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="tab4-tab" data-bs-toggle="tab" data-bs-target="#tab4"
-                type="button" role="tab" aria-controls="tab4" aria-selected="false">
-          Matrix
-        </button>
-      </li>
+<div class="row">
+  <div class="col-12">
 
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="tab5-tab" data-bs-toggle="tab" data-bs-target="#tab5"
-                type="button" role="tab" aria-controls="tab5" aria-selected="false">
-          ABC Analysis
-        </button>
-      </li>
+    <%# 3. Secondary Navbar (Tabs) - Now placed within the main content area %>
+    <nav class="navbar secondary-navbar card mb-3"> <%# Added card and mb-3 for template consistency %>
+      <div class="container-fluid p-0">
+        <ul class="nav nav-tabs border-0" id="secondaryTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1"
+                    type="button" role="tab" aria-controls="tab1" aria-selected="true">
+              Dashboard
+            </button>
+          </li>
 
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="tab6-tab" data-bs-toggle="tab" data-bs-target="#tab6"
-                type="button" role="tab" aria-controls="tab6" aria-selected="false">
-          Import Data
-        </button>
-      </li>
-    </ul>
-  </div>
-</nav>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab7-tab" data-bs-toggle="tab" data-bs-target="#tab7"
+                    type="button" role="tab" aria-controls="tab7" aria-selected="false">
+              AI Assistant
+            </button>
+          </li>
 
-<div class="container">
-  <div class="tab-content" id="tabContent">
-    <!-- Tab 1 -->
-   <%= render partial: 'admin/menus/partials/tab1' %>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab4-tab" data-bs-toggle="tab" data-bs-target="#tab4"
+                    type="button" role="tab" aria-controls="tab4" aria-selected="false">
+              Matrix
+            </button>
+          </li>
 
-    <!-- Tab 7 -->
-    <%= render partial: 'admin/menus/partials/tab7' %>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab5-tab" data-bs-toggle="tab" data-bs-target="#tab5"
+                    type="button" role="tab" aria-controls="tab5" aria-selected="false">
+              ABC Analysis
+            </button>
+          </li>
 
-    <!-- Tab 2 -->
-    <%= render partial: 'admin/menus/partials/tab2' %>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab6-tab" data-bs-toggle="tab" data-bs-target="#tab6"
+                    type="button" role="tab" aria-controls="tab6" aria-selected="false">
+              Import Data
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-    <!-- Tab 3 -->
-    <%#= render partial: 'admin/menus/partials/tab3' %>
+    <%# 4. Tab Content (The partials you render) %>
+    <div class="tab-content" id="tabContent">
+      <%= render partial: 'admin/menus/partials/tab1' %>
 
-    <!-- Tab 4 -->
-    <%= render partial: 'admin/menus/partials/tab4' %>
+      <%= render partial: 'admin/menus/partials/tab7' %>
 
-    <!-- Tab 5 -->
-    <%= render partial: 'admin/menus/partials/tab5' %>
+      <%#= render partial: 'admin/menus/partials/tab2' %>
 
-    <!-- Tab 6 -->
-    <%= render partial: 'admin/menus/partials/tab6' %>
+      <%#= render partial: 'admin/menus/partials/tab3' %>
+
+      <%= render partial: 'admin/menus/partials/tab4' %>
+
+      <%= render partial: 'admin/menus/partials/tab5' %>
+
+      <%= render partial: 'admin/menus/partials/tab6' %>
+    </div>
+
   </div>
 </div>
 
+<%# 5. Optional Javascript/Footer %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
+<%# Note: If this partial is required, you can uncomment and adjust it: %>
 <%#= render partial: 'layouts/cards/menu_card',
            locals: { url: new_admin_organization_import_job_path(current_organization),
                      title: 'Jobs',

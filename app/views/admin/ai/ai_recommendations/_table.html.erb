@@ -1,26 +1,65 @@
 <%= turbo_frame_tag 'ai-recommendations' do %>
-  <table class="table table-hover">
-    <thead>
-    <tr>
-      <th class="col-10">Recommendation</th>
-      <th class="col">Feedback</th>
-    </tr>
-    </thead>
 
-    <tbody>
-    <% ai_prompt_logs.each do |log| %>
-      <% items = log.display_by_item %>
+  <div class="card shadow-none border-0 mb-0">
+    <div class="table-responsive">
+      <table class="table table-custom table-centered table-select table-hover w-100 mb-0">
 
-      <% items.each do |item| %>
-        <tr>
-          <td><%= item.html_safe %></td>
-          <td>Like / Dislike</td>
+        <thead class="bg-light align-middle bg-opacity-25 thead-sm">
+        <tr class="text-uppercase fs-xxs">
+          <th data-table-sort="recommendation">Recommendation</th>
+          <th class="text-center" style="width: 1%;">Actions</th>
         </tr>
-      <% end %>
-    <% end %>
+        </thead>
 
-    <%== pagy_nav(@pagy) if @pagy.present? %>
+        <tbody id="recommendation-list">
+        <% ai_prompt_logs.each do |log| %>
+          <% items = log.display_by_item %>
 
-    </tbody>
-  </table>
+          <% items.each do |item| %>
+
+            <tr id="ai_recommendation_<%= log.id %>" data-id="<%= log.id %>">
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="me-2">
+                    <span class="avatar avatar-xs rounded-circle bg-light text-muted fw-bold fs-xs"><i class="ti ti-robot"></i></span>
+                  </div>
+                  <div class="text-truncate fw-bold">
+                    <%= item.html_safe %>
+                  </div>
+                </div>
+              </td>
+
+              <td class="text-center">
+                <div class="d-flex justify-content-center align-items-center gap-1">
+
+                  <%= link_to "#",
+                              title: "Helpful",
+                              data: { method: :post, params: { log_id: log.id, feedback: 'like' } },
+                              class: "btn btn-default btn-icon btn-sm" do %>
+                    <i class="ti ti-thumb-up fs-lg text-success"></i>
+                  <% end %>
+
+                  <%= link_to "#",
+                              title: "Not Helpful",
+                              data: { method: :post, params: { log_id: log.id, feedback: 'dislike' } },
+                              class: "btn btn-default btn-icon btn-sm" do %>
+                    <i class="ti ti-thumb-down fs-lg text-danger"></i>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card-footer border-0">
+      <div class="d-flex justify-content-between align-items-center">
+        <div data-table-pagination-info="ingredients"></div>
+        <div data-table-pagination=""></div>
+      </div>
+    </div>
+  </div>
+
 <% end %>

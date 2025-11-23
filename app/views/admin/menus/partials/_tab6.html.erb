@@ -1,32 +1,64 @@
 <div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="tab6-tab">
-  <div class="row">
-    <div class="col-7">
-      <div class="col-12">
-        <div class="container jigger-form child-list">
+  <div class="row g-3">
+
+    <div class="col-xl-7">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Upload Data Document</h4>
+        </div>
+        <div class="card-body">
           <%= simple_form_for [:admin, @organization, @import_job], html: { multipart: true } do |f| %>
-            <div class="row">
-              <div class="col-6">
-                <%= f.input :file, as: :file, label: false, hint: 'Select file to import',
-                            wrapper_html: { class: 'jigger-label' } %>
+            <div class="row g-3 align-items-end">
 
-                <%= hidden_field_tag :menu_id, @menu.id %>
-                <%= f.button :submit, "Upload Document", class: 'btn btn-light shadow-sm px-4 mb-2', data: { turbo: false } %>
-              </div>
-
-              <div class="col-4">
-                <div class="mb-3 select optional item_category jigger-label">
-                  <select class="form-select is-valid select optional" name="option_select" id="option_select">
+              <div class="col-md-5">
+                <div class="mb-3">
+                  <label class="form-label" for="option_select">Document Type</label>
+                  <select class="form-select" name="option_select" id="option_select">
                     <option value="pdf_document">PDF Document</option>
-                    <option value="item">Item</option>
-                    <option value="order">Order</option>
+                    <option value="item">Menu Items (CSV/Excel)</option>
+                    <option value="order">Sales Orders (CSV/Excel)</option>
                   </select>
-                  <div class="form-text">Import Item or Import Order</div>
+                  <div class="form-text">Select the type of data you are importing.</div>
                 </div>
               </div>
+
+              <div class="col-md-7">
+                <div class="mb-3">
+                  <%= f.input :file, as: :file, label: 'Select File to Import',
+                              hint: 'Accepted formats: PDF, CSV, or Excel.',
+                              input_html: { class: 'form-control' },
+                              wrapper: false %>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <%= hidden_field_tag :menu_id, @menu.id %>
+                <%= f.button :submit, "Upload Document", class: 'btn btn-primary shadow-sm px-4', data: { turbo: false } %>
+              </div>
+
             </div>
           <% end %>
         </div>
       </div>
     </div>
+
+    <div class="col-xl-5">
+      <div class="card h-100">
+        <div class="card-header">
+          <h4 class="card-title">Import Instructions</h4>
+        </div>
+        <div class="card-body">
+          <p class="text-muted">Use this section to import external data into your menu analysis:</p>
+          <ol>
+            <li>Select the <strong>Document Type</strong> (PDF, Item Data, or Order Data).</li>
+            <li>Use the file picker to select your CSV, Excel, or PDF file.</li>
+            <li>Click <strong>Upload Document</strong>.</li>
+            <li>The system will process the file in the background and update your menu metrics.</li>
+          </ol>
+          <p class="fw-semibold">Note: Importing PDF documents uses AI for extraction and may take longer to process.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

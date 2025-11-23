@@ -1,31 +1,67 @@
 <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-  <div class="row">
+
+  <div class="row g-3 mb-4">
+
     <div class="col-12">
-      <div class="container jigger-form">
+      <div class="card" data-table="" data-table-rows-per-page="10">
+        <div class="card-header border-light justify-content-between">
+          <div class="d-flex gap-2">
+            <div class="app-search">
+              <input class="form-control" data-table-search="" placeholder="Search item name..." type="search"/>
+              <i class="app-search-icon text-muted" data-lucide="search"></i>
+            </div>
+            <button class="btn btn-danger d-none" data-table-delete-selected="">Delete</button>
+          </div>
+
+          <div class="d-flex align-items-center gap-2">
+            <div>
+              <select class="form-select form-control my-1 my-md-0" data-table-set-rows-per-page="">
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="d-flex gap-1">
+            <%= link_to "#", class: "btn btn-primary" do %>
+              Add Item
+            <% end %>
+          </div>
+        </div>
+
         <%= render partial: 'admin/menus/partials/item_list' %>
+
+        <div class="card-footer border-0">
+          <div class="d-flex justify-content-between align-items-center">
+            <div data-table-pagination-info="menu-items"></div>
+            <div data-table-pagination=""></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="custom-container col-12">
-      <div class="row">
-        <div class="col-12">
-          <div class="container jigger-form child-list">
-            <div class="row">
-              <div class="col-12">
-                <%= render partial: 'admin/menus/partials/cost_vs_profit' %>
-              </div>
-            </div>
-          </div>
+  <div class="row g-3">
+    <div class="col-xl-6">
+      <div class="card h-100">
+        <div class="card-header">
+          <h4 class="card-title">Cost vs. Profit Analysis</h4>
+        </div>
+        <div class="card-body">
+          <%= render partial: 'admin/menus/partials/cost_vs_profit' %>
         </div>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-12">
-          <div class="container jigger-form child-list">
-            <%= render partial: 'admin/menus/partials/sales_performance' %>
-          </div>
+    <div class="col-xl-6">
+      <div class="card h-100">
+        <div class="card-header">
+          <h4 class="card-title">Sales Performance</h4>
+        </div>
+        <div class="card-body">
+          <%= render partial: 'admin/menus/partials/sales_performance' %>
         </div>
       </div>
     </div>
