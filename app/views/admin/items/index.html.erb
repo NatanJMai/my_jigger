@@ -52,12 +52,6 @@
           </div>
         </div>
         <div class="d-flex gap-1">
-          <a class="btn btn-soft-primary btn-icon" href='<%#= url_for(:controller => 'ecommerce', :action => 'products_grid') %>'>
-            <i class="fs-lg" data-lucide="layout-grid"></i>
-          </a>
-          <a class="btn btn-primary btn-icon" href='<%#= url_for(:controller => 'ecommerce', :action => 'products') %>'>
-            <i class="fs-lg" data-lucide="list"></i>
-          </a>
           <a class="btn btn-danger ms-1"
              href="<%= new_admin_organization_item_path(@organization) %>">
             <i class="fs-sm me-2" data-lucide="plus"></i> Add Product
@@ -75,7 +69,7 @@
             <th data-table-sort="product">Product</th>
             <th>SKU</th>
             <th data-column="category" data-table-sort="">Category</th>
-            <th data-table-sort="">Stock</th>
+            <th data-column="cmv" data-table-sort="">CMV</th>
             <th data-column="price" data-table-sort="">Price</th>
             <th data-table-sort="">Orders</th>
             <th data-table-sort="rating">Rating</th>

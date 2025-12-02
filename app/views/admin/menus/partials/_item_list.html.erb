@@ -17,7 +17,7 @@
             <option value="20">20</option>
           </select>
         </div>
-        <a class="btn btn-danger ms-1" href='<%#= url_for(:controller => 'ecommerce', :action => 'add_product') %>'>
+        <a class="btn btn-danger ms-1" href='<%= new_admin_organization_item_path(@organization) %>'>
           <i class="fs-sm me-2" data-lucide="plus"></i> Add Product
         </a>
       </div>

@@ -31,7 +31,9 @@ class StagingService
                                  .by_status('in_progress')
 
     new_item = organization.find_closest_item_or_create(@import_job.reference_name)
-    return unless new_item.present?
+
+    # Avoid creating new item if it already exists or has ingredients
+    return unless new_item.present? && new_item.datasheet_lines.empty?
 
     grouped_records = staging_records.group_by(&:object_number)
     permitted_attributes = Ingredient.permitted_methods

@@ -24,9 +24,9 @@
 
               <div class="col-md-7">
                 <div class="mb-3">
-                  <%= f.input :file, as: :file, label: 'Select File to Import',
+                  <%= f.input :files, as: :file, label: 'Select File to Import',
                               hint: 'Accepted formats: PDF, CSV, or Excel.',
-                              input_html: { class: 'form-control' },
+                              input_html: { class: 'form-control', multiple: true },
                               wrapper: false %>
                 </div>
               </div>
@@ -35,7 +35,6 @@
                 <%= hidden_field_tag :menu_id, @menu.id %>
                 <%= f.button :submit, "Upload Document", class: 'btn btn-primary shadow-sm px-4', data: { turbo: false } %>
               </div>
-
             </div>
           <% end %>
         </div>

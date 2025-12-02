@@ -1,7 +1,7 @@
 <% @title = "Ingredient List" %>
 
-<%= render 'layouts/partials/page_title', subtitle: "Inventory", title: "Ingredients" %>
-
+<%= render 'layouts/partials/page_title', subtitle: "Inventory", title: "Menu Management",
+           new_url: new_admin_organization_menu_path(@organization) %>
 <div class="row">
   <% menus.each do |menu| %>
     <div class="col-12">

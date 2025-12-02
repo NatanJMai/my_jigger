@@ -32,6 +32,7 @@ class Organization < ApplicationRecord
       item = items.create(name: normalized_input,
                           category: categories.first,
                           menu_id: self.menus.first.id,
+                          status: true,
                           data_imported: true)
     end
 

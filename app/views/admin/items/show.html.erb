@@ -8,104 +8,124 @@
       <div class="card-body p-4 p-md-5">
 
         <div class="row g-4">
+          <%# === MAIN CONTENT COLUMN (col-xl-8) === %>
+          <div class="col-xl-8">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+              <h2 class="m-0"><%= item.name %></h2>
 
+              <%# MOVED ACTION BUTTONS HERE for better visibility and flow %>
+              <div class="d-flex align-items-center gap-2">
+                <a class="btn btn-light" href='<%= edit_admin_item_path(item) %>'>
+                  <i class="ti ti-pencil fs-lg me-1"></i> Edit Product
+                </a>
+
+                <%= button_to admin_item_path(item), method: :delete,
+                              data: { turbo_confirm: 'Are you sure you want to delist/delete this item?' },
+                              form_class: 'd-inline',
+                              class: 'btn btn-danger' do %>
+                  <i class="ti ti-circle-dashed-x fs-lg me-1"></i> Delete Product
+                <% end %>
+              </div>
+            </div>
+
+            <%# --- Data Summary Section --- %>
+            <div class="mb-5 pb-4 border-bottom">
+              <h5 class="text-uppercase text-muted fs-xs mb-3">Quick Overview</h5>
+              <div class="row g-3">
+
+                <div class="col-md-3 col-sm-6">
+                  <h6 class="mb-1 text-muted text-uppercase fs-xs">Category:</h6>
+                  <p class="fw-medium mb-0"><%= item.category.name if item.category %></p>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                  <h6 class="mb-1 text-muted text-uppercase fs-xs">Price & Status:</h6>
+                  <p class="fw-medium mb-0 d-flex align-items-center gap-2">
+                    <span class="fw-bold text-danger"><%= humanized_money_with_symbol item.customer_price %></span>
+                    <% if item.status %>
+                      <span class="badge bg-success-subtle text-success rounded-pill">Active</span>
+                    <% else %>
+                      <span class="badge bg-danger-subtle text-danger rounded-pill">Inactive</span>
+                    <% end %>
+                  </p>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                  <h6 class="mb-1 text-muted text-uppercase fs-xs">Published On:</h6>
+                  <p class="fw-medium mb-0">
+                    <%= item.created_at.strftime('%d %b, %Y at %I:%M %p') %>
+                  </p>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                  <h6 class="mb-1 text-muted text-uppercase fs-xs">Average Cost:</h6>
+                  <p class="fw-medium mb-0">
+                    <%= humanized_money_with_symbol Money.new(item.costs) %>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <%# --- Performance Metrics Section --- %>
+            <div class="row mb-5 g-4 border-bottom pb-4">
+              <h5 class="text-uppercase text-muted fs-xs mb-3">Sales Performance Metrics</h5>
+
+              <div class="col-md-4">
+                <h6 class="mb-1 text-muted text-uppercase fs-xs">Total Orders:</h6>
+                <p class="fw-medium mb-0 fs-5"><%= item.total_orders(attribute: :quantity) %> units</p>
+              </div>
+
+              <div class="col-md-4">
+                <h6 class="mb-1 text-muted text-uppercase fs-xs">Total Revenue:</h6>
+                <p class="fw-medium mb-0 fs-5">
+                  <%= humanized_money_with_symbol Money.new(item.total_orders(attribute: :total_amount_cents)) %>
+                </p>
+              </div>
+
+              <div class="col-md-4">
+                <h6 class="mb-1 text-muted text-uppercase fs-xs">Best Sales Day:</h6>
+                <p class="fw-medium mb-0 fs-5">
+                  <span class="badge bg-secondary-subtle text-secondary"><%= item.best_day_label || 'N/A' %></span>
+                </p>
+              </div>
+            </div>
+
+            <%# --- Preparation Method/Description --- %>
+            <div>
+              <h5 class="text-uppercase text-muted fs-xs mb-2">Preparation Method / Description:</h5>
+              <p class="fs-base"><%= item.prep_method || "No preparation method or detailed description available." %></p>
+            </div>
+          </div>
+          <%# === END MAIN CONTENT COLUMN === %>
+
+          <%# === SIDEBAR COLUMN (col-xl-4) - Now Image Only === %>
           <div class="col-xl-4">
             <div class="card card-top-sticky border-0 shadow-sm">
               <div class="card-body p-0">
-
                 <div class="carousel slide carousel-fade" data-bs-ride="carousel" id="itemImagesCarousel">
                   <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
                       <% if item.image.present? %>
-                        <div style="max-height: 300px; height: 300px; overflow: hidden;" class="bg-light d-flex align-items-center justify-content-center rounded-top">
+                        <div style="max-height: 450px; height: 450px; overflow: hidden;" class="bg-light d-flex align-items-center justify-content-center rounded-top">
                           <%= image_tag item.image.medium_detail.url, alt: "#{item.name} Image", class: "img-fluid w-100 h-100 object-fit-contain rounded-top" %>
                         </div>
                       <% else %>
-                        <div class="d-block w-100 bg-light text-center py-5 rounded-top" style="height: 300px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                          <i class="ti ti-photo fs-xl text-muted"></i>
+                        <div class="d-block w-100 bg-light text-center py-5 rounded-top" style="height: 450px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                          <i class="ti ti-photo fs-2xl text-muted"></i>
                           <p class="text-muted mt-2">Image Placeholder</p>
                         </div>
                       <% end %>
                     </div>
                   </div>
                 </div>
-
-                <div class="p-3 d-flex flex-wrap align-items-center justify-content-between border-bottom border-light gap-2">
-
-                  <div class="d-flex align-items-center gap-2">
-                    <h5 class="text-muted mb-0">
-                      <span class="fw-bold text-danger"><%= humanized_money_with_symbol item.customer_price %></span>
-                    </h5>
-                    <% if item.status %>
-                      <span class="badge bg-success-subtle text-success fs-base rounded-pill">Active</span>
-                    <% else %>
-                      <span class="badge bg-danger-subtle text-danger fs-base rounded-pill">Inactive</span>
-                    <% end %>
-                  </div>
-
-                  <div class="d-flex align-items-center gap-2">
-                    <a class="btn btn-light btn-sm" href='<%= edit_admin_item_path(item) %>'>
-                      <i class="ti ti-pencil fs-lg me-1"></i> Edit
-                    </a>
-
-                    <%= button_to admin_item_path(item), method: :delete,
-                                  data: { turbo_confirm: 'Are you sure you want to delist/delete this item?' },
-                                  form_class: 'd-inline',
-                                  class: 'btn btn-danger btn-sm' do %>
-                      <i class="ti ti-circle-dashed-x fs-lg me-1"></i> Delete
-                    <% end %>
-                  </div>
-                </div>
-
               </div>
             </div>
           </div>
+          <%# === END SIDEBAR COLUMN === %>
 
-          <div class="col-xl-8">
-            <h2 class="mb-4"><%= item.name %></h2>
-
-            <div class="row mb-5 g-4 border-bottom pb-4">
-              <div class="col-md-4">
-                <h6 class="mb-1 text-muted text-uppercase fs-xs">Category:</h6>
-                <p class="fw-medium mb-0"><%= item.category.name if item.category %></p>
-              </div>
-              <div class="col-md-4">
-                <h6 class="mb-1 text-muted text-uppercase fs-xs">Published On:</h6>
-                <p class="fw-medium mb-0">
-                  <%= item.created_at.strftime('%d %b, %Y at %I:%M %p') %>
-                </p>
-              </div>
-              <div class="col-md-4">
-                <h6 class="mb-1 text-muted text-uppercase fs-xs">Best Sales Day:</h6>
-                <p class="fw-medium mb-0">
-                  <span class="badge bg-secondary-subtle text-secondary"><%= item.best_day_label || 'N/A' %></span>
-                </p>
-              </div>
-              <div class="col-md-4">
-                <h6 class="mb-1 text-muted text-uppercase fs-xs">Total Orders:</h6>
-                <p class="fw-medium mb-0">
-                  <%= item.total_orders(attribute: :quantity) %> units
-                </p>
-              </div>
-              <div class="col-md-4">
-                <h6 class="mb-1 text-muted text-uppercase fs-xs">Total Revenue:</h6>
-                <p class="fw-medium mb-0">
-                  <%= humanized_money_with_symbol Money.new(item.total_orders(attribute: :total_amount_cents)) %>
-                </p>
-              </div>
-              <div class="col-md-4">
-                <h6 class="mb-1 text-muted text-uppercase fs-xs">Average Cost:</h6>
-                <p class="fw-medium mb-0">
-                  <%= humanized_money_with_symbol Money.new(item.costs) %>
-                </p>
-              </div>
-            </div>
-
-            <h5 class="text-uppercase text-muted fs-xs mb-2">Preparation Method:</h5>
-            <p class="fs-base"><%= item.prep_method || "No preparation method or detailed description available." %></p>
-          </div>
         </div>
 
+        <%# === Charts/Partials Section (Full Width) === %>
         <div class="mt-5 pt-3 border-top border-light">
           <div class="row g-4 mb-4">
             <div class="col-xl-6">

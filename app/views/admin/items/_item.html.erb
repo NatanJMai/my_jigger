@@ -15,35 +15,28 @@
       </div>
       <div>
         <h5 class="mb-0">
-          <%# item.display_item_link renders the linked name %>
           <%= item.display_item_link %>
         </h5>
         <p class="text-muted mb-0 fs-xs">by: <%= item.organization.name %></p>
       </div>
     </div>
   </td>
-  <%# SKU (Using item.id as a temporary SKU placeholder if not available) %>
+
   <td>SKU-<%= item.id %></td>
-  <%# Category %>
   <td data-column="category"><%= item.category.name %></td>
-  <%# Stock (Placeholder - replace with actual stock attribute if available) %>
-  <td>
-    <h5 class="fs-base mb-0 fw-medium">N/A</h5>
+  <td data-column="cmv">
+    <h5 class="fs-base mb-0 fw-medium"><%= humanized_money_with_symbol Money.new(item.datasheet.total_costs) %></h5>
   </td>
-  <%# Price %>
   <td data-column="price">
     <%= humanized_money_with_symbol Money.new(item.customer_price_cents) %>
   </td>
-  <%# Orders (Placeholder) %>
   <td>0</td>
-  <%# Rating (Placeholder) %>
   <td>
     <span class="text-warning">
       <span class="ti ti-star"></span>
     </span>
     <span class="ms-1"><a class="link-reset fw-semibold" data-sort="rating" href="#">(0)</a></span>
   </td>
-  <%# Status (Using item.status) %>
   <td data-column="status" data-filter-value="<%= item.status.to_s %>">
     <%
       status_text = item.status ? 'Published' : 'Draft/Inactive'
@@ -51,15 +44,12 @@
     %>
     <span class="badge badge-soft-<%= status_class %> fs-xxs"><%= status_text %></span>
   </td>
-  <%# Published (Using data_imported for status/date info) %>
   <td>
     <% data_imported_label = item.boolean_label(item.data_imported, label = { true => 'Imported', false => 'Not Imported' }) %>
     <small class="text-muted"><%= data_imported_label.gsub(/<[^>]*>/, '') %></small>
   </td>
-  <%# Actions %>
   <td>
     <div class="d-flex justify-content-center gap-1" onclick="event.stopPropagation()">
-
       <%= link_to admin_item_datasheet_path(item), class: 'btn btn-default btn-icon btn-sm rounded-circle', title: 'Open CMV' do %>
         <i class="ti ti-file-spreadsheet fs-lg"></i>
       <% end %>

@@ -29,9 +29,7 @@ class FileProcessorWorker
         sleep(1)
         StagingService.new(@import_job).start(import_type.to_sym)
       else
-        #PDF document analysis
-        
-        
+        #TODO: PDF document analysis
       end
 
     rescue => e
