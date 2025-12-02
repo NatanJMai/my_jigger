@@ -1,0 +1,136 @@
+<%# Refactored content for 'admin/menus/partials/tab1' %>
+
+<div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+
+  <%# Top Row: Menu Info, Stat Cards, and Sales Pie Chart (Equivalent to Seller Info + Stat Cards) %>
+  <div class="row g-3 mb-4">
+
+    <%# Column 1: Menu Details (Equivalent to Seller Details Left Column) %>
+    <div class="col-xl-6">
+      <div class="card card-top-sticky h-100">
+        <div class="card-body">
+          <%= render partial: 'admin/menus/partials/menu_info' %>
+        </div>
+      </div>
+    </div>
+
+    <%# Column 2: Stat Cards (Total Sales, Nr of Orders, Best Day) %>
+    <div class="col-xl-3">
+      <div class="row row-cols-1 g-3">
+
+        <%# Total Sales Stat Card %>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body p-3">
+              <%# Using a structure similar to the template's stat cards %>
+              <%= render partial: 'layouts/shared/sale_items/total_sale_item',
+                         locals: { label: 'Total Sales (M)',
+                                   total: menu.total_item_orders(:total_amount_cents),
+                                   card_class: 'text-bg-warning', # Example: use card color for visual flair
+                                   icon_class: 'ti ti-currency-dollar' } %>
+              <%# NOTE: You'll need to adapt 'total_sale_item' partial to accept/use these classes if it doesn't already. %>
+            </div>
+          </div>
+        </div>
+
+        <%# Number of Items Sold Stat Card %>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body p-3">
+              <%= render partial: 'layouts/shared/sale_items/number_orders_item',
+                         locals: { label: 'Nr of Items sold M',
+                                   total: menu.total_item_orders(:quantity),
+                                   card_class: 'text-bg-info', # Example: use card color
+                                   icon_class: 'ti ti-shopping-cart' } %>
+            </div>
+          </div>
+        </div>
+
+        <%# Best Day Stat Card %>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body p-3">
+              <%# FIXME: Need to calculate the best day of Menu %>
+              <%= render partial: 'layouts/shared/sale_items/best_day_item',
+                         locals: { label: 'The Best Day',
+                                   total: items.first&.best_day_label,
+                                   card_class: 'text-bg-success', # Example: use card color
+                                   icon_class: 'ti ti-calendar-event' } %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <%# Column 3: Category Performance Pie Chart %>
+    <div class="col-xl-3">
+      <div class="card h-100">
+        <div class="card-header">
+          <h4 class="card-title">Category Performance</h4>
+        </div>
+        <div class="card-body">
+          <%= render partial: 'admin/menus/partials/menu_sales_pie' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%# Middle Row: Sales Performance, Pricing/Costs, and Matrix %>
+  <div class="row g-3 mb-4">
+
+    <%# Left Group (Sales Performance, Price/Costs, Matrix) %>
+    <div class="col-xl-9">
+      <div class="row g-3">
+
+        <%# Sales Performance (Full width of the col-9 section) %>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Sales Performance Overview</h4>
+            </div>
+            <div class="card-body">
+              <%= render partial: 'admin/menus/partials/sales_performance' %>
+            </div>
+          </div>
+        </div>
+
+        <%# Price vs Costs and Menu Matrix (Side-by-side) %>
+        <div class="col-xl-7">
+          <div class="card h-100">
+            <div class="card-header">
+              <h4 class="card-title">Price vs. Costs</h4>
+            </div>
+            <div class="card-body">
+              <%= render partial: 'admin/menus/partials/price_vs_costs' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-5">
+          <div class="card h-100">
+            <div class="card-header">
+              <h4 class="card-title">Popularity Matrix</h4>
+            </div>
+            <div class="card-body">
+              <%= render partial: 'admin/menus/partials/matrix/menu_matrix' %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <%# Right Column: Ranking Items (Equivalent to Contact Seller/Details on the left) %>
+    <div class="col-xl-3">
+      <div class="card h-100">
+        <div class="card-header">
+          <h4 class="card-title">Top Item Ranking</h4>
+        </div>
+        <div class="card-body">
+          <%= render partial: 'admin/menus/partials/ranking_items' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

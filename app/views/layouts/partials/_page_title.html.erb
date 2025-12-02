@@ -1,11 +1,22 @@
 <% if defined?(title) && title.present? %>
   <div class="page-title-head d-flex align-items-center">
-    <div class="flex-grow-1 d-flex align-items-center gap-2">
+    <div class="flex-grow-1 d-flex align-items-center gap-3">
+
       <%= link_to :back, class: "btn btn-soft-secondary btn-icon" do %>
         <i data-lucide="arrow-left"></i>
       <% end %>
+
       <h4 class="fs-xl fw-bold m-0"><%= title %></h4>
+
+      <% if defined?(new_url) && new_url.present? %>
+        <div class="ms-3">
+          <%= link_to new_url, class: "btn btn-primary btn-sm" do %>
+            <i data-lucide="plus" class="me-1 icon-sm"></i> Add New
+          <% end %>
+        </div>
+      <% end %>
     </div>
+
     <div class="text-end">
       <ol class="breadcrumb m-0 py-0">
         <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>

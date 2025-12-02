@@ -1,0 +1,79 @@
+<%# The entire Menu Detail content is now placed in the appropriate column %>
+
+<div class="card card-top-sticky shadow-sm h-100">
+  <div class="card-body">
+
+    <%# --- Menu Header (Name, Status, Edit) --- %>
+    <div class="d-flex justify-content-between align-items-center rounded border-light p-2 bg-light-subtle border">
+      <div class="d-flex justify-content-start align-items-center gap-3">
+
+        <div class="avatar avatar-xl bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center">
+          <i class="ti ti-notebook fs-3"></i>
+        </div>
+
+        <div>
+          <h5 class="text-nowrap fw-bold mb-1"><%= menu.name %></h5>
+
+          <%# Status Badge %>
+          <p class="mb-0">
+            <% if menu.status %>
+              <span class="badge bg-success-subtle text-success fs-xs rounded-pill">Active</span>
+            <% else %>
+              <span class="badge bg-danger-subtle text-danger fs-xs rounded-pill">Inactive</span>
+            <% end %>
+          </p>
+        </div>
+      </div>
+
+      <%# Edit Button %>
+      <div class="d-flex gap-2">
+        <%= link_to edit_admin_menu_path(menu), class: "btn btn-sm btn-icon btn-light" do %>
+          <i class="ti ti-pencil fs-20"></i>
+        <% end %>
+      </div>
+    </div>
+
+    <%# --- Core Menu Details --- %>
+    <div class="mt-3">
+
+      <%# Release Date %>
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <div class="avatar-sm text-bg-light d-flex align-items-center justify-content-center rounded">
+          <i class="ti ti-calendar-event fs-xl"></i>
+        </div>
+        <p class="mb-0 fs-sm">Released:
+          <span class="fw-semibold"><%= menu.released_at if menu.released_at %></span>
+        </p>
+      </div>
+
+      <%# Data Imported Status %>
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+          <i class="ti ti-database fs-xl"></i>
+        </div>
+        <p class="mb-0 fs-sm">Data Status:
+          <span class="fw-semibold">
+            <% if menu.data_imported %>
+              <span class="text-success">Imported</span>
+            <% else %>
+              <span class="text-warning">Not Imported</span>
+            <% end %>
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <%# --- Menu Description --- %>
+    <div class="mt-3 pt-3 border-top border-light">
+      <h6 class="text-muted text-uppercase fs-xs mb-2">Description:</h6>
+      <p class="fs-sm text-break"><%= menu.description || "No description provided for this menu." %></p>
+    </div>
+
+  </div>
+
+  <%# --- Best Five Items (Bottom Section) --- %>
+  <div class="card-body border-top border-dashed">
+    <%= render partial: 'admin/menus/partials/best_five' %>
+  </div>
+
+</div>

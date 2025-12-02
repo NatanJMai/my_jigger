@@ -87,7 +87,6 @@
         <div class="collapse" id="sidebarDashboards">
           <ul class="sub-menu">
             <li class="side-nav-item">
-              <a class="side-nav-link" href="<%= url_for(:controller => 'dashboard', :action => 'index') %>">
                 <span class="menu-text" data-lang="dashboard-one">Dashboard 1ss</span>
               </a>
             </li>
@@ -107,52 +106,55 @@
       </li>
       <li class="side-nav-title" data-lang="apps-title">Organisations</li>
       <li class="side-nav-item">
-        <a class="side-nav-link" href="<%= url_for(:controller => 'admin/organizations', :action => 'index') %>">
+        <a class="side-nav-link" href="<%#= url_for(:controller => 'admin/organizations', :action => 'index') %>">
           <span class="menu-icon"><i data-lucide="message-square-dot"></i></span>
           <span class="menu-text" data-lang="organisations"> Organisations </span>
         </a>
       </li>
 
-      <li class="side-nav-item">
-        <a aria-controls="sidebarEcommerce" aria-expanded="false" class="side-nav-link" data-bs-toggle="collapse" href="#sidebarEcommerce">
+
+      <% if @organization.present? %>
+        <li class="side-nav-item">
+          <a aria-controls="sidebarEcommerce" aria-expanded="false" class="side-nav-link" data-bs-toggle="collapse" href="#sidebarEcommerce">
           <span class="menu-icon"><i data-lucide="shopping-bag"></i></span>
           <span class="menu-text" data-lang="ecommerce">Menus</span>
-          <span class="menu-arrow"></span>
-        </a>
-        <div class="collapse" id="sidebarEcommerce">
-          <ul class="sub-menu">
-            <li class="side-nav-item">
-              <a class="side-nav-link" href='<%= admin_organization_items_path(@organization) %>'>
-                <span class="menu-text" data-lang="eco-products">Products</span>
-              </a>
-            </li>
+            <span class="menu-arrow"></span>
+          </a>
+          <div class="collapse" id="sidebarEcommerce">
+            <ul class="sub-menu">
+              <li class="side-nav-item">
+                <a class="side-nav-link" href='<%= admin_organization_items_path(@organization) %>'>
+                  <span class="menu-text" data-lang="eco-products">Products</span>
+                </a>
+              </li>
 
-            <li class="side-nav-item">
-              <a class="side-nav-link" href='<%= admin_organization_ingredients_path(@organization) %>'>
-                <span class="menu-text" data-lang="eco-pro-listing">Ingredients</span>
-              </a>
-            </li>
+              <li class="side-nav-item">
+                <a class="side-nav-link" href='<%= admin_organization_ingredients_path(@organization) %>'>
+                  <span class="menu-text" data-lang="eco-pro-listing">Ingredients</span>
+                </a>
+              </li>
 
-            <li class="side-nav-item">
-              <a class="side-nav-link" href='<%= admin_organization_categories_path(@organization) %>'>
-                <span class="menu-text" data-lang="eco-categories">Categories</span>
-              </a>
-            </li>
+              <li class="side-nav-item">
+                <a class="side-nav-link" href='<%= admin_organization_categories_path(@organization) %>'>
+                  <span class="menu-text" data-lang="eco-categories">Categories</span>
+                </a>
+              </li>
 
-            <li class="side-nav-item">
-              <a class="side-nav-link" href='<%= admin_organization_orders_path(@organization) %>'>
-                <span class="menu-text" data-lang="eco-orders-list">Orders</span>
-              </a>
-            </li>
+              <li class="side-nav-item">
+                <a class="side-nav-link" href='<%= admin_organization_orders_path(@organization) %>'>
+                  <span class="menu-text" data-lang="eco-orders-list">Orders</span>
+                </a>
+              </li>
 
-            <li class="side-nav-item">
-              <a class="side-nav-link" href='<%= admin_organization_menus_path(@organization) %>'>
-                <span class="menu-text" data-lang="eco-orders-list">Menus</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li>
+              <li class="side-nav-item">
+                <a class="side-nav-link" href='<%= admin_organization_menus_path(@organization) %>'>
+                  <span class="menu-text" data-lang="eco-orders-list">Menus</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>
