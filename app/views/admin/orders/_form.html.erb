@@ -1,44 +1,40 @@
-<% @title = "Create Order" %>
+<% @title = (order.persisted? ? "Edit Order - #{order.order_number}" : "Create Order") %>
 
-<%= render 'layouts/partials/page_title', subtitle: "Orders", title: "Create Order" %>
+<%= render 'layouts/partials/page_title', subtitle: "Orders", title: @title %>
 
 <div class="row justify-content-center">
   <div class="col-xxl-12">
     <div class="row">
-      <div class="col-xl-9">
+
+      <div class="col-xl-8">
         <div class="card">
           <%= simple_form_for(model) do |f| %>
             <div class="card-body p-4">
 
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <div class="mb-3">
+              <div class="row g-3 mb-4 border-bottom pb-4 align-items-end">
+
+                <div class="col-md-4">
                   <label class="form-label fw-semibold">Organization</label>
-                  <p class="form-control-plaintext fw-bold border p-2 rounded">
+                  <p class="form-control-plaintext fw-bold p-2 rounded bg-light border">
                     <%= @organization.name %>
                   </p>
-
                   <%= f.hidden_field :organization_id, value: @organization.id %>
                 </div>
 
-                <div class="text-end">
-                  <div class="row g-2 align-items-center">
-                    <div class="col-auto">
-                      <label class="form-label fw-semibold" for="orderNumber">
-                        <span class="text-danger">*</span>
-                        Order #
-                      </label>
-                      <%= f.input :order_number,
-                                  label: false,
-                                  placeholder: "e.g. 10001",
-                                  required: true,
-                                  input_html: { class: "form-control" } %>
-                    </div>
-                  </div>
+                <div class="col-md-3">
+                  <label class="form-label fw-semibold" for="orderNumber">
+                    <span class="text-danger">*</span>
+                    Order #
+                  </label>
+                  <%= f.input :order_number,
+                              label: false,
+                              placeholder: "e.g. 10001",
+                              required: true,
+                              input_html: { class: "form-control" },
+                              wrapper: false %>
                 </div>
-              </div>
 
-              <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <label class="form-label" for="orderDate">
                     <span class="text-danger">*</span>
                     Order Date
@@ -50,27 +46,30 @@
                               input_html: {
                                 class: "form-control",
                                 data: { date_format: "d M, Y", provider: "flatpickr" }
-                              } %>
+                              },
+                              wrapper: false %>
                 </div>
+
                 <div class="col-md-2">
-                  <label class="form-label" for="dataImported">Data Imported?</label>
-                  <%= f.hidden_field :data_imported, value: order.data_imported %>
-                  <p class="form-control-plaintext fw-bold " id="dataImported">
-                    <span class="badge bg-info-subtle text-info mb-2 fs-xs px-2 py-1">No</span>
+                  <%= f.hidden_field :data_imported, value: f.object.data_imported %>
+                  <p class="form-control-plaintext fw-bold pt-2">
+                    <span class="badge <%= f.object.data_imported ? 'bg-success' : 'bg-info' %>-subtle
+                    text-<%= f.object.data_imported ? 'success' : 'info' %> mb-2 fs-xs px-2 py-1">
+
+                      <%= f.object.data_imported ? 'Data Imported' : 'Data Not Imported' %>
+                    </span>
                   </p>
                 </div>
               </div>
 
-              <div class="row mt-4">
-                <div class="col-md-6">
+              <div class="row mb-4">
+                <div class="col-12">
                   <label class="form-label">Client/Billing Reference</label>
                   <div class="alert alert-info py-2 mb-0">
                     Client details will be fetched based on the selected Organization.
                   </div>
                 </div>
               </div>
-
-              <hr class="mt-4 mb-3" />
 
               <h5 class="mb-3">Order Items</h5>
               <div class="table-responsive">
@@ -97,15 +96,36 @@
                                             class: "btn btn-primary mt-2" %>
               </div>
 
-              <div class="row mt-4">
-                <div class="col-12 text-center">
-                  <%= f.submit nil, class: "btn btn-success btn-lg" %>
-                  <a class="btn btn-light ms-2" href="<%= admin_organization_orders_path(@organization) %>">
-                    <i class="ti ti-arrow-left me-1"></i> Back to List</a>
-                </div>
-              </div>
+            </div>
+
+            <div class="card-footer text-center pt-3 pb-4">
+              <%= f.submit (model.last.persisted? ? "Save Order" : "Create Order"), class: "btn btn-success" %>
+              <a class="btn btn-light ms-2" href="<%= admin_organization_orders_path(@organization) %>">
+                <i class="ti ti-arrow-left me-1"></i> Back to List
+              </a>
             </div>
           <% end %>
+        </div>
+      </div>
+
+      <div class="col-xl-4">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Order Status & Totals</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="text-muted text-uppercase mb-3">Summary</h6>
+              <% order_items.each do |order_item| %>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted"><%= order_item %></span>/
+                <span class="fw-semibold"><%= humanized_money_with_symbol order_item.total_amount %></span>
+              </div>
+            <% end %>
+            <div class="d-flex justify-content-between pt-2 border-top">
+              <span class="fw-bold fs-5">Grand Total:</span>
+              <span class="fw-bold fs-5 text-success"><%= humanized_money_with_symbol Money.new order.total_amount %></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

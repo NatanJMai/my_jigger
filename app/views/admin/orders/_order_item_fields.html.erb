@@ -4,16 +4,9 @@
                             { prompt: "Select Item" }, { class: "form-select", required: true } %>
   </td>
 
-  <td>
-    <%= f.number_field :quantity, class: "form-control item-quantity", placeholder: "1", min: 1, required: true %>
-  </td>
+  <td><%= f.number_field :quantity, class: "form-control item-quantity", placeholder: "1", min: 1, required: true %></td>
 
-  <%# Unit Price (Cents) %>
-  <td>
-    <%= f.number_field :unit_price_cents, class: "form-control item-unit-price", placeholder: "0", min: 0, required: true %>
-  </td>
-
-  <%# Remove Button %>
+  <td><%= f.number_field :unit_price_cents, class: "form-control item-unit-price", placeholder: "0", min: 0, required: true %></td>
   <td>
     <%= f.hidden_field :_destroy %>
     <%= link_to_remove_association f, class: "btn btn-sm btn-danger" do %>

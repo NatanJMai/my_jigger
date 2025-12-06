@@ -1,14 +1,82 @@
 <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
-
   <div class="row g-3">
-
     <div class="col-xl-7">
       <div class="card h-100">
         <div class="card-header">
           <h4 class="card-title">Menu Engineering Matrix</h4>
         </div>
         <div class="card-body">
-          <%= render partial: 'admin/menus/partials/matrix/matrix_popularity' %>
+          <div class="matrix-chart">
+            <div>
+              <div class="row row-left-square">
+                <div class="col-1">
+                  <div class="line-with-arrow top">
+                    <span class="label">Popularity</span>
+                  </div>
+                </div>
+
+                <div class="col-5">
+                  <div class="row-square red">
+                    <div class="square-container">
+                      <h4>🚀 Plowhorses</h4>
+                    </div>
+
+                    <div class="items-container">
+                      <% @plow_horses.each_with_index do |item, index| %>
+                        <%= render partial: 'admin/menus/partials/matrix/item',
+                                   locals: { item: item, index: index } %>
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="row-square purple">
+                    <div class="square-container">
+                      <h4>💀 Dogs</h4>
+                    </div>
+
+                    <div class="items-container">
+                      <% @dogs.each_with_index do |item, index| %>
+                        <%= render partial: 'admin/menus/partials/matrix/item',
+                                   locals: { item: item, index: index } %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-5">
+                  <div class="row-square blue">
+                    <div class="square-container">
+                      <h4>🌟 Stars</h4>
+                    </div>
+
+                    <div class="items-container">
+                      <% @stars.each_with_index do |item, index| %>
+                        <%= render partial: 'admin/menus/partials/matrix/item',
+                                   locals: { item: item, index: index } %>
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="row-square orange">
+                    <div class="square-container">
+                      <h4>📉 Puzzles</h4>
+                    </div>
+
+                    <div class="items-container">
+                      <% @puzzles.each_with_index do |item, index| %>
+                        <%= render partial: 'admin/menus/partials/matrix/item',
+                                   locals: { item: item, index: index } %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="line-with-arrow right">
+              <span class="label">Profitability</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

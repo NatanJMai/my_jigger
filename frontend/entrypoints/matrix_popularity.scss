@@ -10,129 +10,149 @@ table.abc-table {
   tr.grey { td { background-color: var(--jigger-dark-grey); } }
 }
 
-.matrix-popularity {
-  height: 387px;
-  padding-left: 20px;
-  margin-top: 50px;
+// Variables for quick color reference
+$color-star: #28a745; // Green
+$color-plowhorse: #dc3545; // Red
+$color-dog: #dc3545; // Red
+$color-puzzle: #fd7e14; // Orange
+$color-plowhorse: #007bff; // Blue
 
-  .line-with-arrow {
-    position: relative;
-    margin: 10px;
+.matrix-chart {
+  display: flex; // Added display: flex to center the content
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  position: relative;
+  padding: 30px 0;
+
+  // Hide default Bootstrap row gutters for matrix structure
+  .row {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
   }
 
-  .right {
-    max-width: 750px;
-    height: 1px;
-    background-color: var(--jigger-border);
-    margin-bottom: 50px;
-  }
-
-  .right::after {
-    content: '';
-    position: absolute;
-    right: -10px;
-    top: -4px;
-    border-width: 5px 0 5px 10px;
-    border-style: solid;
-    border-color: transparent transparent transparent black;
-  }
-
-  .right .label {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100px;
-    transform: translateX(-50%);
-    background-color: #f0f0f0;
-    padding: 2px 5px;
-    font-size: 14px;
-    text-align: center;
-  }
-
-  .top {
-    width: 1px;
-    height: 300px;
-    background-color: var(--jigger-border);
-  }
-
-  .top::after {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -4px;
-    transform: rotate(180deg);
-
-    border-width: 10px 5px 0 5px;
-    border-style: solid;
-    border-color: black transparent transparent transparent;
-  }
-
-  .top .label {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    width: 100px;
-    transform: translateX(-75%) rotate(270deg);
-    background-color: #f0f0f0;
-    padding: 2px 5px;
-    font-size: 14px;
-    text-align: center;
-  }
-
+  // Wrapper for the four squares
   .row-left-square {
-    margin-bottom: -20px;
-    margin-top: -20px;
-    height: 320px;
+    display: flex;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 400px; // Set a fixed height for the matrix area for clean quadrant sizing
+    border-collapse: collapse;
   }
 
+  // Outer containers for the left half (Plowhorses/Dogs) and right half (Stars/Puzzles)
+  .col-5 {
+    display: flex;
+    flex-direction: column; // Stack the top and bottom squares vertically
+    padding: 0; // Remove column padding
+  }
+
+  // Container for each quadrant's content
   .row-square {
-    border-radius: var(--bs-border-radius);
-    margin-top: 15px;
-    max-width: 300px;
-    height: 200px;
-    color: white;
+    height: 50%; // Each quadrant takes exactly half the height of its parent column
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #dee2e6;
+    margin: 0; // Remove previous margin hacks
 
-    &.red {
-      border: 1px solid var(--jigger-square-red);;
-      background-color: var(--jigger-square-red);;
+    // Ensure clean borders: the first child in each col-5 pair shouldn't have a bottom border
+    &:nth-child(1) { border-bottom: none; }
+
+    // --- Quadrant Colors ---
+    &.red { background-color: $color-plowhorse; color: white; }      // Plowhorses (Top Left)
+    &.blue { background-color: $color-star; color: white; }          // Stars (Top Right)
+    &.purple { background-color: $color-dog; color: white; }         // Dogs (Bottom Left)
+    &.orange { background-color: $color-puzzle; color: white; }      // Puzzles (Bottom Right)
+
+    h4 {
+      color: white;
+      font-weight: bold;
+      margin-bottom: 0;
     }
+  }
 
-    &.purple {
-      border: 1px solid var(--jigger-square-purple);;
-      background-color: var(--jigger-square-purple);;
+  // --- Square Content Styling ---
+  .square-container {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    h4 {
+      font-size: 1.1rem;
     }
+  }
 
-    &.blue {
-      border: 1px solid var(--jigger-square-blue);;
-      background-color: var(--jigger-square-blue);;
-    }
+  .items-container {
+    // --- FLEXBOX LAYOUT FOR ITEMS ---
+    display: flex;
+    flex-wrap: wrap; // Items wrap to the next line
+    gap: 5px; // Space between items
+    padding: 10px;
+    height: 100%;
+    overflow-y: auto; // Allow scrolling if too many items
 
-    &.orange {
-      border: 1px solid var(--jigger-square-orange);;
-      background-color: var(--jigger-square-orange);;
-    }
-
-    .square-container {
+    // Styling for the rendered item partials
+    > div {
+      padding: 5px;
+      border-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.15);
+      flex: 1 1 auto; // Allows items to grow/shrink
+      min-width: 100px; // Prevent items from getting too small
+      max-height: min-content;
       text-align: center;
-      margin-top: 5%;
+      line-height: normal;
+
+      a { color: white; }
+    }
+  }
+
+  // --- Axis Styling (Arrows) ---
+  .line-with-arrow {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .label {
+      font-weight: bold;
+      white-space: nowrap;
+      color: #495057;
     }
 
-    .items-container {
-      font-size: 10pt;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Adjust column count */
-      text-align: center;
+    // Popularity Arrow (Vertical)
+    &.top {
+      // Adjusted positioning for the vertical axis label
+      top: 50%;
+      left: 0;
+      right: auto;
+      transform: rotate(-90deg) translateY(-50%); // Rotate and center vertically
+      transform-origin: 0% 0%;
+      height: 30px;
+      width: 200px;
 
-      .item-link {
-        color: white;
+      // Adjusted arrow content to point UPWARDS (increasing Popularity)
+      &::after {
+        content: '\2192';
+        font-size: 1.5rem;
+        margin-left: 5px;
+        line-height: 1;
       }
     }
-  }
 
-  .row-square:hover {
-    transform: scale(1.02);
-    transition: all linear 200ms;
-    z-index: 1;
-    cursor: pointer;
+    // Profitability Arrow (Horizontal)
+    &.right {
+      // Position the Profitability axis label horizontally below the squares
+      bottom: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+
+      &::after {
+        content: '\2192'; // Right arrow character
+        font-size: 1.5rem;
+        margin-left: 5px;
+        line-height: 1;
+      }
+    }
   }
 }

@@ -73,6 +73,7 @@ class Admin::ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :customer_price, :menu_id, :image,
+                                 :remove_image,
                                  :status, :category_id, :data_imported, :prep_method)
   end
 end

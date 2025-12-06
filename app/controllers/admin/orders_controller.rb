@@ -30,6 +30,7 @@ class Admin::OrdersController < AdminController
   end
 
   def edit
+    @order_items = @order.order_items
   end
 
   def update

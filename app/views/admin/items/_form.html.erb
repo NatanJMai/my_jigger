@@ -54,8 +54,26 @@
             </div>
             <div class="card-body">
               <div class="row">
-                <div class="col-12">
-                  <div class="dropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate" id="myAwesomeDropzone">
+                <% if f.object.persisted? && f.object.image.present? %>
+                  <div class="col-6">
+                    <div class="mb-4 p-3 border rounded bg-light">
+                      <h5 class="mb-3 text-success">Current Image:</h5>
+                      <div class="d-flex align-items-center">
+                        <%= image_tag f.object.image.url, class: "img-thumbnail me-4", style: "max-width: 150px; max-height: 150px;" %>
+                        <div class="flex-grow-1">
+                          <p class="mb-1 fw-semibold"><%= f.object.image.file.filename if f.object.image.file.present? %></p>
+                          <div class="form-check mt-2">
+                            <%= f.check_box :remove_image, class: "form-check-input", id: "remove_image_check" %>
+                            <label class="form-check-label text-danger" for="remove_image_check">Remove current image</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+                <div class="col-6">
+                  <div class="dropzone" data-plugin="dropzone" data-previews-container="#file-previews"
+                       data-upload-preview-template="#uploadPreviewTemplate" id="myAwesomeDropzone">
                     <div class="fallback">
                       <%= f.input :image, as: :file, wrapper: false %>
                     </div>

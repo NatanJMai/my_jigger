@@ -13,9 +13,9 @@
 
         <tbody id="recommendation-list">
         <% ai_prompt_logs.each do |log| %>
-          <% items = log.display_by_item %>
+          <%# items = log.display_by_item %>
 
-          <% items.each do |item| %>
+          <% #items.each do |item| %>
 
             <tr id="ai_recommendation_<%= log.id %>" data-id="<%= log.id %>">
               <td>
@@ -24,7 +24,7 @@
                     <span class="avatar avatar-xs rounded-circle bg-light text-muted fw-bold fs-xs"><i class="ti ti-robot"></i></span>
                   </div>
                   <div class="text-truncate fw-bold">
-                    <%= item.html_safe %>
+                    <%#= item.html_safe %>
                   </div>
                 </div>
               </td>
@@ -48,7 +48,7 @@
                 </div>
               </td>
             </tr>
-          <% end %>
+          <%# end %>
         <% end %>
         </tbody>
       </table>
