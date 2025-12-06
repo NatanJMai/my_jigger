@@ -6,23 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/items_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/items_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/orders_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/orders_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/charts_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/charts_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/menu.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/menu.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/order_item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/order_item.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/ai/ai_recommendations/_table.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/ai/ai_recommendations/_table.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/items/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_abc_table.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_abc_table.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab4.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab4.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab5.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab5.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_item.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_item.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_matrix_popularity.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_matrix_popularity.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_squares.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/matrix/_squares.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/orders/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/orders/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/orders/_order_item_fields.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/orders/_order_item_fields.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/orders/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/orders/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/orders/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/orders/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/entrypoints/application.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/entrypoints/application.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/entrypoints/matrix_popularity.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/entrypoints/matrix_popularity.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/organization.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/organization.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/categories/_category.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/categories/_category.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/categories/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/categories/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/ingredients/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/ingredients/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab1.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab1.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/ecommerce-seller-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/pages/ecommerce-seller-details.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -478,7 +471,7 @@
       <workItem from="1764337879412" duration="2176000" />
       <workItem from="1764341310399" duration="1260000" />
       <workItem from="1764466412986" duration="8604000" />
-      <workItem from="1764899082795" duration="8141000" />
+      <workItem from="1764899082795" duration="13706000" />
     </task>
     <servers />
   </component>

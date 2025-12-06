@@ -14,17 +14,6 @@
           <button class="btn btn-danger d-none" data-table-delete-selected="">Delete</button>
         </div>
 
-        <div class="d-flex align-items-center gap-2">
-          <div>
-            <select class="form-select form-control my-1 my-md-0" data-table-set-rows-per-page="">
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-              <option value="30">30</option>
-            </select>
-          </div>
-        </div>
-
         <div class="d-flex gap-1">
           <%= link_to new_admin_organization_ingredient_path(@organization),
                       data: { turbo_frame: "ingredient_modal" },
@@ -41,18 +30,16 @@
             <th class="ps-3" style="width: 1%;">
               <input class="form-check-input form-check-input-light fs-14 mt-0" data-table-select-all="" id="select-all-ingredients" type="checkbox" value="option"/>
             </th>
-            <th data-table-sort="name">Name</th>
-            <th data-table-sort="volume">Volume</th>
-            <th data-table-sort="unit">Unit</th>
-            <th data-table-sort="cost">Cost ($)</th>
-            <th data-table-sort="">Updated</th>
+            <th data-column="name" data-table-sort="name">Name</th>
+            <th data-column="volume" data-table-sort="volume">Volume</th>
+            <th data-column="unit" data-table-sort="unit">Unit</th>
+            <th data-column="cost" data-table-sort="cost">Cost ($)</th>
+            <th data-column="updated_at" data-table-sort="updated_at">Updated</th>
             <th class="text-center" style="width: 1%;">Actions</th>
           </tr>
           </thead>
           <tbody id="ingredient-list">
-          <% ingredients.each do |ingredient| %>
-            <%= render partial: 'ingredient', locals: { ingredient: ingredient } %>
-          <% end %>
+          <%= render partial: 'ingredient', collection: ingredients, as: :ingredient %>
           </tbody>
         </table>
       </div>
@@ -61,6 +48,16 @@
         <div class="d-flex justify-content-between align-items-center">
           <div data-table-pagination-info="ingredients"></div>
           <div data-table-pagination=""></div>
+          <div class="d-flex align-items-center gap-2">
+            <div>
+              <select class="form-select form-control my-1 my-md-0" data-table-set-rows-per-page="">
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -71,7 +68,6 @@
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <%= turbo_frame_tag "ingredient_modal" do %>
-        <!-- form content will be replaced dynamically -->
       <% end %>
     </div>
   </div>

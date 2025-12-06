@@ -19,11 +19,12 @@ class OrderItem < ApplicationRecord
   # Define those attributes that we can update from import files.
   # @return Array
   def self.permitted_methods
-    %i[quantity unit_price total_amount]
+    %i[quantity]
   end
 
   private
   def set_total_amount
-    self.total_amount_cents = (quantity * unit_price_cents).to_i
+    self.unit_price_cents = item.customer_price_cents
+    self.total_amount_cents = (quantity * item.customer_price_cents).to_i
   end
 end

@@ -47,6 +47,7 @@ Rails.application.routes.draw do
             get 'sales_performance_by_menu_pie'
             get 'sales_performance_by_categories_pie'
             get 'sales_performance_by_menu'
+            get 'seller_overview_performance'
             get 'revenue_by_category'
             get 'price_vs_costs_by_menu'
             get 'costs_vs_profit_by_menu'

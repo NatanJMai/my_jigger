@@ -8,7 +8,7 @@ class Admin::ChartsController < ApplicationController
 
   ##
   # Category
-  # Sales Performance by Category
+  # Revenue Performance by Category
   def revenue_performance_by_category
     data = @category.sales_performance
     render json: data
@@ -16,18 +16,22 @@ class Admin::ChartsController < ApplicationController
 
   ##
   # Category
-  # Sales Performance by Category
+  # Sales Performance (Quantity) by the Category's Items
   def sales_performance_by_category
     items = @category.items
 
-    # Query to get sales performance of all items in the category
+    # Query to get sales performance (by quantity) of all items in this specific category
     sales_performance = items
-                        .joins(:order_items)
-                        .select('items.id, items.name, SUM(order_items.quantity) AS total_quantity')
-                        .group('items.id, items.name')
-                        .pluck('items.name, SUM(order_items.quantity) AS total_quantity')
+                          .joins(:order_items)
+                          .select('items.id, items.name, SUM(order_items.quantity) AS total_quantity')
+                          .group('items.id, items.name')
+                          .pluck('items.name, SUM(order_items.quantity) AS total_quantity')
 
-    render json: sales_performance
+    # ApexCharts expects separate 'series' (values) and 'labels' (keys)
+    render json: {
+      series: sales_performance.map(&:last), # Quantities
+      labels: sales_performance.map(&:first)  # Item Names
+    }
   end
 
   ##
@@ -40,7 +44,7 @@ class Admin::ChartsController < ApplicationController
     # 2. Pass the dynamic attribute to the model method
     sales_data_array = @item.sales_performance_by_item({
                                                          week: params[:week],
-                                                         month: params[:month], # Pass month param too, for completeness
+                                                         month: params[:month],
                                                          attribute: requested_attribute
                                                        })
 
@@ -61,7 +65,7 @@ class Admin::ChartsController < ApplicationController
 
   ##
   # Item
-  # Sales Performance by Item
+  # Production Cost Breakdown (PIE)
   def item_production_costs
     sales_data = @item.item_production_costs
 
@@ -80,12 +84,16 @@ class Admin::ChartsController < ApplicationController
 
     # Query to get sales performance of all items in the menu
     sales_performance = items
-                        .joins(:order_items)
-                        .select('items.id, items.name, SUM(order_items.quantity) AS total_quantity')
-                        .group('items.id, items.name')
-                        .pluck('items.name, SUM(order_items.quantity) AS total_quantity')
+                          .joins(:order_items)
+                          .select('items.id, items.name, SUM(order_items.quantity) AS total_quantity')
+                          .group('items.id, items.name')
+                          .pluck('items.name, SUM(order_items.quantity) AS total_quantity')
 
-    render json: sales_performance
+    # ApexCharts expects separate 'series' (values) and 'labels' (keys)
+    render json: {
+      series: sales_performance.map(&:last), # Quantities
+      labels: sales_performance.map(&:first)  # Item Names
+    }
   end
 
   ##
@@ -94,28 +102,32 @@ class Admin::ChartsController < ApplicationController
   def sales_performance_by_categories_pie
     items = @menu.items
 
-    # Query to get sales performance of all items in the menu
+    # Query to get sales performance of categories associated with items in the menu
     sales_performance = items
-                        .joins(:order_items)
-                        .joins(:category)
-                        .select('categories.id, categories.name, SUM(order_items.quantity) AS total_quantity')
-                        .group('categories.id, categories.name')
-                        .pluck('categories.name, SUM(order_items.quantity) AS total_quantity')
+                          .joins(:order_items)
+                          .joins(:category)
+                          .select('categories.id, categories.name, SUM(order_items.quantity) AS total_quantity')
+                          .group('categories.id, categories.name')
+                          .pluck('categories.name, SUM(order_items.quantity) AS total_quantity')
 
-    render json: sales_performance
+    # ApexCharts expects separate 'series' (values) and 'labels' (keys)
+    render json: {
+      series: sales_performance.map(&:last), # Quantities
+      labels: sales_performance.map(&:first)  # Category Names
+    }
   end
 
   ##
   # Menu (Categories Column Bar)
-  # Categories sale performance
+  # Categories revenue performance
   def revenue_by_category
     data = @menu.revenue_by_category
     render json: data
   end
 
   ##
-  # Menu (Line Bar`)
-  # Item sale performance
+  # Menu (Line Bar)
+  # Item sale performance (Quantity)
   def sales_performance_by_menu
     data = @menu.sales_performance_quantity
     render json: data
@@ -137,5 +149,39 @@ class Admin::ChartsController < ApplicationController
     data = @menu.costs_vs_profit
 
     render json: data
+  end
+
+  ##
+  # Menu (Mixed Chart)
+  # Seller Overview (Orders, Earnings, Costs over time for the menu)
+  def seller_overview_performance
+    # 1. Retrieve the aggregated data from the Menu model (now contains costs)
+    data = @menu.overview_data
+
+    # 2. Build the ApexCharts series structure
+    series = [
+      {
+        name: "Orders",
+        type: "area",
+        data: data[:orders] || [],
+      },
+      {
+        name: "Earnings",
+        type: "bar",
+        data: data[:earnings] || [], # Array of monetary values
+      },
+      {
+        # Renamed series to Costs
+        name: "Costs",
+        type: "line",
+        data: data[:costs] || [], # Array of monetary values
+      },
+    ]
+
+    # 3. Render the JSON response
+    render json: {
+      categories: data[:categories] || [], # e.g., ['Jan', 'Feb', ...]
+      series: series
+    }
   end
 end

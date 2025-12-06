@@ -9,7 +9,7 @@
   <td>
     <h5 class="m-0">
       <span class="ti ti-folder text-primary fs-lg me-1"></span>
-      <a class="link-reset fw-semibold" href='<%= url_for(controller: 'admin/categories', action: 'show', id: category.id) %>'>
+      <a class="link-reset fw-semibold">
         <%= category.name %>
       </a>
     </h5>
@@ -29,9 +29,6 @@
 
   <td>
     <div class="d-flex align-items-center justify-content-center gap-1">
-      <a class="btn btn-default btn-icon btn-sm" href='<%= url_for(controller: 'admin/categories', action: 'show', id: category.id) %>'>
-        <i class="ti ti-eye fs-lg"></i>
-      </a>
       <%= link_to edit_admin_category_path(category),
                   class: "btn btn-default btn-icon btn-sm",
                   data: {
