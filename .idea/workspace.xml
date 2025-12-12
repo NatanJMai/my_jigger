@@ -6,16 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/charts_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/charts_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/menu.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/menu.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/order_item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/order_item.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/organization.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/organization.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/categories/_category.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/categories/_category.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/categories/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/categories/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/ingredients/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/ingredients/index.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab1.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab1.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/pages/ecommerce-seller-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/pages/ecommerce-seller-details.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +26,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/.asdf/installs/ruby/3.4.4/lib/ruby/gems/3.4.0/gems/money-rails-1.15.0/lib/money-rails/helpers/action_view_extension.rb" root0="SKIP_INSPECTION" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -67,9 +62,9 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1764466473783",
+    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1765193554536",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "import-files",
+    "git-widget-placeholder": "my-jigger",
     "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "/Users/newaccount/Documents/source/my_jigger",
     "node.js.detected.package.eslint": "true",
@@ -472,6 +467,7 @@
       <workItem from="1764341310399" duration="1260000" />
       <workItem from="1764466412986" duration="8604000" />
       <workItem from="1764899082795" duration="13706000" />
+      <workItem from="1765193492204" duration="4739000" />
     </task>
     <servers />
   </component>

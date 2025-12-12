@@ -19,23 +19,25 @@ class Menu < ApplicationRecord
 
   ##
   # Return Average Profit of Menu Items
-  # OPTIMIZED: Calculates aggregate profit in the database.
+  # OPTIMIZED: Calculates aggregate profit in the database using correct cost formula.
   # @return Float
   def average_profit
-    # Profit = Customer Price - Costs. Requires joining datasheet_lines.
+    # Profit = Customer Price - Costs
+    # Must use the correct formula: (quantity / volume) * cost_cents
 
-    # Define a clean subquery for the total profit in cents
     profit_sum = Item
-                   .joins(datasheet: :datasheet_lines)
+                   .joins(datasheet: { datasheet_lines: :ingredient })
                    .where(menu_id: self.id)
-                   .sum(Arel.sql("items.customer_price_cents - (SELECT SUM(dsl.cost_cents * dsl.quantity)
-                                                  FROM datasheet_lines dsl
-                                                  WHERE dsl.datasheet_id = datasheets.id)"))
+                   .group('items.id', 'items.customer_price_cents')
+                   .pluck(Arel.sql("
+                     items.customer_price_cents - SUM((datasheet_lines.quantity::float / ingredients.volume) * datasheet_lines.cost_cents)
+                   "))
+                   .sum
 
     item_count = items.count
     return 0.0 unless item_count.positive?
 
-    # Convert to dollars and divide by item count
+    # Already in cents, convert to dollars and divide by item count
     (profit_sum / 100.0) / item_count.to_f
   end
 
@@ -56,51 +58,98 @@ class Menu < ApplicationRecord
     total_quantity / item_count
   end
 
+  ##
+  # Categorize menu items into matrix categories (star, plow_horse, puzzle, dog)
+  # OPTIMIZED: Pre-calculates all quantities and profits in single queries
+  # FIXED: Uses menu mix percentage for popularity (industry standard)
+  # @return void
   def categorize_menu_items
-    # Calculate averages for popularity (sales count) & profitability (profit per item)
-    # NOTE: These calls are now optimized (single query)
-    avg_sales = average_quantity_sold || 0
-    avg_profit = average_profit || 0
+    # Pre-calculate quantities for all items in one query
+    quantities = OrderItem
+                   .joins(:item)
+                   .where(items: { menu_id: self.id })
+                   .group('items.id')
+                   .sum(:quantity)
 
-    # Ensure items are eagerly loaded with their total orders and costs to prevent N+1 in the loop
-    items_for_analysis = items.includes(:order_items, datasheet: :datasheet_lines)
+    # Calculate total sales for menu mix percentage
+    total_quantity_sold = quantities.values.sum.to_f
+    return if total_quantity_sold.zero?
 
-    items_for_analysis.each do |item|
-      # NOTE: item.quantity_sold and item.profit still perform their own DB/Ruby logic.
-      # For true optimization, these values should be pre-calculated in the database
-      # or cached. Since we don't have the Item model's implementation, we leave these as is.
-      popularity = item.quantity_sold
-      profitability = item.profit
+    # Pre-calculate profit per unit for all items in one query using correct cost formula
+    profit_per_unit = Item
+                        .joins(datasheet: { datasheet_lines: :ingredient })
+                        .where(menu_id: self.id)
+                        .group('items.id')
+                        .pluck(Arel.sql("
+                          items.id,
+                          items.customer_price_cents - SUM((datasheet_lines.quantity::float / ingredients.volume) * datasheet_lines.cost_cents)
+                        "))
+                        .to_h
 
-      # Categorize based on the thresholds
-      category =
-        if popularity >= avg_sales && profitability >= avg_profit
-          'star' # High sales, high profit
-        elsif popularity >= avg_sales && profitability < avg_profit
-          'plow_horse' # High sales, low profit
-        elsif popularity < avg_sales && profitability >= avg_profit
-          'puzzle' # Low sales, high profit
-        else
-          'dog' # Low sales, low profit
-        end
+    # Calculate averages for comparison
+    # Average menu mix = equal distribution across all items
+    avg_menu_mix = 100.0 / items.count
+    # Average profit per unit
+    avg_profit = profit_per_unit.values.sum / items.count.to_f
 
-      puts "Item: #{item.name} -> Category: #{category}"
-      item.update(matrix_category: category) # Save category to database
+    # Prepare bulk update data
+    categories_to_update = {}
+
+    items.each do |item|
+      # Popularity = Menu Mix Percentage (industry standard)
+      item_quantity = quantities[item.id] || 0
+      popularity = (item_quantity / total_quantity_sold * 100)
+
+      # Profitability = Contribution Margin (profit per unit)
+      profitability = profit_per_unit[item.id] || 0
+
+      category = if popularity >= avg_menu_mix && profitability >= avg_profit
+                   'star' # High sales, high profit
+                 elsif popularity >= avg_menu_mix && profitability < avg_profit
+                   'plow_horse' # High sales, low profit
+                 elsif popularity < avg_menu_mix && profitability >= avg_profit
+                   'puzzle' # Low sales, high profit
+                 else
+                   'dog' # Low sales, low profit
+                 end
+
+      puts "Item: #{item.name} (#{popularity.round(2)}% sales, $#{(profitability/100.0).round(2)} profit) -> Category: #{category}"
+      categories_to_update[item.id] = category
+    end
+
+    # Bulk update using case statement (single UPDATE query)
+    if categories_to_update.any?
+      sql_case = categories_to_update.map { |id, cat| "WHEN #{id} THEN '#{cat}'" }.join(' ')
+
+      Item.where(id: categories_to_update.keys).update_all(
+        "matrix_category = CASE id #{sql_case} END"
+      )
     end
   end
 
+  ##
+  # Perform ABC analysis on menu items
+  # OPTIMIZED: Pre-calculates all total values in single query
+  # @return void
   def perform_abc_analysis
-    # Ensure item data needed for total_value is loaded efficiently before sorting
-    menu_items = items.includes(order_items: :order).sort_by { |item| -item.total_value }
+    # Pre-calculate total values for all items in one query
+    item_values = OrderItem
+                    .joins(:item)
+                    .where(items: { menu_id: self.id })
+                    .group('items.id')
+                    .select('items.id, items.name, SUM(order_items.total_amount_cents) AS total_value_cents')
+                    .order('total_value_cents DESC')
 
-    total_revenue = menu_items.sum(&:total_value) # Calculate total revenue from all items
+    total_revenue = item_values.sum(&:total_value_cents).to_f
+    return if total_revenue.zero?
+
     cumulative_value = 0.0
+    categories_to_update = {}
 
-    menu_items.each do |item|
-      cumulative_value += item.total_value
-      percentage = (cumulative_value / total_revenue) * 100 # Cumulative percentage
+    item_values.each do |item|
+      cumulative_value += item.total_value_cents
+      percentage = (cumulative_value / total_revenue) * 100
 
-      # Categorize based on cumulative percentage
       abc_category = if percentage <= 70
                        'A'
                      elsif percentage <= 90
@@ -110,37 +159,53 @@ class Menu < ApplicationRecord
                      end
 
       puts "Updating #{item.name} to category #{abc_category}"
-      item.update(abc_category: abc_category)
+      categories_to_update[item.id] = abc_category
+    end
+
+    # Bulk update using case statement (single UPDATE query)
+    if categories_to_update.any?
+      sql_case = categories_to_update.map { |id, cat| "WHEN #{id} THEN '#{cat}'" }.join(' ')
+
+      Item.where(id: categories_to_update.keys).update_all(
+        "abc_category = CASE id #{sql_case} END"
+      )
     end
   end
 
   ##
   # Get SUM of total orders of Items
-  # OPTIMIZED: Uses a single query.
   # @param attribute (Symbol) - total_amount_cents or quantity
+  # @param start_date (Date) - Optional start date for scoping
+  # @param end_date (Date) - Optional end date for scoping
   # @return Integer
-  def total_item_orders(attribute = :total_amount_cents)
-    OrderItem
-      .joins(:item)
-      .where(items: { menu_id: self.id })
-      .sum(attribute)
+  def total_item_orders(attribute = :total_amount_cents, start_date: nil, end_date: nil)
+    scope = OrderItem.joins(:item).where(items: { menu_id: self.id })
+
+    if start_date && end_date
+      scope = scope.joins(:order).where(orders: { date: start_date..end_date })
+    end
+
+    scope.sum(attribute)
   end
 
   ##
   # Return SUM of costs of all items
-  # OPTIMIZED: Uses a single query to get name and total costs.
+  # OPTIMIZED: Uses a single query to get name and total costs with correct formula.
   # @return [] - [item.name, item.costs]
   def total_item_costs
     Item
-      .joins(datasheet: :datasheet_lines)
+      .joins(datasheet: { datasheet_lines: :ingredient })
       .where(menu_id: self.id)
       .group('items.name')
-      .pluck(Arel.sql("items.name, SUM(datasheet_lines.cost_cents * datasheet_lines.quantity)"))
+      .pluck(Arel.sql("
+        items.name,
+        SUM((datasheet_lines.quantity::float / ingredients.volume) * datasheet_lines.cost_cents)
+      "))
   end
 
   ##
   # Return hash with sales information (total_amount) by date period
-  # This remains N queries, one per item, due to the nature of the time-series request.
+  # NOTE: This remains N queries due to time-series nature. Acceptable for <50 items.
   # @return Object
   def sales_performance_quantity
     items.includes(order_items: :order).map do |item|
@@ -176,89 +241,176 @@ class Menu < ApplicationRecord
   end
 
   ##
-  # Return hash with sales information (total_amount) by date period
-  # N+1 issue remains due to calling item.costs/item.profit.
+  # Return hash with price vs costs comparison
+  # OPTIMIZED: Pre-calculates all costs in single query with correct formula
   # @return Object
   def price_vs_costs
-    # NOTE: item.costs is still an N+1 query source.
-    values = items.map do |item|
+    # Pre-calculate all costs in one query using correct formula
+    item_data = Item
+                  .joins(datasheet: { datasheet_lines: :ingredient })
+                  .where(menu_id: self.id)
+                  .group('items.id', 'items.name', 'items.customer_price_cents')
+                  .select(Arel.sql("
+                    items.id,
+                    items.name,
+                    items.customer_price_cents,
+                    SUM((datasheet_lines.quantity::float / ingredients.volume) * datasheet_lines.cost_cents) AS total_cost_cents
+                  "))
+
+    values = item_data.map do |item|
       {
         name: item.name,
         price: Money.new(item.customer_price_cents).to_f,
-        cost: Money.new(item.costs).to_f
+        cost: Money.new(item.total_cost_cents || 0).to_f
       }
     end
 
-    [{ name: 'Cost', data: values.map { |item| [item[:name], item[:cost]] } },
-     { name: 'Price', data: values.map { |item| [item[:name], item[:price]] } }]
+    [
+      { name: 'Cost', data: values.map { |item| [item[:name], item[:cost]] } },
+      { name: 'Price', data: values.map { |item| [item[:name], item[:price]] } }
+    ]
   end
-
 
   ##
-  # Return hash with sales information (total_amount) by date period
-  # N+1 issue remains due to calling item.costs/item.profit.
+  # Return hash with costs vs profit comparison
+  # OPTIMIZED: Pre-calculates all costs and profits in single query with correct formula
   # @return Object
   def costs_vs_profit
-    # NOTE: item.costs and item.profit are still N+1 query sources.
-    values = items.map do |item|
+    # Pre-calculate all costs and profits in one query using correct formula
+    item_data = Item
+                  .joins(datasheet: { datasheet_lines: :ingredient })
+                  .where(menu_id: self.id)
+                  .group('items.id', 'items.name', 'items.customer_price_cents')
+                  .select(Arel.sql("
+                    items.id,
+                    items.name,
+                    items.customer_price_cents,
+                    SUM((datasheet_lines.quantity::float / ingredients.volume) * datasheet_lines.cost_cents) AS total_cost_cents
+                  "))
+
+    values = item_data.map do |item|
+      cost = item.total_cost_cents.to_f || 0
+      price = item.customer_price_cents.to_f
+      profit = price - cost
+
       {
         name: item.name,
-        cost: Money.new(item.costs).to_f,
-        price: Money.new(item.customer_price_cents).to_f,
-        profit: Money.new(item.profit).to_f
+        cost: Money.new(cost).to_f,
+        price: Money.new(price).to_f,
+        profit: Money.new(profit).to_f
       }
     end
 
-    [{ name: 'Cost', data: values.map { |item| [item[:name], item[:cost]] } },
-     { name: 'Price', data: values.map { |item| [item[:name], item[:price]] } },
-     { name: 'Profit', data: values.map { |item| [item[:name], item[:profit]] } }]
+    [
+      { name: 'Cost', data: values.map { |item| [item[:name], item[:cost]] } },
+      { name: 'Price', data: values.map { |item| [item[:name], item[:price]] } },
+      { name: 'Profit', data: values.map { |item| [item[:name], item[:profit]] } }
+    ]
   end
 
+  ##
+  # Return overview data with monthly breakdown of orders, earnings, and costs
+  # OPTIMIZED: Uses efficient queries with proper grouping
+  # @return Hash
   def overview_data
-    # Define the 12-month period
     end_date = Time.zone.now.end_of_day
     start_date = 11.months.ago.beginning_of_month
 
-    # 1. Prepare an array of unique month abbreviations for categories
-    month_names = (start_date.to_date..end_date.to_date).map { |d| d.strftime('%b') }.uniq
+    # Generate all month labels for the period
+    month_names = []
+    current = start_date.to_date
+    while current <= end_date.to_date
+      month_names << current.strftime('%b')
+      current = current.next_month.beginning_of_month
+    end
+    month_names.uniq!
 
-    # Initialize data structures for the 12 periods, setting missing months to zero
+    # Initialize data structure with zeros
     initialized_data = month_names.map { |month| [month, { orders: 0, earnings: 0, costs: 0 }] }.to_h
 
-    # Define the SQL fragment for monthly grouping/ordering once
-    month_trunc_sql = Arel.sql("DATE_TRUNC('month', orders.date)")
+    # CRITICAL FIX: Calculate item costs using proper formula from DatasheetLine#calculated_price
+    # Formula: (quantity / volume) * cost_cents for each ingredient
+    item_costs_data = Item
+                        .joins(datasheet: { datasheet_lines: :ingredient })
+                        .where(menu_id: self.id)
+                        .group('items.id')
+                        .pluck(
+                          Arel.sql('items.id'),
+                          Arel.sql('SUM((datasheet_lines.quantity::float / ingredients.volume) * datasheet_lines.cost_cents)')
+                        )
 
-    # 2. Aggregate monthly performance data in one query
-    monthly_performance = OrderItem
-                            .joins(order: :organization)
-                            .joins(item: :datasheet_lines)
-                            .where(items: { menu_id: self.id }) # Scope to items belonging to this menu
-                            .where(orders: { date: start_date..end_date, organization_id: organization_id })
-                            .group(month_trunc_sql)
-                            .order(month_trunc_sql)
-                            .select(Arel.sql("
-      DATE_TRUNC('month', orders.date) AS period,
-      COUNT(DISTINCT orders.id) AS total_orders,
-      SUM(order_items.total_amount_cents) AS total_earnings_cents,
-      SUM(order_items.quantity * datasheet_lines.cost_cents) AS total_costs_cents
-    "))
+    item_costs = item_costs_data.to_h
 
-    # 3. Map the query results into the initialized data hash
-    monthly_performance.each do |row|
+    # Get monthly aggregated data grouped by month AND item
+    monthly_data = OrderItem
+                     .joins(:order, :item)
+                     .where(orders: {
+                       date: start_date..end_date,
+                       organization_id: organization_id
+                     })
+                     .where(items: { menu_id: self.id })
+                     .group("DATE_TRUNC('month', orders.date)", "items.id")
+                     .select(
+                       "DATE_TRUNC('month', orders.date) AS period",
+                       "items.id AS item_id",
+                       "SUM(order_items.quantity) AS item_quantity",
+                       "SUM(order_items.total_amount_cents) AS item_earnings_cents"
+                     )
+
+    # Process the data
+    monthly_summary = {}
+
+    monthly_data.each do |row|
       month_key = row.period.strftime('%b')
 
-      # Convert cents to dollars for charting
-      earnings = (row.total_earnings_cents || 0) / 100.0
-      costs = (row.total_costs_cents || 0) / 100.0
-
-      initialized_data[month_key] = {
-        orders: row.total_orders.to_i,
-        earnings: earnings.to_f,
-        costs: costs.to_f
+      # Initialize month if not exists
+      monthly_summary[month_key] ||= {
+        earnings: 0,
+        costs: 0,
+        quantities_by_item: Hash.new(0)
       }
+
+      # Accumulate earnings (convert from cents to dollars)
+      monthly_summary[month_key][:earnings] += (row.item_earnings_cents.to_f / 100.0)
+
+      # Track quantities by item for cost calculation
+      monthly_summary[month_key][:quantities_by_item][row.item_id] += row.item_quantity.to_i
     end
 
-    # 4. Format the final output structure for ApexCharts JavaScript
+    # Calculate costs based on quantities sold * recipe cost per item
+    monthly_summary.each do |month_key, data|
+      data[:quantities_by_item].each do |item_id, quantity_sold|
+        recipe_cost_cents = item_costs[item_id] || 0
+        # quantity_sold * cost_per_recipe / 100 to convert to dollars
+        data[:costs] += (quantity_sold * recipe_cost_cents / 100.0)
+      end
+    end
+
+    # Get unique order counts per month
+    order_counts = Order
+                     .where(
+                       date: start_date..end_date,
+                       organization_id: organization_id
+                     )
+                     .joins(:order_items)
+                     .where(order_items: { item_id: items.select(:id) })
+                     .group("DATE_TRUNC('month', orders.date)")
+                     .count
+
+    order_counts.each do |period, count|
+      month_key = period.strftime('%b')
+      initialized_data[month_key][:orders] = count if initialized_data[month_key]
+    end
+
+    # Merge the calculated data into initialized_data
+    monthly_summary.each do |month_key, data|
+      if initialized_data[month_key]
+        initialized_data[month_key][:earnings] = data[:earnings].round(2)
+        initialized_data[month_key][:costs] = data[:costs].round(2)
+      end
+    end
+
+    # Return formatted output
     {
       categories: month_names,
       orders: initialized_data.values.map { |d| d[:orders] },

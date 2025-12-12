@@ -40,7 +40,15 @@
                   <i class="ti ti-currency-dollar"></i>
                   </span>
                 </div>
-                <h3 class="mb-0"><%= humanized_money_with_symbol Money.new(menu.total_item_orders(:total_amount_cents)) %></h3>
+
+                <%
+                  start_date = 11.months.ago.beginning_of_month
+                  end_date = Time.zone.now.end_of_day
+
+                  twelve_month_revenue = @menu.total_item_orders(:total_amount_cents, start_date: start_date, end_date: end_date)
+                %>
+
+                <h3 class="mb-0"><%= humanized_money_with_symbol Money.new(twelve_month_revenue) %></h3>
               </div>
               <p class="mb-0">
                 <span class="text-primary"><i class="ti ti-point-filled"></i></span>
