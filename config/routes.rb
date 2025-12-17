@@ -113,6 +113,9 @@ Rails.application.routes.draw do
           collection do
             get 'by_topic'
           end
+          member do
+            post 'feedback'
+          end
         end
       end
     end

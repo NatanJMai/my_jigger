@@ -9,7 +9,7 @@ class OrderItem < ApplicationRecord
   before_save :set_total_amount
 
   ##
-  # Return Item Name
+  # Return order item as string (item name)
   # @return String
   def to_s
     item.name

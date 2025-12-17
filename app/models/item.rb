@@ -43,6 +43,9 @@ class Item < ApplicationRecord
     where(matrix_category: category) if category.present?
   }
 
+  ##
+  # Return the best day or month for item sales
+  # @return Array - [date_string, value] or nil
   def best_day_month
     sales = sales_performance_by_item(week: false)
     value = sales.to_h&.max_by { |_key, value| value }
@@ -79,6 +82,9 @@ class Item < ApplicationRecord
     end
   end
 
+  ##
+  # Calculate markup percentage (profit / price * 100)
+  # @return Float
   def markup_percentage
     return 0 if customer_price_cents.zero? # Avoid division by zero
     (profit / customer_price_cents) * 100
@@ -92,8 +98,8 @@ class Item < ApplicationRecord
   end
 
   ##
-  # Item costs
-  # @return Integer
+  # Return item costs as percentage (CMV)
+  # @return Float
   def costs_percentage
     datasheet.calculate_cmv
   end
@@ -228,7 +234,7 @@ class Item < ApplicationRecord
   end
 
   ##
-  # Return total value sold for each item
+  # Return total quantity sold for each item
   # @return Integer
   def quantity_sold
     total_orders(attribute: :quantity)

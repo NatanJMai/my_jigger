@@ -6,6 +6,10 @@ class Menu < ApplicationRecord
 
   validates :name, :organization_id, presence: true
 
+  ##
+  # Return ranking of items by sales performance
+  # OPTIMIZED: Uses database aggregation with joins
+  # @return Scope
   def ranking_items
     start_date = 1.year.ago
     end_date = Date.today.end_of_month
@@ -30,7 +34,7 @@ class Menu < ApplicationRecord
                    .where(menu_id: self.id)
                    .group('items.id', 'items.customer_price_cents')
                    .pluck(Arel.sql("
-                     items.customer_price_cents - SUM((datasheet_lines.quantity::float / ingredients.volume) * datasheet_lines.cost_cents)
+                     items.customer_price_cents - SUM((datasheet_lines.quantity::float / ingredients.volume) * ingredients.cost_cents)
                    "))
                    .sum
 
@@ -82,7 +86,7 @@ class Menu < ApplicationRecord
                         .group('items.id')
                         .pluck(Arel.sql("
                           items.id,
-                          items.customer_price_cents - SUM((datasheet_lines.quantity::float / ingredients.volume) * datasheet_lines.cost_cents)
+                          items.customer_price_cents - SUM((datasheet_lines.quantity::float / ingredients.volume) * ingredients.cost_cents)
                         "))
                         .to_h
 
@@ -140,7 +144,9 @@ class Menu < ApplicationRecord
                     .select('items.id, items.name, SUM(order_items.total_amount_cents) AS total_value_cents')
                     .order('total_value_cents DESC')
 
-    total_revenue = item_values.sum(&:total_value_cents).to_f
+    # Calculate total revenue from the same query (total_value_cents is a SELECT alias, not a column)
+    # So we need to sum the values after loading, or calculate separately
+    total_revenue = item_values.sum { |item| item.total_value_cents.to_f }
     return if total_revenue.zero?
 
     cumulative_value = 0.0
@@ -199,7 +205,7 @@ class Menu < ApplicationRecord
       .group('items.name')
       .pluck(Arel.sql("
         items.name,
-        SUM((datasheet_lines.quantity::float / ingredients.volume) * datasheet_lines.cost_cents)
+        SUM((datasheet_lines.quantity::float / ingredients.volume) * ingredients.cost_cents)
       "))
   end
 
@@ -254,7 +260,7 @@ class Menu < ApplicationRecord
                     items.id,
                     items.name,
                     items.customer_price_cents,
-                    SUM((datasheet_lines.quantity::float / ingredients.volume) * datasheet_lines.cost_cents) AS total_cost_cents
+                    SUM((datasheet_lines.quantity::float / ingredients.volume) * ingredients.cost_cents) AS total_cost_cents
                   "))
 
     values = item_data.map do |item|
@@ -285,7 +291,7 @@ class Menu < ApplicationRecord
                     items.id,
                     items.name,
                     items.customer_price_cents,
-                    SUM((datasheet_lines.quantity::float / ingredients.volume) * datasheet_lines.cost_cents) AS total_cost_cents
+                    SUM((datasheet_lines.quantity::float / ingredients.volume) * ingredients.cost_cents) AS total_cost_cents
                   "))
 
     values = item_data.map do |item|
@@ -336,7 +342,7 @@ class Menu < ApplicationRecord
                         .group('items.id')
                         .pluck(
                           Arel.sql('items.id'),
-                          Arel.sql('SUM((datasheet_lines.quantity::float / ingredients.volume) * datasheet_lines.cost_cents)')
+                          Arel.sql('SUM((datasheet_lines.quantity::float / ingredients.volume) * ingredients.cost_cents)')
                         )
 
     item_costs = item_costs_data.to_h

@@ -47,9 +47,12 @@ class Datasheet < ApplicationRecord
 
   ##
   # Returns Total Price of Datasheet
-  # Sum of all Datasheet Lines
+  # Sum of all Datasheet Lines using calculated_price formula
+  # OPTIMIZED: Uses database aggregation with SQL formula
   # @return Decimal
   def total_costs
-    datasheet_lines.sum { |line| line.calculated_price.to_f }
+    datasheet_lines
+      .joins(:ingredient)
+      .sum(Arel.sql('(datasheet_lines.quantity::float / ingredients.volume) * ingredients.cost_cents'))
   end
 end

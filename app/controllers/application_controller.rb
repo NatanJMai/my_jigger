@@ -2,18 +2,47 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   include ApplicationHelper
 
+  ORGANIZATIONS_CONTROLLER = 'organizations'
+
   before_action :set_organization
   helper_method :current_organization
 
   private
+
   def current_organization
     @organization
   end
 
   def set_organization
-    @organization = Organization.first
     @organization = find_organization_from_context || find_organization_from_session
+    update_organization_session
+  end
 
+  def find_organization_from_context
+    model_class = controller_name.classify.safe_constantize
+    return nil unless model_class && params[:id]
+
+    if organizations_controller?
+      model_class.find_by(id: params[:id])
+    else
+      find_organization_from_resource(model_class)
+    end
+  end
+
+  def find_organization_from_resource(model_class)
+    resource = model_class.find_by(id: params[:id])
+    return nil unless resource
+
+    resource.organization if resource.respond_to?(:organization)
+  end
+
+  def find_organization_from_session
+    return nil unless session[:organization_id]
+
+    Organization.find_by(id: session[:organization_id])
+  end
+
+  def update_organization_session
     if @organization
       session[:organization_id] = @organization.id
     else
@@ -21,28 +50,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def find_organization_from_context
-    # Dynamically get the model class from the controller name
-    model_class = controller_name.classify.safe_constantize
-
-    # Ensure the model class exists and params[:id] is present
-    return nil unless model_class && params[:id]
-
-    # If it's the organizations controller, return the organization itself
-    if controller_name == 'organizations'
-      model_class.find_by(id: params[:id])
-    else
-      # Check if the model has an `organization` association
-      resource = model_class.find_by(id: params[:id])
-      resource&.respond_to?(:organization) ? resource.organization : nil
-    end
-  rescue ActiveRecord::RecordNotFound
-    nil
-  end
-
-
-  def find_organization_from_session
-    # Fallback to session-stored organization
-    Organization.find_by(id: session[:organization_id])
+  def organizations_controller?
+    controller_name == ORGANIZATIONS_CONTROLLER
   end
 end

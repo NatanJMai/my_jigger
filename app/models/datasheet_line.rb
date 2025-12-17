@@ -12,12 +12,18 @@ class DatasheetLine < ApplicationRecord
 
   monetize :cost_cents
 
+  ##
+  # Calculate price using formula: (quantity / volume) * cost_cents
+  # @return Integer
   def calculated_price
     return 0 unless volume && quantity && cost_cents
 
     (quantity.to_f / volume) * cost_cents
   end
 
+  ##
+  # Return quantity from datasheet_line or fallback to ingredient quantity
+  # @return Float
   def show_quantity
     self.quantity.present? ? quantity : ingredient.quantity
   end

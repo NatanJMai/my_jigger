@@ -18,6 +18,12 @@ class Ingredient < ApplicationRecord
     %i[name unit quantity volume cost_cents cost]
   end
 
+  ##
+  # Calculate price using formula: (quantity / volume) * cost_cents
+  # @param volume Float - Ingredient volume
+  # @param quantity Float - Quantity used
+  # @param cost_cents Integer - Cost in cents
+  # @return Integer
   def self.calculated_price(volume, quantity, cost_cents)
     return 0 unless volume && quantity && cost_cents
     return 0 if [volume, quantity, cost_cents].any?{|a| a.negative?}

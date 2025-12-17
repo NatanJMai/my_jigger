@@ -14,10 +14,13 @@ class AiPromptLogDecorator < ApplicationDecorator
   def display_by_item
     json_result = parse_result_by_item
 
-    return '' unless json_result.is_a?(Hash)
+    return [] unless json_result.is_a?(Hash)
+    return [] if json_result.empty?
 
     str_result = []
     json_result.each_pair do |key, values|
+      next unless values.is_a?(Array)
+
       values.each do |value|
         str_result << "<b>#{key}</b>: #{value}"
       end

@@ -13,42 +13,49 @@
 
         <tbody id="recommendation-list">
         <% ai_prompt_logs.each do |log| %>
-          <%# items = log.display_by_item %>
+          <% items = log.display_by_item %>
 
-          <% #items.each do |item| %>
-
-            <tr id="ai_recommendation_<%= log.id %>" data-id="<%= log.id %>">
-              <td>
-                <div class="d-flex align-items-center">
-                  <div class="me-2">
-                    <span class="avatar avatar-xs rounded-circle bg-light text-muted fw-bold fs-xs"><i class="ti ti-robot"></i></span>
+          <% if items.present? && items.is_a?(Array) %>
+            <% items.each_with_index do |item, index| %>
+              <tr id="ai_recommendation_<%= log.id %>_<%= index %>" data-id="<%= log.id %>">
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="me-2">
+                      <span class="avatar avatar-xs rounded-circle bg-light text-muted fw-bold fs-xs"><i class="ti ti-robot"></i></span>
+                    </div>
+                    <div class="text-truncate fw-bold">
+                      <%= item.html_safe %>
+                    </div>
                   </div>
-                  <div class="text-truncate fw-bold">
-                    <%#= item.html_safe %>
+                </td>
+
+                <td class="text-center">
+                  <div class="d-flex justify-content-center align-items-center gap-1">
+                    <% organization = log.object.menu.organization %>
+                    <% item_feedback = log.object.item_feedback_at(index) %>
+                    <% feedback_liked = item_feedback == 'liked' %>
+                    <% feedback_disliked = item_feedback == 'disliked' %>
+
+                    <%= link_to feedback_admin_organization_ai_ai_prompt_log_path(organization, log, feedback: 'like', item_index: index, ai_recommendation_topic_id: local_assigns[:topic_id]),
+                                title: "Helpful",
+                                method: :post,
+                                data: { turbo_method: :post, turbo_stream: true },
+                                class: "btn btn-default btn-icon btn-sm #{'active bg-success-subtle' if feedback_liked}" do %>
+                      <i class="ti ti-thumb-up fs-lg <%= feedback_liked ? 'text-success' : 'text-muted' %>"></i>
+                    <% end %>
+
+                    <%= link_to feedback_admin_organization_ai_ai_prompt_log_path(organization, log, feedback: 'dislike', item_index: index, ai_recommendation_topic_id: local_assigns[:topic_id]),
+                                title: "Not Helpful",
+                                method: :post,
+                                data: { turbo_method: :post, turbo_stream: true },
+                                class: "btn btn-default btn-icon btn-sm #{'active bg-danger-subtle' if feedback_disliked}" do %>
+                      <i class="ti ti-thumb-down fs-lg <%= feedback_disliked ? 'text-danger' : 'text-muted' %>"></i>
+                    <% end %>
                   </div>
-                </div>
-              </td>
-
-              <td class="text-center">
-                <div class="d-flex justify-content-center align-items-center gap-1">
-
-                  <%= link_to "#",
-                              title: "Helpful",
-                              data: { method: :post, params: { log_id: log.id, feedback: 'like' } },
-                              class: "btn btn-default btn-icon btn-sm" do %>
-                    <i class="ti ti-thumb-up fs-lg text-success"></i>
-                  <% end %>
-
-                  <%= link_to "#",
-                              title: "Not Helpful",
-                              data: { method: :post, params: { log_id: log.id, feedback: 'dislike' } },
-                              class: "btn btn-default btn-icon btn-sm" do %>
-                    <i class="ti ti-thumb-down fs-lg text-danger"></i>
-                  <% end %>
-                </div>
-              </td>
-            </tr>
-          <%# end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
         <% end %>
         </tbody>
       </table>

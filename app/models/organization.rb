@@ -20,8 +20,8 @@ class Organization < ApplicationRecord
   validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
 
   ##
-  # Find Item by name
-  # @param product_name
+  # Find Item by name or create if not found
+  # @param product_name String - Name of the product
   # @return Item
   def find_closest_item_or_create(product_name)
     normalized_input = normalize_string(product_name)
@@ -40,8 +40,8 @@ class Organization < ApplicationRecord
   end
 
   ##
-  # Find Ingredient by name
-  # @param ingredient_name
+  # Find Ingredient by name or create if not found
+  # @param ingredient_name String - Name of the ingredient
   # @return Ingredient
   def find_closest_ingredient_or_create(ingredient_name)
     normalized_input = normalize_string(ingredient_name)

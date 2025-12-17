@@ -14,16 +14,24 @@ class Category < ApplicationRecord
 
   ##
   # Return sum of sold Items
+  # OPTIMIZED: Uses database aggregation to avoid N+1 queries
   # @return Integer
   def quantity_sold
-    items.map { |item| item.total_orders(attribute: :quantity) }.sum
+    OrderItem
+      .joins(:item)
+      .where(items: { category_id: self.id })
+      .sum(:quantity)
   end
 
   ##
   # Return sum of sold Items (value)
+  # OPTIMIZED: Uses database aggregation to avoid N+1 queries
   # @return Integer
   def total_sold
-    items.map { |item| item.total_orders(attribute: :total_amount_cents) }.sum
+    OrderItem
+      .joins(:item)
+      .where(items: { category_id: self.id })
+      .sum(:total_amount_cents)
   end
 
   ##
@@ -46,6 +54,9 @@ class Category < ApplicationRecord
     end
   end
 
+  ##
+  # Return category name as string
+  # @return String
   def to_s
     name
   end

@@ -18,8 +18,9 @@ class Order < ApplicationRecord
 
   ##
   # Get sum of Order Items cents
+  # OPTIMIZED: Uses database aggregation instead of loading records into memory
   # @return Integer
   def total_amount
-    order_items.sum(&:total_amount_cents)
+    order_items.sum(:total_amount_cents)
   end
 end

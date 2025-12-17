@@ -17,11 +17,27 @@ class Admin::MenusController < AdminController
 
   # GET /menus/1 or /menus/1.json
   def show
-    @items = @menu.items.includes(:category, :datasheet_lines, :order_items).order(:name)
+    # Eager load all associations needed to avoid N+1 queries
+    # datasheet_lines is a has_many :through, so we need to include datasheet first
+    # ingredient is needed for datasheet_line.calculated_price
+    # order is needed for order_items.total_orders queries
+    @items = @menu.items.includes(
+      :category,
+      datasheet: { datasheet_lines: :ingredient },
+      order_items: :order
+    ).order(:name)
 
-    @categories = @menu.categories.includes(:items).order(:name)
-    @ranking_items = @menu.ranking_items
-    @best_five = @items.best_five
+    # Categories with their items and associations
+    @categories = @menu.categories.includes(
+      items: [:category, datasheet: { datasheet_lines: :ingredient }]
+    ).order(:name)
+
+    # Ranking items with associations for display
+    @ranking_items = @menu.ranking_items.includes(:category)
+
+    # Use already loaded items instead of a new query
+    @best_five = @items.select { |item| item.status == true }.first(5)
+
     @import_job = current_organization.import_jobs.new
 
     # ABC Analysis
@@ -29,10 +45,15 @@ class Admin::MenusController < AdminController
 
     # Matrix Popularity
     @menu.categorize_menu_items
-    @stars = @items.matrix_category('star')
-    @plow_horses = @items.matrix_category('plow_horse')
-    @puzzles = @items.matrix_category('puzzle')
-    @dogs = @items.matrix_category('dog')
+    # Reload matrix_category from database after update, then filter from loaded items
+    # This avoids N+1 by using already loaded items with fresh matrix_category values
+    item_ids = @items.map(&:id)
+    matrix_categories = Item.where(id: item_ids).pluck(:id, :matrix_category).to_h
+    @items.each { |item| item.matrix_category = matrix_categories[item.id] }
+    @stars = @items.select { |item| item.matrix_category == 'star' }
+    @plow_horses = @items.select { |item| item.matrix_category == 'plow_horse' }
+    @puzzles = @items.select { |item| item.matrix_category == 'puzzle' }
+    @dogs = @items.select { |item| item.matrix_category == 'dog' }
 
     # AI Assistant
     @recommendation_topics = AiRecommendationTopic.all.order(:name)
