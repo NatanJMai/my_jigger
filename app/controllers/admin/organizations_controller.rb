@@ -50,6 +50,13 @@ class Admin::OrganizationsController < AdminController
     end
   end
 
+  def select
+    return unless @organization.present?
+
+    session[:organization_id] = @organization.id
+    redirect_to admin_organization_menus_path(@organization), notice: "Switched to #{@organization.name}"
+  end
+
   # DELETE /organizations/1 or /organizations/1.json
   def destroy
     @organization.destroy

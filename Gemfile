@@ -88,6 +88,7 @@ gem 'carrierwave'
 gem 'sidekiq'
 gem 'nokogiri'
 gem 'roo'
+gem 'write_xlsx'
 gem 'fuzzy_match'
 gem "chartkick"
 gem "groupdate"

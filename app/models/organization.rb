@@ -39,6 +39,10 @@ class Organization < ApplicationRecord
     item
   end
 
+  def to_s
+    name
+  end
+
   ##
   # Find Ingredient by name or create if not found
   # @param ingredient_name String - Name of the ingredient

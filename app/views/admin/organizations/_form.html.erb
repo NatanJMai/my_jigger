@@ -1,61 +1,123 @@
-<div class="container jigger-form">
-  <%= simple_form_for(model, html: { class: 'row row-cols' } ) do |f| %>
+<% @title = (@organization.persisted? ? "Edit Organization" : "Create New Organization") %>
 
-    <%= render partial: 'layouts/shared/form/header',
-               locals: { title: 'Add/Save Organization' } %>
+<%= render 'layouts/partials/page_title', subtitle: "Organizations", title: (@organization.persisted? ? "Edit Organization" : "Add Organization") %>
 
-    <div class="row">
-      <div class="col-8">
-        <div class="row">
-          <div class="col-8">
-            <%= f.input :name, hint: 'Organization name', wrapper_html: { class: 'jigger-label' } %>
+<%= simple_form_for model, html: { id: 'add-organization-form', multipart: true } do |f| %>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <%# Left Column: Primary Details %>
+        <div class="col-xxl-8">
+          <div class="card shadow-sm">
+            <div class="card-header d-block p-3">
+              <h4 class="card-title mb-1">General Information</h4>
+              <p class="text-muted mb-0">Provide the primary identity and location details for this organization.</p>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 mb-3">
+                  <label class="form-label">Organization Name <span class="text-danger">*</span></label>
+                  <%= f.input :name, label: false, required: true,
+                              input_html: { placeholder: 'e.g. Central Kitchen HQ', class: 'form-control' },
+                              wrapper: false %>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Website URL</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i data-lucide="globe" class="icon-sm"></i></span>
+                    <%= f.input :site, label: false,
+                                input_html: { placeholder: 'https://example.com', class: 'form-control' },
+                                wrapper: false %>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Manager (User ID)</label>
+                  <%= f.association :manager, label: false,
+                                    prompt: "Select a Manager",
+                                    input_html: { class: 'form-control' },
+                                    wrapper: false %>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label">Physical Address</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i data-lucide="map-pin" class="icon-sm"></i></span>
+                    <%= f.input :address, label: false, as: :text,
+                                input_html: { placeholder: 'Enter full street address', class: 'form-control', rows: 2 },
+                                wrapper: false %>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div class="col-4">
-            <%= f.input :status, label: 'Status (Active)', hint: 'Is this organization active?',
-                        wrapper_html: { class: 'jigger-label' } %>
-          </div>
-
         </div>
-        <div class="row">
-          <div class="col-6">
-            <%= f.input :email,
-                        label: 'Email',
-                        hint: 'Best email to reach',
-                        wrapper_html: { class: 'jigger-label' } %>
+
+        <%# Right Column: Status & Media %>
+        <div class="col-xxl-4">
+          <div class="card shadow-sm">
+            <div class="card-header d-block p-3">
+              <h4 class="card-title mb-1">Status & Branding</h4>
+            </div>
+            <div class="card-body">
+              <div class="mb-4">
+                <label class="form-label">Operational Status</label>
+                <%= f.input :status, as: :boolean, label: false,
+                            hint: 'Toggle to enable/disable this organization across the platform.',
+                            wrapper_html: { class: 'form-check form-switch' } %>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Organization Logo</label>
+                <% if f.object.image.present? %>
+                  <div class="mb-2">
+                    <%= image_tag f.object.image.url, class: "img-thumbnail", style: "height: 80px;" %>
+                  </div>
+                <% end %>
+                <%= f.input :image, as: :file, label: false,
+                            input_html: { class: 'form-control' },
+                            wrapper: false %>
+              </div>
+            </div>
           </div>
 
-
-          <div class="col-6">
-            <%= f.input :address, label: 'Address', hint: 'Organization address',
-                        wrapper_html: { class: 'jigger-label' } %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-3">
-            <%= f.button :submit, "Add/Save Item", class: "form-btn"  %>
+          <div class="card shadow-sm">
+            <div class="card-header d-block p-3">
+              <h4 class="card-title mb-1">Contact Details</h4>
+            </div>
+            <div class="card-body">
+              <div class="mb-3">
+                <label class="form-label">Official Email</label>
+                <%= f.input :email, label: false,
+                            input_html: { placeholder: 'contact@org.com', class: 'form-control' },
+                            wrapper: false %>
+              </div>
+              <div class="mb-0">
+                <label class="form-label">Phone Number</label>
+                <%= f.input :phone, label: false,
+                            input_html: { placeholder: '+1 234 567 890', class: 'form-control' },
+                            wrapper: false %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-
-      <div class="col-4">
-        <div class="vertical-line">
-          <% if organization.image.present? %>
-            <!-- Show the existing image -->
-            <%= image_tag organization.image.url, alt: "Uploaded Image", class: "img-thumbnail shadow-sm form-photo"%>
-          <% else %>
-            <!-- Show the upload button -->
-            <label for="image-upload" class="btn btn-outline-primary img-thumbnail shadow-sm form-photo">
-              Upload Image
-            </label>
-          <% end %>
-
-          <!-- Hidden File Input -->
-          <%= f.file_field :image, id: "image-upload", class: "d-none" %>
-        </div>
+      <%# Action Buttons %>
+      <div class="mt-4 mb-4 d-flex gap-2 justify-content-center">
+        <%= link_to admin_organizations_path, class: "btn btn-link text-danger fw-semibold" do %>
+          <i class="fs-sm me-2" data-lucide="x-circle"></i> Cancel
+        <% end %>
+        <%= f.button :submit, (f.object.persisted? ? 'Update Organization' : 'Create Organization'),
+                     class: "btn btn-success px-4" %>
       </div>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
+
+<%# Keep your existing JS for consistent behavior (like tooltips or icon loading) %>
+<% content_for :javascript do %>
+  <%= vite_javascript_tag 'js/pages/ecommerce-add-product.js' %>
+<% end %>

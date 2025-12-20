@@ -6,19 +6,110 @@
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/ai_prompt_log.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ai_prompt_log.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/category.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/category.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/datasheet.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/datasheet.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/datasheet_line.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/datasheet_line.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/import_log.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/import_log.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/ingredient.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ingredient.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/item.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/menu.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/menu.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/order.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/order.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/order_item.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/order_item.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/import_jobs_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/import_jobs_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/organizations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/organizations_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/organization.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/organization.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/old_show.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_OLD_tab1.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab6.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab6.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/old_menu_info.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/orders/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/orders/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/orders/_order_item_fields.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/orders/_order_item_fields.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/organizations/_card.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/organizations/_card.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/organizations/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/organizations/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/organizations/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/organizations/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/organizations/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/organizations/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/partials/_sidenav.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/partials/_sidenav.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/entrypoints/_simple_form_fix.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/entrypoints/application.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/entrypoints/application.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/entrypoints/old_datasheet.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/entrypoints/old_form.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/entrypoints/old_import_job.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/entrypoints/old_jigger.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/entrypoints/old_order.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/maps/canada.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/maps/in-mill-en.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/maps/iraq.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/maps/leaflet-data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/maps/russia.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/maps/spain.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/maps/us-aea-en.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/maps/us-lcc-en.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/maps/us-merc-en.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/maps/us-mill-en.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/maps/world-merc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/maps/world.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/api-keys.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/apps-calendar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/apps-chat.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/auth-password.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/auth-two-factor.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-boxplot.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-bubble.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-candlestick.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-column.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-funnel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-heatmap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-mixed.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-polar-area.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-radar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-radialbar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-range.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-scatter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-slope.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-sparklines.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-timeline.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-treemap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apexsankey.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apextree.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chartjs-area.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chartjs-bar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chartjs-line.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chartjs-other.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/coming-soon.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/crm-pipeline.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/dashboard-2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/datatables-add-rows.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/datatables-ajax.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/datatables-basic.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/datatables-checkbox-select.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/datatables-child-rows.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/datatables-column-search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/datatables-export-data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/datatables-fixed-columns.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/datatables-fixed-header.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/datatables-javascript-source.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/datatables-range-search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/datatables-rendering.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/datatables-scroll.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/datatables-select.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/datatables-show-hide-columns.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/ecommerce-products.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/ecommerce-reviews.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/email-compose.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/flags-listing.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/form-choice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/form-colorpickr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/form-fileupload.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/form-inputmask.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/form-quilljs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/form-range-slider.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/form-select2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/form-typehead.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/form-wizard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/landing.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/maps-leaflet.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/maps-vector.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/misc-clipboard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/misc-pass-meter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/misc-pdf-viewer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/misc-sortable.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/misc-sweetalerts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/misc-tour.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/misc-treeview.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +164,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1765703746673",
+    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1766109784475",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "my-jigger",
     "junie.onboarding.icon.badge.shown": "true",
@@ -480,6 +571,8 @@
       <workItem from="1764899082795" duration="13706000" />
       <workItem from="1765193492204" duration="5906000" />
       <workItem from="1765703684383" duration="554000" />
+      <workItem from="1765787706419" duration="519000" />
+      <workItem from="1766109721759" duration="3497000" />
     </task>
     <servers />
   </component>

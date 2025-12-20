@@ -34,6 +34,10 @@ Rails.application.routes.draw do
   # Admin namespace
   namespace :admin do
     resources :organizations do
+      member do
+        post :select
+      end
+
       resources :menus, shallow: true do
         member do
           get :cost_analysis
@@ -72,7 +76,11 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :import_jobs, except: %i[edit destroy]
+      resources :import_jobs, except: %i[edit destroy] do
+        collection do
+          get 'download_template'
+        end
+      end
 
       resources :items, shallow: true do
         resources :charts, only: [] do

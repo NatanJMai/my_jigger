@@ -78,7 +78,6 @@
                   <tr class="text-uppercase fs-xxs">
                     <th class="text-start" style="width: 40%">Item</th>
                     <th>Qty</th>
-                    <th>Unit Price</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -108,26 +107,28 @@
         </div>
       </div>
 
-      <div class="col-xl-4">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="card-title">Order Status & Totals</h5>
-          </div>
-          <div class="card-body">
-            <h6 class="text-muted text-uppercase mb-3">Summary</h6>
-              <% order_items.each do |order_item| %>
-              <div class="d-flex justify-content-between mb-2">
-                <span class="text-muted"><%= order_item %></span>/
-                <span class="fw-semibold"><%= humanized_money_with_symbol order_item.total_amount %></span>
+      <% if order.persisted? %>
+        <div class="col-xl-4">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Order Status & Totals</h5>
+            </div>
+            <div class="card-body">
+              <h6 class="text-muted text-uppercase mb-3">Summary</h6>
+                <% order_items.each do |order_item| %>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="text-muted"><%= order_item %></span>/
+                  <span class="fw-semibold"><%= humanized_money_with_symbol order_item.total_amount %></span>
+                </div>
+              <% end %>
+              <div class="d-flex justify-content-between pt-2 border-top">
+                <span class="fw-bold fs-5">Grand Total:</span>
+                <span class="fw-bold fs-5 text-success"><%= humanized_money_with_symbol Money.new order.total_amount %></span>
               </div>
-            <% end %>
-            <div class="d-flex justify-content-between pt-2 border-top">
-              <span class="fw-bold fs-5">Grand Total:</span>
-              <span class="fw-bold fs-5 text-success"><%= humanized_money_with_symbol Money.new order.total_amount %></span>
             </div>
           </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

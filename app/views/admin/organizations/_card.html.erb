@@ -1,40 +1,159 @@
-<div class="col-12 col-md-6 col-lg-3">
-  <div class="card">
-    <%= link_to admin_organization_path(organization) do %>
-      <% if organization.image.present? %>
-        <%= image_tag organization.image&.url,
-                      class: "card-img-top" %>
-      <% else %>
-        <%= image_tag '', class: "card-img-top" %>
+<div class="card mb-3 shadow-sm border-light">
+  <%# Header: High Density %>
+  <div class="card-header py-2 d-flex justify-content-between align-items-center bg-light-subtle border-bottom">
+    <div class="d-flex align-items-center gap-2">
+      <h4 class="card-title mb-0 fs-16">
+        <%= link_to organization.name, admin_organization_path(organization), class: "text-primary fw-bold text-decoration-none" %>
+      </h4>
+      <% if organization == current_organization %>
+        <span class="badge bg-success-subtle text-success border border-success-subtle fw-medium">Active Context</span>
       <% end %>
-    <% end %>
+    </div>
 
-    <div class="card-body">
-      <div id="<%= dom_id organization %>">
-        <h5 class="card-title"><%= organization.name %></h5>
-        <p class="card-text">
-          Add: <%= organization.address %>
-          <br>
-          Site: <%= organization.site %>
-          <br>
-          Manager: <%= organization.manager.email %>
-        </p>
+    <div class="card-action d-flex gap-1 align-items-center">
+      <% unless organization == current_organization %>
+        <%= button_to select_admin_organization_path(organization),
+                      method: :post,
+                      class: "btn btn-sm btn-success px-2 py-1 shadow-sm" do %>
+          <i class="ti ti-point-filled"></i> Select
+        <% end %>
+      <% end %>
+
+      <div class="btn-group shadow-sm ms-1">
+        <%= link_to edit_admin_organization_path(organization), class: "btn btn-sm btn-white", title: "Edit" do %>
+          <i class="ti ti-edit fs-18"></i>
+        <% end %>
+        <%= button_to admin_organization_path(organization),
+                      class: "btn btn-sm btn-white text-danger",
+                      method: :delete,
+                      form: { data: { turbo_confirm: 'Are you sure?' }, class: "d-inline" } do %>
+          <i class="ti ti-trash fs-18"></i>
+        <% end %>
       </div>
 
-      <%= button_to admin_organization_path(organization), class: "trash-icon-button ",
-                    method: :delete,
-                    form: {
-                      data: {
-                        turbo: true, turbo_confirm: 'Are you sure?', method: :delete
-                      }
-                    } do %>
-        <i class="fas fa-trash-alt"></i>
-
-      <% end %>
+      <a class="ms-2 text-muted" data-action="card-toggle" href="#!"><i class="ti ti-chevron-up"></i></a>
     </div>
+  </div>
 
-    <div class="card-footer">
-      <small class="text-muted">Last update: <%= organization.updated_at %></small>
+  <div class="card-body py-3">
+    <div class="row align-items-start g-3">
+
+      <%# Image Column %>
+      <div class="col-auto">
+        <% if organization.image.present? %>
+          <img src="<%= organization.image.url %>" class="rounded border shadow-sm" style="width: 70px;
+            height: 70px; object-fit: cover;">
+        <% else %>
+          <div class="bg-light rounded border d-flex align-items-center justify-content-center shadow-sm"
+               style="width: 70px; height: 70px;">
+            <i data-lucide="building-2" class="text-muted opacity-50" style="width: 28px; height: 28px;"></i>
+          </div>
+        <% end %>
+      </div>
+
+      <%# Data Container %>
+      <div class="col">
+        <%# Row 1: Location, Website, Manager %>
+        <div class="row g-3 mb-3">
+          <div class="col-md-4">
+            <div class="d-flex align-items-center gap-2">
+              <div class="avatar-xs bg-primary-subtle rounded d-flex align-items-center justify-content-center"
+                   style="width: 28px; height: 28px;">
+                <i data-lucide="map-pin" class="text-primary" style="width: 14px;"></i>
+              </div>
+              <div class="overflow-hidden">
+                <p class="text-muted mb-0 small uppercase fw-bold" style="font-size: 10px;
+                  letter-spacing: 0.5px;">Location</p>
+                <p class="mb-0 text-truncate small"><%= organization.address.presence || 'No address provided' %></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="d-flex align-items-center gap-2">
+              <div class="avatar-xs bg-info-subtle rounded d-flex align-items-center justify-content-center"
+                   style="width: 28px; height: 28px;">
+                <i data-lucide="globe" class="text-info" style="width: 14px;"></i>
+              </div>
+              <div class="overflow-hidden">
+                <p class="text-muted mb-0 small uppercase fw-bold" style="font-size: 10px; letter-spacing: 0.5px;">Website</p>
+                <p class="mb-0 text-truncate small"><%= organization.site.present? ?
+                                                          link_to(organization.site.to_s.gsub(/https?:\/\//, ''),
+                                                                  organization.site, target: "_blank",
+                                                                  class: "text-decoration-none")
+                                                          : 'No website' %></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="d-flex align-items-center gap-2">
+              <div class="avatar-xs bg-warning-subtle rounded d-flex align-items-center justify-content-center"
+                   style="width: 28px; height: 28px;">
+                <i data-lucide="user" class="text-warning" style="width: 14px;"></i>
+              </div>
+              <div class="overflow-hidden">
+                <p class="text-muted mb-0 small uppercase fw-bold" style="font-size: 10px; letter-spacing: 0.5px;">Manager</p>
+                <p class="mb-0 text-truncate small fw-medium text-dark"><%= organization.manager&.email %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <%# Row 2: Phone, Email, Status %>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="d-flex align-items-center gap-2">
+              <div class="avatar-xs bg-secondary-subtle rounded d-flex align-items-center justify-content-center"
+                   style="width: 28px; height: 28px;">
+                <i data-lucide="phone" class="text-secondary" style="width: 14px;"></i>
+              </div>
+              <div>
+                <p class="text-muted mb-0 small uppercase fw-bold" style="font-size: 10px;
+                  letter-spacing: 0.5px;">Phone</p>
+                <p class="mb-0 small"><%= organization.phone.presence || 'Unlisted' %></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="d-flex align-items-center gap-2">
+              <div class="avatar-xs bg-danger-subtle rounded d-flex align-items-center justify-content-center" style="width: 28px; height: 28px;">
+                <i data-lucide="mail" class="text-danger" style="width: 14px;"></i>
+              </div>
+              <div class="overflow-hidden">
+                <p class="text-muted mb-0 small uppercase fw-bold" style="font-size: 10px; letter-spacing: 0.5px;">Official Email</p>
+                <p class="mb-0 text-truncate small"><%= organization.email.presence || 'N/A' %></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="d-flex align-items-center gap-2">
+              <div class="avatar-xs bg-dark-subtle rounded d-flex align-items-center justify-content-center" style="width: 28px; height: 28px;">
+                <i data-lucide="shield-check" class="text-dark" style="width: 14px;"></i>
+              </div>
+              <div>
+                <p class="text-muted mb-0 small uppercase fw-bold" style="font-size: 10px; letter-spacing: 0.5px;">Status</p>
+                <% if organization.status %>
+                  <span class="text-success small fw-semibold"><i class="ti ti-circle-filled fs-10"></i> Active</span>
+                <% else %>
+                  <span class="text-danger small fw-semibold"><i class="ti ti-circle-filled fs-10"></i> Inactive</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
+  </div>
+
+  <div class="card-footer py-2 bg-light-subtle d-flex justify-content-between align-items-center border-top">
+    <div class="d-flex gap-3">
+      <small class="text-muted">ID: <span class="fw-medium">#<%= organization.id %></span></small>
+      <small class="text-muted"><i class="ti ti-calendar-event"></i> Registered: <%= organization.created_at.strftime("%b %Y") %></small>
+    </div>
+    <small class="text-muted"><i class="ti ti-history"></i> Updated <%= time_ago_in_words(organization.updated_at) %> ago</small>
   </div>
 </div>

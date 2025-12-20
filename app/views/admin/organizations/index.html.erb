@@ -1,19 +1,12 @@
-<h2 class="display-4">My Organizations</h2>
+<% @title = "My Organizations" %>
 
-<div class="separator"></div>
+<%= render 'layouts/partials/page_title', subtitle: "Admin", title: "Organization Management",
+           new_url: new_admin_organization_path %>
 
-<div class="container-fluid p-0">
-  <div class="row">
-    <% organizations.each do |organization| %>
+<div class="row">
+  <% organizations.each do |organization| %>
+    <div class="col-12">
       <%= render 'admin/organizations/card', organization: organization %>
-    <% end %>
-
-    <%= render partial: 'layouts/new_button', locals: { url: new_admin_organization_path }  %>
-  </div>
+    </div>
+  <% end %>
 </div>
-
-
-
-
-
-

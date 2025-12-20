@@ -55,6 +55,18 @@
             <li>The system will process the file in the background and update your menu metrics.</li>
           </ol>
           <p class="fw-semibold">Note: Importing PDF documents uses AI for extraction and may take longer to process.</p>
+
+          <div class="mt-2">
+            <p class="text-muted">You can download the templates for the import of the item and order data.</p>
+            <%= link_to "Download Item Template", 
+                      download_template_admin_organization_import_jobs_path(@organization, template_type: 'item', menu_id: @menu.id),
+                      class: 'btn btn-sm btn-outline-primary me-2',
+                      data: { turbo: false } %>
+            <%= link_to "Download Order Template", 
+                      download_template_admin_organization_import_jobs_path(@organization, template_type: 'order', menu_id: @menu.id),
+                      class: 'btn btn-sm btn-outline-primary',
+                      data: { turbo: false } %>
+          </div>
         </div>
       </div>
     </div>
