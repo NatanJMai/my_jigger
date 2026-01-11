@@ -14,4 +14,7 @@ class User < ApplicationRecord
   has_many :user_organizations, class_name: 'UserOrganization', dependent: :destroy
   has_many :employers, through: :user_organizations, source: :organization
 
+  def display_name
+    "#{first_name} #{last_name}"
+  end
 end

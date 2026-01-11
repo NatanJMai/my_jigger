@@ -115,6 +115,7 @@
     <orderEntry type="library" scope="PROVIDED" name="net-protocol (v0.2.2, asdf: 3.4.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-smtp (v0.5.1, asdf: 3.4.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.7.5, asdf: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="nkf (v0.2.0, asdf: 3.4.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.18.10, asdf: 3.4.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, asdf: 3.4.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pagy (v9.4.0, asdf: 3.4.4) [gem]" level="application" />
@@ -191,6 +192,7 @@
     <orderEntry type="library" scope="PROVIDED" name="webdrivers (v5.3.1, asdf: 3.4.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="websocket-driver (v0.8.0, asdf: 3.4.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="websocket-extensions (v0.1.5, asdf: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="write_xlsx (v1.12.3, asdf: 3.4.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="xpath (v3.2.0, asdf: 3.4.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="zeitwerk (v2.7.3, asdf: 3.4.4) [gem]" level="application" />
   </component>
