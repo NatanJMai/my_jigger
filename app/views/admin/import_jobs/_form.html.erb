@@ -1,13 +1,107 @@
-<div class="container jigger-form">
-  <div class="row">
-    <div class="col-4">
-      <%= simple_form_for [:admin, @organization, @import_job], html: { multipart: true } do |f| %>
-        <%= f.input :file, as: :file, label: "Upload File" %>
-        <%= f.button :submit, "Upload Document", data: { turbo: false } %>
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title mb-0">
+      <i class="ti ti-upload me-2"></i>Import Data
+    </h4>
+  </div>
+  <div class="card-body">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="border rounded p-4 h-100">
+          <h5 class="mb-3">
+            <i class="ti ti-file-spreadsheet me-2 text-success"></i>Import Sales Orders
+          </h5>
+          <p class="text-muted small mb-3">
+            Upload a CSV or Excel file with sales order data to analyze menu performance.
+          </p>
+          <ul class="text-muted small mb-3">
+            <li>Required columns: Order Nr, Product Name, Quantity, Order Date</li>
+            <li>Date format: YYYY-MM-DD</li>
+            <li>Supported formats: .csv, .xlsx</li>
+          </ul>
+          <div class="d-flex gap-2">
+            <%= link_to download_template_admin_organization_import_jobs_path(@organization, template_type: 'order'),
+                        class: 'btn btn-outline-success btn-sm' do %>
+              <i class="ti ti-download me-1"></i> Download Template
+            <% end %>
+          </div>
+        </div>
+      </div>
 
-      <% end %>
+      <div class="col-md-6">
+        <div class="border rounded p-4 h-100">
+          <h5 class="mb-3">
+            <i class="ti ti-package me-2 text-primary"></i>Import Menu Items
+          </h5>
+          <p class="text-muted small mb-3">
+            Upload a CSV or Excel file with menu items to bulk create items.
+          </p>
+          <ul class="text-muted small mb-3">
+            <li>Required columns: Name, Volume, Unit, Cost, Quantity</li>
+            <li>Units: ml, l, g, kg, un (unit)</li>
+            <li>Supported formats: .csv, .xlsx</li>
+          </ul>
+          <div class="d-flex gap-2">
+            <%= link_to download_template_admin_organization_import_jobs_path(@organization, template_type: 'item'),
+                        class: 'btn btn-outline-primary btn-sm' do %>
+              <i class="ti ti-download me-1"></i> Download Template
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <hr class="my-4">
+
+    <h5 class="mb-3">Upload File</h5>
+    <%= simple_form_for [:admin, @organization, @import_job], html: { multipart: true, id: 'import-form' } do |f| %>
+      <div class="mb-3">
+        <%= f.input :file,
+                    as: :file,
+                    label: false,
+                    input_html: {
+                      class: 'form-control',
+                      accept: '.csv,.xlsx,.xls',
+                      onchange: 'validateFile(this)'
+                    } %>
+        <small class="text-muted">Maximum file size: 50MB</small>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Import Type</label>
+        <select name="option_select" class="form-select" id="import-type">
+          <option value="order">Sales Orders</option>
+          <option value="item">Menu Items</option>
+        </select>
+      </div>
+
+      <div class="d-flex gap-2">
+        <%= f.button :submit, "Start Import", class: "btn btn-success", data: { turbo: false } %>
+        <%= link_to "Cancel", admin_organization_import_jobs_path(@organization), class: "btn btn-light" %>
+      </div>
+    <% end %>
   </div>
 </div>
 
+<script>
+function validateFile(input) {
+  const file = input.files[0];
+  const validTypes = ['text/csv', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'];
+  const maxSize = 50 * 1024 * 1024; // 50MB
+
+  if (file && !validTypes.includes(file.type)) {
+    alert('Please select a CSV or Excel file (.csv, .xlsx)');
+    input.value = '';
+    return false;
+  }
+
+  if (file && file.size > maxSize) {
+    alert('File size must be less than 50MB');
+    input.value = '';
+    return false;
+  }
+
+  return true;
+}
+</script>
 

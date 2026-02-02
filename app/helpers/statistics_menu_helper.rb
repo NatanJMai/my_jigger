@@ -55,9 +55,9 @@ module StatisticsMenuHelper
   def revenue_by_category(menu)
     column_chart revenue_by_category_admin_menu_charts_path(menu),
                  title: 'Revenue By Categories',
-                 colors: ['#B15928'],
+                 colors: ['#0d9488'],
                  legend: 'bottom',
-                 prefix: '$',
+                 prefix: 'R$ ',
                  library: {
                    barThickness: 20,
                    plugins: {
@@ -111,7 +111,7 @@ module StatisticsMenuHelper
     colors = %w[#F781BF #8A81F7]
     bar_chart price_vs_costs_by_menu_admin_menu_charts_path(menu),
               stacked: true,
-              prefix: '$',
+              prefix: 'R$ ',
               colors: colors,
               library: {
                 indexAxis: 'y',
@@ -124,10 +124,10 @@ module StatisticsMenuHelper
   end
 
   def cost_vs_profit(menu)
-    colors = %w[#666666 #A6761D #E6AB02]
+    colors = %w[#dc2626 #16a34a]
     column_chart costs_vs_profit_by_menu_admin_menu_charts_path(menu),
                  stacked: false,
-                 prefix: '$',
+                 prefix: 'R$ ',
                  colors: colors,
                  library: {
                    indexAxis: 'x',
@@ -136,6 +136,6 @@ module StatisticsMenuHelper
                      duration: 1500,
                      easing: 'easeInOutQuart'
                    }
-                 }, title: 'Cost vs Price'
+                 }, title: 'Cost vs Profit'
   end
 end

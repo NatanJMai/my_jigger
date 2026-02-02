@@ -1,0 +1,189 @@
+<div class="row g-3">
+  <%# STAR: High Popularity, High Profit %>
+  <div class="col-md-6">
+    <div class="card border-success h-100">
+      <div class="card-header bg-success-subtle">
+        <h5 class="card-title mb-0 text-success">
+          <i class="ti ti-star-filled me-2"></i>Stars
+        </h5>
+      </div>
+      <div class="card-body">
+        <p class="text-muted small mb-3">High Popularity & High Profit - Your best performers</p>
+        <% stars = items.select { |i| i.matrix_category == 'star' } %>
+        <% if stars.any? %>
+          <div class="d-flex flex-wrap gap-1 mb-3">
+            <% stars.each do |item| %>
+              <span class="badge bg-success-subtle text-success"><%= item.name %></span>
+            <% end %>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm table-striped">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th class="text-end">Sales</th>
+                  <th class="text-end">Profit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% stars.first(5).each do |item| %>
+                  <tr>
+                    <td><%= item.name %></td>
+                    <td class="text-end"><%= item.order_items.sum(:quantity) %></td>
+                    <td class="text-end text-success"><%= humanized_money_with_symbol Money.new(item.profit) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% else %>
+          <div class="alert alert-info mb-0 small">No stars yet. Stars appear when items have both above-average sales and profit.</div>
+        <% end %>
+      </div>
+      <div class="card-footer bg-transparent border-top-0">
+        <small class="text-muted"><%= stars.count %> item(s)</small>
+      </div>
+    </div>
+  </div>
+
+  <%# PLOW HORSE: High Popularity, Low Profit %>
+  <div class="col-md-6">
+    <div class="card border-info h-100">
+      <div class="card-header bg-info-subtle">
+        <h5 class="card-title mb-0 text-info">
+          <i class="ti ti-rocket me-2"></i>Plow Horses
+        </h5>
+      </div>
+      <div class="card-body">
+        <p class="text-muted small mb-3">High Popularity & Low Profit - Optimize pricing or costs</p>
+        <% plows = items.select { |i| i.matrix_category == 'plow_horse' } %>
+        <% if plows.any? %>
+          <div class="d-flex flex-wrap gap-1 mb-3">
+            <% plows.each do |item| %>
+              <span class="badge bg-info-subtle text-info"><%= item.name %></span>
+            <% end %>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm table-striped">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th class="text-end">Sales</th>
+                  <th class="text-end">CMV</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% plows.first(5).each do |item| %>
+                  <tr>
+                    <td><%= item.name %></td>
+                    <td class="text-end"><%= item.order_items.sum(:quantity) %></td>
+                    <td class="text-end text-<%= item.cmv.to_f > 35 ? 'danger' : 'warning' %>"><%= number_to_percentage(item.cmv, precision: 1) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% else %>
+          <div class="alert alert-info mb-0 small">No plow horses yet. These are popular items with low profit margins.</div>
+        <% end %>
+      </div>
+      <div class="card-footer bg-transparent border-top-0">
+        <small class="text-muted"><%= plows.count %> item(s)</small>
+      </div>
+    </div>
+  </div>
+
+  <%# PUZZLE: Low Popularity, High Profit %>
+  <div class="col-md-6">
+    <div class="card border-warning h-100">
+      <div class="card-header bg-warning-subtle">
+        <h5 class="card-title mb-0 text-warning">
+          <i class="ti ti-puzzle me-2"></i>Puzzles
+        </h5>
+      </div>
+      <div class="card-body">
+        <p class="text-muted small mb-3">Low Popularity & High Profit - Improve visibility & marketing</p>
+        <% puzzles = items.select { |i| i.matrix_category == 'puzzle' } %>
+        <% if puzzles.any? %>
+          <div class="d-flex flex-wrap gap-1 mb-3">
+            <% puzzles.each do |item| %>
+              <span class="badge bg-warning-subtle text-warning"><%= item.name %></span>
+            <% end %>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm table-striped">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th class="text-end">CMV</th>
+                  <th class="text-end">Markup</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% puzzles.first(5).each do |item| %>
+                  <tr>
+                    <td><%= item.name %></td>
+                    <td class="text-end text-success"><%= number_to_percentage(item.cmv, precision: 1) %></td>
+                    <td class="text-end"><%= number_to_percentage(item.markup_percentage, precision: 1) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% else %>
+          <div class="alert alert-info mb-0 small">No puzzles yet. These are profitable items that customers aren't buying enough.</div>
+        <% end %>
+      </div>
+      <div class="card-footer bg-transparent border-top-0">
+        <small class="text-muted"><%= puzzles.count %> item(s)</small>
+      </div>
+    </div>
+  </div>
+
+  <%# DOG: Low Popularity, Low Profit %>
+  <div class="col-md-6">
+    <div class="card border-danger h-100">
+      <div class="card-header bg-danger-subtle">
+        <h5 class="card-title mb-0 text-danger">
+          <i class="ti ti-skull me-2"></i>Dogs
+        </h5>
+      </div>
+      <div class="card-body">
+        <p class="text-muted small mb-3">Low Popularity & Low Profit - Consider removing or reworking</p>
+        <% dogs = items.select { |i| i.matrix_category == 'dog' } %>
+        <% if dogs.any? %>
+          <div class="d-flex flex-wrap gap-1 mb-3">
+            <% dogs.each do |item| %>
+              <span class="badge bg-danger-subtle text-danger"><%= item.name %></span>
+            <% end %>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm table-striped">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th class="text-end">CMV</th>
+                  <th class="text-end">Sold</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% dogs.first(5).each do |item| %>
+                  <tr>
+                    <td><%= item.name %></td>
+                    <td class="text-end text-danger"><%= number_to_percentage(item.cmv, precision: 1) %></td>
+                    <td class="text-end"><%= item.order_items.sum(:quantity) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% else %>
+          <div class="alert alert-success mb-0 small">No dogs! Your entire menu is performing well.</div>
+        <% end %>
+      </div>
+      <div class="card-footer bg-transparent border-top-0">
+        <small class="text-muted"><%= dogs.count %> item(s)</small>
+      </div>
+    </div>
+  </div>
+</div>

@@ -48,8 +48,7 @@ class Item < ApplicationRecord
   # @return Array - [date_string, value] or nil
   def best_day_month
     sales = sales_performance_by_item(week: false)
-    value = sales.to_h&.max_by { |_key, value| value }
-    value
+    sales.to_h&.max_by { |_key, value| value }
   end
 
   ##
@@ -87,6 +86,7 @@ class Item < ApplicationRecord
   # @return Float
   def markup_percentage
     return 0 if customer_price_cents.zero? # Avoid division by zero
+
     (profit / customer_price_cents) * 100
   end
 
@@ -102,6 +102,13 @@ class Item < ApplicationRecord
   # @return Float
   def costs_percentage
     datasheet.calculate_cmv
+  end
+
+  ##
+  # Alias for costs_percentage (CMV)
+  # @return Float
+  def cmv
+    costs_percentage
   end
 
   ##
@@ -165,16 +172,16 @@ class Item < ApplicationRecord
                            end
 
     # The attribute column is used directly in the SUM function
-    str = "SUM(order_items.#{attribute.to_s})"
+    str = "SUM(order_items.#{attribute})"
 
     # Query to get sales data
     sales = order_items
-              .where(item_id: self.id)
-              .joins(:order)
-              # Use Date.current for safety, though Date.today often works
-              .where(orders: { date: start_date..end_date })
-              .group('DATE(orders.date)')
-              .select("DATE(orders.date) as sale_date, #{str} as total_sales")
+            .where(item_id: id)
+            .joins(:order)
+            # Use Date.current for safety, though Date.today often works
+            .where(orders: { date: start_date..end_date })
+            .group('DATE(orders.date)')
+            .select("DATE(orders.date) as sale_date, #{str} as total_sales")
 
     sales_hash = sales.to_a.pluck(:sale_date, :total_sales).to_h
 
@@ -211,7 +218,7 @@ class Item < ApplicationRecord
 
     (start_date..end_date).map do |date|
       date_str = if weekday
-                   date.strftime("%A")
+                   date.strftime('%A')
                  else
                    date.to_s
                  end

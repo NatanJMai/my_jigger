@@ -1,18 +1,124 @@
-<div class="card-header">
-  <div class="row">
-    <div class="col-12">
-      <h5 class="card-title text-left">Matrix Popularitys</h5>
+<div class="card mb-4">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-12">
+        <h5 class="card-title text-left mb-0">
+          <i class="ti ti-chart-scatter me-2"></i>Popularity vs. Profitability Matrix
+        </h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="row g-4">
+      <%# Visual 2x2 Matrix Grid %>
+      <div class="col-lg-8">
+        <div class="matrix-visual" style="position: relative; height: 400px; background: linear-gradient(to right, #fee2e2 0%, #dcfce7 100%); border-radius: 8px; overflow: hidden;">
+          <%# Y-axis label %>
+          <div style="position: absolute; left: -30px; top: 50%; transform: rotate(-90deg) translateX(50%); font-size: 11px; font-weight: 600; color: #6b7280; white-space: nowrap;">
+            PROFITABILITY →
+          </div>
+
+          <%# X-axis label %>
+          <div style="position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); font-size: 11px; font-weight: 600; color: #6b7280;">
+            POPULARITY →
+          </div>
+
+          <%# Quadrant dividers %>
+          <div style="position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: rgba(0,0,0,0.1);"></div>
+          <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(0,0,0,0.1);"></div>
+
+          <%# Quadrant labels %>
+          <div style="position: absolute; top: 8px; left: 8px; font-size: 10px; color: #dc2626; font-weight: 600;">
+            🐴 Plow Horse<br><span style="font-size: 9px; color: #6b7280;">High sales, low profit</span>
+          </div>
+          <div style="position: absolute; top: 8px; right: 8px; text-align: right; font-size: 10px; color: #16a34a; font-weight: 600;">
+            ⭐ Star<br><span style="font-size: 9px; color: #6b7280;">High sales, high profit</span>
+          </div>
+          <div style="position: absolute; bottom: 8px; left: 8px; font-size: 10px; color: #dc2626; font-weight: 600;">
+            💀 Dog<br><span style="font-size: 9px; color: #6b7280;">Low sales, low profit</span>
+          </div>
+          <div style="position: absolute; bottom: 8px; right: 8px; text-align: right; font-size: 10px; color: #ca8a04; font-weight: 600;">
+            🧩 Puzzle<br><span style="font-size: 9px; color: #6b7280;">Low sales, high profit</span>
+          </div>
+
+          <%# Item dots %>
+          <% items.each_with_index do |item, idx| %>
+            <%
+              # Calculate position based on matrix category
+              x_pos = case item.matrix_category
+                      when 'star' then 70 + rand(20)
+                      when 'plow_horse' then 30 + rand(20)
+                      when 'puzzle' then 60 + rand(20)
+                      when 'dog' then 20 + rand(20)
+                      else 50 + rand(10)
+                      end
+              y_pos = case item.matrix_category
+                      when 'star' then 70 + rand(20)
+                      when 'plow_horse' then 20 + rand(20)
+                      when 'puzzle' then 70 + rand(20)
+                      when 'dog' then 20 + rand(20)
+                      else 50
+                      end
+            %>
+            <div class="position-absolute d-flex align-items-center justify-content-center"
+                 style="left: <%= x_pos %>%; top: <%= y_pos %>%; transform: translate(-50%, -50%); width: 28px; height: 28px; border-radius: 50%; background: <%= case item.matrix_category
+                 when 'star' then '#16a34a'
+                 when 'plow_horse' then '#0ea5e9'
+                 when 'puzzle' then '#ca8a04'
+                 when 'dog' then '#dc2626'
+                 else '#9ca3af'
+                 end %>; color: white; font-size: 10px; font-weight: bold; cursor: pointer; z-index: 10;"
+                 title="<%= item.name %> - <%= item.matrix_category %>">
+              <%= item.name[0].upcase %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <%# Summary Stats %>
+      <div class="col-lg-4">
+        <div class="row g-2">
+          <div class="col-6">
+            <div class="p-3 rounded text-center" style="background: #dcfce7;">
+              <div class="fw-bold text-success fs-4"><%= items.select { |i| i.matrix_category == 'star' }.count %></div>
+              <small class="text-muted">Stars</small>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 rounded text-center" style="background: #e0f2fe;">
+              <div class="fw-bold text-info fs-4"><%= items.select { |i| i.matrix_category == 'plow_horse' }.count %></div>
+              <small class="text-muted">Plow Horses</small>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 rounded text-center" style="background: #fef9c3;">
+              <div class="fw-bold text-warning fs-4"><%= items.select { |i| i.matrix_category == 'puzzle' }.count %></div>
+              <small class="text-muted">Puzzles</small>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 rounded text-center" style="background: #fee2e2;">
+              <div class="fw-bold text-danger fs-4"><%= items.select { |i| i.matrix_category == 'dog' }.count %></div>
+              <small class="text-muted">Dogs</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <button class="btn btn-outline-primary w-100" onclick="location.reload()">
+            <i class="ti ti-refresh me-1"></i> Refresh Analysis
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
 
 <div class="matrix-popularity">
   <%= render partial: 'admin/menus/partials/matrix/squares',
              locals: { insight_screen: '',
                        custom_col: 'custom-col',
-                       matrix_tab: false } %>
+                       matrix_tab: false,
+                       items: items } %>
 </div>
-
-
-

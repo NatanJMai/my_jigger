@@ -4,7 +4,7 @@
   <div class="col-6 align-left info-description">
     <%= humanized_money_with_symbol Money.new(item.customer_price) %>
   </div>
-  <div class="col-6 align-right info-label">Price ($)</div>
+  <div class="col-6 align-right info-label">Price (BRL)</div>
 </div>
 
 <div class="row jigger-label">
@@ -13,17 +13,12 @@
 </div>
 
 <div class="row jigger-label">
-  <div class="col-6 align-left info-description"><%= item&.volume %></div>
-  <div class="col-6 align-right info-label">Volume</div>
+  <div class="col-6 align-left info-description"><%= item.cmv ? number_to_percentage(item.cmv, precision: 1) : 'N/A' %></div>
+  <div class="col-6 align-right info-label">CMV</div>
 </div>
 
 <div class="row jigger-label">
-  <div class="col-6 align-left info-description"><%= item&.best_before %></div>
-  <div class="col-6 align-right info-label">Best Before</div>
-</div>
-
-<div class="row jigger-label">
-  <div class="col-6 align-left info-description"><%= item&.status %></div>
+  <div class="col-6 align-left info-description"><%= item.status ? 'Active' : 'Inactive' %></div>
   <div class="col-6 align-right info-label">Status</div>
 </div>
 

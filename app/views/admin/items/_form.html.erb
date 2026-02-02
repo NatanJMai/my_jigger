@@ -1,6 +1,6 @@
-<% @title = "Create New Products" %>
+<% @title = model.persisted? ? "Edit Item" : "Create New Item" %>
 
-<%= render 'layouts/partials/page_title', subtitle: "Ecommerce", title: "Add Product" %>
+<%= render 'layouts/partials/page_title', subtitle: "Cost Management", title: model.persisted? ? "Edit Item" : "Add Item" %>
 
 <%= simple_form_for model, html: { id: 'add-item-form' } do |f| %>
 
@@ -10,21 +10,21 @@
         <div class="col-xxl-8">
           <div class="card">
             <div class="card-header d-block p-3">
-              <h4 class="card-title mb-1">Product Information</h4>
-              <p class="text-muted mb-0">To add a new product, please provide the necessary
+              <h4 class="card-title mb-1">Item Information</h4>
+              <p class="text-muted mb-0">To add a new menu item, please provide the necessary
                 details in the fields below.</p>
             </div>
             <div class="card-body">
               <div class="row">
                 <div class="col-12">
                   <div class="mb-3">
-                    <label class="form-label">Product Name
+                    <label class="form-label">Item Name
                       <span class="text-danger">*</span>
                     </label>
                     <%= f.input :name,
                                 label: false,
                                 required: true,
-                                input_html: { placeholder: 'Enter product name', class: 'form-control' },
+                                input_html: { placeholder: 'Enter item name', class: 'form-control' },
                                 wrapper: false %>
                   </div>
                 </div>
@@ -48,8 +48,8 @@
           </div>
           <div class="card">
             <div class="card-header d-block p-3">
-              <h4 class="card-title mb-1">Product Image</h4>
-              <p class="text-muted mb-0">To upload a product image, please use the option below to
+              <h4 class="card-title mb-1">Item Image</h4>
+              <p class="text-muted mb-0">To upload an item image, please use the option below to
                 select and upload the relevant file.</p>
             </div>
             <div class="card-body">
@@ -121,18 +121,17 @@
           <div class="card">
             <div class="card-header d-block p-3">
               <h4 class="card-title mb-1">Pricing</h4>
-              <p class="text-muted mb-0">Set the base price and applicable discount for the
-                product using the options below.</p>
+              <p class="text-muted mb-0">Set the selling price for the menu item.</p>
             </div>
             <div class="card-body">
               <div class="mb-3">
-                <label class="form-label">Base Price
+                <label class="form-label">Selling Price (BRL)
                   <span class="text-danger">*</span>
                 </label>
                 <%= f.input :customer_price,
                             label: false,
                             as: :decimal,
-                            input_html: { placeholder: '29.99', class: 'form-control' },
+                            input_html: { placeholder: '29.90', class: 'form-control' },
                             required: true,
                             wrapper: false %>
               </div>
@@ -140,24 +139,28 @@
           </div>
           <div class="card">
             <div class="card-header d-block p-3">
-              <h4 class="card-title mb-1">Organize</h4>
-              <p class="text-muted mb-0">Organize your product by selecting the appropriate brand,
-                category, sub-category, status, and tags.</p>
+              <h4 class="card-title mb-1">Organization</h4>
+              <p class="text-muted mb-0">Organize your item by selecting the menu, category, and status.</p>
             </div>
             <div class="card-body">
               <div class="mb-3">
-                <label class="form-label" for="brand">Brand</label>
-                <div class="app-search">
-                  <input class="form-control" id="brand" placeholder="Enter brand name" type="text"/>
-                  <i class="app-search-icon text-muted" data-lucide="layers"></i>
-                </div>
+                <label class="form-label">Menu
+                  <span class="text-danger">*</span>
+                </label>
+                <%= f.association :menu,
+                                  collection: @organization.menus.order(:name),
+                                  label: false,
+                                  required: true,
+                                  prompt: 'Choose Menu',
+                                  input_html: { class: 'form-select' },
+                                  wrapper: false %>
               </div>
               <div class="mb-3">
                 <label class="form-label">Category
                   <span class="text-danger">*</span>
                 </label>
                 <%= f.association :category,
-                                  collection: Category.all.order(:name),
+                                  collection: @organization.categories.order(:name),
                                   label: false,
                                   required: true,
                                   prompt: 'Choose Category',
@@ -186,23 +189,36 @@
                             input_html: { class: 'form-select form-control my-1 my-md-0' },
                             wrapper: false %>
               </div>
-              <div class="mb-0">
-                <label class="form-label" for="tags">Tags</label>
-                <div class="app-search">
-                  <input class="form-control" id="tags" placeholder="Enter tags separated by commas" type="text"/>
-                  <i class="app-search-icon text-muted" data-lucide="tag"></i>
-                </div>
+            </div>
+          </div>
+          <% if model.persisted? %>
+          <div class="card">
+            <div class="card-header d-block p-3">
+              <h4 class="card-title mb-1">Recipe & Costs</h4>
+              <p class="text-muted mb-0">Manage the recipe and cost breakdown for this item.</p>
+            </div>
+            <div class="card-body">
+              <div class="d-grid gap-2">
+                <%= link_to "Add Recipe / Cost Breakdown",
+                            edit_admin_item_datasheet_path(model, model.datasheet || :new),
+                            class: "btn btn-primary" %>
+                <% if model.datasheet.present? %>
+                  <small class="text-muted">
+                    Current CMV: <%= number_to_percentage(model.cmv, precision: 1) %>
+                  </small>
+                <% else %>
+                  <small class="text-muted">
+                    No recipe configured yet
+                  </small>
+                <% end %>
               </div>
             </div>
           </div>
+          <% end %>
         </div>
       </div>
       <div class="mt-2 mb-4 d-flex gap-2 justify-content-center">
-        <a class="btn btn-link text-danger fw-semibold" href="#!">
-          <i class="fs-sm me-2" data-lucide="clipboard-x"></i> Discard
-        </a>
-        <%= f.button :submit, 'Publish', class: "btn btn-success" %>
-        <%= f.button :submit, 'Save as Draft', class: "btn btn-soft-secondary" %>
+        <%= f.button :submit, 'Save Item', class: "btn btn-success" %>
       </div>
     </div>
   </div>

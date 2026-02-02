@@ -83,13 +83,6 @@
                             hint: 'Is this data imported? Check to mark this menu as imported.',
                             wrapper_html: { class: 'form-check form-switch' } %>
               </div>
-              <div class="mb-0">
-                <label class="form-label" for="tags">Tags</label>
-                <div class="app-search">
-                  <input class="form-control" id="tags" placeholder="Enter tags separated by commas" type="text"/>
-                  <i class="app-search-icon text-muted" data-lucide="tag"></i>
-                </div>
-              </div>
             </div>
           </div>
           <div class="card">
@@ -103,16 +96,12 @@
         </div>
       </div>
       <div class="mt-2 mb-4 d-flex gap-2 justify-content-center">
-        <a class="btn btn-link text-danger fw-semibold" href="#!">
-          <i class="fs-sm me-2" data-lucide="clipboard-x"></i> Discard
-        </a>
-        <%= f.button :submit, 'Publish', class: "btn btn-success" %>
-        <%= f.button :submit, 'Save as Draft', class: "btn btn-soft-secondary" %>
+        <%= f.button :submit, 'Save Menu', class: "btn btn-success" %>
       </div>
     </div>
   </div>
 <% end %>
 
 <% content_for :javascript do %>
-  <%= vite_javascript_tag 'js/pages/ecommerce-add-product.js' %>
+  <%= vite_javascript_tag 'js/pages/menu-form.js' %>
 <% end %>

@@ -1,6 +1,6 @@
-<% @title = "Products" %>
+<% @title = "Items" %>
 
-<%= render 'layouts/partials/page_title', subtitle: "Ecommerce", title: "Products" %>
+<%= render 'layouts/partials/page_title', subtitle: "Cost Management", title: "Items" %>
 
 <div class="row">
   <div class="col-12">
@@ -8,7 +8,7 @@
       <div class="card-header border-light justify-content-between">
         <div class="d-flex gap-2">
           <div class="app-search">
-            <input class="form-control" data-table-search="" placeholder="Search product name..." type="search"/>
+            <input class="form-control" data-table-search="" placeholder="Search item name..." type="search"/>
             <i class="app-search-icon text-muted" data-lucide="search"></i>
           </div>
           <button class="btn btn-danger d-none" data-table-delete-selected="">Delete</button>
@@ -28,17 +28,17 @@
             <select class="form-select form-control my-1 my-md-0" data-table-filter="status">
               <option value="">Status</option>
               <option value="true">Active</option>
-              <option value="false">Draft/Inactive</option>
+              <option value="false">Inactive</option>
             </select>
             <i class="app-search-icon text-muted" data-lucide="box"></i>
           </div>
           <div class="app-search">
             <select class="form-select form-control my-1 my-md-0" data-table-range-filter="price">
               <option value="">Price Range</option>
-              <option value="0-50">$0 - $50</option>
-              <option value="51-150">$51 - $150</option>
-              <option value="151-500">$151 - $500</option>
-              <option value="500+">$500+</option>
+              <option value="0-50">R$0 - R$50</option>
+              <option value="51-150">R$51 - R$150</option>
+              <option value="151-500">R$151 - R$500</option>
+              <option value="500+">R$500+</option>
             </select>
             <i class="app-search-icon text-muted" data-lucide="dollar-sign"></i>
           </div>
@@ -46,7 +46,7 @@
         <div class="d-flex gap-1">
           <a class="btn btn-danger ms-1"
              href="<%= new_admin_organization_item_path(@organization) %>">
-            <i class="fs-sm me-2" data-lucide="plus"></i> Add Product
+            <i class="fs-sm me-2" data-lucide="plus"></i> Add Item
           </a>
 
         </div>
@@ -56,17 +56,14 @@
           <thead class="bg-light align-middle bg-opacity-25 thead-sm">
           <tr class="text-uppercase fs-xxs">
             <th class="ps-3" style="width: 1%;">
-              <input class="form-check-input form-check-input-light fs-14 mt-0" data-table-select-all="" id="select-all-products" type="checkbox" value="option"/>
+              <input class="form-check-input form-check-input-light fs-14 mt-0" data-table-select-all="" id="select-all-items" type="checkbox" value="option"/>
             </th>
-            <th data-column="product" data-table-sort="product">Product</th>
-            <th data-column="sku" data-table-sort="sku">SKU</th>
+            <th data-column="item" data-table-sort="item">Item</th>
             <th data-column="category" data-table-sort="category">Category</th>
             <th data-column="cmv" data-table-sort="cmv">CMV</th>
             <th data-column="price" data-table-sort="price">Price</th>
             <th data-column="orders_count" data-table-sort="orders_count">Orders</th>
-            <th data-column="rating" data-table-sort="rating">Rating</th>
             <th data-column="status" data-table-sort="status">Status</th>
-            <th data-column="published_at" data-table-sort="published_at">Published</th>
             <th class="text-center" style="width: 1%;">Actions</th>
           </tr>
           </thead>
@@ -77,7 +74,7 @@
       </div>
       <div class="card-footer border-0">
         <div class="d-flex justify-content-between align-items-center">
-          <div data-table-pagination-info="products"></div>
+          <div data-table-pagination-info="items"></div>
           <div data-table-pagination=""></div>
           <div>
             <select class="form-select form-control my-1 my-md-0" data-table-set-rows-per-page="">

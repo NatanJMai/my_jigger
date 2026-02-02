@@ -1,71 +1,138 @@
 <div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="tab6-tab">
   <div class="row g-3">
 
-    <div class="col-xl-7">
+    <div class="col-xl-8">
       <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">Upload Data Document</h4>
+        <div class="card-header bg-white">
+          <h4 class="card-title mb-0">
+            <i class="ti ti-upload me-2"></i>Upload Data Document
+          </h4>
         </div>
         <div class="card-body">
           <%= simple_form_for [:admin, @organization, @import_job], html: { multipart: true } do |f| %>
-            <div class="row g-3 align-items-end">
+            <div class="row g-4 align-items-end">
 
-              <div class="col-md-5">
+              <div class="col-md-4">
                 <div class="mb-3">
-                  <label class="form-label" for="option_select">Document Type</label>
+                  <label class="form-label" for="option_select">Import Type</label>
                   <select class="form-select" name="option_select" id="option_select">
-                    <option value="pdf_document">PDF Document</option>
-                    <option value="item">Menu Items (CSV/Excel)</option>
-                    <option value="order">Sales Orders (CSV/Excel)</option>
+                    <option value="order" selected>Sales Orders</option>
+                    <option value="item">Menu Items</option>
                   </select>
-                  <div class="form-text">Select the type of data you are importing.</div>
+                  <div class="form-text">Select the type of data to import</div>
                 </div>
               </div>
 
-              <div class="col-md-7">
+              <div class="col-md-8">
                 <div class="mb-3">
-                  <%= f.input :files, as: :file, label: 'Select File to Import',
-                              hint: 'Accepted formats: PDF, CSV, or Excel.',
-                              input_html: { class: 'form-control', multiple: true },
+                  <%= f.input :files, as: :file, label: 'Select File',
+                              hint: 'CSV or Excel files only. Max 50MB.',
+                              input_html: {
+                                class: 'form-control',
+                                multiple: false,
+                                accept: '.csv,.xlsx,.xls',
+                                onchange: 'validateImportFile(this)'
+                              },
                               wrapper: false %>
                 </div>
               </div>
 
               <div class="col-12">
                 <%= hidden_field_tag :menu_id, @menu.id %>
-                <%= f.button :submit, "Upload Document", class: 'btn btn-primary shadow-sm px-4', data: { turbo: false } %>
+                <%= f.button :submit, "Start Import", class: 'btn btn-success shadow-sm', data: { turbo: false } %>
               </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-header bg-white">
+          <h5 class="card-title mb-0">
+            <i class="ti ti-history me-2"></i>Recent Imports
+          </h5>
+        </div>
+        <div class="card-body p-0">
+          <% recent_imports = @organization.import_jobs.order(created_at: :desc).limit(5) %>
+          <% if recent_imports.any? %>
+            <div class="table-responsive">
+              <table class="table table-sm table-hover mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th class="ps-3">File</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% recent_imports.each do |job| %>
+                    <%
+                      import_type = job.staging_tables.first&.to_s || 'Order'
+                    %>
+                    <tr>
+                      <td class="ps-3"><%= job.file.filename %></td>
+                      <td><span class="badge bg-secondary-subtle text-secondary"><%= import_type %></span></td>
+                      <td>
+                        <% if job.import_status == 'completed' %>
+                          <span class="badge bg-success-subtle text-success">Done</span>
+                        <% elsif job.import_status == 'failed' %>
+                          <span class="badge bg-danger-subtle text-danger">Failed</span>
+                        <% else %>
+                          <span class="badge bg-warning-subtle text-warning">Processing</span>
+                        <% end %>
+                      </td>
+                      <td><small class="text-muted"><%= job.created_at.strftime('%d %b %H:%M') %></small></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          <% else %>
+            <div class="text-center py-4 text-muted">
+              <i class="ti ti-inbox fs-2xl mb-2"></i>
+              <p class="mb-0">No recent imports</p>
             </div>
           <% end %>
         </div>
       </div>
     </div>
 
-    <div class="col-xl-5">
+    <div class="col-xl-4">
       <div class="card h-100">
-        <div class="card-header">
-          <h4 class="card-title">Import Instructions</h4>
+        <div class="card-header bg-white">
+          <h4 class="card-title mb-0">Import Templates</h4>
         </div>
         <div class="card-body">
-          <p class="text-muted">Use this section to import external data into your menu analysis:</p>
-          <ol>
-            <li>Select the <strong>Document Type</strong> (PDF, Item Data, or Order Data).</li>
-            <li>Use the file picker to select your CSV, Excel, or PDF file.</li>
-            <li>Click <strong>Upload Document</strong>.</li>
-            <li>The system will process the file in the background and update your menu metrics.</li>
-          </ol>
-          <p class="fw-semibold">Note: Importing PDF documents uses AI for extraction and may take longer to process.</p>
+          <p class="text-muted small mb-3">Download templates to ensure your data is formatted correctly:</p>
 
-          <div class="mt-2">
-            <p class="text-muted">You can download the templates for the import of the item and order data.</p>
-            <%= link_to "Download Item Template", 
-                      download_template_admin_organization_import_jobs_path(@organization, template_type: 'item', menu_id: @menu.id),
-                      class: 'btn btn-sm btn-outline-primary me-2',
-                      data: { turbo: false } %>
-            <%= link_to "Download Order Template", 
-                      download_template_admin_organization_import_jobs_path(@organization, template_type: 'order', menu_id: @menu.id),
-                      class: 'btn btn-sm btn-outline-primary',
-                      data: { turbo: false } %>
+          <div class="border rounded p-3 mb-3">
+            <h6 class="mb-2">
+              <i class="ti ti-shopping-cart me-2 text-primary"></i>Sales Orders
+            </h6>
+            <p class="text-muted small mb-2">Columns: Order Nr, Product Name, Quantity, Order Date</p>
+            <%= link_to download_template_admin_organization_import_jobs_path(@organization, template_type: 'order', menu_id: @menu.id),
+                        class: 'btn btn-sm btn-outline-primary w-100',
+                        data: { turbo: false } do %>
+              <i class="ti ti-download me-1"></i> Download Order Template
+            <% end %>
+          </div>
+
+          <div class="border rounded p-3 mb-3">
+            <h6 class="mb-2">
+              <i class="ti ti-package me-2 text-success"></i>Menu Items
+            </h6>
+            <p class="text-muted small mb-2">Columns: Name, Volume, Unit, Cost, Quantity</p>
+            <%= link_to download_template_admin_organization_import_jobs_path(@organization, template_type: 'item', menu_id: @menu.id),
+                        class: 'btn btn-sm btn-outline-success w-100',
+                        data: { turbo: false } do %>
+              <i class="ti ti-download me-1"></i> Download Item Template
+            <% end %>
+          </div>
+
+          <div class="alert alert-info mb-0">
+            <i class="ti ti-info-circle me-2"></i>
+            <small>Files are processed in the background. Check the import history for status.</small>
           </div>
         </div>
       </div>
@@ -73,3 +140,25 @@
 
   </div>
 </div>
+
+<script>
+function validateImportFile(input) {
+  const file = input.files[0];
+  const validTypes = ['text/csv', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'];
+  const maxSize = 50 * 1024 * 1024;
+
+  if (file && !validTypes.includes(file.type)) {
+    alert('Please select a CSV or Excel file');
+    input.value = '';
+    return false;
+  }
+
+  if (file && file.size > maxSize) {
+    alert('File size must be less than 50MB');
+    input.value = '';
+    return false;
+  }
+
+  return true;
+}
+</script>

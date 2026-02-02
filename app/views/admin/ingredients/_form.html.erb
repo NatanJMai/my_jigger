@@ -1,16 +1,9 @@
 <%= simple_form_for([:admin, (ingredient.persisted? ? nil : organization), ingredient].compact, html: { id: 'add-ingredient-form' }) do |f| %>
   <div class="modal-body">
     <div class="row g-3">
-      <!-- Left Column -->
       <div class="col-md-8">
-        <!-- Name -->
         <div class="mb-3">
           <label class="form-label">Ingredient Name <span class="text-danger">*</span></label>
-          <%= ingredient.name %>
-          <%= ingredient.name %>
-          <%= ingredient.name %>
-          <%= @organization.ingredients.last.id %>
-          <%= ingredient.name %>
           <%= f.input :name,
                       label: false,
                       required: true,
@@ -18,7 +11,6 @@
                       wrapper: false %>
         </div>
 
-        <!-- Prep Method -->
         <div class="mb-3">
           <label class="form-label">Prep Method <span class="text-muted">(Optional)</span></label>
           <%= f.input :prep_method,
@@ -28,7 +20,6 @@
                       input_html: { rows: 2, class: 'form-control' } %>
         </div>
 
-        <!-- Image Upload -->
         <div class="mb-3">
           <label class="form-label">Image <span class="text-muted">(Optional)</span></label>
           <div class="border rounded p-3 text-center bg-light-subtle">
@@ -40,7 +31,6 @@
         </div>
       </div>
 
-      <!-- Right Column -->
       <div class="col-md-4">
         <div class="mb-3">
           <label class="form-label">Volume</label>
@@ -63,7 +53,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Cost ($)</label>
+          <label class="form-label">Cost (BRL)</label>
           <%= f.input :cost,
                       as: :decimal,
                       label: false,
@@ -77,7 +67,7 @@
   <div class="modal-footer d-flex justify-content-between">
     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
     <div>
-      <%= f.button :submit, 'Publish', class: "btn btn-success me-2" %>
+      <%= f.button :submit, 'Save Ingredient', class: "btn btn-success me-2" %>
     </div>
   </div>
 <% end %>

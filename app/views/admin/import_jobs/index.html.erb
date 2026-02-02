@@ -1,0 +1,136 @@
+<% @title = "Import History" %>
+
+<%= render 'layouts/partials/page_title', subtitle: "Data Management", title: "Import History" %>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header border-light justify-content-between">
+        <div class="d-flex align-items-center gap-2">
+          <span class="me-2 fw-semibold">Filter By:</span>
+          <div class="app-search">
+            <select class="form-select form-control my-1 my-md-0" data-table-filter="status">
+              <option value="">All Status</option>
+              <option value="completed">Completed</option>
+              <option value="in_progress">In Progress</option>
+              <option value="failed">Failed</option>
+            </select>
+            <i class="app-search-icon text-muted" data-lucide="filter"></i>
+          </div>
+        </div>
+        <div class="d-flex gap-1">
+          <%= link_to new_admin_organization_import_job_path(@organization),
+                      class: 'btn btn-danger' do %>
+            <i class="fs-sm me-2" data-lucide="upload"></i> New Import
+          <% end %>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-custom table-centered table-hover w-100 mb-0">
+          <thead class="bg-light align-middle bg-opacity-25 thead-sm">
+            <tr class="text-uppercase fs-xxs">
+              <th class="ps-3">File Name</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Records</th>
+              <th>Created</th>
+              <th class="text-center" style="width: 1%;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if @import_jobs.any? %>
+              <% @import_jobs.order(created_at: :desc).each do |job| %>
+                <tr>
+                  <td class="ps-3">
+                    <div class="d-flex align-items-center">
+                      <div class="avatar-md me-3">
+                        <div class="avatar-md bg-light d-flex align-items-center justify-content-center rounded">
+                          <i class="ti ti-file-spreadsheet text-muted"></i>
+                        </div>
+                      </div>
+                      <div>
+                        <h5 class="mb-0"><%= job.file.filename %></h5>
+                        <small class="text-muted"><%= number_to_human_size(job.file.blob.byte_size) %></small>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge bg-secondary-subtle text-secondary">
+                      <%= job.staging_tables.first&.staging_table&.capitalize || 'Order' %>
+                    </span>
+                  </td>
+                  <td data-filter-value="<%= job.import_status %>">
+                    <% case job.import_status %>
+                    <% when 'completed' %>
+                      <span class="badge bg-success-subtle text-success">
+                        <i class="ti ti-check me-1"></i>Completed
+                      </span>
+                    <% when 'in_progress' %>
+                      <span class="badge bg-warning-subtle text-warning">
+                        <i class="ti ti-loader me-1"></i>In Progress
+                      </span>
+                    <% when 'failed' %>
+                      <span class="badge bg-danger-subtle text-danger">
+                        <i class="ti ti-x me-1"></i>Failed
+                      </span>
+                    <% else %>
+                      <span class="badge bg-secondary-subtle text-secondary">
+                        <%= job.import_status || 'Pending' %>
+                      </span>
+                    <% end %>
+                  </td>
+                  <td><%= job.staging_tables.count %></td>
+                  <td>
+                    <small class="text-muted">
+                      <%= job.created_at.strftime('%d %b, %Y %H:%M') %>
+                    </small>
+                  </td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <%= link_to admin_organization_import_job_path(@organization, job),
+                                  class: 'btn btn-default btn-icon btn-sm rounded-circle',
+                                  title: 'View Details' do %>
+                        <i class="ti ti-eye fs-lg"></i>
+                      <% end %>
+
+                      <% if job.import_status == 'completed' %>
+                        <button class="btn btn-default btn-icon btn-sm rounded-circle" title="Reimport">
+                          <i class="ti ti-refresh fs-lg"></i>
+                        </button>
+                      <% end %>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+            <% else %>
+              <tr>
+                <td colspan="6" class="text-center py-5">
+                  <div class="avatar-lg mx-auto mb-3">
+                    <span class="avatar-title bg-info-subtle text-info rounded-circle">
+                      <i class="fs-24 ti ti-upload"></i>
+                    </span>
+                  </div>
+                  <h5 class="mb-2">No Import History</h5>
+                  <p class="text-muted mb-3">Upload your first CSV or Excel file to get started</p>
+                  <%= link_to new_admin_organization_import_job_path(@organization),
+                              class: 'btn btn-danger' do %>
+                    <i class="ti ti-plus me-1"></i> Start Import
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <% if @import_jobs.any? %>
+      <div class="card-footer border-0">
+        <div class="d-flex justify-content-between align-items-center">
+          <small class="text-muted">Showing <%= @import_jobs.count %> import(s)</small>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

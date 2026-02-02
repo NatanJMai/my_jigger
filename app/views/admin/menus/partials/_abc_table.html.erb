@@ -4,18 +4,30 @@
     <tr class="text-uppercase fs-xxs">
       <th class="ps-3" data-table-sort="item">Item</th>
       <th data-table-sort="category">Category</th>
-      <th data-table-sort="sales">Sales ($)</th>
+      <th data-table-sort="sales">Sales (BRL)</th>
       <th data-table-sort="abc">ABC</th>
     </tr>
     </thead>
 
     <tbody id="abc-table-list">
     <% items.sort_by { |item| -item.total_value }.each do |item| %>
-      <tr class="<%= item.get_abc_class %>">
-        <td class="ps-3"><%= item.name %></td>
-        <td><%= item.category&.decorate&.name %></td>
+      <%
+        abc_class = case item.abc_category
+                    when 'A' then 'table-success'
+                    when 'B' then 'table-warning'
+                    when 'C' then 'table-danger'
+                    else ''
+                    end
+      %>
+      <tr class="<%= abc_class %>">
+        <td class="ps-3 fw-medium"><%= item.name %></td>
+        <td><%= item.category&.decorate&.name || '-' %></td>
         <td><%= humanized_money_with_symbol Money.new(item.total_orders(attribute: :total_amount_cents)) %></td>
-        <td class="fw-bold"><%= item.get_abc_category %></td>
+        <td>
+          <span class="badge fs-sm bg-<%= item.abc_category == 'A' ? 'success' : item.abc_category == 'B' ? 'warning' : 'danger' %>-subtle text-<%= item.abc_category == 'A' ? 'success' : item.abc_category == 'B' ? 'warning' : 'danger' %>">
+            <%= item.abc_category || '-' %>
+          </span>
+        </td>
       </tr>
     <% end %>
     </tbody>
@@ -23,8 +35,24 @@
 </div>
 
 <div class="card-footer border-0">
-  <div class="d-flex justify-content-between align-items-center">
-    <div data-table-pagination-info="abc-items"></div>
-    <div data-table-pagination=""></div>
+  <div class="row g-3">
+    <div class="col-md-4">
+      <div class="d-flex align-items-center">
+        <span class="badge bg-success-subtle text-success me-2">A</span>
+        <small class="text-muted">Top 70% revenue (focus items)</small>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="d-flex align-items-center">
+        <span class="badge bg-warning-subtle text-warning me-2">B</span>
+        <small class="text-muted">Next 20% revenue (supporting)</small>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="d-flex align-items-center">
+        <span class="badge bg-danger-subtle text-danger me-2">C</span>
+        <small class="text-muted">Bottom 10% revenue (low impact)</small>
+      </div>
+    </div>
   </div>
 </div>

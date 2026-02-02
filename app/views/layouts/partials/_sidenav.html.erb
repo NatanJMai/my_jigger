@@ -85,7 +85,7 @@
         </a>
       </li>
 
-      <% if @organization.persisted? %>
+      <% if @organization&.persisted? %>
         <li class="side-nav-title mt-2" data-lang="menu-title"><%= @organization %></li>
         <li class="side-nav-item">
           <a class="side-nav-link" href="<%= admin_organization_menus_path(@organization) %> ">

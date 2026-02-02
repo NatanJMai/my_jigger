@@ -9,12 +9,12 @@
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <h5 title="Number of Orders">Orders</h5>
-                <p class="mb-0 fs-lg"><i class="ti ti-info-hexagon-filled text-muted"></i></p>
+                <p class="mb-0 fs-lg"><i class="ti ti-shopping-cart text-muted"></i></p>
               </div>
               <div class="d-flex align-items-center gap-2 my-2">
                 <div class="avatar-md flex-shrink-0">
                   <span class="avatar-title text-bg-success bg-opacity-90 rounded-circle fs-22">
-                  <i class="ti ti-shopping-cart"></i>
+                    <i class="ti ti-shopping-cart"></i>
                   </span>
                 </div>
                 <h3 class="mb-0"><%= menu.total_item_orders(:quantity) %></h3>
@@ -22,7 +22,6 @@
               <p class="mb-0">
                 <span class="text-success"><i class="ti ti-point-filled"></i></span>
                 <span class="text-nowrap text-muted">Items sold</span>
-                <span class="float-end"><b></b></span>
               </p>
             </div>
           </div>
@@ -32,12 +31,12 @@
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <h5 title="Revenue Earned">Revenue</h5>
-                <p class="mb-0 fs-lg"><i class="ti ti-info-hexagon-filled text-muted"></i></p>
+                <p class="mb-0 fs-lg"><i class="ti ti-currency-dollar text-muted"></i></p>
               </div>
               <div class="d-flex align-items-center gap-2 my-2">
                 <div class="avatar-md flex-shrink-0">
                   <span class="avatar-title text-bg-warning bg-opacity-90 rounded-circle fs-22">
-                  <i class="ti ti-currency-dollar"></i>
+                    <i class="ti ti-currency-dollar"></i>
                   </span>
                 </div>
 
@@ -51,9 +50,8 @@
                 <h3 class="mb-0"><%= humanized_money_with_symbol Money.new(twelve_month_revenue) %></h3>
               </div>
               <p class="mb-0">
-                <span class="text-primary"><i class="ti ti-point-filled"></i></span>
-                <span class="text-nowrap text-muted">Total Revenue</span>
-                <span class="float-end"><b></b></span>
+                <span class="text-warning"><i class="ti ti-point-filled"></i></span>
+                <span class="text-nowrap text-muted">Total Revenue (BRL)</span>
               </p>
             </div>
           </div>
@@ -62,21 +60,20 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between">
-                <h5 title="Seller Ratings">The Best Day</h5>
-                <p class="mb-0 fs-lg"><i class="ti ti-info-hexagon-filled text-muted"></i></p>
+                <h5 title="Top Selling Item">Top Item</h5>
+                <p class="mb-0 fs-lg"><i class="ti ti-star text-muted"></i></p>
               </div>
               <div class="d-flex align-items-center gap-2 my-2">
                 <div class="avatar-md flex-shrink-0">
                   <span class="avatar-title text-bg-info bg-opacity-90 rounded-circle fs-22">
-                  <i class="ti ti-star"></i>
+                    <i class="ti ti-star"></i>
                   </span>
                 </div>
-                <h3 class="mb-0"><%= items.first&.best_day_label %></h3>
+                <h3 class="mb-0 fs-6"><%= items.order_items.joins(:order).group(:item_id).sum(:quantity).max_by { |k, v| v }&.first&.name || 'N/A' %></h3>
               </div>
               <p class="mb-0">
                 <span class="text-info"><i class="ti ti-point-filled"></i></span>
-                <span class="text-nowrap text-muted">$ Total</span>
-                <span class="float-end"><b>53</b></span>
+                <span class="text-nowrap text-muted">Best seller</span>
               </p>
             </div>
           </div>
@@ -85,50 +82,71 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between">
-                <h5 title="Total Products">Products</h5>
-                <p class="mb-0 fs-lg"><i class="ti ti-info-hexagon-filled text-muted"></i></p>
+                <h5 title="Total Items">Menu Items</h5>
+                <p class="mb-0 fs-lg"><i class="ti ti-box text-muted"></i></p>
               </div>
               <div class="d-flex align-items-center gap-2 my-2">
                 <div class="avatar-md flex-shrink-0">
                   <span class="avatar-title text-bg-secondary bg-opacity-90 rounded-circle fs-22">
-                  <i class="ti ti-box"></i>
+                    <i class="ti ti-box"></i>
                   </span>
                 </div>
                 <h3 class="mb-0"><%= menu.items.count %></h3>
               </div>
               <p class="mb-0">
                 <span class="text-secondary"><i class="ti ti-point-filled"></i></span>
-                <span class="text-nowrap text-muted">Total Categories</span>
-                <span class="float-end"><b><%= menu.categories.count %></b></span>
+                <span class="text-nowrap text-muted"><%= menu.categories.count %> categories</span>
               </p>
             </div>
           </div>
         </div>
-      </div><!-- end row -->
+      </div>
 
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">Seller Overview</h4>
+      <div class="row g-3 mt-2">
+        <div class="col-xl-8">
+          <div class="card h-100">
+            <div class="card-header bg-white">
+              <h5 class="card-title mb-0">
+                <i class="ti ti-chart-line me-2"></i>Sales Performance
+              </h5>
+            </div>
+            <div class="card-body">
+              <%= sales_performance_by_menu(@menu) %>
+            </div>
+          </div>
         </div>
-        <div class="card-body">
-          <div
-            id="seller-revenue"
-            class="apex-charts"
-            data-chart-endpoint="<%= seller_overview_performance_admin_menu_charts_path(@menu) %>">
-
-            <div id="seller-revenue-loading" class="text-center text-muted p-5">Loading seller overview data...</div>
+        <div class="col-xl-4">
+          <div class="card h-100">
+            <div class="card-header bg-white">
+              <h5 class="card-title mb-0">
+                <i class="ti ti-chart-pie me-2"></i>Sales by Category
+              </h5>
+            </div>
+            <div class="card-body">
+              <%= categories_sales_pie(@menu) %>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
-        <%= render partial: 'admin/menus/partials/item_list' %>
-      </div><!-- end row -->
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header bg-white">
+              <h5 class="card-title mb-0">
+                <i class="ti ti-list me-2"></i>Menu Items
+              </h5>
+            </div>
+            <div class="card-body p-0">
+              <%= render partial: 'admin/menus/partials/item_list', locals: { items: items } %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div> <!-- end row-->
+  </div>
 </div>
 
 <% content_for :javascript do %>
   <%= vite_javascript_tag 'js/pages/custom-table.js' %>
-  <%= vite_javascript_tag 'js/pages/ecommerce-seller-details.js' %>
 <% end %>

@@ -1,0 +1,55 @@
+<div class="row g-4 mb-4">
+  <div class="col-md-4">
+    <div class="card border-success">
+      <div class="card-body text-center">
+        <h6 class="text-muted text-uppercase fs-xs mb-2">Category A</h6>
+        <h2 class="fw-bold text-success mb-0"><%= items.select { |i| i.abc_category == 'A' }.count %></h2>
+        <small class="text-muted">Focus Items (70% revenue)</small>
+        <div class="mt-2">
+          <% items.select { |i| i.abc_category == 'A' }.first(3).each do |item| %>
+            <span class="badge bg-success-subtle text-success me-1 mb-1"><%= item.name %></span>
+          <% end %>
+          <% if items.select { |i| i.abc_category == 'A' }.count > 3 %>
+            <span class="badge bg-secondary-subtle text-secondary">+<%= items.select { |i| i.abc_category == 'A' }.count - 3 %> more</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card border-warning">
+      <div class="card-body text-center">
+        <h6 class="text-muted text-uppercase fs-xs mb-2">Category B</h6>
+        <h2 class="fw-bold text-warning mb-0"><%= items.select { |i| i.abc_category == 'B' }.count %></h2>
+        <small class="text-muted">Supporting Items (20% revenue)</small>
+        <div class="mt-2">
+          <% items.select { |i| i.abc_category == 'B' }.first(3).each do |item| %>
+            <span class="badge bg-warning-subtle text-warning me-1 mb-1"><%= item.name %></span>
+          <% end %>
+          <% if items.select { |i| i.abc_category == 'B' }.count > 3 %>
+            <span class="badge bg-secondary-subtle text-secondary">+<%= items.select { |i| i.abc_category == 'B' }.count - 3 %> more</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card border-danger">
+      <div class="card-body text-center">
+        <h6 class="text-muted text-uppercase fs-xs mb-2">Category C</h6>
+        <h2 class="fw-bold text-danger mb-0"><%= items.select { |i| i.abc_category == 'C' }.count %></h2>
+        <small class="text-muted">Low Impact Items (10% revenue)</small>
+        <div class="mt-2">
+          <% items.select { |i| i.abc_category == 'C' }.first(3).each do |item| %>
+            <span class="badge bg-danger-subtle text-danger me-1 mb-1"><%= item.name %></span>
+          <% end %>
+          <% if items.select { |i| i.abc_category == 'C' }.count > 3 %>
+            <span class="badge bg-secondary-subtle text-secondary">+<%= items.select { |i| i.abc_category == 'C' }.count - 3 %> more</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
