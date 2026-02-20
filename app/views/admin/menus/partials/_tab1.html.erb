@@ -69,7 +69,7 @@
                     <i class="ti ti-star"></i>
                   </span>
                 </div>
-                <h3 class="mb-0 fs-6"><%= items.order_items.joins(:order).group(:item_id).sum(:quantity).max_by { |k, v| v }&.first&.name || 'N/A' %></h3>
+                <h3 class="mb-0 fs-6"><%#= items.joins(:order_items).group(:item_id).sum('order_items.quantity').max_by { |k, v| v }&.name || 'N/A' %></h3>
               </div>
               <p class="mb-0">
                 <span class="text-info"><i class="ti ti-point-filled"></i></span>

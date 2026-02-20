@@ -57,7 +57,7 @@ class Admin::MenusController < AdminController
 
     # AI Assistant
     @recommendation_topics = AiRecommendationTopic.all.order(:name)
-    @ai_prompt_logs = @menu.ai_prompt_logs
+    @pagy, @ai_prompt_logs = pagy(@menu.ai_prompt_logs.order(date: :desc).decorate, items: 10)
   end
 
   # GET /menus/new

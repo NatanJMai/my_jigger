@@ -48,7 +48,7 @@
               <h6 class="card-title mb-0 fw-bold">Recent Recommendations</h6>
             </div>
             <div class="card-body p-0">
-              <%= render partial: 'admin/ai/ai_recommendations/table', locals: { ai_prompt_logs: ai_prompt_logs, topic_id: nil } %>
+              <%= render partial: 'admin/ai/ai_recommendations/table', locals: { ai_prompt_logs: @ai_prompt_logs, topic_id: nil, pagy: @pagy } %>
             </div>
           </div>
         </div>

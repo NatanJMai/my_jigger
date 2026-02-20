@@ -1,6 +1,10 @@
-<% @title = model.persisted? ? "Edit Item" : "Create New Item" %>
+<% 
+  # Extract the actual model instance from the route array if needed
+  item = model.is_a?(Array) ? model.last : model
+  @title = item.persisted? ? "Edit Item" : "Create New Item" 
+%>
 
-<%= render 'layouts/partials/page_title', subtitle: "Cost Management", title: model.persisted? ? "Edit Item" : "Add Item" %>
+<%= render 'layouts/partials/page_title', subtitle: "Cost Management", title: item.persisted? ? "Edit Item" : "Add Item" %>
 
 <%= simple_form_for model, html: { id: 'add-item-form' } do |f| %>
 
@@ -54,7 +58,7 @@
             </div>
             <div class="card-body">
               <div class="row">
-                <% if f.object.persisted? && f.object.image.present? %>
+                <% if item.persisted? && f.object.image.present? %>
                   <div class="col-6">
                     <div class="mb-4 p-3 border rounded bg-light">
                       <h5 class="mb-3 text-success">Current Image:</h5>
@@ -191,7 +195,7 @@
               </div>
             </div>
           </div>
-          <% if model.persisted? %>
+          <% if item.persisted? %>
           <div class="card">
             <div class="card-header d-block p-3">
               <h4 class="card-title mb-1">Recipe & Costs</h4>
@@ -200,11 +204,11 @@
             <div class="card-body">
               <div class="d-grid gap-2">
                 <%= link_to "Add Recipe / Cost Breakdown",
-                            edit_admin_item_datasheet_path(model, model.datasheet || :new),
+                            admin_item_datasheet_path(item),
                             class: "btn btn-primary" %>
-                <% if model.datasheet.present? %>
+                <% if item.datasheet.present? %>
                   <small class="text-muted">
-                    Current CMV: <%= number_to_percentage(model.cmv, precision: 1) %>
+                    Current CMV: <%= number_to_percentage(item.cmv, precision: 1) %>
                   </small>
                 <% else %>
                   <small class="text-muted">

@@ -4,11 +4,17 @@
       <div class="d-flex justify-content-between align-items-center rounded border-light p-2 bg-light-subtle border">
         <div class="d-flex justify-content-start align-items-center gap-3">
           <div class="avatar avatar-xl">
-            <img alt="avatar-store" class="img-fluid rounded-circle" src="<%= vite_asset_path 'images/sellers/1.png' %>"/>
+            <% if menu.organization.image.present? %>
+              <%= image_tag menu.organization.image.url, alt: "organization-image", class: "img-fluid rounded-circle" %>
+            <% else %>
+              <div class="img-fluid rounded-circle bg-primary d-flex align-items-center justify-content-center text-white fw-bold" style="width: 50px; height: 50px; font-size: 24px;">
+                <%= menu.organization.name[0..1].upcase %>
+              </div>
+            <% end %>
           </div>
           <div>
             <h5 class="text-nowrap fw-bold mb-1"><%= menu.name %></h5>
-            <p class="text-muted mb-0"><%= menu.released_at if menu.released_at %></p>
+            <p class="text-muted mb-0"><%= menu.release_date&.strftime('%B %d, %Y') if menu.release_date %></p>
           </div>
         </div>
         <%# Edit Button %>
@@ -19,42 +25,61 @@
         </div>
       </div>
       <div class="mt-3">
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <div class="avatar-sm text-bg-light d-flex align-items-center justify-content-center rounded">
-            <i class="ti ti-user fs-xl"></i>
+        <% if menu.organization.manager.present? %>
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <div class="avatar-sm text-bg-light d-flex align-items-center justify-content-center rounded">
+              <i class="ti ti-user fs-xl"></i>
+            </div>
+            <p class="mb-0 fs-sm">Owner: <span class="fw-semibold"><%= menu.organization.manager.display_name %></span></p>
           </div>
-          <p class="mb-0 fs-sm">Owner: <span class="fw-semibold">Emily Carter</span></p>
-        </div>
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
-            <i class="ti ti-briefcase fs-xl"></i>
+        <% end %>
+        <% if menu.organization.created_at.present? %>
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+              <i class="ti ti-calendar-event fs-xl"></i>
+            </div>
+            <p class="mb-0 fs-sm">Founded: <span class="fw-semibold"><%= menu.organization.created_at.year %></span></p>
           </div>
-          <p class="mb-0 fs-sm">Business Type: <span class="fw-semibold">Premium Apple Reseller</span></p>
-        </div>
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
-            <i class="ti ti-calendar-event fs-xl"></i>
+        <% end %>
+        <% if menu.organization.address.present? %>
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+              <i class="ti ti-map-pin fs-xl"></i>
+            </div>
+            <p class="mb-0 fs-sm">Location: <span class="fw-semibold"><%= menu.organization.address %></span></p>
           </div>
-          <p class="mb-0 fs-sm">Founded: <span class="fw-semibold">2017</span></p>
-        </div>
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
-            <i class="ti ti-map-pin fs-xl"></i>
+        <% end %>
+        <% if menu.organization.email.present? %>
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+              <i class="ti ti-mail fs-xl"></i>
+            </div>
+            <p class="mb-0 fs-sm">Email: 
+              <a class="text-primary fw-semibold" href="mailto:<%= menu.organization.email %>"><%= menu.organization.email %></a>
+            </p>
           </div>
-          <p class="mb-0 fs-sm">Location: <span class="fw-semibold">San Francisco, CA</span></p>
-        </div>
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
-            <i class="ti ti-mail fs-xl"></i>
+        <% end %>
+        <% if menu.organization.site.present? %>
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+              <i class="ti ti-link fs-xl"></i>
+            </div>
+            <p class="mb-0 fs-sm">Website:
+              <% website_url = menu.organization.site.start_with?('http') ? menu.organization.site : "https://#{menu.organization.site}" %>
+              <a class="text-primary fw-semibold" href="<%= website_url %>" target="_blank" rel="noopener noreferrer"><%= menu.organization.site %></a>
+            </p>
           </div>
-        </div>
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
-            <i class="ti ti-link fs-xl"></i>
+        <% end %>
+        <% if menu.organization.phone.present? %>
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+              <i class="ti ti-phone fs-xl"></i>
+            </div>
+            <p class="mb-0 fs-sm">Phone: 
+              <a class="text-primary fw-semibold" href="tel:<%= menu.organization.phone %>"><%= menu.organization.phone %></a>
+            </p>
           </div>
-          <p class="mb-0 fs-sm">Website:
-            <a class="text-primary fw-semibold" href="https://www.machubstore.com">www.machubstore.com</a></p>
-        </div>
+        <% end %>
       </div>
     </div>
     <div class="card-body border-top border-dashed">

@@ -16,14 +16,14 @@ class Admin::Ai::AiPromptLogsController < ApplicationController
   def by_topic
     topic_id = params[:ai_recommendation_topic_id]
     @ai_prompt_logs = @organization.ai_prompt_logs.by_prompt_type(topic_id)
-    @pagy, @ai_prompt_logs = pagy(@ai_prompt_logs.decorate)
+    @pagy, @ai_prompt_logs = pagy(@ai_prompt_logs.decorate, items: 10)
 
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(
           'ai-recommendations',
           partial: 'admin/ai/ai_recommendations/table',
-          locals: { ai_prompt_logs: @ai_prompt_logs, topic_id: topic_id }
+          locals: { ai_prompt_logs: @ai_prompt_logs, topic_id: topic_id, pagy: @pagy }
         )
       end
     end
@@ -41,17 +41,18 @@ class Admin::Ai::AiPromptLogsController < ApplicationController
       topic_id = params[:ai_recommendation_topic_id]
       
       if topic_id.present?
-        @ai_prompt_logs = menu.ai_prompt_logs.by_prompt_type(topic_id).decorate
+        @ai_prompt_logs = menu.ai_prompt_logs.by_prompt_type(topic_id).order(date: :desc)
       else
-        @ai_prompt_logs = menu.ai_prompt_logs.decorate
+        @ai_prompt_logs = menu.ai_prompt_logs.order(date: :desc)
       end
+      @pagy, @ai_prompt_logs = pagy(@ai_prompt_logs.decorate, items: 10)
 
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: turbo_stream.replace(
             'ai-recommendations',
             partial: 'admin/ai/ai_recommendations/table',
-            locals: { ai_prompt_logs: @ai_prompt_logs, topic_id: topic_id }
+            locals: { ai_prompt_logs: @ai_prompt_logs, topic_id: topic_id, pagy: @pagy }
           )
         end
         format.json { render json: { status: 'success', feedback: feedback_value } }

@@ -24,26 +24,35 @@ if (typeof Quill != 'undefined') {
     icons['blockquote'] = '<i class="ti ti-blockquote fs-lg"></i>'
 
 
-    // Quill editor
-    const snowEditor = document.getElementById('snow-editor')
-    if (snowEditor) {
-        new Quill(snowEditor, {
-            theme: 'snow',
-            modules: {
-                'toolbar': [
-                    ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block', {'list': 'bullet'}, 'link', 'image']
-                ]
-            }
-        });
+    // Quill editor initialization function
+    function initQuillEditors() {
+        // Quill editor
+        const snowEditor = document.getElementById('snow-editor')
+        if (snowEditor && !snowEditor.dataset.quillInitialized) {
+            new Quill(snowEditor, {
+                theme: 'snow',
+                modules: {
+                    'toolbar': [
+                        ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block', {'list': 'bullet'}, 'link', 'image']
+                    ]
+                }
+            });
+            snowEditor.dataset.quillInitialized = 'true';
+        }
+
+        // Bubble theme
+        const bubbleEditor = document.getElementById('bubble-editor')
+        if (bubbleEditor && !bubbleEditor.dataset.quillInitialized) {
+            new Quill('#bubble-editor', {
+                theme: 'bubble'
+            });
+            bubbleEditor.dataset.quillInitialized = 'true';
+        }
     }
 
-    // Bubble theme
-    const bubbleEditor = document.getElementById('bubble-editor')
-    if (bubbleEditor) {
-        new Quill('#bubble-editor', {
-            theme: 'bubble'
-        });
-    }
+    // Initialize Quill editors on both DOMContentLoaded and turbo:load
+    document.addEventListener("DOMContentLoaded", initQuillEditors);
+    document.addEventListener("turbo:load", initQuillEditors);
 }
 
 
@@ -92,6 +101,10 @@ class FileUpload {
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function initializeFileUpload() {
     new FileUpload().init();
-})
+}
+
+// Initialize on both DOMContentLoaded and turbo:load
+document.addEventListener("DOMContentLoaded", initializeFileUpload);
+document.addEventListener("turbo:load", initializeFileUpload);

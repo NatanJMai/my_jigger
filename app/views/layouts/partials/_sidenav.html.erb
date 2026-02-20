@@ -3,12 +3,12 @@
   <!-- Brand Logo -->
   <a class="logo" href="<%#= url_for(:controller => 'dashboard', :action => 'index') %>">
 <span class="logo logo-light">
-<span class="logo-lg"><img alt="logo" src="<%= vite_asset_path 'images/logo.png' %>"/></span>
-<span class="logo-sm"><img alt="small logo" src="<%= vite_asset_path 'images/logo-sm.png' %>"/></span>
+<span class="logo-lg">MyJigger</span>
+<span class="logo-sm">MyJigger</span>
 </span>
     <span class="logo logo-dark">
-<span class="logo-lg"><img alt="dark logo" src="<%= vite_asset_path 'images/logo-black.png' %>"/></span>
-<span class="logo-sm"><img alt="small logo" src="<%= vite_asset_path 'images/logo-sm.png' %>"/></span>
+<span class="logo-lg">MyJigger</span>
+<span class="logo-sm">MyJigger</span>
 </span>
   </a>
   <!-- Sidebar Hover Menu Toggle Button -->
@@ -21,15 +21,45 @@
   </button>
   <div class="scrollbar" data-simplebar="">
     <!-- User -->
-    <div class="sidenav-user">
-      <div class="d-flex justify-content-between align-items-center">
-        <div>
-          <a class="link-reset" href='<%#= url_for(:controller => 'users', :action => 'profile') %>'>
-            <img alt="user-image" class="rounded-circle mb-2 avatar-md" src="<%= vite_asset_path 'images/users/user-3.jpg' %>"/>
-            <span class="sidenav-user-name fw-bold">Geneva K.</span>
-            <span class="fs-12 fw-semibold" data-lang="user-role">Art Director</span>
-          </a>
-        </div>
+    <% if current_user.present? %>
+      <div class="sidenav-user">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <a class="link-reset" href='<%#= url_for(:controller => 'users', :action => 'profile') %>'>
+              <% 
+                # Determine user role
+                user_role = if @organization.present?
+                  if @organization.manager_id == current_user.id
+                    "Owner"
+                  elsif current_user.employers.include?(@organization)
+                    "Employee"
+                  else
+                    "User"
+                  end
+                elsif current_user.consultant?
+                  "Consultant"
+                else
+                  "User"
+                end
+                
+                # Get user initials for avatar fallback
+                initials = if current_user.first_name.present? && current_user.last_name.present?
+                  "#{current_user.first_name[0]}#{current_user.last_name[0]}"
+                elsif current_user.first_name.present?
+                  current_user.first_name[0..1].upcase
+                elsif current_user.email.present?
+                  current_user.email[0..1].upcase
+                else
+                  "U"
+                end
+              %>
+              <div class="rounded-circle mb-2 avatar-md d-inline-flex align-items-center justify-content-center bg-primary text-white fw-bold" style="width: 48px; height: 48px; font-size: 18px;">
+                <%= initials %>
+              </div>
+              <span class="sidenav-user-name fw-bold d-block"><%= current_user.display_name.presence || current_user.email %></span>
+              <span class="fs-12 fw-semibold" data-lang="user-role"><%= user_role %></span>
+            </a>
+          </div>
         <div>
           <a aria-expanded="false" aria-haspopup="false" class="dropdown-toggle drop-arrow-none link-reset sidenav-user-set-icon" data-bs-offset="0,12" data-bs-toggle="dropdown" href="#!">
             <i class="ti ti-settings fs-24 align-middle ms-1"></i>
@@ -67,14 +97,15 @@
               <span class="align-middle">Lock Screen</span>
             </a>
             <!-- Logout -->
-            <a class="dropdown-item fw-semibold" href="javascript:void(0);">
+            <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item fw-semibold" do %>
               <i class="ti ti-logout-2 me-2 fs-17 align-middle"></i>
               <span class="align-middle">Log Out</span>
-            </a>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
+    <% end %>
     <!--- Sidenav Menu -->
     <ul class="side-nav">
       <li class="side-nav-title" data-lang="apps-title">Organisations</li>

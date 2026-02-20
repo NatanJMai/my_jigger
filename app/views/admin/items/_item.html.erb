@@ -47,7 +47,7 @@
   </td>
   <td>
     <div class="d-flex justify-content-center gap-1" onclick="event.stopPropagation()">
-      <%= link_to edit_admin_item_datasheet_path(item, item.datasheet || :new), class: 'btn btn-default btn-icon btn-sm rounded-circle', title: 'Recipe & Costs' do %>
+      <%= link_to admin_item_datasheet_path(item), class: 'btn btn-default btn-icon btn-sm rounded-circle', title: 'Recipe & Costs' do %>
         <i class="ti ti-file-spreadsheet fs-lg"></i>
       <% end %>
 

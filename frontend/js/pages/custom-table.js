@@ -611,6 +611,14 @@ class CustomTable {
     const tableElements = document.querySelectorAll(this.tableSelector);
 
     tableElements.forEach((table) => {
+      // Skip tables that have already been initialized
+      if (table.dataset.tableInitialized) {
+        return;
+      }
+      
+      // Mark table as initialized
+      table.dataset.tableInitialized = 'true';
+      
       const tableInstance = new Table(table, this);
       this.tables.push(tableInstance);
       tableInstance.init();
@@ -619,6 +627,20 @@ class CustomTable {
 
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  new CustomTable()
-})
+// Store the CustomTable instance
+let customTableInstance = null;
+
+function initializeCustomTable() {
+  // Create or reuse CustomTable instance
+  // The init() method will skip already-initialized tables
+  if (!customTableInstance) {
+    customTableInstance = new CustomTable();
+  } else {
+    // Reinitialize to pick up new tables (init() will skip existing ones)
+    customTableInstance.init();
+  }
+}
+
+// Initialize on both DOMContentLoaded and turbo:load
+document.addEventListener("DOMContentLoaded", initializeCustomTable);
+document.addEventListener("turbo:load", initializeCustomTable);

@@ -17,4 +17,6 @@ class User < ApplicationRecord
   def display_name
     "#{first_name} #{last_name}"
   end
+
+  alias to_s display_name
 end
