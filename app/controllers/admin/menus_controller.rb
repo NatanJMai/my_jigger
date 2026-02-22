@@ -57,7 +57,47 @@ class Admin::MenusController < AdminController
 
     # AI Assistant
     @recommendation_topics = AiRecommendationTopic.all.order(:name)
-    @pagy, @ai_prompt_logs = pagy(@menu.ai_prompt_logs.order(date: :desc).decorate, items: 10)
+    topic_id = params[:ai_recommendation_topic_id]
+    
+    # Calculate recommendation counts per topic
+    @topic_counts = {}
+    @recommendation_topics.each do |topic|
+      topic_logs = @menu.ai_prompt_logs.by_prompt_type(topic.id).decorate
+      count = 0
+      topic_logs.each do |log|
+        items = log.display_by_item
+        count += items.is_a?(Array) ? items.size : 0
+      end
+      @topic_counts[topic.id] = count
+    end
+    
+    # Get all logs (not paginated yet)
+    if topic_id.present?
+      all_logs = @menu.ai_prompt_logs.by_prompt_type(topic_id).order(date: :desc).decorate
+    else
+      all_logs = @menu.ai_prompt_logs.order(date: :desc).decorate
+    end
+    
+    # Expand all items from all logs into a flat list with log reference
+    all_recommendations = []
+    all_logs.each do |log|
+      items = log.display_by_item
+      if items.present? && items.is_a?(Array)
+        items.each_with_index do |item, index|
+          all_recommendations << {
+            log: log,
+            item: item,
+            index: index
+          }
+        end
+      end
+    end
+    
+    # Paginate the flat list of recommendations
+    @pagy, @paginated_recommendations = pagy_array(all_recommendations, items: 10)
+    
+    # Keep all logs for reference (needed for the view)
+    @ai_prompt_logs = all_logs
   end
 
   # GET /menus/new

@@ -22,7 +22,7 @@
     </div>
   </td>
 
-  <td data-column="category"><%= item.category.name %></td>
+  <td data-column="category"><%= item.category&.name %></td>
   <td data-column="cmv">
     <% cmv_value = item.cmv.present? ? item.cmv.round(1) : 0 %>
     <% cmv_class = case cmv_value

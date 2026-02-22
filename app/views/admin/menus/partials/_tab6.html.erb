@@ -25,11 +25,11 @@
 
               <div class="col-md-8">
                 <div class="mb-3">
-                  <%= f.input :files, as: :file, label: 'Select File',
+                  <%= f.input :files, as: :file, label: 'Select Files',
                               hint: 'CSV or Excel files only. Max 50MB.',
                               input_html: {
                                 class: 'form-control',
-                                multiple: false,
+                                multiple: true,
                                 accept: '.csv,.xlsx,.xls',
                                 onchange: 'validateImportFile(this)'
                               },

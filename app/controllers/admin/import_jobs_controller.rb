@@ -1,7 +1,7 @@
-require "pdf-reader"
+require 'pdf-reader'
 
 class Admin::ImportJobsController < AdminController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
   load_and_authorize_resource :organization
   load_and_authorize_resource :menu
 
@@ -61,17 +61,17 @@ class Admin::ImportJobsController < AdminController
 
     if success_count.positive?
       respond_to do |format|
-        format.html {
+        format.html do
           redirect_to admin_organization_import_jobs_path(current_organization),
                       notice: "#{success_count} document(s) uploaded successfully and processing started."
-        }
+        end
       end
     elsif uploaded_files.empty?
       respond_to do |format|
-        format.html {
+        format.html do
           flash.now[:alert] = 'No files were selected for upload.'
           render :new, status: :unprocessable_entity
-        }
+        end
       end
     else
       error_message = if success_count.zero? && uploaded_files.any?
@@ -81,10 +81,10 @@ class Admin::ImportJobsController < AdminController
                       end
 
       respond_to do |format|
-        format.html {
+        format.html do
           flash.now[:alert] = error_message
           render :new, status: :unprocessable_entity
-        }
+        end
       end
     end
   end
@@ -93,7 +93,9 @@ class Admin::ImportJobsController < AdminController
   def update
     respond_to do |format|
       if @menu.update(menu_params)
-        format.html { redirect_to admin_organization_menus_path(@organization), notice: 'Menu was successfully updated.' }
+        format.html do
+          redirect_to admin_organization_menus_path(@organization), notice: 'Menu was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @menu }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -106,20 +108,20 @@ class Admin::ImportJobsController < AdminController
   def download_template
     template_type = params[:template_type] || 'item'
     menu_id = params[:menu_id]
-    
+
     # Load menu if menu_id is provided (skip authorization for template download)
     @menu = @organization.menus.find_by(id: menu_id) if menu_id.present?
-    
+
     require 'write_xlsx'
     require 'stringio'
-    
+
     # Create a StringIO buffer to hold the Excel file
     buffer = StringIO.new
-    
+
     # Create a new workbook
     workbook = WriteXLSX.new(buffer)
     worksheet = workbook.add_worksheet
-    
+
     case template_type
     when 'item'
       generate_item_template(worksheet)
@@ -128,16 +130,21 @@ class Admin::ImportJobsController < AdminController
       generate_order_template(worksheet)
       filename = 'sales_orders_template.xlsx'
     else
-      redirect_path = @menu ? admin_organization_menu_path(@organization, @menu) : admin_organization_import_jobs_path(@organization)
+      redirect_path = if @menu
+                        admin_organization_menu_path(@organization,
+                                                     @menu)
+                      else
+                        admin_organization_import_jobs_path(@organization)
+                      end
       redirect_to redirect_path, alert: 'Invalid template type.'
       return
     end
-    
+
     # Close the workbook to finalize the file
     workbook.close
-    
+
     # Send the file data
-    send_data buffer.string, 
+    send_data buffer.string,
               filename: filename,
               type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
               disposition: 'attachment'
@@ -146,7 +153,9 @@ class Admin::ImportJobsController < AdminController
   private
 
   def import_job_file_params
-    params.require(:import_job).permit(files: [])
+    files = params[:import_job][:files]
+    files = [files] if files.is_a?(ActionDispatch::Http::UploadedFile)
+    { files: files }
   end
 
   def import_job_params
@@ -161,13 +170,13 @@ class Admin::ImportJobsController < AdminController
     # Row 1: Item name (optional - can be left blank or filled with example)
     worksheet.write(0, 0, 'Item Name')
     worksheet.write(0, 1, 'Example: Daiquiri')
-    
+
     # Row 2: Headers (required)
-    headers = ['Name', 'Volume', 'Unit', 'Cost', 'Quantity']
+    headers = %w[Name Volume Unit Cost Quantity]
     headers.each_with_index do |header, index|
       worksheet.write(1, index, header)
     end
-    
+
     # Row 3: Example data
     example_data = [
       'Lime Juice',
@@ -179,7 +188,7 @@ class Admin::ImportJobsController < AdminController
     example_data.each_with_index do |value, index|
       worksheet.write(2, index, value)
     end
-    
+
     # Add a second example row
     example_data2 = [
       'White Rum',
@@ -196,30 +205,30 @@ class Admin::ImportJobsController < AdminController
   def generate_order_template(worksheet)
     # Row 1: Can be left blank or used for metadata
     worksheet.write(0, 0, 'Order Data')
-    
+
     # Row 2: Headers (required)
     headers = ['Order Nr', 'Product Name', 'Quantity', 'Order Date']
     headers.each_with_index do |header, index|
       worksheet.write(1, index, header)
     end
-    
+
     # Row 3: Example data
-    example_data = [
-      '1001',
-      'Daiquiri',
-      '2',
-      '2024-01-15'
+    example_data = %w[
+      1001
+      Daiquiri
+      2
+      2024-01-15
     ]
     example_data.each_with_index do |value, index|
       worksheet.write(2, index, value)
     end
-    
+
     # Add a second example row
-    example_data2 = [
-      '1001',
-      'Mojito',
-      '2',
-      '2024-01-15'
+    example_data2 = %w[
+      1001
+      Mojito
+      2
+      2024-01-15
     ]
     example_data2.each_with_index do |value, index|
       worksheet.write(3, index, value)

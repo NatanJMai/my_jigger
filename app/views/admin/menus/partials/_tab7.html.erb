@@ -29,15 +29,14 @@
             <div class="card-header bg-transparent border-bottom border-light">
               <h6 class="mb-0 fw-bold">Recommendation Topics</h6>
             </div>
-            <div class="card-body d-flex flex-column gap-2">
-              <% @recommendation_topics.each do |rec_topic| %>
-                <div>
-                  <%= link_to "#{rec_topic.name}",
-                              by_topic_admin_organization_ai_ai_prompt_logs_path(@organization, ai_recommendation_topic_id: rec_topic.id),
-                              class: 'btn btn-outline-secondary w-100 text-start shadow-sm',
-                              data: { turbo_method: :get, turbo_stream: true } %>
-                </div>
-              <% end %>
+            <div id="recommendation-topics" class="card-body d-flex flex-column gap-2">
+              <%= render partial: 'admin/menus/partials/recommendation_topics', 
+                         locals: { 
+                           recommendation_topics: @recommendation_topics,
+                           topic_counts: @topic_counts,
+                           menu: @menu,
+                           organization: @organization
+                         } %>
             </div>
           </div>
         </div>
@@ -48,7 +47,14 @@
               <h6 class="card-title mb-0 fw-bold">Recent Recommendations</h6>
             </div>
             <div class="card-body p-0">
-              <%= render partial: 'admin/ai/ai_recommendations/table', locals: { ai_prompt_logs: @ai_prompt_logs, topic_id: nil, pagy: @pagy } %>
+              <%= render partial: 'admin/ai/ai_recommendations/table', locals: { 
+                ai_prompt_logs: @ai_prompt_logs, 
+                paginated_recommendations: @paginated_recommendations,
+                topic_id: params[:ai_recommendation_topic_id], 
+                pagy: @pagy, 
+                menu: @menu, 
+                organization: @organization 
+              } %>
             </div>
           </div>
         </div>

@@ -1,0 +1,18 @@
+<div class="d-flex flex-column gap-2">
+  <% recommendation_topics.each do |rec_topic| %>
+    <% count = topic_counts[rec_topic.id] || 0 %>
+    <div>
+      <%= link_to by_topic_admin_organization_ai_ai_prompt_logs_path(organization, ai_recommendation_topic_id: rec_topic.id, menu_id: menu.id),
+                  class: 'btn btn-outline-secondary w-100 text-start shadow-sm position-relative',
+                  data: { turbo_method: :get, turbo_stream: true } do %>
+        <span class="d-flex align-items-center justify-content-between w-100">
+          <span><%= rec_topic.name %></span>
+          <% if count > 0 %>
+            <span class="badge bg-primary rounded-pill ms-2"><%= count %></span>
+          <% end %>
+        </span>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+

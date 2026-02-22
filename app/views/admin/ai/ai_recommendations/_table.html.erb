@@ -12,63 +12,171 @@
         </thead>
 
         <tbody id="recommendation-list">
-        <% ai_prompt_logs.each do |log| %>
-          <% items = log.display_by_item %>
-
-          <% if items.present? && items.is_a?(Array) %>
-            <% items.each_with_index do |item, index| %>
-              <tr id="ai_recommendation_<%= log.id %>_<%= index %>" data-id="<%= log.id %>">
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="me-2">
-                      <span class="avatar avatar-xs rounded-circle bg-light text-muted fw-bold fs-xs"><i class="ti ti-robot"></i></span>
-                    </div>
-                    <div class="text-truncate fw-bold">
-                      <%= item.html_safe %>
-                    </div>
+        <% if defined?(paginated_recommendations) && paginated_recommendations.present? %>
+          <% paginated_recommendations.each do |rec| %>
+            <% log = rec[:log] %>
+            <% item = rec[:item] %>
+            <% index = rec[:index] %>
+            <tr id="ai_recommendation_<%= log.id %>_<%= index %>" data-id="<%= log.id %>">
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="me-2">
+                    <span class="avatar avatar-xs rounded-circle bg-light text-muted fw-bold fs-xs"><i class="ti ti-robot"></i></span>
                   </div>
-                </td>
-
-                <td class="text-center">
-                  <div class="d-flex justify-content-center align-items-center gap-1">
-                    <% organization = log.object.menu.organization %>
-                    <% item_feedback = log.object.item_feedback_at(index) %>
-                    <% feedback_liked = item_feedback == 'liked' %>
-                    <% feedback_disliked = item_feedback == 'disliked' %>
-
-                    <%= link_to feedback_admin_organization_ai_ai_prompt_log_path(organization, log, feedback: 'like', item_index: index, ai_recommendation_topic_id: local_assigns[:topic_id]),
-                                title: "Helpful",
-                                method: :post,
-                                data: { turbo_method: :post, turbo_stream: true },
-                                class: "btn btn-default btn-icon btn-sm #{'active bg-success-subtle' if feedback_liked}" do %>
-                      <i class="ti ti-thumb-up fs-lg <%= feedback_liked ? 'text-success' : 'text-muted' %>"></i>
-                    <% end %>
-
-                    <%= link_to feedback_admin_organization_ai_ai_prompt_log_path(organization, log, feedback: 'dislike', item_index: index, ai_recommendation_topic_id: local_assigns[:topic_id]),
-                                title: "Not Helpful",
-                                method: :post,
-                                data: { turbo_method: :post, turbo_stream: true },
-                                class: "btn btn-default btn-icon btn-sm #{'active bg-danger-subtle' if feedback_disliked}" do %>
-                      <i class="ti ti-thumb-down fs-lg <%= feedback_disliked ? 'text-danger' : 'text-muted' %>"></i>
-                    <% end %>
+                  <div class="text-truncate fw-bold">
+                    <%= item.html_safe %>
                   </div>
-                </td>
-              </tr>
+                </div>
+              </td>
+
+              <td class="text-center">
+                <div class="d-flex justify-content-center align-items-center gap-1">
+                  <% organization = log.object.menu.organization %>
+                  <% item_feedback = log.object.item_feedback_at(index) %>
+                  <% feedback_liked = item_feedback == 'liked' %>
+                  <% feedback_disliked = item_feedback == 'disliked' %>
+
+                  <%= link_to feedback_admin_organization_ai_ai_prompt_log_path(organization, log, feedback: 'like', item_index: index, ai_recommendation_topic_id: local_assigns[:topic_id]),
+                              title: "Helpful",
+                              method: :post,
+                              data: { turbo_method: :post, turbo_stream: true },
+                              class: "btn btn-default btn-icon btn-sm #{'active bg-success-subtle' if feedback_liked}" do %>
+                    <i class="ti ti-thumb-up fs-lg <%= feedback_liked ? 'text-success' : 'text-muted' %>"></i>
+                  <% end %>
+
+                  <%= link_to feedback_admin_organization_ai_ai_prompt_log_path(organization, log, feedback: 'dislike', item_index: index, ai_recommendation_topic_id: local_assigns[:topic_id]),
+                              title: "Not Helpful",
+                              method: :post,
+                              data: { turbo_method: :post, turbo_stream: true },
+                              class: "btn btn-default btn-icon btn-sm #{'active bg-danger-subtle' if feedback_disliked}" do %>
+                    <i class="ti ti-thumb-down fs-lg <%= feedback_disliked ? 'text-danger' : 'text-muted' %>"></i>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        <% elsif defined?(ai_prompt_logs) && ai_prompt_logs.present? %>
+          <% ai_prompt_logs.each do |log| %>
+            <% items = log.display_by_item %>
+
+            <% if items.present? && items.is_a?(Array) %>
+              <% items.each_with_index do |item, index| %>
+                <tr id="ai_recommendation_<%= log.id %>_<%= index %>" data-id="<%= log.id %>">
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="me-2">
+                        <span class="avatar avatar-xs rounded-circle bg-light text-muted fw-bold fs-xs"><i class="ti ti-robot"></i></span>
+                      </div>
+                      <div class="text-truncate fw-bold">
+                        <%= item.html_safe %>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center">
+                    <div class="d-flex justify-content-center align-items-center gap-1">
+                      <% organization = log.object.menu.organization %>
+                      <% item_feedback = log.object.item_feedback_at(index) %>
+                      <% feedback_liked = item_feedback == 'liked' %>
+                      <% feedback_disliked = item_feedback == 'disliked' %>
+
+                      <%= link_to feedback_admin_organization_ai_ai_prompt_log_path(organization, log, feedback: 'like', item_index: index, ai_recommendation_topic_id: local_assigns[:topic_id]),
+                                  title: "Helpful",
+                                  method: :post,
+                                  data: { turbo_method: :post, turbo_stream: true },
+                                  class: "btn btn-default btn-icon btn-sm #{'active bg-success-subtle' if feedback_liked}" do %>
+                        <i class="ti ti-thumb-up fs-lg <%= feedback_liked ? 'text-success' : 'text-muted' %>"></i>
+                      <% end %>
+
+                      <%= link_to feedback_admin_organization_ai_ai_prompt_log_path(organization, log, feedback: 'dislike', item_index: index, ai_recommendation_topic_id: local_assigns[:topic_id]),
+                                  title: "Not Helpful",
+                                  method: :post,
+                                  data: { turbo_method: :post, turbo_stream: true },
+                                  class: "btn btn-default btn-icon btn-sm #{'active bg-danger-subtle' if feedback_disliked}" do %>
+                        <i class="ti ti-thumb-down fs-lg <%= feedback_disliked ? 'text-danger' : 'text-muted' %>"></i>
+                      <% end %>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
             <% end %>
           <% end %>
+        <% else %>
+          <tr>
+            <td colspan="2" class="text-center text-muted py-4">No recommendations found</td>
+          </tr>
         <% end %>
         </tbody>
       </table>
     </div>
 
-    <% if defined?(pagy) && pagy.present? %>
+    <% if defined?(pagy) && pagy.present? && pagy.pages > 1 %>
       <div class="card-footer border-0">
         <div class="d-flex justify-content-between align-items-center">
           <div class="text-muted">
             Showing <span class="fw-semibold"><%= pagy.from %></span> to <span class="fw-semibold"><%= pagy.to %></span> of <span class="fw-semibold"><%= pagy.count %></span> recommendations
           </div>
           <div>
-            <%== pagy_nav(pagy) if pagy.pages > 1 %>
+            <% 
+              # Get menu and organization from locals or fallback to first log
+              topic_id = local_assigns[:topic_id]
+              menu = local_assigns[:menu] || (ai_prompt_logs.first&.object&.menu if ai_prompt_logs.any?)
+              organization = local_assigns[:organization] || (menu&.organization if menu)
+            %>
+            <nav aria-label="Recommendations pagination">
+              <ul class="pagination pagination-sm pagination-boxed mb-0 justify-content-center">
+                <% if pagy.prev %>
+                  <li class="page-item">
+                    <%= link_to admin_menu_path(menu, page: pagy.prev, ai_recommendation_topic_id: topic_id),
+                                class: "page-link",
+                                data: { turbo_frame: 'ai-recommendations' } do %>
+                      <i class="ti ti-chevron-left"></i>
+                    <% end %>
+                  </li>
+                <% else %>
+                  <li class="page-item disabled">
+                    <span class="page-link"><i class="ti ti-chevron-left"></i></span>
+                  </li>
+                <% end %>
+                
+                <% pagy.series.each do |item| %>
+                  <% if item.is_a?(Integer) %>
+                    <li class="page-item <%= 'active' if item == pagy.page %>">
+                      <%= link_to item,
+                                  admin_menu_path(menu, page: item, ai_recommendation_topic_id: topic_id),
+                                  class: "page-link",
+                                  data: { turbo_frame: 'ai-recommendations' } %>
+                    </li>
+                  <% elsif item == :gap %>
+                    <li class="page-item disabled">
+                      <span class="page-link">...</span>
+                    </li>
+                  <% end %>
+                <% end %>
+                
+                <% if pagy.next %>
+                  <li class="page-item">
+                    <%= link_to admin_menu_path(menu, page: pagy.next, ai_recommendation_topic_id: topic_id),
+                                class: "page-link",
+                                data: { turbo_frame: 'ai-recommendations' } do %>
+                      <i class="ti ti-chevron-right"></i>
+                    <% end %>
+                  </li>
+                <% else %>
+                  <li class="page-item disabled">
+                    <span class="page-link"><i class="ti ti-chevron-right"></i></span>
+                  </li>
+                <% end %>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    <% elsif defined?(pagy) && pagy.present? %>
+      <div class="card-footer border-0">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="text-muted">
+            Showing <span class="fw-semibold"><%= pagy.from %></span> to <span class="fw-semibold"><%= pagy.to %></span> of <span class="fw-semibold"><%= pagy.count %></span> recommendations
           </div>
         </div>
       </div>

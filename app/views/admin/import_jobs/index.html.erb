@@ -51,13 +51,13 @@
                       </div>
                       <div>
                         <h5 class="mb-0"><%= job.file.filename %></h5>
-                        <small class="text-muted"><%= number_to_human_size(job.file.blob.byte_size) %></small>
+                        <small class="text-muted"><%= number_to_human_size(job.file.size) %></small>
                       </div>
                     </div>
                   </td>
                   <td>
                     <span class="badge bg-secondary-subtle text-secondary">
-                      <%= job.staging_tables.first&.staging_table&.capitalize || 'Order' %>
+                      <%= job.staging_tables.first&.staging_table&.to_s&.capitalize || 'Order' %>
                     </span>
                   </td>
                   <td data-filter-value="<%= job.import_status %>">
