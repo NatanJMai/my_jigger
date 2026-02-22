@@ -105,6 +105,84 @@ document.addEventListener('turbo:load', function() {
     });
 });
 
+//
+// MENU CATEGORIES PIE CHART
+//
+document.addEventListener('turbo:load', function() {
+  const chartContainer = document.getElementById('menu-categories-pie');
+  if (!chartContainer) return;
+
+  const endpoint = chartContainer.dataset.chartEndpoint;
+  const loadingText = document.getElementById('menu-categories-loading');
+
+  if (!endpoint) {
+    if (loadingText) loadingText.remove();
+    chartContainer.innerHTML = '<div class="text-center text-danger p-5">Chart data endpoint is missing.</div>';
+    return;
+  }
+
+  const baseOptions = () => ({
+    chart: {
+      height: 320,
+      type: 'pie',
+    },
+    legend: {
+      show: true,
+      position: 'bottom',
+      horizontalAlign: 'center',
+      verticalAlign: 'middle',
+      floating: false,
+      fontSize: '12px',
+      offsetX: 0,
+      offsetY: 5
+    },
+    dataLabels: {
+      enabled: true,
+      style: {
+        fontSize: '12px',
+        fontWeight: 500
+      }
+    },
+    colors: ['#FD8D3C', '#FC4E2A', '#E31A1C', '#BD0026', '#800026'],
+    responsive: [{
+      breakpoint: 600,
+      options: {
+        chart: {
+          height: 240
+        },
+        legend: {
+          show: false
+        },
+      }
+    }]
+  });
+
+  fetch(endpoint)
+    .then(response => {
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.json();
+    })
+    .then(data => {
+      if (loadingText) loadingText.remove();
+
+      const finalOptions = {
+        ...baseOptions(),
+        series: data.series || [],
+        labels: data.labels || [],
+      };
+
+      new CustomApexChart({
+        selector: '#menu-categories-pie',
+        options: () => (finalOptions)
+      });
+    })
+    .catch(error => {
+      console.error('Error loading menu categories chart:', error);
+      if (loadingText) loadingText.remove();
+      chartContainer.innerHTML = '<div class="text-center text-danger p-5">Failed to load chart data.</div>';
+    });
+});
+
 new CustomApexChart({
     selector: '#simple-pie',
     options: () => ({

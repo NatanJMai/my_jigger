@@ -94,6 +94,105 @@ document.addEventListener('turbo:load', function() {
     });
 });
 
+//
+// MENU SALES PERFORMANCE LINE CHART (Multi-series)
+//
+document.addEventListener('turbo:load', function() {
+  const chartContainer = document.getElementById('menu-sales-performance');
+  if (!chartContainer) return;
+
+  const endpoint = chartContainer.dataset.chartEndpoint;
+  const loadingText = document.getElementById('menu-sales-loading');
+
+  if (!endpoint) {
+    if (loadingText) loadingText.remove();
+    chartContainer.innerHTML = '<div class="text-center text-danger p-5">Chart data endpoint is missing.</div>';
+    return;
+  }
+
+  const baseOptions = {
+    chart: {
+      height: 350,
+      type: 'line',
+      toolbar: {
+        show: true
+      },
+      zoom: {
+        enabled: true
+      }
+    },
+    dataLabels: {
+      enabled: false
+    },
+    stroke: {
+      curve: 'smooth',
+      width: 2
+    },
+    xaxis: {
+      type: 'category',
+      categories: [],
+      labels: {
+        rotate: -45,
+        rotateAlways: false
+      }
+    },
+    legend: {
+      position: 'top',
+      horizontalAlign: 'right',
+      floating: true,
+      offsetY: -10
+    },
+    colors: ['#F69C14', '#EE3153', '#31EE39', '#1464F6', '#31EED8', '#FF5733', '#C70039', '#900C3F'],
+    grid: {
+      borderColor: '#e7e7e7',
+      row: {
+        colors: ['transparent', 'transparent'],
+        opacity: 0.2
+      }
+    },
+    tooltip: {
+      shared: true,
+      intersect: false
+    },
+    responsive: [{
+      breakpoint: 600,
+      options: {
+        legend: {
+          show: false
+        }
+      }
+    }]
+  };
+
+  fetch(endpoint)
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      if (loadingText) loadingText.remove();
+
+      const finalOptions = {
+        ...baseOptions,
+        series: data.series || [],
+        xaxis: {
+          ...baseOptions.xaxis,
+          categories: data.categories || []
+        }
+      };
+
+      new CustomApexChart({
+        selector: '#menu-sales-performance',
+        options: () => (finalOptions)
+      });
+    })
+    .catch(error => {
+      console.error('Error loading menu sales performance chart:', error);
+      if (loadingText) loadingText.remove();
+      chartContainer.innerHTML = `<div class="text-center text-danger p-5">Failed to load chart: ${error.message}</div>`;
+    });
+});
+
 
 //
 // Line chart with data labels

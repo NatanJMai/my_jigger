@@ -111,7 +111,11 @@
               </h5>
             </div>
             <div class="card-body">
-              <%= sales_performance_by_menu(@menu) %>
+              <div class="apex-charts"
+                   id="menu-sales-performance"
+                   data-chart-endpoint="<%= sales_performance_by_menu_admin_menu_charts_path(@menu) %>">
+                <div id="menu-sales-loading" class="text-center text-muted p-5">Loading sales performance chart...</div>
+              </div>
             </div>
           </div>
         </div>
@@ -123,7 +127,11 @@
               </h5>
             </div>
             <div class="card-body">
-              <%= categories_sales_pie(@menu) %>
+              <div class="apex-charts"
+                   id="menu-categories-pie"
+                   data-chart-endpoint="<%= sales_performance_by_categories_pie_admin_menu_charts_path(@menu) %>">
+                <div id="menu-categories-loading" class="text-center text-muted p-5">Loading categories chart...</div>
+              </div>
             </div>
           </div>
         </div>
@@ -149,4 +157,6 @@
 
 <% content_for :javascript do %>
   <%= vite_javascript_tag 'js/pages/custom-table.js' %>
+  <%= vite_javascript_tag 'js/pages/chart-apex-line.js' %>
+  <%= vite_javascript_tag 'js/pages/chart-apex-pie.js' %>
 <% end %>

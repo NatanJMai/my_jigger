@@ -22,15 +22,15 @@ class Admin::ChartsController < ApplicationController
 
     # Query to get sales performance (by quantity) of all items in this specific category
     sales_performance = items
-                          .joins(:order_items)
-                          .select('items.id, items.name, SUM(order_items.quantity) AS total_quantity')
-                          .group('items.id, items.name')
-                          .pluck('items.name, SUM(order_items.quantity) AS total_quantity')
+                        .joins(:order_items)
+                        .select('items.id, items.name, SUM(order_items.quantity) AS total_quantity')
+                        .group('items.id, items.name')
+                        .pluck('items.name, SUM(order_items.quantity) AS total_quantity')
 
     # ApexCharts expects separate 'series' (values) and 'labels' (keys)
     render json: {
       series: sales_performance.map(&:last), # Quantities
-      labels: sales_performance.map(&:first)  # Item Names
+      labels: sales_performance.map(&:first) # Item Names
     }
   end
 
@@ -56,11 +56,10 @@ class Admin::ChartsController < ApplicationController
     render json: {
       categories: categories,
       series: [{
-                 name: requested_attribute.to_s.humanize,
-                 data: sales_values
-               }]
+        name: requested_attribute.to_s.humanize,
+        data: sales_values
+      }]
     }
-
   end
 
   ##
@@ -84,15 +83,15 @@ class Admin::ChartsController < ApplicationController
 
     # Query to get sales performance of all items in the menu
     sales_performance = items
-                          .joins(:order_items)
-                          .select('items.id, items.name, SUM(order_items.quantity) AS total_quantity')
-                          .group('items.id, items.name')
-                          .pluck('items.name, SUM(order_items.quantity) AS total_quantity')
+                        .joins(:order_items)
+                        .select('items.id, items.name, SUM(order_items.quantity) AS total_quantity')
+                        .group('items.id, items.name')
+                        .pluck('items.name, SUM(order_items.quantity) AS total_quantity')
 
     # ApexCharts expects separate 'series' (values) and 'labels' (keys)
     render json: {
       series: sales_performance.map(&:last), # Quantities
-      labels: sales_performance.map(&:first)  # Item Names
+      labels: sales_performance.map(&:first) # Item Names
     }
   end
 
@@ -104,16 +103,16 @@ class Admin::ChartsController < ApplicationController
 
     # Query to get sales performance of categories associated with items in the menu
     sales_performance = items
-                          .joins(:order_items)
-                          .joins(:category)
-                          .select('categories.id, categories.name, SUM(order_items.quantity) AS total_quantity')
-                          .group('categories.id, categories.name')
-                          .pluck('categories.name, SUM(order_items.quantity) AS total_quantity')
+                        .joins(:order_items)
+                        .joins(:category)
+                        .select('categories.id, categories.name, SUM(order_items.quantity) AS total_quantity')
+                        .group('categories.id, categories.name')
+                        .pluck('categories.name, SUM(order_items.quantity) AS total_quantity')
 
     # ApexCharts expects separate 'series' (values) and 'labels' (keys)
     render json: {
       series: sales_performance.map(&:last), # Quantities
-      labels: sales_performance.map(&:first)  # Category Names
+      labels: sales_performance.map(&:first) # Category Names
     }
   end
 
@@ -130,7 +129,20 @@ class Admin::ChartsController < ApplicationController
   # Item sale performance (Quantity)
   def sales_performance_by_menu
     data = @menu.sales_performance_quantity
-    render json: data
+
+    all_dates = data.flat_map { |item| item[:data].keys }.uniq.sort
+
+    series = data.map do |item|
+      {
+        name: item[:name],
+        data: all_dates.map { |date| item[:data][date] || 0 }
+      }
+    end
+
+    render json: {
+      categories: all_dates,
+      series: series
+    }
   end
 
   ##
@@ -161,21 +173,21 @@ class Admin::ChartsController < ApplicationController
     # 2. Build the ApexCharts series structure
     series = [
       {
-        name: "Orders",
-        type: "area",
-        data: data[:orders] || [],
+        name: 'Orders',
+        type: 'area',
+        data: data[:orders] || []
       },
       {
-        name: "Earnings",
-        type: "bar",
-        data: data[:earnings] || [], # Array of monetary values
+        name: 'Earnings',
+        type: 'bar',
+        data: data[:earnings] || [] # Array of monetary values
       },
       {
         # Renamed series to Costs
-        name: "Costs",
-        type: "line",
-        data: data[:costs] || [], # Array of monetary values
-      },
+        name: 'Costs',
+        type: 'line',
+        data: data[:costs] || [] # Array of monetary values
+      }
     ]
 
     # 3. Render the JSON response
