@@ -6,6 +6,30 @@
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/charts_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/charts_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/items/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab1.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab1.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/_vertical.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_vertical.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/base.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/horizontal.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/partials/_sidenav.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/partials/_sidenav.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/partials/_topbar.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/partials/_topbar.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/entrypoints/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/entrypoints/application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-line.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/pages/chart-apex-line.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-pie.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/pages/chart-apex-pie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/pages/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pages/ecommerce-seller-details.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/scss/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/scss/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_authentication.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_chat.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_email.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_error.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_kanban-board.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_landing.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_outlook.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_sitemap.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_timeline.scss" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -480,7 +504,7 @@
       <workItem from="1770105050883" duration="866000" />
       <workItem from="1770758903081" duration="2464000" />
       <workItem from="1771412181383" duration="2326000" />
-      <workItem from="1771718282330" duration="612000" />
+      <workItem from="1771718282330" duration="3753000" />
     </task>
     <servers />
   </component>

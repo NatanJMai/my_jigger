@@ -100,8 +100,8 @@ class Admin::ChartsController < ApplicationController
   # Categories sale performance
   def sales_performance_by_categories_pie
     items = @menu.items
+    items = items.where(id: params[:item_ids]) if params[:item_ids].present?
 
-    # Query to get sales performance of categories associated with items in the menu
     sales_performance = items
                         .joins(:order_items)
                         .joins(:category)
@@ -109,10 +109,9 @@ class Admin::ChartsController < ApplicationController
                         .group('categories.id, categories.name')
                         .pluck('categories.name, SUM(order_items.quantity) AS total_quantity')
 
-    # ApexCharts expects separate 'series' (values) and 'labels' (keys)
     render json: {
-      series: sales_performance.map(&:last), # Quantities
-      labels: sales_performance.map(&:first) # Category Names
+      series: sales_performance.map(&:last),
+      labels: sales_performance.map(&:first)
     }
   end
 
@@ -128,7 +127,15 @@ class Admin::ChartsController < ApplicationController
   # Menu (Line Bar)
   # Item sale performance (Quantity)
   def sales_performance_by_menu
-    data = @menu.sales_performance_quantity
+    items = @menu.items
+    items = items.where(id: params[:item_ids]) if params[:item_ids].present?
+
+    data = items.includes(order_items: :order).map do |item|
+      {
+        name: item.name,
+        data: item.sales_performance_by_item({ attribute: :quantity }).to_h
+      }
+    end
 
     all_dates = data.flat_map { |item| item[:data].keys }.uniq.sort
 

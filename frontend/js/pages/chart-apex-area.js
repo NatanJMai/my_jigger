@@ -200,15 +200,19 @@ function filterChartRange(range) {
     ]);
 }
 
-document.querySelectorAll('.toolbar button').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const range = btn.getAttribute('data-range');
-        filterChartRange(range);
+// Wrap in null check - toolbar may not exist on all pages
+const toolbarButtons = document.querySelectorAll('.toolbar button');
+if (toolbarButtons.length > 0) {
+    toolbarButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const range = btn.getAttribute('data-range');
+            filterChartRange(range);
 
-        document.querySelectorAll('.toolbar button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+            document.querySelectorAll('.toolbar button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
     });
-});
+}
 
 
 //
@@ -260,7 +264,7 @@ new CustomApexChart({
 //
 // SELECTION - GITHUB STYLE
 //
-document.addEventListener('turbo:load', function() {
+function initAreaChart() {
   const mainChartContainer = document.getElementById('area-chart-github');
   const brushChartContainer = document.getElementById('area-chart-github2');
 
@@ -403,7 +407,11 @@ document.addEventListener('turbo:load', function() {
       console.error('Error loading GitHub style chart data:', error);
       mainChartContainer.innerHTML = `<div class="text-center text-danger p-5">Failed to load chart: ${error.message}</div>`;
     });
-});
+}
+
+// Initialize on both page load and Turbo navigation
+document.addEventListener('turbo:load', initAreaChart);
+document.addEventListener('DOMContentLoaded', initAreaChart);
 
 //
 // STACKED AREA

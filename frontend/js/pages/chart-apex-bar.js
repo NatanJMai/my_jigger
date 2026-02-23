@@ -7,12 +7,12 @@ import { CustomApexChart , ins} from '../app'
 import small1 from '@/images/stock/small-1.jpg'
 
 //
-// BASIC BAR CHART
-//
+ // BASIC BAR CHART
+ //
 
-document.addEventListener('turbo:load', function() {
-  const chartContainer = document.getElementById('basic-bar');
-  if (!chartContainer) return;
+ function initBarChart() {
+   const chartContainer = document.getElementById('basic-bar');
+   if (!chartContainer) return;
 
   const endpoint = chartContainer.dataset.chartEndpoint;
   const loadingText = document.getElementById('basic-bar-loading');
@@ -98,7 +98,11 @@ document.addEventListener('turbo:load', function() {
       if (loadingText) loadingText.remove();
       chartContainer.innerHTML = '<div class="text-center text-danger p-5">Failed to load sales performance chart.</div>';
     });
-});
+}
+
+// Initialize on both page load and Turbo navigation
+document.addEventListener('turbo:load', initBarChart);
+document.addEventListener('DOMContentLoaded', initBarChart);
 
 
 

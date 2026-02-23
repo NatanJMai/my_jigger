@@ -10,13 +10,13 @@ import small3 from '@/images/stock/small-3.jpg'
 import small4 from '@/images/stock/small-4.jpg'
 
 //
-// SIMPLE PIE CHART
-//
+ // SIMPLE PIE CHART
+ //
 
-document.addEventListener('turbo:load', function() {
-  console.log("SUCCESS: turbo:load event fired!");
-  // 1. Find the target element by its new ID
-  const chartContainer = document.getElementById('item-costs-data-display');
+ function initPieChart() {
+   console.log("SUCCESS: turbo:load event fired!");
+   // 1. Find the target element by its new ID
+   const chartContainer = document.getElementById('item-costs-data-display');
 
   // CRITICAL: Check for element existence to avoid 'null' error
   if (!chartContainer) return;
@@ -103,23 +103,51 @@ document.addEventListener('turbo:load', function() {
       if (loadingText) loadingText.remove();
       chartContainer.innerHTML = '<div class="text-center text-danger p-5">Failed to load chart data.</div>';
     });
-});
+}
+
+// Initialize on both page load and Turbo navigation
+document.addEventListener('turbo:load', initPieChart);
+document.addEventListener('DOMContentLoaded', initPieChart);
 
 //
 // MENU CATEGORIES PIE CHART
 //
-document.addEventListener('turbo:load', function() {
+let menuCategoriesChartInstance = null;
+
+function destroyMenuCategoriesChart() {
+  if (menuCategoriesChartInstance && menuCategoriesChartInstance.chart) {
+    try {
+      menuCategoriesChartInstance.chart.destroy();
+    } catch (e) {
+      console.warn('Error destroying chart:', e);
+    }
+  }
+  menuCategoriesChartInstance = null;
+}
+
+function loadMenuCategoriesChart(selectedItemIds = null) {
   const chartContainer = document.getElementById('menu-categories-pie');
-  if (!chartContainer) return;
-
-  const endpoint = chartContainer.dataset.chartEndpoint;
-  const loadingText = document.getElementById('menu-categories-loading');
-
-  if (!endpoint) {
-    if (loadingText) loadingText.remove();
-    chartContainer.innerHTML = '<div class="text-center text-danger p-5">Chart data endpoint is missing.</div>';
+  if (!chartContainer) {
+    destroyMenuCategoriesChart();
     return;
   }
+
+  const baseEndpoint = chartContainer.dataset.chartEndpoint;
+  const loadingText = document.getElementById('menu-categories-loading');
+
+  if (!baseEndpoint) {
+    console.error('No chart endpoint found');
+    return;
+  }
+
+  let endpoint = baseEndpoint;
+  if (selectedItemIds && selectedItemIds.length > 0) {
+    const params = new URLSearchParams();
+    selectedItemIds.forEach(id => params.append('item_ids[]', id));
+    endpoint = `${baseEndpoint}?${params.toString()}`;
+  }
+
+  if (loadingText) loadingText.style.display = 'block';
 
   const baseOptions = () => ({
     chart: {
@@ -163,25 +191,88 @@ document.addEventListener('turbo:load', function() {
       return response.json();
     })
     .then(data => {
-      if (loadingText) loadingText.remove();
+      if (loadingText) loadingText.style.display = 'none';
 
-      const finalOptions = {
-        ...baseOptions(),
-        series: data.series || [],
-        labels: data.labels || [],
-      };
+      const hasExistingChart = menuCategoriesChartInstance && 
+                               menuCategoriesChartInstance.chart && 
+                               typeof menuCategoriesChartInstance.chart.updateOptions === 'function';
 
-      new CustomApexChart({
-        selector: '#menu-categories-pie',
-        options: () => (finalOptions)
-      });
+      if (hasExistingChart) {
+        menuCategoriesChartInstance.chart.updateOptions({
+          series: data.series || [],
+          labels: data.labels || []
+        }, false, true);
+      } else {
+        destroyMenuCategoriesChart();
+        
+        const finalOptions = {
+          ...baseOptions(),
+          series: data.series || [],
+          labels: data.labels || [],
+        };
+
+        menuCategoriesChartInstance = new CustomApexChart({
+          selector: '#menu-categories-pie',
+          options: () => (finalOptions)
+        });
+      }
     })
     .catch(error => {
       console.error('Error loading menu categories chart:', error);
-      if (loadingText) loadingText.remove();
-      chartContainer.innerHTML = '<div class="text-center text-danger p-5">Failed to load chart data.</div>';
+      if (loadingText) loadingText.style.display = 'none';
+      const container = document.getElementById('menu-categories-pie');
+      if (container) {
+        container.innerHTML = '<div class="text-center text-danger p-5">Failed to load chart data.</div>';
+      }
     });
+}
+
+document.addEventListener('turbo:load', function() {
+  const chartContainer = document.getElementById('menu-categories-pie');
+  if (!chartContainer) {
+    destroyMenuCategoriesChart();
+    return;
+  }
+
+  loadMenuCategoriesChart();
+
+  const selectAllCheckbox = document.getElementById('categorySelectAll');
+  const itemCheckboxes = document.querySelectorAll('.category-item-checkbox');
+
+  if (selectAllCheckbox) {
+    selectAllCheckbox.removeEventListener('change', handleCategorySelectAll);
+    selectAllCheckbox.addEventListener('change', handleCategorySelectAll);
+  }
+
+  itemCheckboxes.forEach(cb => {
+    cb.removeEventListener('change', handleCategoryItemChange);
+    cb.addEventListener('change', handleCategoryItemChange);
+  });
 });
+
+function handleCategorySelectAll() {
+  const itemCheckboxes = document.querySelectorAll('.category-item-checkbox');
+  const selectAllCheckbox = document.getElementById('categorySelectAll');
+  itemCheckboxes.forEach(cb => cb.checked = selectAllCheckbox.checked);
+  updateCategoryChart();
+}
+
+function handleCategoryItemChange() {
+  const selectAllCheckbox = document.getElementById('categorySelectAll');
+  const itemCheckboxes = document.querySelectorAll('.category-item-checkbox');
+  if (selectAllCheckbox) {
+    selectAllCheckbox.checked = Array.from(itemCheckboxes).every(c => c.checked);
+  }
+  updateCategoryChart();
+}
+
+function updateCategoryChart() {
+  const itemCheckboxes = document.querySelectorAll('.category-item-checkbox');
+  const selectedIds = Array.from(itemCheckboxes)
+    .filter(cb => cb.checked)
+    .map(cb => cb.value);
+  loadMenuCategoriesChart(selectedIds);
+}
 
 new CustomApexChart({
     selector: '#simple-pie',
@@ -551,18 +642,31 @@ function reset() {
     return getOptions().series;
 }
 
-document.querySelector("#randomize").addEventListener("click", function () {
-    updateChart.chart.updateSeries(randomize());
-});
+// Wrap in null checks - these elements may not exist on all pages
+const randomizeBtn = document.querySelector("#randomize");
+if (randomizeBtn) {
+    randomizeBtn.addEventListener("click", function () {
+        updateChart.chart.updateSeries(randomize());
+    });
+}
 
-document.querySelector("#add").addEventListener("click", function () {
-    updateChart.chart.updateSeries(appendData());
-});
+const addBtn = document.querySelector("#add");
+if (addBtn) {
+    addBtn.addEventListener("click", function () {
+        updateChart.chart.updateSeries(appendData());
+    });
+}
 
-document.querySelector("#remove").addEventListener("click", function () {
-    updateChart.chart.updateSeries(removeData());
-});
+const removeBtn = document.querySelector("#remove");
+if (removeBtn) {
+    removeBtn.addEventListener("click", function () {
+        updateChart.chart.updateSeries(removeData());
+    });
+}
 
-document.querySelector("#reset").addEventListener("click", function () {
-    updateChart.chart.updateSeries(reset());
-});
+const resetBtn = document.querySelector("#reset");
+if (resetBtn) {
+    resetBtn.addEventListener("click", function () {
+        updateChart.chart.updateSeries(reset());
+    });
+}

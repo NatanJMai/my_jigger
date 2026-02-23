@@ -8,6 +8,8 @@
 // ------------------------------ Required main scripts ------------------------------
 //
 
+import './config.js';
+
 import jQuery from "jquery";
 window.jQuery = jQuery
 window.$ = jQuery;
@@ -524,8 +526,8 @@ class LayoutCustomizer {
     }
 
     initConfig() {
-        this.defaultConfig = JSON.parse(JSON.stringify(window.defaultConfig));
-        this.config = JSON.parse(JSON.stringify(window.config));
+        this.defaultConfig = JSON.parse(JSON.stringify(window.defaultConfig || {}));
+        this.config = JSON.parse(JSON.stringify(window.config || window.defaultConfig || {}));
         this.setSwitchFromConfig();
     }
 
@@ -1091,10 +1093,18 @@ function initializeApp() {
   new LayoutCustomizer().init();
   new Plugins().init();
   new I18nManager().init();
+  
+  // Trigger custom event for page-specific JS to reinitialize
+  $(document).trigger('app:initialized');
 }
 
-document.addEventListener('DOMContentLoaded', initializeApp);
 document.addEventListener('turbo:load', initializeApp);
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+  initializeApp();
+}
 
 
 //
