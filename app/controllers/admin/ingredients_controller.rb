@@ -15,18 +15,11 @@ class Admin::IngredientsController < ApplicationController
   # but we can keep it standard for other uses.
   def new
     @ingredient = @organization.ingredients.new
-
-    respond_to do |format|
-      format.js
-      format.html
-    end
+    render partial: 'form', locals: { ingredient: @ingredient, organization: @organization }
   end
 
   def edit
-    respond_to do |format|
-      format.html
-      format.turbo_stream
-    end
+    render partial: 'form', locals: { ingredient: @ingredient, organization: @organization }
   end
 
   # POST /menus or /menus.json
@@ -45,7 +38,6 @@ class Admin::IngredientsController < ApplicationController
       end
     end
   end
-
 
   def update
     if @ingredient.update(ingredient_params)
@@ -66,7 +58,9 @@ class Admin::IngredientsController < ApplicationController
     @ingredient.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_organization_ingredients_path(@organization), notice: 'Ingredient was successfully destroyed.' }
+      format.html do
+        redirect_to admin_organization_ingredients_path(@organization), notice: 'Ingredient was successfully destroyed.'
+      end
       format.json { head :no_content }
       format.js
     end

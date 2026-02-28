@@ -12,14 +12,11 @@ import '../js/pages/chart-apex-bar'
 import '../js/pages/chart-apex-pie'
 import '../js/pages/chart-apex-area'
 
-// Configure Turbo behavior
-import * as Turbo from '@hotwired/turbo';
-
-// Prevent Turbo from driving non-Turbo links
-Turbo.session.drive = true;
+// Prevent Turbo from driving non-Turbo links is handled globally
+// by turbo-rails default.
 
 // Add data-turbo="false" support for links that should bypass Turbo
-$(document).on('turbo:click', function(event) {
+$(document).on('turbo:click', function (event) {
   if ($(event.target).closest('[data-turbo="false"]').length) {
     event.preventDefault();
   }

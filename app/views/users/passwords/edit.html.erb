@@ -1,27 +1,78 @@
-<h2>Change your password</h2>
+<% @title = "Change Password" %>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <%= f.input :reset_password_token, as: :hidden %>
-  <%= f.full_error :reset_password_token %>
-
-  <div class="form-inputs">
-    <%= f.input :password,
-                label: "New password",
-                required: true,
-                autofocus: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                label: "Confirm your new password",
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+<div class="authentication-page">
+  <div class="auth-bg-pattern">
+    <div class="auth-pattern-circle auth-pattern-1"></div>
+    <div class="auth-pattern-circle auth-pattern-2"></div>
+    <div class="auth-pattern-circle auth-pattern-3"></div>
   </div>
+  
+  <div class="container-fluid">
+    <div class="row justify-content-center align-items-center min-vh-100">
+      <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-7 col-sm-9">
+        <div class="auth-card">
+          <div class="text-center mb-4">
+            <a href="<%= root_path %>" class="auth-logo">
+              <span class="logo-dark">
+                <span class="logo-lg">MyJigger</span>
+              </span>
+              <span class="logo-light">
+                <span class="logo-lg">MyJigger</span>
+              </span>
+            </a>
+            <p class="text-muted mt-3 mb-4">Change your password</p>
+          </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
+          <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "auth-form" }) do |f| %>
+            <%= f.error_notification %>
+
+            <%= f.input :reset_password_token, as: :hidden %>
+            <%= f.full_error :reset_password_token %>
+
+            <div class="mb-3">
+              <label class="form-label" for="userPassword">New Password</label>
+              <%= f.input :password,
+                          label: false,
+                          required: true,
+                          autofocus: true,
+                          hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                          input_html: { 
+                            class: "form-control", 
+                            id: "userPassword", 
+                            autocomplete: "new-password",
+                            placeholder: "Enter new password"
+                          } %>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label" for="userPasswordConfirmation">Confirm New Password</label>
+              <%= f.input :password_confirmation,
+                          label: false,
+                          required: true,
+                          input_html: { 
+                            class: "form-control", 
+                            id: "userPasswordConfirmation", 
+                            autocomplete: "new-password",
+                            placeholder: "Confirm new password"
+                          } %>
+            </div>
+
+            <div class="d-grid">
+              <%= f.button :submit, "Change Password", class: "btn btn-primary btn-lg fw-semibold" %>
+            </div>
+          <% end %>
+
+          <div class="text-center mt-4">
+            <p class="text-muted mb-0">
+              <a href='<%= new_user_session_path %>' class="text-muted text-decoration-none fw-semibold">Back to Sign in</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <p class="text-muted mb-0">&copy; <%= Date.current.year %> MyJigger. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

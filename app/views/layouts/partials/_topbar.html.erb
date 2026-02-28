@@ -129,10 +129,10 @@
               <!-- Divider -->
               <div class="dropdown-divider"></div>
               <!-- Logout -->
-              <a class="dropdown-item fw-semibold" data-turbo="false" href="javascript:void(0);">
+              <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item fw-semibold" do %>
                 <i class="ti ti-logout-2 me-1 fs-17 align-middle"></i>
                 <span class="align-middle">Log Out</span>
-              </a>
+              <% end %>
             </div>
           </div>
         </div>

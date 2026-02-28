@@ -13,7 +13,7 @@
           </div>
           <button class="btn btn-danger d-none" data-table-delete-selected="">Delete</button>
           <%= link_to new_admin_organization_category_path(@organization),
-                      data: { turbo_frame: "category_modal" },
+                      data: { modal: "categoryModal" },
                       class: "btn btn-primary" do %>
             Create Category
           <% end %>
@@ -69,10 +69,8 @@
 
 <div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <%= turbo_frame_tag "category_modal" do %>
-        <!-- form content will be replaced dynamically -->
-      <% end %>
+    <div class="modal-content" id="category-modal-content">
+      <!-- Content loads here -->
     </div>
   </div>
 </div>

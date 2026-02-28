@@ -133,21 +133,27 @@ class Admin::ChartsController < ApplicationController
     data = items.includes(order_items: :order).map do |item|
       {
         name: item.name,
-        data: item.sales_performance_by_item({ attribute: :quantity }).to_h
+        data: item.sales_performance_by_item({ attribute: :quantity, weekly: true }).to_h
       }
     end
 
-    all_dates = data.flat_map { |item| item[:data].keys }.uniq.sort
+    # Generate a fixed timeline for the last 12 weeks
+    start_date = 12.weeks.ago.beginning_of_week.to_date
+    end_date = Time.current.end_of_week.to_date
+    all_dates = (start_date..end_date).step(7).to_a
+
+    # Format labels for the chart
+    labels = all_dates.map { |d| d.strftime('%b %d') }
 
     series = data.map do |item|
       {
         name: item[:name],
-        data: all_dates.map { |date| item[:data][date] || 0 }
+        data: all_dates.map { |date| item[:data][date.strftime('%b %d')] || 0 }
       }
     end
 
     render json: {
-      categories: all_dates,
+      categories: labels,
       series: series
     }
   end

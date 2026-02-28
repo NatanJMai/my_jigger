@@ -85,6 +85,24 @@
 
 
 // Pages
+@import "pages/authentication";
+
+// Modal fixes
+.modal-backdrop {
+  opacity: 0.5 !important;
+}
+
+.modal {
+  z-index: 1060 !important;
+}
+
+.modal.show {
+  display: block !important;
+}
+
+.modal-dialog {
+  z-index: 1061 !important;
+}
 
 // Plugins
 @import "plugins/apexcharts";

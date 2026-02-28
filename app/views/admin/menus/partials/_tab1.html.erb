@@ -3,6 +3,7 @@
     <%= render partial: 'admin/menus/partials/menu_info' %>
 
     <div class="col-xl-9">
+      <%# ===================== KPI CARDS ===================== %>
       <div class="row row-cols-xxl-4 row-cols-md-2 row-cols-1 g-3 align-items-center">
         <div class="col">
           <div class="card">
@@ -43,7 +44,6 @@
                 <%
                   start_date = 11.months.ago.beginning_of_month
                   end_date = Time.zone.now.end_of_day
-
                   twelve_month_revenue = @menu.total_item_orders(:total_amount_cents, start_date: start_date, end_date: end_date)
                 %>
 
@@ -102,42 +102,56 @@
         </div>
       </div>
 
+      <%# ===================== ROW 1: STACKED BAR + PIE ===================== %>
       <div class="row g-3 mt-2">
         <div class="col-xl-8">
           <div class="card h-100">
             <div class="card-header bg-white">
               <div class="d-flex justify-content-between align-items-center">
                 <h5 class="card-title mb-0">
-                  <i class="ti ti-chart-line me-2"></i>Sales Performance
+                  <i class="ti ti-chart-bar me-2"></i>Sales Performance
                 </h5>
-                <div class="dropdown d-inline-block">
-                  <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="salesItemsDropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                    <i class="ti ti-filter me-1"></i>Select Items
-                  </button>
-                  <div class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="salesItemsDropdown" style="min-width: 250px; max-height: 300px; overflow-y: auto;">
-                    <div class="form-check mb-2 border-bottom pb-2">
-                      <input class="form-check-input" type="checkbox" id="salesSelectAll" checked>
-                      <label class="form-check-label fw-semibold" for="salesSelectAll">Select All</label>
-                    </div>
-                    <% menu.items.each do |item| %>
-                      <div class="form-check">
-                        <input class="form-check-input sales-item-checkbox" type="checkbox" id="salesItem<%= item.id %>" value="<%= item.id %>" checked>
-                        <label class="form-check-label" for="salesItem<%= item.id %>"><%= item.name %></label>
+                <div class="d-flex align-items-center gap-2">
+                  <%# Toggle: All / Top 5 %>
+                  <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" class="btn btn-outline-secondary active" id="salesViewAll">All</button>
+                    <button type="button" class="btn btn-outline-secondary" id="salesViewTop5">Top 5</button>
+                  </div>
+                  <div class="dropdown d-inline-block">
+                    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="salesItemsDropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                      <i class="ti ti-filter me-1"></i>Select Items
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="salesItemsDropdown" style="min-width: 250px; max-height: 300px; overflow-y: auto;">
+                      <div class="form-check mb-2 border-bottom pb-2">
+                        <input class="form-check-input" type="checkbox" id="salesSelectAll" checked>
+                        <label class="form-check-label fw-semibold" for="salesSelectAll">Select All</label>
                       </div>
-                    <% end %>
+                      <% menu.items.each do |item| %>
+                        <div class="form-check">
+                          <input class="form-check-input sales-item-checkbox" type="checkbox" id="salesItem<%= item.id %>" value="<%= item.id %>" checked>
+                          <label class="form-check-label" for="salesItem<%= item.id %>"><%= item.name %></label>
+                        </div>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <div class="apex-charts"
-                   id="menu-sales-performance"
-                   data-chart-endpoint="<%= sales_performance_by_menu_admin_menu_charts_path(@menu) %>">
-                <div id="menu-sales-loading" class="text-center text-muted p-5">Loading sales performance chart...</div>
+              <div dir="ltr">
+                <%# Sales chart container — original IDs preserved for JS compatibility %>
+                <div
+                  style="height: 350px;"
+                  id="menu-sales-container"
+                  data-chart-endpoint="<%= sales_performance_by_menu_admin_menu_charts_path(@menu) %>"
+                >
+                  <canvas id="menu-sales-performance"></canvas>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
         <div class="col-xl-4">
           <div class="card h-100">
             <div class="card-header bg-white">
@@ -165,16 +179,105 @@
               </div>
             </div>
             <div class="card-body">
-              <div class="apex-charts"
-                   id="menu-categories-pie"
-                   data-chart-endpoint="<%= sales_performance_by_categories_pie_admin_menu_charts_path(@menu) %>">
-                <div id="menu-categories-loading" class="text-center text-muted p-5">Loading categories chart...</div>
+              <div dir="ltr">
+                <div style="height: 320px;" id="menu-categories-container" data-chart-endpoint="<%= sales_performance_by_categories_pie_admin_menu_charts_path(@menu) %>">
+                  <canvas id="menu-categories-pie"></canvas>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      <%# ===================== ROW 2: HEATMAP ===================== %>
+      <div class="row g-3 mt-1">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header bg-white">
+              <div class="d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">
+                  <i class="ti ti-layout-grid me-2"></i>Sales Heatmap
+                  <span class="badge bg-secondary-subtle text-secondary ms-2 fw-normal fs-12">Daily volume per item</span>
+                </h5>
+                <span class="text-muted small">Hover a cell for details</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <%#
+                data-chart-endpoint points to the same weekly sales endpoint.
+                The JS will reshape the data into ApexCharts heatmap format.
+              %>
+              <div
+                id="menu-sales-heatmap-container"
+                data-chart-endpoint="<%= sales_performance_by_menu_admin_menu_charts_path(@menu) %>"
+              >
+                <div id="menu-heatmap-loading" class="text-center text-muted p-4">
+                  <div class="spinner-border spinner-border-sm me-2" role="status"></div>Loading heatmap…
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%# ===================== ROW 3: AI FORECAST PANEL ===================== %>
+      <div class="row g-3 mt-1">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header bg-white">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h5 class="card-title mb-0">
+                    <i class="ti ti-wand me-2"></i>AI Forecast
+                    <span class="badge bg-primary-subtle text-primary ms-2 fw-normal fs-12">Next 30 days · mocked</span>
+                  </h5>
+                  <p class="text-muted small mb-0 mt-1">Per-item prediction based on recent sales patterns</p>
+                </div>
+                <button
+                  id="generate-forecast-btn"
+                  class="btn btn-primary btn-sm"
+                  data-chart-endpoint="<%= sales_performance_by_menu_admin_menu_charts_path(@menu) %>"
+                >
+                  <i class="ti ti-sparkles me-1"></i>Generate Forecast
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <%# Placeholder shown before forecast is generated %>
+              <div id="forecast-placeholder" class="text-center py-5 text-muted border border-dashed rounded">
+                <i class="ti ti-chart-dots fs-36 d-block mb-2"></i>
+                Click <strong>Generate Forecast</strong> to predict the next 30 days per item
+              </div>
+
+              <%# AI insight text, hidden until generated %>
+              <div id="forecast-insight" class="alert alert-info d-none mb-3">
+                <i class="ti ti-bulb me-2"></i>
+                <span id="forecast-insight-text"></span>
+              </div>
+
+              <%# Item selector pills, hidden until generated %>
+              <div id="forecast-item-selector" class="d-none mb-3 d-flex flex-wrap gap-2">
+                <%# Pills injected by JS %>
+              </div>
+
+              <%# Per-item detail chart: actual + dashed forecast line %>
+              <div id="forecast-detail-container" class="d-none">
+                <div style="height: 220px; position: relative;">
+                  <canvas id="forecast-detail-canvas"></canvas>
+                </div>
+              </div>
+
+              <%# Ranked forecast summary bars, hidden until generated %>
+              <div id="forecast-ranked-container" class="d-none mt-3">
+                <p class="text-muted small mb-2 fw-semibold">Predicted totals — ranked</p>
+                <div id="forecast-ranked-list"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%# ===================== ROW 4: ITEM LIST ===================== %>
       <div class="row mt-3">
         <div class="col-12">
           <div class="card">
@@ -196,5 +299,5 @@
 <% content_for :javascript do %>
   <%= vite_javascript_tag 'js/pages/custom-table.js' %>
   <%= vite_javascript_tag 'js/pages/menu-sales-chart.js' %>
-  <%= vite_javascript_tag 'js/pages/menu-categories-chart.js' %>
+  <%= vite_javascript_tag 'js/pages/menu-heatmap-chart.js' %>
 <% end %>

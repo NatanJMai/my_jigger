@@ -1,4 +1,4 @@
-<%= simple_form_for([:admin, (@category.persisted? ? nil : organization), @category].compact, html: { id: 'add-category-form' }) do |f| %>
+<%= simple_form_for([:admin, (@category.persisted? ? nil : organization), @category].compact, html: { id: 'add-category-form', class: 'js-modal-form', data: { remote: 'true', reload: 'true' } }) do |f| %>
   <div class="modal-body">
     <div class="row g-3">
       <!-- Left Column (8 units) for primary details -->

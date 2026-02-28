@@ -47,7 +47,7 @@ class App {
     // Bootstrap Components
     initComponents() {
 
-        createIcons({icons});
+        createIcons({ icons });
 
         // Popovers
         document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
@@ -1089,21 +1089,21 @@ class I18nManager {
 
 // 
 function initializeApp() {
-  new App().init();
-  new LayoutCustomizer().init();
-  new Plugins().init();
-  new I18nManager().init();
-  
-  // Trigger custom event for page-specific JS to reinitialize
-  $(document).trigger('app:initialized');
+    new App().init();
+    new LayoutCustomizer().init();
+    new Plugins().init();
+    new I18nManager().init();
+
+    // Trigger custom event for page-specific JS to reinitialize
+    $(document).trigger('app:initialized');
 }
 
 document.addEventListener('turbo:load', initializeApp);
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializeApp);
+    document.addEventListener('DOMContentLoaded', initializeApp);
 } else {
-  initializeApp();
+    initializeApp();
 }
 
 
@@ -1195,6 +1195,11 @@ export class CustomApexChart {
 
         if (this.chart) {
             this.chart.destroy();
+            this.chart = null;
+        }
+
+        if (typeof this.selector === 'string') {
+            this.element = document.querySelector(this.selector);
         }
 
         if (this.element) {
@@ -1456,4 +1461,10 @@ const menuObserver = new MutationObserver(() => {
 menuObserver.observe(document.documentElement, {
     attributes: true,
     attributeFilter: ['data-sidenav-size']
+});
+
+// Re-render charts on Turbo navigation
+document.addEventListener('turbo:load', () => {
+    CustomApexChart.rerenderAll();
+    CustomChartJs.rerenderAll();
 });

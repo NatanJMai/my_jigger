@@ -16,7 +16,7 @@
 
         <div class="d-flex gap-1">
           <%= link_to new_admin_organization_ingredient_path(@organization),
-                      data: { turbo_frame: "ingredient_modal" },
+                      data: { modal: "ingredientModal" },
                       class: "btn btn-primary" do %>
             Add Ingredient
           <% end %>
@@ -66,9 +66,8 @@
 
 <div class="modal fade" id="ingredientModal" tabindex="-1" aria-labelledby="ingredientModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <%= turbo_frame_tag "ingredient_modal" do %>
-      <% end %>
+    <div class="modal-content" id="ingredient-modal-content">
+      <!-- Content loads here -->
     </div>
   </div>
 </div>

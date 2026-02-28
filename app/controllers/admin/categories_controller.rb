@@ -11,20 +11,18 @@ class Admin::CategoriesController < AdminController
   end
 
   # GET /menus/1 or /menus/1.json
-  def show
-  end
+  def show; end
 
   # GET /menus/new
   def new
     @category = @organization.categories.new
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    render partial: 'form', locals: { category: @category, organization: @organization }
   end
 
   # GET /menus/1/edit
-  def edit; end
+  def edit
+    render partial: 'form', locals: { category: @category, organization: @organization }
+  end
 
   # POST /menus or /menus.json
   def create
@@ -64,7 +62,9 @@ class Admin::CategoriesController < AdminController
     @category.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_organization_categories_path(@organization), notice: 'Category was successfully destroyed.' }
+      format.html do
+        redirect_to admin_organization_categories_path(@organization), notice: 'Category was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end

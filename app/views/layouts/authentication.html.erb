@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MyJigger</title>
+  <title><%= @title || "MyJigger" %></title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -13,7 +13,7 @@
   <%= vite_stylesheet_tag 'application.scss' %>
 </head>
 <body>
-<%= render 'layouts/vertical' %>
+<%= yield %>
 
 <!-- Vite JS entrypoint -->
 <%= vite_javascript_tag 'application' %>

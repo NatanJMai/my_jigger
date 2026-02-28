@@ -48,7 +48,7 @@ class Item < ApplicationRecord
   # @return Array - [date_string, value] or nil
   def best_day_month
     sales = sales_performance_by_item(week: false)
-    sales.to_h&.max_by { |_key, value| value }
+    sales.to_h.max_by { |_key, value| value }
   end
 
   ##
@@ -159,39 +159,45 @@ class Item < ApplicationRecord
   # @return Object []
   def sales_performance_by_item(options = {})
     attribute = options[:attribute].presence || :quantity
+    weekly = options[:weekly]
     weekday = options[:week]
-    monthly = options[:month] # Capture the separate :month option
+    monthly = options[:month]
 
-    start_date, end_date = if weekday
+    start_date, end_date = if weekly
+                             [12.weeks.ago.beginning_of_week.to_date, Time.current.end_of_week.to_date]
+                           elsif weekday
                              [Date.current.beginning_of_week, Date.current.end_of_week]
                            elsif monthly
                              [Date.current.beginning_of_month, Date.current.end_of_month]
                            else
-                             # Default to month if neither is specified, or adjust as needed
                              [Date.current.beginning_of_month, Date.current.end_of_month]
                            end
 
     # The attribute column is used directly in the SUM function
     str = "SUM(order_items.#{attribute})"
 
+    group_clause = weekly ? "DATE_TRUNC('week', orders.date)" : 'DATE(orders.date)'
+    select_clause = weekly ? "DATE_TRUNC('week', orders.date) as sale_date" : 'DATE(orders.date) as sale_date'
+
     # Query to get sales data
     sales = order_items
             .where(item_id: id)
             .joins(:order)
-            # Use Date.current for safety, though Date.today often works
             .where(orders: { date: start_date..end_date })
-            .group('DATE(orders.date)')
-            .select("DATE(orders.date) as sale_date, #{str} as total_sales")
+            .group(group_clause)
+            .select("#{select_clause}, #{str} as total_sales")
 
-    sales_hash = sales.to_a.pluck(:sale_date, :total_sales).to_h
+    sales_hash = sales.to_a.each_with_object({}) { |s, h| h[s.sale_date.to_date] = s.total_sales }
 
     # Determine if we should pass the 'week' flag to format_sales_data
     # If 'month' is true and 'week' is false/nil, you likely want to pass 'week: false'
     # or handle it based on the period derived above.
-    period_flag = if weekday
+    period_flag = if weekly
+                    { weekly: true }
+                  elsif weekday
                     { week: true }
                   else
-                    { week: false } # Indicates a period longer than a week (like a month)
+                    { week: false }
                   end
 
     # format_sales_data handles filling in missing dates with zero/nil values
@@ -216,8 +222,13 @@ class Item < ApplicationRecord
     weekday = options[:week].present?
     money = options[:money].present?
 
-    (start_date..end_date).map do |date|
-      date_str = if weekday
+    range = (start_date..end_date)
+    range = range.step(7) if options[:weekly]
+
+    range.map do |date|
+      date_str = if options[:weekly]
+                   date.strftime('%b %d')
+                 elsif weekday
                    date.strftime('%A')
                  else
                    date.to_s

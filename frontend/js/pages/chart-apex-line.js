@@ -3,7 +3,7 @@
  * By (Author): Coderthemes
  * Module/App (File Name): Chart Apex Line
  */
-import { CustomApexChart , ins} from '../app'
+import { CustomApexChart, ins } from '../app'
 
 function generateDayWiseTimeSeries(baseval, count, yrange) {
     let i = 0;
@@ -21,196 +21,84 @@ function generateDayWiseTimeSeries(baseval, count, yrange) {
 
 
 //
- // Simple line chart
- //
- function initLineChart() {
-   const chartContainer = document.getElementById('line-chart');
-   if (!chartContainer) return;
+// Simple line chart
+//
+function initLineChart() {
+    const chartContainer = document.getElementById('line-chart');
+    if (!chartContainer) return;
 
-   const endpoint = chartContainer.dataset.chartEndpoint;
-   const loadingText = document.getElementById('line-chart-loading');
+    const endpoint = chartContainer.dataset.chartEndpoint;
+    const loadingText = document.getElementById('line-chart-loading');
 
-  if (!endpoint) {
-    if (loadingText) loadingText.remove();
-    chartContainer.innerHTML = '<div class="text-center text-danger p-5">Chart data endpoint is missing.</div>';
-    return;
-  }
-
-  // Base options for a simple line chart
-  const baseOptions = {
-    chart: {
-      height: 350,
-      type: 'line',
-      toolbar: {
-        show: false
-      }
-    },
-    dataLabels: {
-      enabled: false
-    },
-    stroke: {
-      curve: 'smooth',
-      width: 3
-    },
-    xaxis: {
-      type: 'category', // or 'datetime' if your data is ISO format
-      categories: [] // Dynamic categories will go here
-    },
-    tooltip: {
-      x: {
-        format: 'dd MMM'
-      }
+    if (!endpoint) {
+        if (loadingText) loadingText.remove();
+        chartContainer.innerHTML = '<div class="text-center text-danger p-5">Chart data endpoint is missing.</div>';
+        return;
     }
-  };
 
-  fetch(endpoint)
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      return response.json();
-    })
-    .then(data => {
-      if (loadingText) loadingText.remove();
-
-      // The controller sends data structured correctly for ApexCharts
-      const finalOptions = {
-        ...baseOptions,
-        series: data.series || [],
+    // Base options for a simple line chart
+    const baseOptions = {
+        chart: {
+            height: 350,
+            type: 'line',
+            toolbar: {
+                show: false
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3
+        },
         xaxis: {
-          ...baseOptions.xaxis,
-          categories: data.categories || []
+            type: 'category', // or 'datetime' if your data is ISO format
+            categories: [] // Dynamic categories will go here
+        },
+        tooltip: {
+            x: {
+                format: 'dd MMM'
+            }
         }
-      };
+    };
 
-      // Initialize the chart
-      new CustomApexChart({
-        selector: '#line-chart',
-        options: () => (finalOptions)
-      });
-    })
-    .catch(error => {
-      console.error('Error loading simple line chart data:', error);
-      if (loadingText) loadingText.remove();
-      chartContainer.innerHTML = `<div class="text-center text-danger p-5">Failed to load line chart: ${error.message}</div>`;
-    });
+    fetch(endpoint)
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            if (loadingText) loadingText.remove();
+
+            // The controller sends data structured correctly for ApexCharts
+            const finalOptions = {
+                ...baseOptions,
+                series: data.series || [],
+                xaxis: {
+                    ...baseOptions.xaxis,
+                    categories: data.categories || []
+                }
+            };
+
+            // Initialize the chart
+            new CustomApexChart({
+                selector: '#line-chart',
+                options: () => (finalOptions)
+            });
+        })
+        .catch(error => {
+            console.error('Error loading simple line chart data:', error);
+            if (loadingText) loadingText.remove();
+            chartContainer.innerHTML = `<div class="text-center text-danger p-5">Failed to load line chart: ${error.message}</div>`;
+        });
 }
 
 // Initialize on both page load and Turbo navigation
 document.addEventListener('turbo:load', initLineChart);
 document.addEventListener('DOMContentLoaded', initLineChart);
 
-//
- // MENU SALES PERFORMANCE LINE CHART (Multi-series)
- //
-function loadMenuSalesChart(selectedItemIds = null) {
-  const chartContainer = document.getElementById('menu-sales-performance');
-  if (!chartContainer) return;
-
-  const baseEndpoint = chartContainer.dataset.chartEndpoint;
-  const loadingText = document.getElementById('menu-sales-loading');
-
-  if (!baseEndpoint) {
-    console.error('No chart endpoint found');
-    return;
-  }
-
-  let endpoint = baseEndpoint;
-  if (selectedItemIds && selectedItemIds.length > 0) {
-    const params = new URLSearchParams();
-    selectedItemIds.forEach(id => params.append('item_ids[]', id));
-    endpoint = `${baseEndpoint}?${params.toString()}`;
-  }
-
-  chartContainer.innerHTML = '<div id="menu-sales-loading" class="text-center text-muted p-5">Loading sales performance chart...</div>';
-
-  fetch(endpoint)
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      return response.json();
-    })
-    .then(data => {
-      const loadingEl = document.getElementById('menu-sales-loading');
-      if (loadingEl) loadingEl.remove();
-
-      chartContainer.innerHTML = '';
-
-      const finalOptions = {
-        chart: {
-          height: 350,
-          type: 'line',
-          toolbar: { show: true },
-          zoom: { enabled: true }
-        },
-        dataLabels: { enabled: false },
-        stroke: { curve: 'smooth', width: 2 },
-        xaxis: {
-          type: 'category',
-          categories: data.categories || [],
-          labels: { rotate: -45, rotateAlways: false }
-        },
-        legend: {
-          position: 'top',
-          horizontalAlign: 'right',
-          floating: true,
-          offsetY: -10
-        },
-        colors: ['#F69C14', '#EE3153', '#31EE39', '#1464F6', '#31EED8', '#FF5733', '#C70039', '#900C3F'],
-        grid: {
-          borderColor: '#e7e7e7',
-          row: { colors: ['transparent', 'transparent'], opacity: 0.2 }
-        },
-        tooltip: { shared: true, intersect: false },
-        responsive: [{
-          breakpoint: 600,
-          options: { legend: { show: false } }
-        }],
-        series: data.series || []
-      };
-
-      new CustomApexChart({
-        selector: '#menu-sales-performance',
-        options: () => (finalOptions)
-      });
-    })
-    .catch(error => {
-      console.error('Error loading menu sales performance chart:', error);
-      chartContainer.innerHTML = `<div class="text-center text-danger p-5">Failed to load chart: ${error.message}</div>`;
-    });
-}
-
-document.addEventListener('turbo:load', function() {
-  const chartContainer = document.getElementById('menu-sales-performance');
-  if (!chartContainer) return;
-
-  loadMenuSalesChart();
-
-  const selectAllCheckbox = document.getElementById('salesSelectAll');
-  const itemCheckboxes = document.querySelectorAll('.sales-item-checkbox');
-
-  if (selectAllCheckbox) {
-    selectAllCheckbox.onchange = null;
-    selectAllCheckbox.onchange = function() {
-      document.querySelectorAll('.sales-item-checkbox').forEach(cb => cb.checked = this.checked);
-      updateSalesChart();
-    };
-  }
-
-  itemCheckboxes.forEach(cb => {
-    cb.onchange = null;
-    cb.onchange = function() {
-      const all = document.querySelectorAll('.sales-item-checkbox');
-      const selectAll = document.getElementById('salesSelectAll');
-      if (selectAll) selectAll.checked = Array.from(all).every(c => c.checked);
-      updateSalesChart();
-    };
-  });
-});
-
-function updateSalesChart() {
-  const itemCheckboxes = document.querySelectorAll('.sales-item-checkbox');
-  const selectedIds = Array.from(itemCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
-  loadMenuSalesChart(selectedIds);
-}
-
+// Removed duplicate Menu Sales chart
 
 //
 // Line chart with data labels
@@ -221,8 +109,8 @@ new CustomApexChart({
         chart: {
             height: 380,
             type: 'line',
-            zoom: {enabled: false},
-            toolbar: {show: false},
+            zoom: { enabled: false },
+            toolbar: { show: false },
         },
         colors: [ins('info'), ins('danger')],
         dataLabels: {
@@ -345,7 +233,7 @@ new CustomApexChart({
             zoom: {
                 enabled: true
             },
-            toolbar: {show: true},
+            toolbar: { show: true },
         },
         plotOptions: {
             line: {
@@ -506,7 +394,7 @@ new CustomApexChart({
             height: 380,
             type: 'line',
             id: 'custom-line-chart',
-            toolbar: {show: false},
+            toolbar: { show: false },
         },
         colors: [ins('secondary')],
         dataLabels: {
@@ -519,15 +407,15 @@ new CustomApexChart({
         series: [{
             name: 'Visitors',
             data: [
-                {x: new Date('2024-09-01').getTime(), y: 4100},
-                {x: new Date('2024-09-05').getTime(), y: 4300},
-                {x: new Date('2024-09-10').getTime(), y: 4500},
-                {x: new Date('2024-09-15').getTime(), y: 4700},
-                {x: new Date('2024-09-20').getTime(), y: 4800},
-                {x: new Date('2024-09-25').getTime(), y: 4600},
-                {x: new Date('2024-10-01').getTime(), y: 4400},
-                {x: new Date('2024-10-10').getTime(), y: 4200},
-                {x: new Date('2024-10-15').getTime(), y: 4000}
+                { x: new Date('2024-09-01').getTime(), y: 4100 },
+                { x: new Date('2024-09-05').getTime(), y: 4300 },
+                { x: new Date('2024-09-10').getTime(), y: 4500 },
+                { x: new Date('2024-09-15').getTime(), y: 4700 },
+                { x: new Date('2024-09-20').getTime(), y: 4800 },
+                { x: new Date('2024-09-25').getTime(), y: 4600 },
+                { x: new Date('2024-10-01').getTime(), y: 4400 },
+                { x: new Date('2024-10-10').getTime(), y: 4200 },
+                { x: new Date('2024-10-15').getTime(), y: 4000 }
             ]
         }],
         xaxis: {
@@ -581,7 +469,7 @@ new CustomApexChart({
             height: 160,
             id: 'fb',
             group: 'social',
-            toolbar: {show: false},
+            toolbar: { show: false },
         },
         colors: [ins('primary')],
         stroke: {
@@ -634,7 +522,7 @@ new CustomApexChart({
                 opacity: 0.2
             },
             borderColor: [ins('border-color')],
-            padding: {right: 20}
+            padding: { right: 20 }
         }
     })
 })
@@ -651,7 +539,7 @@ new CustomApexChart({
             type: 'line',
             id: 'yt',
             group: 'social',
-            toolbar: {show: false},
+            toolbar: { show: false },
         },
         colors: [ins('danger')],
         dataLabels: {
@@ -715,7 +603,7 @@ new CustomApexChart({
                 opacity: 0.2
             },
             borderColor: [ins('border-color')],
-            padding: {right: 20}
+            padding: { right: 20 }
         }
     })
 })
@@ -730,7 +618,7 @@ new CustomApexChart({
         chart: {
             height: 374,
             type: 'line',
-            toolbar: {show: false},
+            toolbar: { show: false },
             shadow: {
                 enabled: false,
                 color: '#bbb',
@@ -800,7 +688,7 @@ new CustomApexChart({
                 opacity: 0.2
             },
             borderColor: [ins('border-color')],
-            padding: {right: 20}
+            padding: { right: 20 }
         },
         responsive: [{
             breakpoint: 600,
@@ -834,7 +722,7 @@ new CustomApexChart({
             animations: {
                 enabled: false
             },
-            toolbar: {show: false},
+            toolbar: { show: false },
         },
         stroke: {
             width: [5, 5, 4],
@@ -885,7 +773,7 @@ new CustomApexChart({
             zoom: {
                 enabled: false
             },
-            toolbar: {show: false},
+            toolbar: { show: false },
         },
         dataLabels: {
             enabled: false
@@ -947,7 +835,7 @@ new CustomApexChart({
         chart: {
             type: 'line',
             height: 360,
-            toolbar: {show: false},
+            toolbar: { show: false },
         },
         stroke: {
             curve: 'stepline',
@@ -965,7 +853,7 @@ new CustomApexChart({
             }
         },
         grid: {
-            padding: {right: 20}
+            padding: { right: 20 }
         }
 
     })

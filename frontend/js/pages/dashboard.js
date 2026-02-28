@@ -137,19 +137,10 @@ function initDashboardCharts() {
 
 function initDashboard() {
   if (document.querySelector('#multi-pie-chart') || document.querySelector('#sales-analytics-chart')) {
-    // Destroy existing charts first to avoid duplicates
     CustomChartJs.instances = [];
     initDashboardCharts();
   }
 }
 
-// Initialize on page load
 $(document).ready(initDashboard);
-
-// Initialize on Turbo navigation
 $(document).on('turbo:load', initDashboard);
-
-// Clean up on Turbo before-render
-$(document).on('turbo:before-render', function() {
-  CustomChartJs.destroyAll();
-});
