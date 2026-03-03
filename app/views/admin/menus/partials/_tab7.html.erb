@@ -17,7 +17,7 @@
             Leverage AI to uncover profit gaps, reduce waste, and transform your menu into a strategic growth tool.
           </p>
 
-          <%= link_to "Analyze Menu", admin_menu_ai_assistant_analyze_path(@menu),
+          <%= button_to "Analyze Menu", admin_menu_ai_assistant_analyze_path(@menu),
                       data: { turbo_method: :post, turbo_stream: true },
                       class: "btn btn-primary btn-ai-assistant shadow-sm px-4" %>
         </div>

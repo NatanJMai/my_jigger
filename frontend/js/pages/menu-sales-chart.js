@@ -477,38 +477,70 @@ function initForecastPanel() {
   if (!btn) return;
 
   btn.addEventListener('click', async () => {
-    // If data hasn't loaded yet, wait briefly and retry once
-    if (!_lastSalesData || !_lastSalesData.series.length) {
-      await new Promise(r => setTimeout(r, 700));
-    }
+    // Derive the forecast POST URL from the sales GET URL on the same button
+    const salesEndpoint = btn.dataset.chartEndpoint || '';
+    const forecastEndpoint = salesEndpoint.replace('sales_performance_by_menu', 'ai_forecast');
 
-    // If still no data, seed with plausible mock series so forecast still works
-    if (!_lastSalesData || !_lastSalesData.series.length) {
-      const mockItems = [
-        'Burger', 'Pizza', 'Fries', 'Salad', 'Soda',
-        'Pasta', 'Tacos', 'Wings', 'Soup', 'Dessert'
-      ];
-      const mockLabels = Array.from({ length: 12 }, (_, i) => {
-        const d = new Date();
-        d.setMonth(d.getMonth() - 11 + i);
-        return d.toLocaleString('default', { month: 'short', year: '2-digit' });
-      });
-      _lastSalesData = {
-        labels: mockLabels,
-        series: mockItems.map(name => ({
-          name,
-          data: Array.from({ length: 12 }, () => Math.floor(Math.random() * 80 + 20))
-        }))
-      };
+    if (!forecastEndpoint || forecastEndpoint === salesEndpoint) {
+      console.error('AI Forecast: could not derive endpoint from', salesEndpoint);
+      return;
     }
 
     btn.disabled = true;
     btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1" role="status"></span>Generating…';
 
-    // Simulate async processing delay
-    await new Promise(r => setTimeout(r, 1300));
+    // Hide any previous error, reset placeholder visibility
+    document.getElementById('forecast-error')?.remove();
 
-    _forecastData = generateMockForecast(_lastSalesData.series);
+    try {
+      const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '';
+
+      const response = await fetch(forecastEndpoint, {
+        method: 'POST',
+        headers: {
+          'X-CSRF-Token': csrfToken,
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+        // No body needed — the backend re-queries from the DB
+      });
+
+      const json = await response.json();
+
+      if (!response.ok || json.error) {
+        throw new Error(json.error || `Server error ${response.status}`);
+      }
+
+      _forecastData = json;
+
+      // If sales data hasn't been fetched yet, build a minimal series list from
+      // the forecast keys so the rest of the UI still works
+      if (!_lastSalesData || !_lastSalesData.series.length) {
+        const mockLabels = Array.from({ length: 12 }, (_, i) => {
+          const d = new Date();
+          d.setDate(d.getDate() - (11 - i) * 7);
+          return d.toLocaleDateString('default', { month: 'short', day: '2-digit' });
+        });
+        _lastSalesData = {
+          labels: mockLabels,
+          series: Object.keys(_forecastData).map(name => ({ name, data: Array(12).fill(0) }))
+        };
+      }
+
+    } catch (err) {
+      // Show an inline error without crashing the panel
+      const placeholder = document.getElementById('forecast-placeholder');
+      const errDiv = document.createElement('div');
+      errDiv.id = 'forecast-error';
+      errDiv.className = 'alert alert-danger mt-2';
+      errDiv.innerHTML = `<i class="ti ti-alert-circle me-2"></i>${err.message}`;
+      placeholder?.after(errDiv);
+
+      btn.disabled = false;
+      btn.innerHTML = '<i class="ti ti-sparkles me-1"></i>Generate Forecast';
+      return;
+    }
+
+    // ── Render the panel ────────────────────────────────────────────────────
 
     // Hide the empty-state placeholder
     document.getElementById('forecast-placeholder')?.classList.add('d-none');
@@ -525,7 +557,9 @@ function initForecastPanel() {
     const selector = document.getElementById('forecast-item-selector');
     if (selector) {
       selector.classList.remove('d-none');
-      selector.innerHTML = _lastSalesData.series.map(s => `
+      // Only show pills for items that exist in the forecast response
+      const forecastItems = _lastSalesData.series.filter(s => _forecastData[s.name]);
+      selector.innerHTML = forecastItems.map(s => `
         <button type="button"
                 class="btn btn-sm btn-outline-secondary forecast-pill"
                 data-item="${s.name}">${s.name}</button>
@@ -539,14 +573,18 @@ function initForecastPanel() {
     document.getElementById('forecast-detail-container')?.classList.remove('d-none');
     document.getElementById('forecast-ranked-container')?.classList.remove('d-none');
 
-    // Select first item by default
-    renderForecastDetail(_lastSalesData.series[0].name);
-    renderForecastRanked(_forecastData, _lastSalesData.series);
+    // Select first forecasted item by default
+    const firstItem = _lastSalesData.series.find(s => _forecastData[s.name]);
+    if (firstItem) {
+      renderForecastDetail(firstItem.name);
+      renderForecastRanked(_forecastData, _lastSalesData.series);
+    }
 
     btn.disabled = false;
     btn.innerHTML = '<i class="ti ti-sparkles me-1"></i>Regenerate Forecast';
   });
 }
+
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Bootstrap — matches original init pattern exactly

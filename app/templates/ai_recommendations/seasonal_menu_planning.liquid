@@ -20,7 +20,9 @@ Example output:
     {% for item in menu_items %}
         - **Name:** {{item.name}}
         - **Category:** {{item.category}}
-        - **Seasonality:** {{item.seasonality}}
         - **Total Sales:** {{item.sales_volume}}
+        - **Profit Margin:** {{item.profit_margin}}%
+        - **ABC Classification:** {{item.abc_popularity}}
+        - **Menu Matrix Quadrant:** {{item.matrix_category}}
     {% endfor %}
 {% endif %}

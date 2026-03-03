@@ -100,36 +100,28 @@ class Admin::Ai::AiPromptLogsController < ApplicationController
     @ai_prompt_log.set_item_feedback(item_index, feedback_value)
 
     if @ai_prompt_log.save
-      # Get logs from the same menu and topic (if filtered) to refresh the table
       menu = @ai_prompt_log.menu
       topic_id = params[:ai_recommendation_topic_id]
-      
-      # Get all logs (not paginated yet)
-      if topic_id.present?
-        all_logs = menu.ai_prompt_logs.by_prompt_type(topic_id).order(date: :desc).decorate
-      else
-        all_logs = menu.ai_prompt_logs.order(date: :desc).decorate
-      end
-      
-      # Expand all items from all logs into a flat list with log reference
-      all_recommendations = []
-      all_logs.each do |log|
+
+      # 1. Fetch logs
+      all_logs = if topic_id.present?
+                   menu.ai_prompt_logs.by_prompt_type(topic_id).order(date: :desc).decorate
+                 else
+                   menu.ai_prompt_logs.order(date: :desc).decorate
+                 end
+
+      # 2. Flatten recommendations using flat_map for cleaner Ruby
+      all_recommendations = all_logs.flat_map do |log|
         items = log.display_by_item
-        if items.present? && items.is_a?(Array)
-          items.each_with_index do |item, index|
-            all_recommendations << {
-              log: log,
-              item: item,
-              index: index
-            }
-          end
+        next [] unless items.is_a?(Array)
+
+        items.each_with_index.map do |item, index|
+          { log: log, item: item, index: index }
         end
       end
-      
-      # Paginate the flat list of recommendations
+
+      # 3. Paginate
       @pagy, @paginated_recommendations = pagy_array(all_recommendations, items: 10)
-      
-      # Keep all logs for reference
       @ai_prompt_logs = all_logs
 
       respond_to do |format|
@@ -137,21 +129,24 @@ class Admin::Ai::AiPromptLogsController < ApplicationController
           render turbo_stream: turbo_stream.replace(
             'ai-recommendations',
             partial: 'admin/ai/ai_recommendations/table',
-            locals: { 
-              ai_prompt_logs: @ai_prompt_logs, 
+            locals: {
+              ai_prompt_logs: @ai_prompt_logs,
               paginated_recommendations: @paginated_recommendations,
-              topic_id: topic_id, 
+              topic_id: topic_id,
               pagy: @pagy,
               menu: menu,
               organization: menu.organization
             }
           )
         end
+        # Fallback to prevent UnknownFormat if JS fails to send turbo_stream headers
+        format.html { redirect_back fallback_location: admin_organization_ai_ai_prompt_logs_path(menu.organization) }
         format.json { render json: { status: 'success', feedback: feedback_value } }
       end
     else
       respond_to do |format|
         format.turbo_stream { head :unprocessable_entity }
+        format.html { redirect_back fallback_location: root_path, alert: "Could not save feedback" }
         format.json { render json: { status: 'error', errors: @ai_prompt_log.errors }, status: :unprocessable_entity }
       end
     end

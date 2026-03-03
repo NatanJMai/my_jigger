@@ -209,4 +209,39 @@ class Admin::ChartsController < ApplicationController
       series: series
     }
   end
+
+  ##
+  # Menu (AI Forecast)
+  # Calls GPT-3.5-turbo with the last 12 weeks of sales data and returns
+  # 30-day daily predictions per item as JSON.
+  # POST /admin/menus/:menu_id/charts/ai_forecast
+  def ai_forecast
+    items = @menu.items
+    items = items.where(id: params[:item_ids]) if params[:item_ids].present?
+
+    # Build the same sales shape the frontend already knows
+    start_date = 12.weeks.ago.beginning_of_week.to_date
+    end_date   = Time.current.end_of_week.to_date
+    all_dates  = (start_date..end_date).step(7).to_a.first(12)
+    labels     = all_dates.map { |d| d.strftime('%b %d') }
+
+    series = items.includes(order_items: :order).map do |item|
+      weekly = item.sales_performance_by_item({ attribute: :quantity, weekly: true }).to_h
+      {
+        name: item.name,
+        data: all_dates.map { |d| weekly[d.strftime('%b %d')] || 0 }
+      }
+    end
+
+    forecast = Ai::MenuForecastService.new({ labels: labels, series: series }).generate
+
+    if forecast.empty?
+      render json: { error: 'GPT returned no forecast data — please try again.' }, status: :unprocessable_entity
+    else
+      render json: forecast
+    end
+  rescue StandardError => e
+    Rails.logger.error("ai_forecast error: #{e.message}")
+    render json: { error: 'Forecast generation failed. Check server logs.' }, status: :unprocessable_entity
+  end
 end

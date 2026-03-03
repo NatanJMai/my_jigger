@@ -112,7 +112,7 @@ class Ai::MenuAnalysisService
       'ingredients' => item.datasheet_lines.pluck(:name).join(', '),
       'preparation_method' => item.prep_method,
       'abc_popularity' => item.get_abc_category,
-      'seasonality' => 'Seasonal'
+      'matrix_category' => item.matrix_category.to_s.humanize
     }
   end
 end

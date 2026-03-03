@@ -19,8 +19,10 @@ Example output:
     Items:
     {% for item in menu_items %}
         - **Name:** {{item.name}}
-        - **Ingredients:** {{item.ingredients | join: ", " }}
         - **Category:** {{item.category}}
+        - **Ingredients:** {{item.ingredients}}
         - **Total Sales:** {{item.sales_volume}}
+        - **ABC Classification:** {{item.abc_popularity}}
+        - **Menu Matrix Quadrant:** {{item.matrix_category}}
     {% endfor %}
 {% endif %}

@@ -20,6 +20,8 @@ Example output:
     {% for item in menu_items %}
         - **Name:** {{item.name}}
         - **Ingredients:** {{item.ingredients}}
+        - **Cost:** ${{item.cost}}
+        - **ABC Classification:** {{item.abc_popularity}}
+        - **Menu Matrix Quadrant:** {{item.matrix_category}}
     {% endfor %}
 {% endif %}
-

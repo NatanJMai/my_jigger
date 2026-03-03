@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   # Sidekiq web UI route, add authentication if needed
   mount Sidekiq::Web => '/sidekiq'
 
-
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   devise_scope :user do
@@ -55,12 +54,14 @@ Rails.application.routes.draw do
             get 'revenue_by_category'
             get 'price_vs_costs_by_menu'
             get 'costs_vs_profit_by_menu'
+            post 'ai_forecast'
           end
         end
 
         resources :items, only: %i[index show]
 
         namespace :ai do
+          get  'assistant/analyze', to: 'assistant#analyze_menu'
           post 'assistant/analyze', to: 'assistant#analyze_menu'
           post 'assistant/feedback', to: 'assistant#feedback'
           get 'assistant/recommendations', to: 'assistant#recommendations'
@@ -128,8 +129,8 @@ Rails.application.routes.draw do
       end
     end
 
-    get "dashboard/index-2", to: "dashboard#index_2"
-    get "dashboard/index"
+    get 'dashboard/index-2', to: 'dashboard#index_2'
+    get 'dashboard/index'
   end
 
   get '/index' => 'public#index'
