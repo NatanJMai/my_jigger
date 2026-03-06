@@ -1,4 +1,7 @@
 
+import * as Turbo from "@hotwired/turbo-rails"
+import { renderStreamMessage } from "@hotwired/turbo"
+
 $(document).on('change', '.ingredient-js', function() {
   let selectedValue = $(this).val();
   let url = $(this).data('url');
@@ -92,9 +95,7 @@ $(document).on('change', '.quantity-inline-edit-js', function() {
       $row.find('.calculated-price-js').text(response.calculated_price);
 
       if (response.turbo_stream_updates) {
-        // This command relies on the Turbo library to process the stream commands
-        // and update the 'totals' turbo frame.
-        Turbo.renderStreamMessage(response.turbo_stream_updates);
+        renderStreamMessage(response.turbo_stream_updates)
       }
 
       $input.addClass('is-valid').delay(800).queue(function(next){

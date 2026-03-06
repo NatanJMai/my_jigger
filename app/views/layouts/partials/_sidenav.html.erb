@@ -108,11 +108,11 @@
     <% end %>
     <!--- Sidenav Menu -->
     <ul class="side-nav">
-      <li class="side-nav-title" data-lang="apps-title">Organisations</li>
+      <li class="side-nav-title" data-lang="apps-title"><%= t("nav.organizations") %></li>
       <li class="side-nav-item">
         <a class="side-nav-link" href="<%= url_for(:controller => 'admin/organizations', :action => 'index') %>">
           <span class="menu-icon"><i data-lucide="building-2"></i></span>
-          <span class="menu-text" data-lang="organisations"> Organisations </span>
+          <span class="menu-text"><%= t("nav.organizations") %></span>
         </a>
       </li>
 
@@ -121,35 +121,35 @@
         <li class="side-nav-item">
           <a class="side-nav-link" href="<%= admin_organization_menus_path(@organization) %> ">
             <span class="menu-icon"><i data-lucide="notebook-pen"></i></span>
-            <span class="menu-text" data-lang="organisations"> Menus </span>
+            <span class="menu-text"><%= t("nav.menus") %></span>
           </a>
         </li>
 
         <li class="side-nav-item">
           <a class="side-nav-link" href='<%= admin_organization_items_path(@organization) %>'>
             <span class="menu-icon"><i data-lucide="package"></i></span>
-            <span class="menu-text" data-lang="eco-products">Products</span>
+            <span class="menu-text"><%= t("nav.items") %></span>
           </a>
         </li>
 
         <li class="side-nav-item">
           <a class="side-nav-link" href='<%= admin_organization_ingredients_path(@organization) %>'>
             <span class="menu-icon"><i data-lucide="leaf"></i></span>
-            <span class="menu-text" data-lang="eco-pro-listing">Ingredients</span>
+            <span class="menu-text"><%= t("nav.ingredients") %></span>
           </a>
         </li>
 
         <li class="side-nav-item">
           <a class="side-nav-link" href='<%= admin_organization_categories_path(@organization) %>'>
             <span class="menu-icon"><i data-lucide="layout-grid"></i></span>
-            <span class="menu-text" data-lang="eco-categories">Categories</span>
+            <span class="menu-text"><%= t("nav.categories") %></span>
           </a>
         </li>
 
         <li class="side-nav-item">
           <a class="side-nav-link" href='<%= admin_organization_orders_path(@organization) %>'>
             <span class="menu-icon"><i data-lucide="clipboard-list"></i></span>
-            <span class="menu-text" data-lang="eco-orders-list">Orders</span>
+            <span class="menu-text"><%= t("nav.orders") %></span>
           </a>
         </li>
       <% end %>

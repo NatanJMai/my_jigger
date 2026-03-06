@@ -1,4 +1,5 @@
-import "@hotwired/turbo-rails"
+import * as Turbo from "@hotwired/turbo-rails"
+window.Turbo = Turbo
 
 // Import app first to ensure jQuery is available
 import '../js/app'
@@ -11,16 +12,6 @@ import '../js/pages/chart-apex-line'
 import '../js/pages/chart-apex-bar'
 import '../js/pages/chart-apex-pie'
 import '../js/pages/chart-apex-area'
-
-// Prevent Turbo from driving non-Turbo links is handled globally
-// by turbo-rails default.
-
-// Add data-turbo="false" support for links that should bypass Turbo
-$(document).on('turbo:click', function (event) {
-  if ($(event.target).closest('[data-turbo="false"]').length) {
-    event.preventDefault();
-  }
-});
 
 import '../scss/app.scss'
 

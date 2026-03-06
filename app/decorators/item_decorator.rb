@@ -23,6 +23,6 @@ class ItemDecorator < ApplicationDecorator
   # Return Item name with link
   # @return String
   def display_item_link
-    "<a class='item-link' href='#{Rails.application.routes.url_helpers.admin_item_path(id)}'>#{ERB::Util.html_escape(name)}</a>".html_safe
+    "<a class='item-link' href='#{Rails.application.routes.url_helpers.admin_item_path(id: id)}'>#{ERB::Util.html_escape(name)}</a>".html_safe
   end
 end

@@ -1,10 +1,12 @@
 # encoding : utf-8
 
 MoneyRails.configure do |config|
-
   # To set the default currency
-  #
-  config.default_currency = :brl
+  # Configure via environment variable or use USD as default
+  config.default_currency = ENV.fetch('DEFAULT_CURRENCY', 'USD').to_sym
+
+  # Enable I18n localization for currency formatting
+  config.locale_backend = :i18n
 
   # Set default bank object
   #

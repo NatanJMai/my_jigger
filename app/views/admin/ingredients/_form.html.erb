@@ -3,7 +3,7 @@
     <div class="row g-3">
       <div class="col-md-8">
         <div class="mb-3">
-          <label class="form-label">Ingredient Name <span class="text-danger">*</span></label>
+          <label class="form-label"><%= t("ingredients.ingredient") %> <span class="text-danger">*</span></label>
           <%= f.input :name,
                       label: false,
                       required: true,
@@ -12,7 +12,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Prep Method <span class="text-muted">(Optional)</span></label>
+          <label class="form-label"><%= t("common.description") %> <span class="text-muted">(<%= t("form.optional") %>)</span></label>
           <%= f.input :prep_method,
                       as: :text,
                       wrapper: false,
@@ -21,7 +21,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Image <span class="text-muted">(Optional)</span></label>
+          <label class="form-label"><%= t("form.image") %> <span class="text-muted">(<%= t("form.optional") %>)</span></label>
           <div class="border rounded p-3 text-center bg-light-subtle">
             <% if @ingredient.image.present? %>
               <%= image_tag @ingredient.image.url, alt: "Ingredient Image", class: "img-thumbnail mb-2", style: "max-height: 100px;" %><br>
@@ -33,7 +33,7 @@
 
       <div class="col-md-4">
         <div class="mb-3">
-          <label class="form-label">Volume</label>
+          <label class="form-label"><%= t("items.volume") %></label>
           <%= f.input :volume,
                       as: :decimal,
                       label: false,
@@ -42,18 +42,18 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Unit</label>
+          <label class="form-label"><%= t("items.unit") %></label>
           <%= f.input :unit,
                       as: :select,
                       collection: Unit.select_options,
-                      prompt: 'Select Unit',
+                      prompt: t("form.select_option"),
                       label: false,
                       input_html: { class: 'form-select' },
                       wrapper: false %>
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Cost (BRL)</label>
+          <label class="form-label"><%= t("items.cost") %></label>
           <%= f.input :cost,
                       as: :decimal,
                       label: false,
@@ -65,9 +65,9 @@
   </div>
 
   <div class="modal-footer d-flex justify-content-between">
-    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+    <button type="button" class="btn btn-light" data-bs-dismiss="modal"><%= t("common.cancel") %></button>
     <div>
-      <%= f.button :submit, 'Save Ingredient', class: "btn btn-success me-2" %>
+      <%= f.button :submit, t("common.save"), class: "btn btn-success me-2" %>
     </div>
   </div>
 <% end %>

@@ -27,10 +27,14 @@
             <img alt="user-image" class="rounded" height="20" id="selected-language-image" src="<%= vite_asset_path 'images/flags/us.svg' %>"/>
           </button>
           <div class="dropdown-menu dropdown-menu-end">
-            <a class="dropdown-item" data-translator-lang="en" href="javascript:void(0);" title="English">
+            <%= link_to url_for(locale: :en), class: "dropdown-item #{'active' if I18n.locale == :en}", data: { translator_lang: "en" } do %>
               <img alt="English" class="me-1 rounded" data-translator-image="" height="18" src="<%= vite_asset_path 'images/flags/us.svg' %>"/>
               <span class="align-middle">English</span>
-            </a>
+            <% end %>
+            <%= link_to url_for(locale: :"pt-BR"), class: "dropdown-item #{'active' if I18n.locale == :"pt-BR"}", data: { translator_lang: "pt-BR" } do %>
+              <img alt="Portuguese" class="me-1 rounded" data-translator-image="" height="18" src="<%= vite_asset_path 'images/flags/br.svg' %>"/>
+              <span class="align-middle">Português (BR)</span>
+            <% end %>
             <a class="dropdown-item" data-translator-lang="de" href="javascript:void(0);" title="German">
               <img alt="German" class="me-1 rounded" data-translator-image="" height="18" src="<%= vite_asset_path 'images/flags/de.svg' %>"/>
               <span class="align-middle">Deutsch</span>

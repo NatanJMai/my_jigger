@@ -6,30 +6,28 @@
   <component name="ChangeListManager">
     <list default="true" id="1a9e98c9-70f7-42ed-a6fd-1b3b79aa24d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/charts_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/charts_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/items/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/items/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab1.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/partials/_tab1.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/_vertical.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_vertical.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/base.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/horizontal.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/public_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/public_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/decorators/category_decorator.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/decorators/category_decorator.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/decorators/item_decorator.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/decorators/item_decorator.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/categories/_category.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/categories/_category.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/ingredients/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/ingredients/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/ingredients/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/ingredients/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/organizations/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/organizations/index.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/layouts/partials/_sidenav.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/partials/_sidenav.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/layouts/partials/_topbar.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/partials/_topbar.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/application.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/application.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/boot.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/boot.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/initializers/money.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/initializers/money.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/locales/en.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/locales/en.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/entrypoints/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/entrypoints/application.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-line.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/pages/chart-apex-line.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/pages/chart-apex-pie.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/pages/chart-apex-pie.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/pages/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/pages/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/pages/ecommerce-seller-details.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/scss/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/scss/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_authentication.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_chat.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_email.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_error.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_kanban-board.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_landing.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_outlook.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_sitemap.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/scss/pages/_timeline.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/datasheet.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/datasheet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +82,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1771718347788",
+    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1772766813257",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "my-jigger",
     "junie.onboarding.icon.badge.shown": "true",
@@ -98,7 +96,7 @@
     "ruby.structure.view.model.defaults.configured": "true",
     "settings.editor.selected.configurable": "settings.sync",
     "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "/var/lib/snapd/snap/rubymine/470/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "ts.external.directory.path": "/Applications/RubyMine.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -504,7 +502,12 @@
       <workItem from="1770105050883" duration="866000" />
       <workItem from="1770758903081" duration="2464000" />
       <workItem from="1771412181383" duration="2326000" />
-      <workItem from="1771718282330" duration="3753000" />
+      <workItem from="1771718282330" duration="4501000" />
+      <workItem from="1771883419981" duration="713000" />
+      <workItem from="1772233617407" duration="4905000" />
+      <workItem from="1772264820161" duration="2276000" />
+      <workItem from="1772319491510" duration="2549000" />
+      <workItem from="1772766753440" duration="4854000" />
     </task>
     <servers />
   </component>

@@ -5,12 +5,28 @@ class ApplicationController < ActionController::Base
   ORGANIZATIONS_CONTROLLER = 'organizations'
 
   before_action :set_organization
+  before_action :set_locale
   helper_method :current_organization
 
   private
 
   def current_organization
     @organization
+  end
+
+  def set_locale
+    I18n.locale = extract_locale || I18n.default_locale
+  end
+
+  def extract_locale
+    locale_param = params[:locale]
+    return locale_param if locale_param.present? && I18n.available_locales.include?(locale_param.to_sym)
+
+    session[:locale]
+  end
+
+  def default_url_options
+    { locale: I18n.locale }
   end
 
   def set_organization

@@ -1,31 +1,268 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
   hello: "Hello world"
+
+  # Application
+  app:
+    name: "MyJigger"
+    tagline: "Cost Management for Hospitality"
+
+  # Navigation
+  nav:
+    dashboard: "Dashboard"
+    organizations: "Organizations"
+    menus: "Menus"
+    items: "Items"
+    categories: "Categories"
+    ingredients: "Ingredients"
+    orders: "Orders"
+    products: "Products"
+    datasheets: "Datasheets"
+    import_jobs: "Import Jobs"
+    ai_assistant: "AI Assistant"
+    logout: "Log Out"
+    login: "Log In"
+    sign_up: "Sign Up"
+    profile: "Profile"
+    settings: "Settings"
+
+  # Common
+  common:
+    save: "Save"
+    cancel: "Cancel"
+    delete: "Delete"
+    edit: "Edit"
+    new: "New"
+    add: "Add"
+    create: "Create"
+    update: "Update"
+    back: "Back"
+    search: "Search"
+    filter: "Filter"
+    export: "Export"
+    import: "Import"
+    loading: "Loading..."
+    no_data: "No data available"
+    confirm: "Confirm"
+    actions: "Actions"
+    status: "Status"
+    active: "Active"
+    inactive: "Inactive"
+    enabled: "Enabled"
+    disabled: "Disabled"
+    name: "Name"
+    description: "Description"
+    email: "Email"
+    phone: "Phone"
+    address: "Address"
+    website: "Website"
+    created_at: "Created"
+    updated_at: "Updated"
+    yes: "Yes"
+    no: "No"
+    all: "All"
+    total: "Total"
+    showing: "Showing"
+    of: "of"
+    results: "results"
+    per_page: "per page"
+    select_all: "Select All"
+    delete_selected: "Delete Selected"
+    rows_per_page: "Rows per page"
+
+  # Organizations
+  organizations:
+    title: "Organization Management"
+    subtitle: "Admin"
+    new: "New Organization"
+    edit: "Edit Organization"
+    show: "View Organization"
+    my_organizations: "My Organizations"
+    organization: "Organization"
+    registered: "Registered"
+    select_organization: "Select Organization"
+
+  # Menus
+  menus:
+    title: "Menu Management"
+    subtitle: "Cost Management"
+    new: "New Menu"
+    edit: "Edit Menu"
+    show: "View Menu"
+    menu: "Menu"
+    menus: "Menus"
+    release_date: "Release Date"
+    data_imported: "Data Imported"
+    cost_analysis: "Cost Analysis"
+    best_items: "Best Items"
+    matrix_popularity: "Matrix Popularity"
+    sales_performance: "Sales Performance"
+    tab1: "Sales Overview"
+    tab2: "Items Performance"
+    tab3: "Categories"
+    tab4: "ABC Analysis"
+    tab5: "AI Insights"
+    tab6: "Data Import"
+
+  # Items
+  items:
+    title: "Items"
+    subtitle: "Cost Management"
+    new: "Add Item"
+    edit: "Edit Item"
+    show: "View Item"
+    item: "Item"
+    items: "Items"
+    price: "Price"
+    cost: "Cost"
+    quantity: "Quantity"
+    volume: "Volume"
+    unit: "Unit"
+    unit_price: "Unit Price"
+    total_cost: "Total Cost"
+    profit: "Profit"
+    margin: "Margin"
+    orders: "Orders"
+    production_cost: "Production Cost"
+
+  # Categories
+  categories:
+    title: "Categories"
+    subtitle: "Cost Management"
+    new: "New Category"
+    edit: "Edit Category"
+    show: "View Category"
+    category: "Category"
+    categories: "Categories"
+    sales_performance: "Sales Performance"
+    revenue_performance: "Revenue Performance"
+
+  # Ingredients
+  ingredients:
+    title: "Ingredients"
+    subtitle: "Inventory"
+    new: "Add Ingredient"
+    edit: "Edit Ingredient"
+    show: "View Ingredient"
+    ingredient: "Ingredient"
+    ingredients: "Ingredients"
+    find_ingredient: "Find Ingredient"
+    calculate: "Calculate"
+    details: "Details"
+    search_ingredient: "Search ingredient name..."
+
+  # Orders
+  orders:
+    title: "Orders"
+    subtitle: "Sales"
+    new: "New Order"
+    edit: "Edit Order"
+    show: "View Order"
+    order: "Order"
+    orders: "Orders"
+    total_amount: "Total Amount"
+    sale_date: "Sale Date"
+    item: "Item"
+
+  # Import Jobs
+  import_jobs:
+    title: "Import History"
+    subtitle: "Data Management"
+    new: "New Import"
+    show: "Import Details"
+    import: "Import"
+    start_import: "Start Import"
+    download_template: "Download Template"
+    select_file: "Select CSV or Excel file"
+    file_size_warning: "File size must be less than 50MB"
+
+  # Datasheets
+  datasheets:
+    title: "Datasheets"
+    subtitle: "Cost Management"
+    new: "New Datasheet"
+    edit: "Edit Datasheet"
+    show: "View Datasheet"
+    datasheet: "Datasheet"
+    datasheets: "Datasheets"
+    calculate_cmv: "Calculate CMV"
+
+  # AI
+  ai:
+    title: "AI Assistant"
+    analyze: "Analyze"
+    analyze_menu: "Analyze Menu"
+    recommendations: "Recommendations"
+    feedback: "Feedback"
+    prompt_logs: "Prompt Logs"
+    forecast: "Forecast"
+    insights: "AI Insights"
+
+  # Charts
+  charts:
+    sales_performance: "Sales Performance"
+    revenue_by_category: "Revenue by Category"
+    price_vs_costs: "Price vs Costs"
+    costs_vs_profit: "Costs vs Profit"
+    seller_overview: "Seller Overview"
+    revenue_performance: "Revenue Performance"
+
+  # Matrix
+  matrix:
+    stars: "Stars"
+    puzzles: "Puzzles"
+    plows: "Plows"
+    dogs: "Dogs"
+
+  # ABC Analysis
+  abc:
+    category_a: "Category A"
+    category_b: "Category B"
+    category_c: "Category C"
+    summary: "ABC Summary"
+
+  # Messages
+  messages:
+    saved_successfully: "Saved successfully"
+    deleted_successfully: "Deleted successfully"
+    updated_successfully: "Updated successfully"
+    error_saving: "Error saving"
+    error_deleting: "Error deleting"
+    confirm_delete: "Are you sure you want to delete?"
+    import_started: "Import started successfully"
+    processing: "Processing..."
+    success: "Success"
+    error: "Error"
+    warning: "Warning"
+    info: "Info"
+
+  # Form labels
+  form:
+    required: "Required"
+    optional: "Optional"
+    select_option: "Select an option"
+    enter_name: "Enter name"
+    enter_description: "Enter description"
+    enter_email: "Enter email"
+    enter_password: "Enter password"
+    confirm_password: "Confirm password"
+    current_password: "Current password"
+    new_password: "New password"
+    image: "Image"
+    remove_image: "Remove Image"
+    status: "Status"
+
+  # Validation
+  validation:
+    required: "This field is required"
+    invalid_email: "Invalid email address"
+    password_too_short: "Password is too short"
+    password_mismatch: "Passwords don't match"
+
+  # Date/Time
+  datetime:
+    today: "Today"
+    yesterday: "Yesterday"
+    this_week: "This Week"
+    this_month: "This Month"
+    last_month: "Last Month"
+    this_year: "This Year"
