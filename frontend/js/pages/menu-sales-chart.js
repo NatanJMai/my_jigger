@@ -655,7 +655,6 @@ function initMenuCharts() {
 }
 
 document.addEventListener('turbo:load', initMenuCharts);
-document.addEventListener('DOMContentLoaded', initMenuCharts);
 
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
   initMenuCharts();

@@ -107,7 +107,6 @@ function initPieChart() {
 
 // Initialize on both page load and Turbo navigation
 document.addEventListener('turbo:load', initPieChart);
-document.addEventListener('DOMContentLoaded', initPieChart);
 
 // Removed duplicate Menu Categories chart
 new CustomApexChart({

@@ -107,4 +107,3 @@ function initHeatmapChart() {
 }
 
 document.addEventListener('turbo:load', initHeatmapChart)
-document.addEventListener('DOMContentLoaded', initHeatmapChart)

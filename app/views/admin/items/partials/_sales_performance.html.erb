@@ -1,7 +1,7 @@
 <div class="col-xl-12">
   <div class="card">
     <div class="card-header">
-      <h4 class="card-title">Selection - Github Style</h4>
+      <h4 class="card-title">Sales Performance</h4>
     </div>
     <div class="card-body">
       <div dir="ltr">
@@ -9,13 +9,6 @@
         <div class="apex-charts"
              id="area-chart-github"
              data-chart-endpoint="<%= sales_performance_by_item_admin_item_charts_path(item, month: true) %>">
-        </div>
-
-        <div class="pt-2 pb-1">
-          <div class="d-flex justify-content-center align-items-center gap-2">
-            <img alt="file-image" height="24" src="<%= vite_asset_path 'images/logo-sm.png' %>"/>
-            <a class="text-muted fw-bold fs-md" href="javascript:void(0);">MyAdmin</a>
-          </div>
         </div>
 
         <%# Second chart container (will be the brush/selection chart) %>

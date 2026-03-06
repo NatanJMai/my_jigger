@@ -1100,13 +1100,6 @@ function initializeApp() {
 
 document.addEventListener('turbo:load', initializeApp);
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeApp);
-} else {
-    initializeApp();
-}
-
-
 //
 // ------------------------------ Required Helpers For Chart ------------------------------
 //

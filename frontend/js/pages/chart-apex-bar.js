@@ -102,10 +102,6 @@ import small1 from '@/images/stock/small-1.jpg'
 
 // Initialize on both page load and Turbo navigation
 document.addEventListener('turbo:load', initBarChart);
-document.addEventListener('DOMContentLoaded', initBarChart);
-
-
-
 
 //
 // GROUPED BAR CHART

@@ -9,14 +9,6 @@
         <div class="card">
           <div class="card-body px-4">
             <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-3">
-              <div class="auth-brand mb-0">
-                <a class="logo-dark" href="<%= url_for(:controller => 'admin/dashboard', :action => 'index') %>">
-                  <img alt="dark logo" height="60" src="<%= vite_asset_path 'images/logos/MyJigger1.png' %>"/>
-                </a>
-                <a class="logo-light" href="<%= url_for(:controller => 'admin/dashboard', :action => 'index') %>">
-                  <img alt="logo" height="60" src="<%= vite_asset_path 'images/logos/MyJigger1.png' %>"/>
-                </a>
-              </div>
               <div class="text-end">
                 <span class="badge bg-info-subtle text-info mb-2 fs-xs px-2 py-1">Data Imported</span>
                 <h4 class="fw-bold text-dark m-0">Order #ORD-<%= @order.order_number %></h4>

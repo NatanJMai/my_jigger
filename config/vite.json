@@ -3,7 +3,7 @@
     "sourceCodeDir": "frontend",
     "watchAdditionalPaths": [],
     "additionalEntrypoints": [
-       "frontend/js/**/*.{js,ts}",
+      "frontend/js/**/*.{js,ts}",
       "~/{assets,fonts,icons,images}/**/*"
     ]
   },

@@ -51,7 +51,6 @@ if (typeof Quill != 'undefined') {
     }
 
     // Initialize Quill editors on both DOMContentLoaded and turbo:load
-    document.addEventListener("DOMContentLoaded", initQuillEditors);
     document.addEventListener("turbo:load", initQuillEditors);
 }
 
@@ -106,5 +105,4 @@ function initializeFileUpload() {
 }
 
 // Initialize on both DOMContentLoaded and turbo:load
-document.addEventListener("DOMContentLoaded", initializeFileUpload);
 document.addEventListener("turbo:load", initializeFileUpload);

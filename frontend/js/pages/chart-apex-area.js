@@ -411,7 +411,6 @@ function initAreaChart() {
 
 // Initialize on both page load and Turbo navigation
 document.addEventListener('turbo:load', initAreaChart);
-document.addEventListener('DOMContentLoaded', initAreaChart);
 
 //
 // STACKED AREA

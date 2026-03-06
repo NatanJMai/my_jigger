@@ -96,7 +96,6 @@ function initLineChart() {
 
 // Initialize on both page load and Turbo navigation
 document.addEventListener('turbo:load', initLineChart);
-document.addEventListener('DOMContentLoaded', initLineChart);
 
 // Removed duplicate Menu Sales chart
 

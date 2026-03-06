@@ -11,6 +11,7 @@
     "@fullcalendar/interaction": "^6.1.19",
     "@fullcalendar/list": "^6.1.19",
     "@fullcalendar/timegrid": "^6.1.19",
+    "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.18",
     "@nathanvda/cocoon": "^1.2.14",
     "@rails/ujs": "^7.1.3-4",

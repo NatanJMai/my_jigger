@@ -642,5 +642,4 @@ function initializeCustomTable() {
 }
 
 // Initialize on both DOMContentLoaded and turbo:load
-document.addEventListener("DOMContentLoaded", initializeCustomTable);
 document.addEventListener("turbo:load", initializeCustomTable);
